@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    
+    <persistence-unit name="kursorPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!-- Entidades JPA -->
+        <class>com.kursor.persistence.entity.Sesion</class>
+        <class>com.kursor.persistence.entity.EstadoEstrategia</class>
+        <class>com.kursor.persistence.entity.EstadisticasUsuario</class>
+        <class>com.kursor.persistence.entity.RespuestaPregunta</class>
+        
+        <properties>
+            <!-- Configuración de SQLite -->
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:data/kursor.db"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            
+            <!-- Configuración de Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            
+            <!-- Configuración de conexión -->
+            <property name="hibernate.connection.pool_size" value="1"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
+            
+            <!-- Configuración de logging -->
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.jdbc.batch_size" value="20"/>
+            
+            <!-- Configuración específica para SQLite -->
+            <property name="hibernate.connection.foreign_keys" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence> 

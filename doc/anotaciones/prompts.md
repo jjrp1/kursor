@@ -6,6 +6,12 @@ Sobre la persistencia. Queremos que la aplicación implemente persistencia sobre
 
 
 
+Configurar JPA + SQLite en el proyecto
+Implementar las entidades JPA básicas
+Crear las estrategias Secuencial y Aleatoria como módulos
+Integrar persistencia con estrategias
+
+
 # LOGGING
 tenemos que hacer que funcione adecuadamente el mecanismo de logging, debe distinguir las modalidades DEBUG (muy verboso) e INFO (registro normal, con avisos y errores). Para cada registro, debe indicar la clase, metodo y número de línea que invocó a la función de registro. Si esto es muy complicado dímelo y buscamos alternativas, pero creo que no estoy pidiendo nada del otro mundo, todo lo contrario, es lo más normal del mundo. Quizás deberíamos pensar en Log4j... no sé, empiezo a agotarme.
 
