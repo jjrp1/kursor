@@ -85,6 +85,9 @@ public class KursorApplication extends Application {
     /** Referencia a la ventana principal */
     private Stage primaryStage;
     
+    /** Referencia al TableView de cursos para acceder a la selección */
+    private TableView<CursoPreviewDTO> tableViewCursos;
+    
     /**
      * Inicializa y muestra la ventana principal de la aplicación.
      * 
@@ -118,6 +121,7 @@ public class KursorApplication extends Application {
         // Inicializar gestor de módulos
         logger.info("Inicializando gestor de módulos...");
         moduleManager = ModuleManager.getInstance();
+        
         logger.info("Gestor de módulos inicializado correctamente");
         
         // Crear contenedor principal
@@ -175,20 +179,20 @@ public class KursorApplication extends Application {
         Button btnInspeccionar = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
         btnInspeccionar.setOnAction(e -> {
             logger.info("Botón Inspeccionar presionado desde barra inferior");
-            mostrarDialogoSeleccionCurso();
+            mostrarInformacionFilaSeleccionada();
         });
         
         // Botón Comenzar con icono de play
         Button btnComenzar = crearBotonConIcono("▶️ Comenzar", "#27ae60", "#229954");
-        btnComenzar.setOnAction(e -> rootContainer.setCenter(crearVistaDashboard()));
+        btnComenzar.setOnAction(e ->  mostrarAlert("▶️ Comenzar"));
         
         // Botón Reanudar con icono de pausa/play
         Button btnReanudar = crearBotonConIcono("⏯️ Reanudar", "#f39c12", "#e67e22");
-        btnReanudar.setOnAction(e -> rootContainer.setCenter(crearVistaDashboard()));
+        btnReanudar.setOnAction(e -> mostrarAlert("⏯️ Reanudar"));
         
         // Botón Flashcards con icono de tarjetas
         Button btnFlashcards = crearBotonConIcono("🗂️ Flashcards", "#9b59b6", "#8e44ad");
-        btnFlashcards.setOnAction(e -> rootContainer.setCenter(crearVistaDashboard()));
+        btnFlashcards.setOnAction(e -> mostrarAlert("🗂️ Flashcards"));
         
         // Botón Estadísticas con icono de gráfico
         Button btnEstadisticas = crearBotonConIcono("📊 Estadísticas", "#e74c3c", "#c0392b");
@@ -200,12 +204,9 @@ public class KursorApplication extends Application {
         
         // Botón About con icono de birrete
         Button btnAbout = crearBotonConIcono("🎓 About", "#34495e", "#2c3e50");
-        btnAbout.setOnAction(e -> mostrarDialogoAbout());
+        btnAbout.setOnAction(e -> AboutDialog.show());
         
-        bottomBar.getChildren().addAll(
-            btnInspeccionar, btnComenzar, btnReanudar, 
-            btnFlashcards, btnEstadisticas, spacer, btnAbout
-        );
+        bottomBar.getChildren().addAll(btnInspeccionar, btnComenzar, btnReanudar, btnFlashcards, btnEstadisticas, spacer, btnAbout);
         
         return bottomBar;
     }
@@ -278,149 +279,25 @@ public class KursorApplication extends Application {
         Label welcomeSubtitle = new Label("Tu plataforma de formación interactiva");
         welcomeSubtitle.setFont(Font.font("Segoe UI", 18));
         welcomeSubtitle.setTextFill(Color.GRAY);
-        
-        // No longer needed here, moved to bottom bar
-        // HBox accionesRapidas = crearAccionesRapidas();
-        
-        VBox cursosRecientes = crearCursosRecientes();
-        
-        dashboard.getChildren().addAll(welcomeTitle, welcomeSubtitle, cursosRecientes);
+
+        dashboard.getChildren().addAll(welcomeTitle, welcomeSubtitle, crearVistaCursos()); // cursosRecientes);
         return dashboard;
     }
     
-    private VBox crearCursosRecientes() {
-        VBox cursosContainer = new VBox(15);
-        cursosContainer.setAlignment(Pos.CENTER_LEFT);
-        
-        Label titulo = new Label("Cursos Disponibles");
-        titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 22));
-        titulo.setPadding(new Insets(0, 0, 5, 0));
-        
-        List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
-        
-        VBox cursosBox = new VBox(15);
-        for (CursoPreviewDTO curso : cursos) {
-            cursosBox.getChildren().add(crearTarjetaCurso(curso));
-        }
-        
-        ScrollPane scrollPane = new ScrollPane(cursosBox);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
-        
-        cursosContainer.getChildren().addAll(titulo, scrollPane);
-        return cursosContainer;
-    }
+
     
-    private HBox crearTarjetaCurso(CursoPreviewDTO curso) {
-        HBox tarjeta = new HBox(20);
-        tarjeta.setPadding(new Insets(20));
-        tarjeta.setStyle("-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4); -fx-cursor: hand;");
-        tarjeta.setAlignment(Pos.CENTER_LEFT);
-        
-        // Log de depuración para verificar el título
-        String tituloTexto = curso.getTitulo();
-        logger.debug("Creando tarjeta para curso - ID: {}, Título: '{}'", curso.getId(), tituloTexto);
-        
-        // Manejo de eventos de mouse para click simple y doble-click
-        tarjeta.setOnMouseClicked(e -> {
-            logger.debug("Click detectado en curso - ID: {}, Título: '{}', ClickCount: {}", 
-                curso.getId(), curso.getTitulo(), e.getClickCount());
-            
-            if (e.getClickCount() == 1) {
-                // Click simple: mostrar alert con el nombre del curso
-                logger.info("Click simple detectado - mostrando alert para curso: '{}'", curso.getTitulo());
-                mostrarAlertSeleccion(curso);
-            } else if (e.getClickCount() == 2) {
-                // Doble-click: inspeccionar curso
-                logger.info("Doble-click detectado - inspeccionando curso: '{}'", curso.getTitulo());
-                InspeccionarCurso.mostrar(curso, this.primaryStage);
-            }
-        });
-        
-        VBox infoCurso = new VBox(5);
-        
-        // Título del curso con color explícito y sin borde temporal
-        Label tituloCurso = new Label(tituloTexto);
-        tituloCurso.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
-        tituloCurso.setTextFill(Color.web("#2c3e50")); // Color azul oscuro
-        tituloCurso.setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold;");
-        
-        // Descripción del curso con color explícito
-        Label descCurso = new Label(curso.getDescripcion());
-        descCurso.setWrapText(true);
-        descCurso.setTextFill(Color.web("#7f8c8d")); // Color gris
-        descCurso.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 12px;");
-        
-        // ID del curso con estilo distintivo
-        Label idCurso = new Label("ID: " + curso.getId());
-        idCurso.setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
-        
-        infoCurso.getChildren().addAll(tituloCurso, descCurso, idCurso);
-        
-        tarjeta.getChildren().addAll(infoCurso);
-        return tarjeta;
-    }
+
     
-    private Node crearVistaEstadisticas() {
-        StackPane stackPane = new StackPane();
-        stackPane.setPadding(new Insets(20));
-        Label label = new Label("Vista de Estadísticas (en construcción)");
-        label.setFont(Font.font("Segoe UI", FontWeight.BOLD, 24));
-        stackPane.getChildren().add(label);
-        return stackPane;
-    }
-    
-    private Node crearVistaModulos() {
-        // Contenedor principal para la vista de módulos
-        VBox mainContainer = new VBox(20);
-        mainContainer.setPadding(new Insets(30));
-        
-        // Título de la sección
-        Label titulo = new Label("Módulos de Preguntas Disponibles");
-        titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 24));
-        
-        // Selector de tipo de pregunta (ComboBox)
-        ComboBox<String> moduleSelector = new ComboBox<>();
-        moduleSelector.setPromptText("Selecciona un tipo de pregunta");
-        
-        // Lista para mostrar las preguntas del módulo seleccionado
-        ListView<String> questionListView = new ListView<>();
-        
-        // Llenar el ComboBox con los nombres de los módulos cargados
-        // moduleManager.getPreguntaModules().forEach(module -> moduleSelector.getItems().add(module.getModuleName()));
-        
-        // Acción al seleccionar un módulo
-        /*
-        moduleSelector.setOnAction(event -> {
-            String selectedModule = moduleSelector.getValue();
-            if (selectedModule != null) {
-                // Limpiar la lista de preguntas
-                questionListView.getItems().clear();
-                
-                // Encontrar el módulo seleccionado
-                moduleManager.getPreguntaModule(selectedModule).ifPresent(module -> {
-                    // Obtener la lista de preguntas de ejemplo
-                    List<String> exampleQuestions = module.getExampleQuestions();
-                    questionListView.getItems().addAll(exampleQuestions);
-                });
-            }
-        });
-        */
-        
-        mainContainer.getChildren().addAll(titulo, moduleSelector, questionListView);
-        return mainContainer;
-    }
     
     private Node crearVistaCursos() {
         // Crear la tabla
-        TableView<CursoPreviewDTO> tableView = new TableView<>();
+        tableViewCursos = new TableView<>();
         List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
-        tableView.getItems().addAll(cursos);
+        tableViewCursos.getItems().addAll(cursos);
 
         // Configurar la tabla
-        tableView.setPlaceholder(new Label("No hay cursos disponibles"));
-        tableView.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
+        tableViewCursos.setPlaceholder(new Label("No hay cursos disponibles"));
+        tableViewCursos.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
         
         // Columna 1: Título
         TableColumn<CursoPreviewDTO, String> tituloCol = new TableColumn<>("Título");
@@ -441,7 +318,7 @@ public class KursorApplication extends Application {
         tituloCol.setPrefWidth(200);
         tituloCol.setResizable(true);
 
-        // Columna 2: Descripción con TextArea
+        // Columna 2: Descripción (con TextArea para texto justificado y múltiples líneas)
         TableColumn<CursoPreviewDTO, String> descripcionCol = new TableColumn<>("Descripción");
         descripcionCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         descripcionCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
@@ -453,20 +330,62 @@ public class KursorApplication extends Application {
                     setGraphic(null);
                     setStyle("-fx-background-color: transparent;");
                 } else {
+                    // Crear TextArea para texto justificado y múltiples líneas
                     TextArea textArea = new TextArea(item);
                     textArea.setWrapText(true);
                     textArea.setEditable(false);
-                    textArea.setPrefRowCount(3);
-                    textArea.setMaxHeight(80);
-                    textArea.setStyle("-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: #7f8c8d; -fx-font-size: 12px; -fx-text-alignment: justify;");
+                    textArea.setPrefRowCount(3); // Altura mínima de 3 líneas
+                    textArea.setMaxHeight(120); // Altura máxima
+                    textArea.setMinHeight(60);  // Altura mínima
                     
-                    // Ajustar altura automáticamente
+                    // Configurar el TextArea para que se ajuste al contenido
+                    textArea.setPrefColumnCount(50);
+                    textArea.setMaxWidth(Double.MAX_VALUE);
+                    
+                    // Ajustar altura automáticamente según el contenido
                     textArea.textProperty().addListener((obs, oldText, newText) -> {
-                        textArea.setPrefRowCount(Math.min(4, newText.length() / 50 + 1));
+                        if (newText != null) {
+                            // Calcular altura basada en el número de líneas
+                            int lineCount = newText.split("\n").length;
+                            int estimatedLines = Math.max(3, Math.min(lineCount + 1, 6));
+                            textArea.setPrefRowCount(estimatedLines);
+                        }
+                    });
+                    
+                    // Aplicar estilo base sin padding y que respete la selección
+                    aplicarEstiloTextArea(textArea, isSelected());
+                    
+                    // Escuchar cambios en la selección para actualizar el estilo
+                    selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+                        aplicarEstiloTextArea(textArea, isNowSelected);
                     });
                     
                     setGraphic(textArea);
-                    setStyle("-fx-background-color: transparent;");
+                    setText(null); // No usar setText cuando usamos setGraphic
+                }
+            }
+            
+            private void aplicarEstiloTextArea(TextArea textArea, boolean seleccionado) {
+                if (seleccionado) {
+                    // Estilo para fila seleccionada
+                    textArea.setStyle(
+                        "-fx-text-fill: white; " +
+                        "-fx-font-size: 12px; " +
+                        "-fx-background-color: transparent; " +
+                        "-fx-border-color: transparent; " +
+                        "-fx-text-alignment: justify; " +
+                        "-fx-padding: 0px;"
+                    );
+                } else {
+                    // Estilo para fila no seleccionada
+                    textArea.setStyle(
+                        "-fx-text-fill: #7f8c8d; " +
+                        "-fx-font-size: 12px; " +
+                        "-fx-background-color: transparent; " +
+                        "-fx-border-color: transparent; " +
+                        "-fx-text-alignment: justify; " +
+                        "-fx-padding: 0px;"
+                    );
                 }
             }
         });
@@ -484,7 +403,7 @@ public class KursorApplication extends Application {
                     setText(null);
                     setStyle("-fx-background-color: transparent;");
                 } else {
-                    setText("ID: " + item);
+                    setText(item);
                     setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
                 }
             }
@@ -493,71 +412,32 @@ public class KursorApplication extends Application {
         idCol.setResizable(true);
 
         // Agregar columnas a la tabla
-        tableView.getColumns().addAll(tituloCol, descripcionCol, idCol);
+        tableViewCursos.getColumns().addAll(tituloCol, descripcionCol, idCol);
 
         // Seleccionar automáticamente el primer elemento si hay cursos disponibles
         if (!cursos.isEmpty()) {
             logger.debug("Seleccionando automáticamente el primer curso: '{}'", cursos.get(0).getTitulo());
-            tableView.getSelectionModel().select(0);
+            tableViewCursos.getSelectionModel().select(0);
         }
 
-        // Botón Inspeccionar
-        Button inspectButton = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
-        inspectButton.setDisable(cursos.isEmpty());
-        inspectButton.setOnAction(e -> {
-            CursoPreviewDTO seleccionado = tableView.getSelectionModel().getSelectedItem();
-            if (seleccionado != null) {
-                logger.info("Inspeccionando curso desde botón - ID: {}, Título: '{}'", 
-                    seleccionado.getId(), seleccionado.getTitulo());
-                InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
-            }
-        });
-
-        // Habilitar el botón solo si hay selección
-        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            inspectButton.setDisable(newVal == null);
-        });
-
         // Manejo de eventos de mouse para click simple y doble-click
-        tableView.setOnMouseClicked(event -> {
-            CursoPreviewDTO seleccionado = tableView.getSelectionModel().getSelectedItem();
+        /*
+        tableViewCursos.setOnMouseClicked(event -> {
+            CursoPreviewDTO seleccionado = tableViewCursos.getSelectionModel().getSelectedItem();
             if (seleccionado != null) {
                 logger.debug("Click detectado en TableView - ID: {}, Título: '{}', ClickCount: {}", 
                     seleccionado.getId(), seleccionado.getTitulo(), event.getClickCount());
                 
                 if (event.getClickCount() == 1) {
                     // Click simple: mostrar alert con el nombre del curso
-                    logger.info("Click simple detectado en TableView - mostrando alert para curso: '{}'", seleccionado.getTitulo());
-                    mostrarAlertSeleccion(seleccionado);
-                } else if (event.getClickCount() == 2) {
-                    // Doble-click: inspeccionar curso
-                    logger.info("Doble-click detectado en TableView - inspeccionando curso: '{}'", seleccionado.getTitulo());
+                    logger.info("Click simple detectado en TableView - mostrando alert para curso: '{}'", seleccionado.getTitulo());     
                     InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
                 }
             }
         });
+         */
 
-        // Configurar estilos de selección
-        tableView.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
-        
-        // Estilo para filas seleccionadas
-        tableView.setRowFactory(tv -> new TableRow<CursoPreviewDTO>() {
-            @Override
-            protected void updateItem(CursoPreviewDTO item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setStyle("-fx-background-color: transparent;");
-                } else {
-                    if (isSelected()) {
-                        setStyle("-fx-background-color: #3498db; -fx-text-fill: white;");
-                    } else {
-                        setStyle("-fx-background-color: white; -fx-text-fill: black;");
-                    }
-                }
-            }
-        });
-
-        VBox contenedor = new VBox(15, tableView, inspectButton);
+        VBox contenedor = new VBox(15, tableViewCursos); 
         contenedor.setPadding(new Insets(20));
         return contenedor;
     }
@@ -565,6 +445,51 @@ public class KursorApplication extends Application {
     private void mostrarDetallesCurso(CursoPreviewDTO cursoPreview) {
         CursoDialog dialog = new CursoDialog(cursoPreview, this.primaryStage);
         dialog.showAndWait();
+    }
+
+    /**
+     * Muestra un alert informativo genérico.
+     * 
+     * @param texto El texto a mostrar
+     */
+    private void mostrarAlert(String texto) {
+        logger.debug("Mostrando alert: '{}'", texto);
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText("Texto de Cabecera");
+        alert.setContentText(texto);
+        
+        // Configurar el diálogo como modal
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(this.primaryStage);
+        
+        // Mostrar el alert y manejar la respuesta
+        Optional<ButtonType> result = alert.showAndWait();
+        logger.debug("Usuario cerró el alert");
+    }
+
+    /**
+     * Muestra un alert informativo con título y contenido personalizados.
+     * 
+     * @param titulo El título del alert
+     * @param contenido El contenido del alert
+     */
+    private void mostrarAlert(String titulo, String contenido) {
+        logger.debug("Mostrando alert con título: '{}', contenido: '{}'", titulo, contenido);
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(contenido);
+        
+        // Configurar el diálogo como modal
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(this.primaryStage);
+        
+        // Mostrar el alert y manejar la respuesta
+        Optional<ButtonType> result = alert.showAndWait();
+        logger.debug("Usuario cerró el alert");
     }
 
     /**
@@ -602,50 +527,20 @@ public class KursorApplication extends Application {
         }
     }
 
-    /**
-     * Muestra un diálogo de selección de curso cuando se presiona el botón Inspeccionar
-     * desde la barra inferior.
-     */
-    private void mostrarDialogoSeleccionCurso() {
-        logger.debug("Mostrando diálogo de selección de curso");
+
+    private void mostrarInformacionFilaSeleccionada() {
+        logger.info("🔍 Mostrando información de la fila seleccionada en TableView");
         
-        List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
+        CursoPreviewDTO seleccionado = tableViewCursos.getSelectionModel().getSelectedItem();
         
-        if (cursos.isEmpty()) {
-            logger.warn("No hay cursos disponibles para inspeccionar");
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Sin Cursos Disponibles");
-            alert.setHeaderText("No hay cursos para inspeccionar");
-            alert.setContentText("No se encontraron cursos en el sistema.");
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.initOwner(this.primaryStage);
-            alert.showAndWait();
+        if (seleccionado == null) {
+            logger.warn("⚠️ No hay fila seleccionada en el TableView");
+            mostrarAlert("⚠️ Sin selección", "No hay ningún curso seleccionado en la tabla.\n\nPor favor, selecciona una fila haciendo clic en ella.");
             return;
         }
-        
-        // Crear ChoiceDialog con la lista de cursos
-        ChoiceDialog<CursoPreviewDTO> dialog = new ChoiceDialog<>(cursos.get(0), cursos);
-        dialog.setTitle("Seleccionar Curso para Inspeccionar");
-        dialog.setHeaderText("Elige el curso que deseas inspeccionar:");
-        dialog.setContentText("Curso:");
-        
-        // Configurar el diálogo como modal
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(this.primaryStage);
-        
-        // Mostrar el diálogo y manejar la respuesta
-        Optional<CursoPreviewDTO> result = dialog.showAndWait();
-        if (result.isPresent()) {
-            CursoPreviewDTO cursoSeleccionado = result.get();
-            logger.info("Usuario seleccionó curso para inspeccionar: '{}'", cursoSeleccionado.getTitulo());
-            InspeccionarCurso.mostrar(cursoSeleccionado, this.primaryStage);
-        } else {
-            logger.debug("Usuario canceló la selección de curso");
-        }
-    }
 
-    private void mostrarDialogoAbout() {
-        AboutDialog.show();
+        InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
+
     }
 
     /**
