@@ -91,4 +91,32 @@ public interface PreguntaModule {
      * @throws IllegalArgumentException si el tipo de pregunta no es compatible con este módulo
      */
     boolean validateAnswer(Pregunta pregunta, Object answer);
+    
+    /**
+     * Crea la interfaz de usuario para una pregunta específica en el contexto de curso.
+     * 
+     * <p>Este método crea una interfaz optimizada para la ejecución de cursos,
+     * diferente de la vista de prueba que se usa en la pestaña de módulos.</p>
+     * 
+     * @param pregunta La pregunta para la cual crear la vista
+     * @return Nodo JavaFX que representa la interfaz de la pregunta para curso
+     * @throws IllegalArgumentException si el tipo de pregunta no es compatible con este módulo
+     */
+    default Node createQuestionUI(Pregunta pregunta) {
+        // Por defecto, usar la vista estándar
+        return createQuestionView(pregunta);
+    }
+    
+    /**
+     * Verifica si este tipo de pregunta requiere validación antes de continuar.
+     * 
+     * <p>Algunos tipos de preguntas como flashcards no requieren validación
+     * y pueden avanzar directamente al siguiente.</p>
+     * 
+     * @return true si requiere validación, false si puede avanzar directamente
+     */
+    default boolean requiresValidation() {
+        // Por defecto, todas las preguntas requieren validación
+        return true;
+    }
 } 

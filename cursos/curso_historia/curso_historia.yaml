@@ -122,80 +122,104 @@ bloques:
     tipo: "completar_huecos"
     preguntas:
       - id: p13
+        tipo: "completar_huecos"
         enunciado: "En el año 800, el Papa León III coronó a _____ como emperador del Sacro Imperio Romano."
         respuestaCorrecta: "Carlomagno"
       - id: p14
+        tipo: "completar_huecos"
         enunciado: "La _____ fue una serie de expediciones militares cristianas a Tierra Santa."
         respuestaCorrecta: "Cruzadas"
       - id: p15
+        tipo: "completar_huecos"
         enunciado: "En 1066, Guillermo el _____ conquistó Inglaterra en la Batalla de Hastings."
         respuestaCorrecta: "Conquistador"
       - id: p16
+        tipo: "completar_huecos"
         enunciado: "La _____ Negra devastó Europa entre 1347 y 1351."
         respuestaCorrecta: "Peste"
       - id: p17
+        tipo: "completar_huecos"
         enunciado: "En 1453, los _____ conquistaron Constantinopla."
         respuestaCorrecta: "otomanos"
       - id: p18
+        tipo: "completar_huecos"
         enunciado: "El _____ fue un documento que limitó el poder del rey de Inglaterra en 1215."
         respuestaCorrecta: "Magna Carta"
       - id: p19
+        tipo: "completar_huecos"
         enunciado: "Los _____ fueron una orden militar cristiana fundada durante las Cruzadas."
         respuestaCorrecta: "Templarios"
       - id: p20
+        tipo: "completar_huecos"
         enunciado: "En 1492, _____ descubrió América."
         respuestaCorrecta: "Colón"
       - id: p21
+        tipo: "completar_huecos"
         enunciado: "La _____ fue una guerra entre Inglaterra y Francia que duró 116 años."
         respuestaCorrecta: "Guerra de los Cien Años"
       - id: p22
+        tipo: "completar_huecos"
         enunciado: "Los _____ fueron una dinastía que gobernó el Sacro Imperio Romano."
         respuestaCorrecta: "Habsburgo"
       - id: p23
+        tipo: "completar_huecos"
         enunciado: "La _____ fue una institución medieval que regulaba el comercio."
         respuestaCorrecta: "Guilda"
       - id: p24
+        tipo: "completar_huecos"
         enunciado: "En 1095, el Papa _____ llamó a la Primera Cruzada."
         respuestaCorrecta: "Urbano II"
 
   - id: bloque3
     titulo: "Historia Moderna"
     descripcion: "Flashcards con términos y conceptos de la historia moderna"
-    tipo: "flashcards"
+    tipo: "flashcard"
     preguntas:
       - id: p25
+        tipo: "flashcard"
         anverso: "Revolución Industrial"
         reverso: "Período de grandes cambios tecnológicos y sociales que comenzó en Gran Bretaña a finales del siglo XVIII"
       - id: p26
+        tipo: "flashcard"
         anverso: "Revolución Francesa"
         reverso: "Movimiento social y político que comenzó en 1789 y derrocó la monarquía absoluta en Francia"
       - id: p27
+        tipo: "flashcard"
         anverso: "Napoleón Bonaparte"
         reverso: "Emperador francés que conquistó gran parte de Europa a principios del siglo XIX"
       - id: p28
+        tipo: "flashcard"
         anverso: "Guerra de Independencia de Estados Unidos"
         reverso: "Conflicto entre las 13 colonias americanas y Gran Bretaña (1775-1783)"
       - id: p29
+        tipo: "flashcard"
         anverso: "Revolución Rusa"
         reverso: "Serie de revoluciones en 1917 que derrocaron al zar y establecieron el gobierno bolchevique"
       - id: p30
+        tipo: "flashcard"
         anverso: "Primera Guerra Mundial"
         reverso: "Conflicto global que duró de 1914 a 1918, involucrando a las principales potencias mundiales"
       - id: p31
+        tipo: "flashcard"
         anverso: "Segunda Guerra Mundial"
         reverso: "Conflicto global de 1939 a 1945 entre las potencias del Eje y los Aliados"
       - id: p32
+        tipo: "flashcard"
         anverso: "Guerra Fría"
         reverso: "Período de tensión geopolítica entre Estados Unidos y la Unión Soviética (1947-1991)"
       - id: p33
+        tipo: "flashcard"
         anverso: "Caída del Muro de Berlín"
         reverso: "Evento de 1989 que simbolizó el fin de la Guerra Fría y la reunificación de Alemania"
       - id: p34
+        tipo: "flashcard"
         anverso: "Revolución Americana"
         reverso: "Proceso de independencia de las 13 colonias británicas en América del Norte"
       - id: p35
+        tipo: "flashcard"
         anverso: "Imperio Británico"
         reverso: "El imperio más extenso de la historia, que alcanzó su apogeo en el siglo XIX"
       - id: p36
+        tipo: "flashcard"
         anverso: "Revolución Industrial"
         reverso: "Transición de métodos de producción artesanales a la producción mecanizada" 

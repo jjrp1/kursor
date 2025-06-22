@@ -43,25 +43,33 @@ public class FillBlanksModule implements PreguntaModule {
 
     @Override
     public Pregunta parsePregunta(Map<String, Object> preguntaData) {
+        // Los IDs ahora siempre son String en los archivos YAML
         String id = (String) preguntaData.get("id");
+        
         String enunciado = (String) preguntaData.get("enunciado");
         
-        // Obtener la respuesta correcta (puede ser una lista o un string)
-        String respuestaCorrecta;
-        if (preguntaData.containsKey("respuestas")) {
-            List<Object> respuestasData = (List<Object>) preguntaData.get("respuestas");
-            if (!respuestasData.isEmpty()) {
-                respuestaCorrecta = respuestasData.get(0).toString();
-            } else {
-                respuestaCorrecta = "";
-            }
-        } else if (preguntaData.containsKey("respuesta")) {
-            respuestaCorrecta = (String) preguntaData.get("respuesta");
-        } else {
-            respuestaCorrecta = "";
+        // Obtener la respuesta correcta
+        String respuestaCorrecta = null;
+        if (preguntaData.containsKey("respuestaCorrecta")) {
+            Object respuestaObj = preguntaData.get("respuestaCorrecta");
+            // respuestaCorrecta = (respuestaObj instanceof Integer) ? String.valueOf(respuestaObj) : (String) respuestaObj;
+            respuestaCorrecta = (String) respuestaObj; // Siempre cadena
+        } else if (preguntaData.containsKey("respuesta_correcta")) {
+            Object respuestaObj = preguntaData.get("respuesta_correcta");
+            // respuestaCorrecta = (respuestaObj instanceof Integer) ? String.valueOf(respuestaObj) : (String) respuestaObj;
+            respuestaCorrecta = (String) respuestaObj; // Siempre cadena
         }
         
-        // Crear la pregunta de completar huecos
+        // Debug: mostrar todos los datos recibidos
+        System.out.println("INFO FillBlanksModule - Datos completos: " + preguntaData);
+        System.out.println("INFO FillBlanksModule - ID: " + id);
+        System.out.println("INFO FillBlanksModule - Enunciado: " + enunciado);
+        System.out.println("INFO FillBlanksModule - Contiene respuestaCorrecta: " + preguntaData.containsKey("respuestaCorrecta"));
+        System.out.println("INFO FillBlanksModule - Valor respuestaCorrecta: " + preguntaData.get("respuestaCorrecta"));
+        System.out.println("INFO FillBlanksModule - Tipo de respuestaCorrecta: " + (preguntaData.get("respuestaCorrecta") != null ? preguntaData.get("respuestaCorrecta").getClass().getSimpleName() : "null"));
+        System.out.println("INFO FillBlanksModule - Respuesta correcta final: '" + respuestaCorrecta + "'");
+        
+        // Crear la pregunta
         PreguntaCompletarHuecos pregunta = new PreguntaCompletarHuecos(id, enunciado, respuestaCorrecta);
         return pregunta;
     }

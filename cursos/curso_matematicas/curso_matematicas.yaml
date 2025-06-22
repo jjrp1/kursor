@@ -122,39 +122,51 @@ bloques:
     tipo: "completar_huecos"
     preguntas:
       - id: p13
+        tipo: "completar_huecos"
         enunciado: "Si x + 5 = 12, entonces x = _____"
         respuestaCorrecta: "7"
       - id: p14
+        tipo: "completar_huecos"
         enunciado: "Si 2x - 3 = 7, entonces x = _____"
         respuestaCorrecta: "5"
       - id: p15
+        tipo: "completar_huecos"
         enunciado: "La expresión (a + b)² = a² + 2ab + _____"
         respuestaCorrecta: "b²"
       - id: p16
+        tipo: "completar_huecos"
         enunciado: "Si 3x + 2y = 10 y x = 2, entonces y = _____"
         respuestaCorrecta: "2"
       - id: p17
+        tipo: "completar_huecos"
         enunciado: "El valor de x en la ecuación 4x = 20 es _____"
         respuestaCorrecta: "5"
       - id: p18
+        tipo: "completar_huecos"
         enunciado: "Si x² = 16, entonces x = _____ o x = _____"
         respuestaCorrecta: "4"
       - id: p19
+        tipo: "completar_huecos"
         enunciado: "La expresión (x + 3)(x - 3) = x² - _____"
         respuestaCorrecta: "9"
       - id: p20
+        tipo: "completar_huecos"
         enunciado: "Si 2x + 1 = 9, entonces x = _____"
         respuestaCorrecta: "4"
       - id: p21
+        tipo: "completar_huecos"
         enunciado: "La expresión x² + 6x + 9 = (x + _____)²"
         respuestaCorrecta: "3"
       - id: p22
+        tipo: "completar_huecos"
         enunciado: "Si 5x - 2 = 13, entonces x = _____"
         respuestaCorrecta: "3"
       - id: p23
+        tipo: "completar_huecos"
         enunciado: "La expresión (a - b)² = a² - 2ab + _____"
         respuestaCorrecta: "b²"
       - id: p24
+        tipo: "completar_huecos"
         enunciado: "Si x/3 = 4, entonces x = _____"
         respuestaCorrecta: "12"
 
@@ -164,38 +176,50 @@ bloques:
     tipo: "truefalse"
     preguntas:
       - id: p25
+        tipo: "truefalse"
         enunciado: "La suma de los ángulos internos de un triángulo es 180 grados."
         respuestaCorrecta: true
       - id: p26
+        tipo: "truefalse"
         enunciado: "Un cuadrado tiene 4 lados iguales y 4 ángulos rectos."
         respuestaCorrecta: true
       - id: p27
+        tipo: "truefalse"
         enunciado: "El área de un círculo se calcula con la fórmula πr²."
         respuestaCorrecta: true
       - id: p28
+        tipo: "truefalse"
         enunciado: "Un triángulo equilátero tiene todos sus ángulos iguales a 60 grados."
         respuestaCorrecta: true
       - id: p29
+        tipo: "truefalse"
         enunciado: "El perímetro de un rectángulo es la suma de sus cuatro lados."
         respuestaCorrecta: true
       - id: p30
+        tipo: "truefalse"
         enunciado: "Un rombo tiene todos sus lados iguales pero no necesariamente ángulos rectos."
         respuestaCorrecta: true
       - id: p31
+        tipo: "truefalse"
         enunciado: "El volumen de un cubo se calcula multiplicando lado × lado × lado."
         respuestaCorrecta: true
       - id: p32
+        tipo: "truefalse"
         enunciado: "Un triángulo isósceles tiene dos lados iguales y dos ángulos iguales."
         respuestaCorrecta: true
       - id: p33
+        tipo: "truefalse"
         enunciado: "El área de un triángulo es base × altura ÷ 2."
         respuestaCorrecta: true
       - id: p34
+        tipo: "truefalse"
         enunciado: "Un pentágono tiene 5 lados y 5 ángulos."
         respuestaCorrecta: true
       - id: p35
+        tipo: "truefalse"
         enunciado: "La circunferencia de un círculo se calcula con la fórmula 2πr."
         respuestaCorrecta: true
       - id: p36
+        tipo: "truefalse"
         enunciado: "Un trapecio tiene exactamente un par de lados paralelos."
         respuestaCorrecta: true 

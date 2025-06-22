@@ -399,37 +399,41 @@ public class ModuleManager {
             throw new IllegalArgumentException("El archivo JAR no puede ser null");
         }
         
+        logger.info("=== INICIO VALIDACIÓN JAR: {} ===", jarFile.getName());
         logger.debug("Iniciando validación de JAR: {} (tamaño: {} bytes)", 
                     jarFile.getName(), jarFile.length());
         
         try (JarFile jar = new JarFile(jarFile)) {
-            logger.trace("JAR abierto exitosamente: {}", jarFile.getName());
+            logger.info("JAR abierto exitosamente: {}", jarFile.getName());
             
             // Verificar archivo de servicios
-            logger.debug("Buscando archivo de servicios: {}", SERVICE_FILE);
+            logger.info("Buscando archivo de servicios: {}", SERVICE_FILE);
             JarEntry serviceEntry = jar.getJarEntry(SERVICE_FILE);
             
             if (serviceEntry == null) {
-                logger.warn("No se encontró el archivo de servicio {} en {}", SERVICE_FILE, jarFile.getName());
+                logger.error("No se encontró el archivo de servicio {} en {}", SERVICE_FILE, jarFile.getName());
                 return false;
             }
             
-            logger.trace("Archivo de servicios encontrado: {} (tamaño: {} bytes)", 
+            logger.info("Archivo de servicios encontrado: {} (tamaño: {} bytes)", 
                         SERVICE_FILE, serviceEntry.getSize());
 
             // Validar contenido del archivo de servicios
+            logger.info("Validando contenido del archivo de servicios...");
             if (!validarArchivoServicios(jar, serviceEntry, jarFile.getName())) {
+                logger.error("Validación del archivo de servicios FALLÓ para: {}", jarFile.getName());
                 return false;
             }
+            logger.info("Archivo de servicios validado exitosamente");
 
             // Verificar si hay clases que implementen PreguntaModule
-            logger.debug("Verificando presencia de clases de implementación");
+            logger.info("Verificando presencia de clases de implementación...");
             int classCount = 0;
             for (JarEntry entry : Collections.list(jar.entries())) {
                 String entryName = entry.getName();
                 if (entryName.endsWith(".class") && !entryName.contains("$")) {
                     classCount++;
-                    logger.trace("Clase encontrada: {}", entryName);
+                    logger.info("Clase encontrada: {}", entryName);
                 }
             }
 
@@ -438,7 +442,8 @@ public class ModuleManager {
                 return false;
             }
             
-            logger.debug("JAR {} validado exitosamente: {} clases encontradas", jarFile.getName(), classCount);
+            logger.info("JAR {} validado exitosamente: {} clases encontradas", jarFile.getName(), classCount);
+            logger.info("=== FIN VALIDACIÓN JAR: {} (EXITOSA) ===", jarFile.getName());
             return true;
             
         } catch (IOException e) {
@@ -550,10 +555,17 @@ public class ModuleManager {
         
         logger.debug("Buscando módulo para tipo de pregunta: '{}'", questionType);
         
+        // Mapeo especial para compatibilidad
+        String normalizedType = questionType;
+        if ("flashcards".equals(questionType)) {
+            normalizedType = "flashcard";
+            logger.debug("Mapeando tipo 'flashcards' a 'flashcard' para compatibilidad");
+        }
+        
         for (PreguntaModule module : modules) {
             try {
                 String moduleType = module.getQuestionType();
-                if (questionType.equals(moduleType)) {
+                if (normalizedType.equals(moduleType)) {
                     logger.debug("Módulo encontrado para tipo '{}': {}", questionType, module.getModuleName());
                     return module;
                 }

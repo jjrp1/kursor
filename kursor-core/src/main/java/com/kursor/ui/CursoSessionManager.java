@@ -37,6 +37,9 @@ public class CursoSessionManager {
     /** Identificador del curso */
     private final String cursoId;
     
+    /** Estrategia de aprendizaje seleccionada */
+    private String estrategiaSeleccionada;
+    
     /** Mapa de respuestas del usuario: preguntaId -> esCorrecta */
     private final Map<String, Boolean> respuestas;
     
@@ -56,16 +59,27 @@ public class CursoSessionManager {
      * Constructor para crear un gestor de sesión para un curso específico.
      * 
      * @param cursoId Identificador único del curso
+     * @param estrategia Estrategia de aprendizaje seleccionada
      */
-    public CursoSessionManager(String cursoId) {
+    public CursoSessionManager(String cursoId, String estrategia) {
         this.cursoId = cursoId;
+        this.estrategiaSeleccionada = estrategia;
         this.respuestas = new HashMap<>();
         this.preguntasRespondidas = new ArrayList<>();
         this.bloqueActual = 0;
         this.preguntaActual = 0;
         this.inicializada = false;
         
-        logger.info("CursoSessionManager creado para curso: " + cursoId);
+        logger.info("CursoSessionManager creado para curso: " + cursoId + " con estrategia: " + estrategia);
+    }
+    
+    /**
+     * Constructor para crear un gestor de sesión para un curso específico (sin estrategia).
+     * 
+     * @param cursoId Identificador único del curso
+     */
+    public CursoSessionManager(String cursoId) {
+        this(cursoId, "Secuencial"); // Estrategia por defecto
     }
     
     /**
@@ -229,6 +243,25 @@ public class CursoSessionManager {
      */
     public List<String> getPreguntasRespondidas() {
         return new ArrayList<>(preguntasRespondidas);
+    }
+    
+    /**
+     * Obtiene la estrategia de aprendizaje seleccionada.
+     * 
+     * @return Nombre de la estrategia
+     */
+    public String getEstrategiaSeleccionada() {
+        return estrategiaSeleccionada;
+    }
+    
+    /**
+     * Establece la estrategia de aprendizaje.
+     * 
+     * @param estrategia Nombre de la estrategia
+     */
+    public void setEstrategiaSeleccionada(String estrategia) {
+        this.estrategiaSeleccionada = estrategia;
+        logger.info("Estrategia actualizada: " + estrategia);
     }
     
     /**

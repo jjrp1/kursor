@@ -1,112 +1,57 @@
 package com.kursor.util;
 
-import com.kursor.strategy.EstrategiaModule;
 import com.kursor.domain.EstrategiaAprendizaje;
 import com.kursor.domain.Pregunta;
+import com.kursor.strategy.EstrategiaModule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ServiceLoader;
-import java.util.jar.JarFile;
-import java.util.jar.JarEntry;
-import java.net.URLClassLoader;
-import java.net.URL;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
- * Gestor de estrategias de aprendizaje para la aplicación Kursor.
+ * Gestor de estrategias de aprendizaje para el sistema Kursor.
  * 
- * <p>Esta clase se encarga de cargar dinámicamente todas las estrategias de aprendizaje
- * desde archivos JAR ubicados en el directorio "strategies". Utiliza el patrón
- * ServiceLoader para descubrir e instanciar implementaciones de {@link EstrategiaModule}.</p>
- * 
- * <p>Características principales:</p>
+ * <p>Esta clase implementa el patrón Singleton y es responsable de:</p>
  * <ul>
- *   <li>Carga automática de estrategias desde el directorio strategies/</li>
- *   <li>Validación exhaustiva de JARs antes de cargarlos</li>
- *   <li>Manejo robusto de errores de carga de estrategias</li>
- *   <li>Lista inmutable de estrategias cargadas</li>
- *   <li>Búsqueda eficiente de estrategias por nombre</li>
- *   <li>Logging comprehensivo para debugging y monitoreo</li>
+ *   <li>Cargar dinámicamente todas las estrategias disponibles</li>
+ *   <li>Gestionar el ciclo de vida de las estrategias</li>
+ *   <li>Proporcionar acceso a las estrategias por nombre</li>
+ *   <li>Crear instancias de estrategias con preguntas específicas</li>
  * </ul>
  * 
  * <p><strong>Estrategias soportadas:</strong></p>
  * <ul>
  *   <li><strong>Secuencial:</strong> Preguntas en orden secuencial</li>
  *   <li><strong>Aleatoria:</strong> Preguntas en orden aleatorio</li>
- *   <li><strong>Repetición Espaciada:</strong> Algoritmos de memoria optimizados</li>
- *   <li><strong>Repetir Incorrectas:</strong> Repite preguntas falladas al final</li>
+ *   <li><strong>Repetición Espaciada:</strong> Optimizada para retención a largo plazo</li>
+ *   <li><strong>Repetir Incorrectas:</strong> Enfocada en preguntas falladas anteriormente</li>
  * </ul>
  * 
- * <p><strong>Ejemplo de uso:</strong></p>
+ * <p><strong>Uso:</strong></p>
  * <pre>{@code
  * StrategyManager manager = StrategyManager.getInstance();
- * List<EstrategiaModule> strategies = manager.getStrategies();
- * for (EstrategiaModule strategy : strategies) {
- *     System.out.println("Estrategia cargada: " + strategy.getNombre());
- * }
- * 
- * // Crear estrategia específica
  * EstrategiaAprendizaje estrategia = manager.crearEstrategia("Secuencial", preguntas);
- * if (estrategia != null) {
- *     // Usar la estrategia para el aprendizaje
- * }
  * }</pre>
- * 
- * <p><strong>Thread Safety:</strong> Esta clase es thread-safe después de la inicialización.
- * El patrón Singleton garantiza que solo existe una instancia, y la lista de estrategias
- * se inicializa una sola vez durante la construcción.</p>
- * 
- * <p><strong>Manejo de Errores:</strong> Los errores de carga de estrategias individuales
- * no interrumpen la carga de otras estrategias. Todos los errores se registran apropiadamente.</p>
  * 
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
  * @since 1.0.0
  * @see EstrategiaModule
  * @see EstrategiaAprendizaje
- * @see ServiceLoader
  */
 public class StrategyManager {
     
-    /** Instancia única del gestor de estrategias (Singleton) */
+    /** Instancia única del gestor de estrategias */
     private static StrategyManager instance;
     
-    /** Logger para registrar eventos del gestor de estrategias */
+    /** Logger para esta clase */
     private static final Logger logger = LoggerFactory.getLogger(StrategyManager.class);
     
-    /** Lista de estrategias de aprendizaje cargadas exitosamente */
+    /** Lista de estrategias cargadas */
     private final List<EstrategiaModule> strategies;
-    
-    /** Directorio donde se buscan las estrategias JAR */
-    private static final String STRATEGIES_DIR;
-    
-    /** Nombre del archivo de servicios esperado en los JARs */
-    private static final String SERVICE_FILE = "META-INF/services/com.kursor.strategy.EstrategiaModule";
-    
-    // Inicializar la ruta de estrategias dinámicamente
-    static {
-        logger.trace("Inicializando configuración estática de StrategyManager");
-        String basePath = new File("").getAbsolutePath();
-        logger.debug("Ruta base detectada: {}", basePath);
-        
-        // Si estamos en un subdirectorio del proyecto (kursor-core, kursor-ui, etc.)
-        // subir un nivel para llegar a la raíz del proyecto
-        if (basePath.endsWith("kursor-core")) {
-            basePath = new File(basePath).getParent();
-            logger.debug("Ajustando ruta base desde kursor-core a: {}", basePath);
-        }
-        
-        STRATEGIES_DIR = basePath + File.separator + "strategies";
-        logger.info("Directorio de estrategias configurado: {}", STRATEGIES_DIR);
-    }
 
     /**
      * Constructor privado para implementar el patrón Singleton.
@@ -153,127 +98,44 @@ public class StrategyManager {
     }
 
     /**
-     * Carga todas las estrategias JAR disponibles en el directorio strategies/.
+     * Carga todas las estrategias disponibles desde el classpath.
      * 
-     * <p>Este método realiza las siguientes operaciones:</p>
-     * <ol>
-     *   <li>Verifica que el directorio strategies/ existe</li>
-     *   <li>Busca archivos JAR en el directorio</li>
-     *   <li>Valida que cada JAR contenga implementaciones de EstrategiaModule</li>
-     *   <li>Carga dinámicamente las estrategias usando ServiceLoader</li>
-     *   <li>Registra errores de carga sin interrumpir la aplicación</li>
-     * </ol>
+     * <p>Este método utiliza ServiceLoader para cargar dinámicamente
+     * todas las implementaciones de EstrategiaModule disponibles
+     * en el classpath.</p>
      * 
      * <p><strong>Comportamiento ante errores:</strong> Si una estrategia individual falla
      * al cargar, se registra el error y se continúa con las demás estrategias.</p>
-     * 
-     * <p>Las estrategias se cargan en el orden en que se encuentran los archivos JAR.</p>
-     * 
-     * @throws IllegalStateException Si el directorio strategies no es accesible
      */
     private void cargarEstrategias() {
-        logger.info("Iniciando carga de estrategias desde directorio: {}", STRATEGIES_DIR);
+        logger.info("Iniciando carga de estrategias desde el classpath");
         
-        File strategiesDir = new File(STRATEGIES_DIR);
-        
-        // Verificar existencia del directorio
-        if (!strategiesDir.exists()) {
-            logger.warn("El directorio de estrategias no existe: {}", STRATEGIES_DIR);
-            logger.debug("Intentando crear directorio de estrategias");
+        try {
+            // Cargar estrategias usando ServiceLoader desde el classpath
+            ServiceLoader<EstrategiaModule> serviceLoader = ServiceLoader.load(EstrategiaModule.class);
             
-            if (strategiesDir.mkdirs()) {
-                logger.info("Directorio de estrategias creado: {}", STRATEGIES_DIR);
-            } else {
-                logger.error("No se pudo crear el directorio de estrategias: {}", STRATEGIES_DIR);
-            }
-            return;
-        }
-        
-        if (!strategiesDir.isDirectory()) {
-            logger.error("La ruta de estrategias no es un directorio: {}", STRATEGIES_DIR);
-            throw new IllegalStateException("La ruta de estrategias no es un directorio: " + STRATEGIES_DIR);
-        }
-        
-        if (!strategiesDir.canRead()) {
-            logger.error("No se tienen permisos de lectura en el directorio: {}", STRATEGIES_DIR);
-            throw new IllegalStateException("Sin permisos de lectura en: " + STRATEGIES_DIR);
-        }
-
-        logger.debug("Buscando archivos JAR en directorio: {}", STRATEGIES_DIR);
-        File[] jarFiles = strategiesDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".jar"));
-        
-        if (jarFiles == null || jarFiles.length == 0) {
-            logger.warn("No se encontraron archivos JAR en el directorio: {}", STRATEGIES_DIR);
-            return;
-        }
-        
-        logger.info("Encontrados {} archivos JAR para procesar", jarFiles.length);
-        
-        // Procesar cada archivo JAR
-        for (File jarFile : jarFiles) {
-            try {
-                logger.debug("Procesando archivo JAR: {}", jarFile.getName());
-                cargarEstrategia(jarFile);
-            } catch (Exception e) {
-                logger.error("Error al cargar estrategia desde JAR: {}", jarFile.getName(), e);
-                // Continuar con el siguiente JAR
-            }
-        }
-        
-        logger.info("Carga de estrategias completada. {} estrategias cargadas exitosamente", strategies.size());
-    }
-
-    /**
-     * Carga una estrategia específica desde un archivo JAR.
-     * 
-     * <p>Este método valida el JAR y carga las estrategias usando ServiceLoader.
-     * Si el JAR no es válido o no contiene estrategias, se registra el error
-     * pero no se interrumpe el proceso.</p>
-     * 
-     * @param jarFile Archivo JAR a procesar
-     * @throws Exception Si hay errores durante la carga
-     */
-    private void cargarEstrategia(File jarFile) throws Exception {
-        logger.debug("Cargando estrategia desde: {}", jarFile.getName());
-        
-        // Validar el JAR antes de cargarlo
-        if (!validarJar(jarFile)) {
-            logger.warn("JAR no válido, saltando: {}", jarFile.getName());
-            return;
-        }
-        
-        // Crear class loader para el JAR
-        URL jarUrl = jarFile.toURI().toURL();
-        URLClassLoader classLoader = new URLClassLoader(new URL[]{jarUrl}, getClass().getClassLoader());
-        
-        logger.debug("ClassLoader creado para: {}", jarFile.getName());
-        
-        // Cargar estrategias usando ServiceLoader
-        ServiceLoader<EstrategiaModule> serviceLoader = ServiceLoader.load(EstrategiaModule.class, classLoader);
-        
-        int estrategiasCargadas = 0;
-        for (EstrategiaModule estrategia : serviceLoader) {
-            try {
-                if (validarEstrategia(estrategia)) {
-                    strategies.add(estrategia);
-                    estrategiasCargadas++;
-                    logger.info("Estrategia cargada exitosamente: {} (v{})", 
-                               estrategia.getNombre(), estrategia.getVersion());
-                } else {
-                    logger.warn("Estrategia no válida, saltando: {}", estrategia.getNombre());
+            int estrategiasCargadas = 0;
+            for (EstrategiaModule estrategia : serviceLoader) {
+                try {
+                    if (validarEstrategia(estrategia)) {
+                        strategies.add(estrategia);
+                        estrategiasCargadas++;
+                        logger.info("Estrategia cargada exitosamente: {} (v{})", 
+                                   estrategia.getNombre(), estrategia.getVersion());
+                    } else {
+                        logger.warn("Estrategia no válida, saltando: {}", estrategia.getNombre());
+                    }
+                } catch (Exception e) {
+                    logger.error("Error al validar estrategia: {}", estrategia.getNombre(), e);
                 }
-            } catch (Exception e) {
-                logger.error("Error al validar estrategia: {}", estrategia.getNombre(), e);
             }
+            
+            logger.info("Carga de estrategias completada. {} estrategias cargadas exitosamente", estrategiasCargadas);
+            
+        } catch (Exception e) {
+            logger.error("Error crítico durante la carga de estrategias", e);
+            throw new RuntimeException("No se pudieron cargar las estrategias", e);
         }
-        
-        if (estrategiasCargadas == 0) {
-            logger.warn("No se cargaron estrategias válidas desde: {}", jarFile.getName());
-        } else {
-            logger.debug("{} estrategias cargadas desde: {}", estrategiasCargadas, jarFile.getName());
-        }
-        
-        classLoader.close();
     }
 
     /**
@@ -326,77 +188,6 @@ public class StrategyManager {
             
         } catch (Exception e) {
             logger.error("Error al validar estrategia", e);
-            return false;
-        }
-    }
-
-    /**
-     * Valida que un archivo JAR contenga estrategias válidas.
-     * 
-     * <p>Verifica que el JAR sea legible y contenga el archivo de servicios
-     * necesario para cargar las estrategias.</p>
-     * 
-     * @param jarFile Archivo JAR a validar
-     * @return true si el JAR es válido, false en caso contrario
-     */
-    private boolean validarJar(File jarFile) {
-        if (!jarFile.exists()) {
-            logger.warn("Archivo JAR no existe: {}", jarFile.getName());
-            return false;
-        }
-        
-        if (!jarFile.canRead()) {
-            logger.warn("No se puede leer el archivo JAR: {}", jarFile.getName());
-            return false;
-        }
-        
-        try (JarFile jar = new JarFile(jarFile)) {
-            JarEntry serviceEntry = jar.getJarEntry(SERVICE_FILE);
-            if (serviceEntry == null) {
-                logger.warn("Archivo de servicios no encontrado en JAR: {}", jarFile.getName());
-                return false;
-            }
-            
-            return validarArchivoServicios(jar, serviceEntry, jarFile.getName());
-            
-        } catch (IOException e) {
-            logger.error("Error al leer archivo JAR: {}", jarFile.getName(), e);
-            return false;
-        }
-    }
-
-    /**
-     * Valida el contenido del archivo de servicios en el JAR.
-     * 
-     * @param jar Archivo JAR abierto
-     * @param serviceEntry Entrada del archivo de servicios
-     * @param jarName Nombre del archivo JAR para logging
-     * @return true si el archivo de servicios es válido
-     */
-    private boolean validarArchivoServicios(JarFile jar, JarEntry serviceEntry, String jarName) {
-        try (InputStream is = jar.getInputStream(serviceEntry);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))) {
-            
-            String line;
-            boolean tieneImplementaciones = false;
-            
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (!line.isEmpty() && !line.startsWith("#")) {
-                    tieneImplementaciones = true;
-                    logger.debug("Implementación encontrada en {}: {}", jarName, line);
-                }
-            }
-            
-            if (!tieneImplementaciones) {
-                logger.warn("Archivo de servicios vacío en JAR: {}", jarName);
-                return false;
-            }
-            
-            return true;
-            
-        } catch (IOException e) {
-            logger.error("Error al leer archivo de servicios en JAR: {}", jarName, e);
             return false;
         }
     }

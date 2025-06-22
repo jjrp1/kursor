@@ -174,129 +174,169 @@ bloques:
     tipo: "completar_huecos"
     preguntas:
       - id: p21
+        tipo: "completar_huecos"
         enunciado: "I haven't seen her _____ last month."
         respuestaCorrecta: "since"
       - id: p22
+        tipo: "completar_huecos"
         enunciado: "The meeting has been _____ off until next Friday."
         respuestaCorrecta: "put"
       - id: p23
+        tipo: "completar_huecos"
         enunciado: "She's been working here _____ five years."
         respuestaCorrecta: "for"
       - id: p24
+        tipo: "completar_huecos"
         enunciado: "I wish I _____ spoken to him yesterday."
         respuestaCorrecta: "had"
       - id: p25
+        tipo: "completar_huecos"
         enunciado: "The car needs to be _____ before we can sell it."
         respuestaCorrecta: "repaired"
       - id: p26
+        tipo: "completar_huecos"
         enunciado: "I'm looking forward _____ hearing from you soon."
         respuestaCorrecta: "to"
       - id: p27
+        tipo: "completar_huecos"
         enunciado: "If I _____ more time, I would help you with the project."
         respuestaCorrecta: "had"
       - id: p28
+        tipo: "completar_huecos"
         enunciado: "The book _____ was written by Shakespeare is very famous."
         respuestaCorrecta: "which"
       - id: p29
+        tipo: "completar_huecos"
         enunciado: "I'd rather _____ stayed home tonight."
         respuestaCorrecta: "we"
       - id: p30
+        tipo: "completar_huecos"
         enunciado: "She's used to _____ up early for work."
         respuestaCorrecta: "getting"
       - id: p31
+        tipo: "completar_huecos"
         enunciado: "The problem should _____ been solved by now."
         respuestaCorrecta: "have"
       - id: p32
+        tipo: "completar_huecos"
         enunciado: "I can't stand _____ to loud music."
         respuestaCorrecta: "listening"
       - id: p33
+        tipo: "completar_huecos"
         enunciado: "He denied _____ the money from the office."
         respuestaCorrecta: "taking"
       - id: p34
+        tipo: "completar_huecos"
         enunciado: "The house _____ we lived as children has been demolished."
         respuestaCorrecta: "where"
       - id: p35
+        tipo: "completar_huecos"
         enunciado: "I suggest _____ the meeting until everyone can attend."
         respuestaCorrecta: "postponing"
       - id: p36
+        tipo: "completar_huecos"
         enunciado: "She's not only intelligent _____ also very creative."
         respuestaCorrecta: "but"
       - id: p37
+        tipo: "completar_huecos"
         enunciado: "The more you practice, the _____ you'll become."
         respuestaCorrecta: "better"
       - id: p38
+        tipo: "completar_huecos"
         enunciado: "I'd like to know _____ time the train arrives."
         respuestaCorrecta: "what"
       - id: p39
+        tipo: "completar_huecos"
         enunciado: "Despite _____ tired, she continued working."
         respuestaCorrecta: "being"
       - id: p40
+        tipo: "completar_huecos"
         enunciado: "The project must _____ completed by the end of the month."
         respuestaCorrecta: "be"
 
   - id: bloque3
     titulo: "Vocabulary Flashcards"
     descripcion: "Voltee las tarjetas para ver el reverso"
-    tipo: "flashcards"
+    tipo: "flashcard"
     preguntas:
       - id: p41
+        tipo: "flashcard"
         anverso: "Comprehensive"
         reverso: "Complete and including everything that is necessary"
       - id: p42
+        tipo: "flashcard"
         anverso: "Deteriorate"
         reverso: "To become worse in quality or condition"
       - id: p43
+        tipo: "flashcard"
         anverso: "Resilient"
         reverso: "Able to recover quickly from difficult conditions"
       - id: p44
+        tipo: "flashcard"
         anverso: "Substantial"
         reverso: "Large in size, value, or importance"
       - id: p45
+        tipo: "flashcard"
         anverso: "Arbitrary"
         reverso: "Based on personal opinion rather than facts or reason"
       - id: p46
+        tipo: "flashcard"
         anverso: "Prevalent"
         reverso: "Existing very commonly or happening often"
       - id: p47
+        tipo: "flashcard"
         anverso: "Scrutinize"
         reverso: "To examine something very carefully"
       - id: p48
+        tipo: "flashcard"
         anverso: "Ambiguous"
         reverso: "Having more than one possible meaning"
       - id: p49
+        tipo: "flashcard"
         anverso: "Legitimate"
         reverso: "Reasonable and acceptable according to agreed standards"
       - id: p50
+        tipo: "flashcard"
         anverso: "Unprecedented"
         reverso: "Never having happened or existed before"
       - id: p51
+        tipo: "flashcard"
         anverso: "Lucrative"
         reverso: "Producing a lot of money; profitable"
       - id: p52
+        tipo: "flashcard"
         anverso: "Meticulous"
         reverso: "Very careful and precise"
       - id: p53
+        tipo: "flashcard"
         anverso: "Vulnerable"
         reverso: "Easily hurt, influenced, or attacked"
       - id: p54
+        tipo: "flashcard"
         anverso: "Intricate"
         reverso: "Very complicated or detailed"
       - id: p55
+        tipo: "flashcard"
         anverso: "Contagious"
         reverso: "Spreading quickly from one person to another"
       - id: p56
+        tipo: "flashcard"
         anverso: "Versatile"
         reverso: "Able to adapt or be adapted to many different functions"
       - id: p57
+        tipo: "flashcard"
         anverso: "Obsolete"
         reverso: "No longer in use; out of date"
       - id: p58
+        tipo: "flashcard"
         anverso: "Rigorous"
         reverso: "Extremely thorough and careful"
       - id: p59
+        tipo: "flashcard"
         anverso: "Profound"
         reverso: "Very great or intense; having deep meaning"
       - id: p60
+        tipo: "flashcard"
         anverso: "Inevitable"
         reverso: "Certain to happen; unavoidable"
 

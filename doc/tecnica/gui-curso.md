@@ -1,9 +1,9 @@
 # GUI Curso - Propuesta de Implementación
 ## Interfaz Gráfica de Cursos para Kursor
 
-### Versión: 1.0
-### Fecha: 2025-06-18
-### Autor: Juan José Ruiz Pérez <jjrp1@um.es>
+- Versión: 2.0
+- Fecha: 2025-01-27
+- Autor: Juan José Ruiz Pérez <jjrp1@um.es>
 
 ---
 
@@ -12,9 +12,13 @@
 ```
 KursorApplication (UI Principal)
     ↓
+EstrategiaSelectionModal (Selección de estrategia)
+    ↓
 CursoInterfaceController (Nuevo controlador)
     ↓
-CursoSessionManager (Gestión de sesiones)
+CursoInterfaceModal (Modal inteligente híbrido)
+    ↓
+CursoSessionManager (Gestión de sesiones con estrategia)
     ↓
 ModuleManager (Carga de módulos)
     ↓
@@ -23,28 +27,50 @@ QuestionModule (Plugins específicos)
 
 ## 2. Componentes Principales
 
-### A. CursoInterfaceController
+### A. EstrategiaSelectionModal
+- **Responsabilidad**: Permitir al usuario seleccionar la estrategia de aprendizaje
+- **Funciones**:
+  - Mostrar las 4 estrategias disponibles
+  - Proporcionar descripción de cada estrategia
+  - Validar selección antes de proceder
+  - Integrar con CursoInterfaceController
+
+### B. CursoInterfaceController
 - **Responsabilidad**: Control principal de la interfaz de curso
 - **Funciones**:
-  - Gestionar la ventana modal con las 3 secciones
+  - Gestionar el modal híbrido con las 3 secciones
   - Coordinar navegación entre bloques/preguntas
   - Delegar construcción de UI a módulos específicos
   - Gestionar validación y progreso
+  - Integrar con la interfaz principal
+  - Aplicar la estrategia de aprendizaje seleccionada
 
-### B. CursoSessionManager 
-- **Responsabilidad**: Persistencia y gestión de sesiones
+### C. CursoInterfaceModal (Modal Inteligente)
+- **Responsabilidad**: Ventana modal híbrida para ejecución de cursos
+- **Características**:
+  - Modal solo para la ventana padre (no bloquea toda la aplicación)
+  - Redimensionable con límites razonables (600x400 mínimo)
+  - Centrado en pantalla
+  - Mantiene contexto visual de la aplicación principal
+  - Estructura de 3 secciones bien definidas
+  - Muestra la estrategia seleccionada en la cabecera
+
+### D. CursoSessionManager 
+- **Responsabilidad**: Persistencia y gestión de sesiones con estrategia
 - **Funciones**:
-  - Crear/recuperar sesiones de usuario
+  - Crear/recuperar sesiones de usuario con estrategia específica
   - Guardar progreso (bloque actual, pregunta actual)
   - Persistir respuestas y resultados
   - Calcular estadísticas de progreso
+  - Aplicar lógica de la estrategia seleccionada
 
-### C. Ventana Modal (CursoInterfaceWindow)
+### E. Ventana Modal (CursoInterfaceModal)
 - **Estructura**:
   ```
   ┌─────────────────────────────────┐
   │ CABECERA (Tamaño fijo)          │
-  │ - Título curso + bloque actual  │
+  │ - Título curso + estrategia     │
+  │ - Bloque actual + progreso      │
   │ - Barra progreso + contador     │
   ├─────────────────────────────────┤
   │ CONTENIDO (Tamaño flexible)     │
@@ -60,29 +86,61 @@ QuestionModule (Plugins específicos)
 ## 3. Flujo de Navegación
 
 ```
-1. Usuario hace clic en "Comenzar"
+1. Usuario hace clic en "Comenzar" en la interfaz principal
    ↓
-2. CursoInterfaceController se inicializa
+2. Se muestra EstrategiaSelectionModal con las 4 estrategias:
+   - Secuencial: Preguntas en orden secuencial
+   - Aleatoria: Preguntas en orden aleatorio  
+   - Repetición Espaciada: Optimizada para retención
+   - Repetir Incorrectas: Enfocada en errores previos
    ↓
-3. CursoSessionManager recupera/crea sesión
+3. Usuario selecciona estrategia y hace clic en "Comenzar"
    ↓
-4. Se muestra ventana modal con:
-   - Cabecera: info curso + progreso
+4. CursoInterfaceController se inicializa con la estrategia seleccionada
+   ↓
+5. CursoSessionManager recupera/crea sesión con la estrategia
+   ↓
+6. Se muestra CursoInterfaceModal con:
+   - Cabecera: info curso + estrategia seleccionada + progreso
    - Contenido: UI del módulo específico
    - Pie: botones de navegación
    ↓
-5. Usuario interactúa con la pregunta
+7. Usuario interactúa con la pregunta (según estrategia seleccionada)
    ↓
-6. Según tipo de pregunta:
+8. Según tipo de pregunta:
    - Flashcard: Botón "Siguiente" (sin validación)
    - Otros: Botón "Verificar" → Validación → "Siguiente"
    ↓
-7. Se guarda progreso y se avanza
+9. Se guarda progreso y se avanza según la estrategia
    ↓
-8. Repetir hasta terminar o usuario cancela
+10. Al terminar: Modal se cierra y se actualiza la interfaz principal
+    ↓
+11. Usuario ve estadísticas actualizadas en la lista de cursos
 ```
 
-## 4. Interfaz QuestionModule Extendida
+## 4. Estrategias de Aprendizaje Disponibles
+
+### A. Secuencial
+- **Descripción**: Preguntas en orden secuencial
+- **Comportamiento**: Recorre los bloques y preguntas en orden
+- **Uso**: Ideal para aprendizaje estructurado y progresivo
+
+### B. Aleatoria
+- **Descripción**: Preguntas en orden aleatorio
+- **Comportamiento**: Selecciona preguntas de forma aleatoria
+- **Uso**: Ideal para repaso general y evitar memorización de orden
+
+### C. Repetición Espaciada
+- **Descripción**: Optimizada para retención a largo plazo
+- **Comportamiento**: Basada en algoritmos de repetición espaciada
+- **Uso**: Ideal para memorización efectiva y retención
+
+### D. Repetir Incorrectas
+- **Descripción**: Enfocada en preguntas falladas anteriormente
+- **Comportamiento**: Prioriza preguntas con respuestas incorrectas
+- **Uso**: Ideal para mejorar áreas débiles y corregir errores
+
+## 5. Interfaz QuestionModule Extendida
 
 ```java
 public interface QuestionModule {
@@ -96,36 +154,95 @@ public interface QuestionModule {
 }
 ```
 
-## 5. Gestión de Sesiones (JPA)
+## 6. Gestión de Sesiones (JPA)
 
-### Entidades:
+### Entidades (usando las existentes):
 ```java
-@Entity
-public class Sesion {
-    @Id private Long id;
-    private String cursoId;
-    private String userId;
-    private int bloqueActual;
-    private int preguntaActual;
-    private Date fechaInicio;
-    private Date fechaUltimaActividad;
-    @OneToMany private List<RespuestaUsuario> respuestas;
-}
+// Usar las entidades existentes en kursor-core:
+// - Sesion.java (ya implementada)
+// - RespuestaPregunta.java (ya implementada)
+// - EstadoSesion.java (ya implementada)
+// - EstadoEstrategia.java (ya implementada)
+```
 
-@Entity  
-public class RespuestaUsuario {
-    @Id private Long id;
-    private String preguntaId;
-    private String respuesta;
-    private boolean correcta;
-    private Date timestamp;
+## 7. Estructura del Modal de Selección de Estrategia
+
+### EstrategiaSelectionModal:
+```java
+public class EstrategiaSelectionModal extends Stage {
+    public EstrategiaSelectionModal(Window owner, CursoDTO curso) {
+        super();
+        
+        // Configuración modal
+        this.initOwner(owner);
+        this.initModality(Modality.WINDOW_MODAL);
+        this.setResizable(false);
+        this.setWidth(500);
+        this.setHeight(400);
+        
+        // Centrar en la pantalla
+        this.centerOnScreen();
+        
+        // Crear contenido
+        this.setScene(crearEscena(curso));
+    }
 }
 ```
 
-## 6. Estructura de la Ventana Modal
+### Estructura del Modal:
+```
+┌─────────────────────────────────┐
+│ 🎯 Seleccionar Estrategia       │
+│ Curso: [Nombre del Curso]       │
+├─────────────────────────────────┤
+│                                 │
+│ ○ Secuencial                   │
+│   Preguntas en orden secuencial │
+│                                 │
+│ ○ Aleatoria                    │
+│   Preguntas en orden aleatorio  │
+│                                 │
+│ ○ Repetición Espaciada         │
+│   Optimizada para retención     │
+│                                 │
+│ ○ Repetir Incorrectas          │
+│   Enfocada en errores previos   │
+│                                 │
+├─────────────────────────────────┤
+│ [Cancelar]    [Comenzar]       │
+└─────────────────────────────────┘
+```
+
+## 8. Estructura del Modal Híbrido
+
+### Configuración del Modal:
+```java
+public class CursoInterfaceModal extends Stage {
+    public CursoInterfaceModal(Window owner, EstrategiaAprendizaje estrategia) {
+        super();
+        
+        // Configuración híbrida
+        this.initOwner(owner);
+        this.initModality(Modality.WINDOW_MODAL); // Modal solo para la ventana padre
+        this.setResizable(true);
+        this.setMinWidth(600);
+        this.setMinHeight(400);
+        
+        // Centrar en la pantalla
+        this.centerOnScreen();
+        
+        // Mantener siempre visible
+        this.setAlwaysOnTop(false);
+        
+        // Guardar estrategia
+        this.estrategia = estrategia;
+    }
+}
+```
 
 ### Cabecera:
 - Título del curso (ej: "Inglés básico")
+- Estrategia seleccionada (ej: "Estrategia: Repetición Espaciada")
 - Bloque actual (ej: "Bloque 1 de 4")
 - Barra de progreso (pregunta actual / total preguntas del bloque)
 - Contador numérico centrado
@@ -141,7 +258,26 @@ public class RespuestaUsuario {
 - Botón "Siguiente" (para flashcards o después de verificar)
 - Botón "Terminar" (cierra sesión y vuelve a la lista)
 
-## 7. Consideraciones Técnicas
+## 9. Integración con Interfaz Principal
+
+### Modificaciones en KursorApplication:
+```java
+// Añadir botón "Comenzar" en la lista de cursos
+// Integrar con EstrategiaSelectionModal
+// Integrar con CursoInterfaceController
+// Actualizar estadísticas después de completar curso
+```
+
+### Flujo de Integración:
+1. **Selección de Curso**: Usuario selecciona curso en la lista principal
+2. **Botón Comenzar**: Aparece botón "Comenzar" para el curso seleccionado
+3. **Modal de Estrategia**: Al hacer clic, se abre EstrategiaSelectionModal
+4. **Selección de Estrategia**: Usuario selecciona estrategia y confirma
+5. **Apertura Modal de Curso**: Se abre CursoInterfaceModal con la estrategia
+6. **Ejecución**: Usuario completa el curso con la estrategia seleccionada
+7. **Cierre y Actualización**: Modal se cierra y se actualizan estadísticas en la lista
+
+## 10. Consideraciones Técnicas
 
 ### Responsabilidades de los Módulos:
 - **Validación YAML**: Cada módulo valida su estructura específica
@@ -150,94 +286,114 @@ public class RespuestaUsuario {
 - **Interacción**: Cada módulo maneja eventos de su UI
 
 ### Persistencia:
-- **JPA/Hibernate** para entidades de sesión
+- **JPA/Hibernate** para entidades de sesión (ya implementado)
 - **Guardado automático** en cada interacción
 - **Recuperación de sesión** al reiniciar
+- **Persistencia de estrategia** seleccionada
 
 ### Manejo de Errores:
 - Validación de datos YAML antes de mostrar
 - Manejo de errores de módulos
 - Recuperación de sesiones corruptas
+- Validación de estrategia seleccionada
 
-## 8. Preguntas y Decisiones Pendientes
+## 11. Ventajas del Enfoque Híbrido
 
-1. **¿Cómo manejar sesiones múltiples?** (mismo usuario, diferentes cursos)
-2. **¿Qué hacer si un módulo falla al cargar?**
-3. **¿Cómo manejar la persistencia si no hay base de datos configurada?**
-4. **¿Qué información mostrar en la barra de progreso?** (solo bloque actual o progreso total del curso)
+### Experiencia de Usuario:
+- **Contexto Visual**: La lista de cursos permanece visible/actualizada
+- **Navegación Fluida**: Fácil regreso al punto de partida
+- **Foco Claro**: Usuario se concentra en la tarea actual
+- **Menos Confusión**: No hay múltiples ventanas abiertas
+- **Personalización**: Usuario puede elegir su estrategia preferida
 
-## 9. Plan de Implementación
+### Aspectos Técnicos:
+- **Menos Acoplamiento**: Modal independiente pero conectado
+- **Más Flexible**: Redimensionable según necesidades
+- **Fácil Testing**: Componente aislado pero integrado
+- **Escalable**: Fácil añadir nuevas funcionalidades
+- **Estrategias Modulares**: Fácil añadir nuevas estrategias
 
-### Fase 1: CursoSessionManager y entidades JPA
-- Crear entidades Sesion y RespuestaUsuario
-- Implementar CursoSessionManager básico
-- Configurar JPA/Hibernate
+## 12. Plan de Implementación
 
-### Fase 2: CursoInterfaceController básico
+### Fase 1: EstrategiaSelectionModal
+- Crear modal de selección de estrategia
+- Implementar radio buttons para cada estrategia
+- Añadir descripciones y validación
+- Integrar con CursoInterfaceController
+
+### Fase 2: CursoInterfaceModal básico
+- Crear CursoInterfaceModal con estructura de 3 secciones
+- Configurar modal híbrido (redimensionable, centrado)
+- Implementar layout básico
+- Mostrar estrategia seleccionada en cabecera
+
+### Fase 3: CursoInterfaceController
 - Crear controlador principal
 - Implementar lógica de navegación básica
-- Integrar con ModuleManager
-
-### Fase 3: Ventana modal con estructura básica
-- Crear CursoInterfaceWindow
-- Implementar las 3 secciones (cabecera, contenido, pie)
-- Configurar tamaños y layout
+- Integrar con ModuleManager existente
+- Aplicar lógica de estrategia seleccionada
 
 ### Fase 4: Extender QuestionModule
 - Añadir nuevos métodos a la interfaz
 - Actualizar módulos existentes
 - Implementar validación específica por tipo
 
-### Fase 5: Navegación y validación
+### Fase 5: Integración con CursoSessionManager
+- Conectar con persistencia existente
+- Implementar guardado automático
+- Manejar recuperación de sesiones
+- Integrar estrategia en la persistencia
+
+### Fase 6: Integración con Interfaz Principal
+- Añadir botón "Comenzar" en KursorApplication
+- Conectar apertura del modal de estrategia
+- Implementar actualización de estadísticas
+
+### Fase 7: Navegación y validación
 - Implementar lógica de verificación
 - Manejar diferentes tipos de preguntas
 - Integrar con persistencia
+- Aplicar lógica de estrategia en la navegación
 
-### Fase 6: Integración final
-- Conectar con botón "Comenzar"
-- Pruebas y depuración
-- Documentación final
+### Fase 8: Pruebas y depuración
+- Testing completo del flujo
+- Depuración de errores
+- Optimización de rendimiento
+- Validación de todas las estrategias
 
-## 10. Archivos a Crear/Modificar
+## 13. Archivos a Crear/Modificar
 
 ### Nuevos archivos:
-- `kursor-core/src/main/java/com/kursor/core/domain/Sesion.java`
-- `kursor-core/src/main/java/com/kursor/core/domain/RespuestaUsuario.java`
-- `kursor-core/src/main/java/com/kursor/core/service/CursoSessionManager.java`
-- `kursor-ui/src/main/java/com/kursor/ui/CursoInterfaceController.java`
-- `kursor-ui/src/main/java/com/kursor/ui/CursoInterfaceWindow.java`
+- `kursor-core/src/main/java/com/kursor/ui/EstrategiaSelectionModal.java`
+- `kursor-core/src/main/java/com/kursor/ui/CursoInterfaceController.java`
+- `kursor-core/src/main/java/com/kursor/ui/CursoInterfaceModal.java`
 
 ### Archivos a modificar:
-- `kursor-core/src/main/java/com/kursor/core/QuestionModule.java`
-- `kursor-ui/src/main/java/com/kursor/ui/KursorApplication.java`
+- `kursor-core/src/main/java/com/kursor/modules/PreguntaModule.java` (extender interfaz)
+- `kursor-core/src/main/java/com/kursor/ui/KursorApplication.java` (integrar botón Comenzar)
+- `kursor-core/src/main/java/com/kursor/ui/CursoSessionManager.java` (integrar estrategia)
 - Todos los módulos existentes (añadir nuevos métodos)
 
-## 11. Dependencias Adicionales
+## 14. Dependencias
 
-### JPA/Hibernate:
-```xml
-<dependency>
-    <groupId>org.hibernate.orm</groupId>
-    <artifactId>hibernate-core</artifactId>
-    <version>6.2.0.Final</version>
-</dependency>
-<dependency>
-    <groupId>com.h2database</groupId>
-    <artifactId>h2</artifactId>
-    <version>2.1.214</version>
-</dependency>
-```
+### Ya incluidas en el proyecto:
+- JavaFX (para la interfaz)
+- JPA/Hibernate (para persistencia)
+- SQLite (base de datos)
 
-## 12. Notas de Implementación
+## 15. Notas de Implementación
 
-- La ventana modal debe ser responsive y adaptarse a diferentes tamaños de pantalla
+- El modal debe ser responsive y adaptarse a diferentes tamaños de pantalla
 - Los módulos deben ser thread-safe para evitar problemas de concurrencia
-- La persistencia debe ser configurable (base de datos o archivo local)
+- La persistencia ya está configurada y funcionando
 - Se debe implementar logging detallado para debugging
 - La interfaz debe ser accesible (teclado, lectores de pantalla)
+- El modal debe mantener el contexto visual de la aplicación principal
+- La estrategia seleccionada debe ser persistida y recuperable
+- Cada estrategia debe tener su propia lógica de navegación
 
 ---
 
-**Estado**: Propuesta inicial
-**Próximo paso**: Revisión y aprobación de la propuesta
+**Estado**: Propuesta actualizada con selección de estrategia
+**Próximo paso**: Implementación de EstrategiaSelectionModal
 **Responsable**: Equipo de desarrollo Kursor 

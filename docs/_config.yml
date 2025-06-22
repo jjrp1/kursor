@@ -1,6 +1,6 @@
 # Configuración de GitHub Pages para Kursor
 title: Kursor - Plataforma de Formación Interactiva Modular
-description: Una aplicación Java moderna que permite crear y gestionar cursos educativos con diferentes tipos de preguntas mediante una arquitectura modular extensible.
+description: Una aplicación Java moderna que permite crear y gestionar cursos educativos con diferentes tipos de preguntas mediante una arquitectura modular extensible. ✅ COMPLETADO Y FUNCIONAL
 author: Juan José Ruiz Pérez
 email: jjrp1@um.es
 url: https://jjrp1.github.io/kursor
@@ -23,6 +23,8 @@ nav:
     url: arquitectura.html
   - title: Pruebas
     url: resultados-pruebas.html
+  - title: Estrategias
+    url: estrategias.html
 
 # Configuración de enlaces sociales
 social:
@@ -31,7 +33,7 @@ social:
 
 # Configuración de metadatos
 meta:
-  keywords: java, educación, aprendizaje, flashcards, preguntas, módulos, formación
+  keywords: java, educación, aprendizaje, flashcards, preguntas, módulos, formación, completado, funcional
   robots: index, follow
   author: Juan José Ruiz Pérez
   viewport: width=device-width, initial-scale=1
@@ -160,7 +162,7 @@ feed:
 # Configuración de SEO
 seo:
   title: Kursor - Plataforma de Formación Interactiva Modular
-  description: Una aplicación Java moderna que permite crear y gestionar cursos educativos con diferentes tipos de preguntas mediante una arquitectura modular extensible.
+  description: Una aplicación Java moderna que permite crear y gestionar cursos educativos con diferentes tipos de preguntas mediante una arquitectura modular extensible. ✅ COMPLETADO Y FUNCIONAL
   author: Juan José Ruiz Pérez
   image: /assets/images/kursor-logo.png
   twitter:
@@ -177,4 +179,14 @@ seo:
   twitter_cards:
     type: summary_large_image
     creator: "@jjrp1"
-    site: "@jjrp1" 
+    site: "@jjrp1"
+
+# Configuración de estado del proyecto
+project_status:
+  completed: true
+  functional: true
+  modules: 8
+  strategies: 4
+  question_types: 4
+  tests: 96
+  last_update: "2025-06-22" 

@@ -19,11 +19,12 @@ import javafx.scene.Node;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.paint.Color;
-import com.kursor.yaml.dto.CursoPreviewDTO;
+import com.kursor.yaml.dto.CursoDTO;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.kursor.ui.CursoInterfaceController;
 
 /**
  * Aplicación principal de la interfaz gráfica de usuario para Kursor.
@@ -87,7 +88,10 @@ public class KursorApplication extends Application {
     private Stage primaryStage;
     
     /** Referencia al ListView de cursos para acceder a la selección */
-    private ListView<CursoPreviewDTO> listViewCursos;
+    private ListView<CursoDTO> listViewCursos;
+    
+    /** Controlador para la ejecución de cursos */
+    private CursoInterfaceController cursoController;
     
     /**
      * Inicializa y muestra la ventana principal de la aplicación.
@@ -124,6 +128,12 @@ public class KursorApplication extends Application {
         moduleManager = ModuleManager.getInstance();
         
         logger.info("Gestor de módulos inicializado correctamente");
+        
+        // Inicializar controlador de cursos
+        logger.info("Inicializando controlador de cursos...");
+        cursoController = new CursoInterfaceController(primaryStage);
+        
+        logger.info("Controlador de cursos inicializado correctamente");
         
         // Crear contenedor principal
         rootContainer = new BorderPane();
@@ -177,23 +187,26 @@ public class KursorApplication extends Application {
         bottomBar.setStyle("-fx-background-color: linear-gradient(to right, #2c3e50, #34495e); -fx-border-color: #bdc3c7; -fx-border-width: 1 0 0 0;");
         
         // Botón Inspeccionar con icono de lupa
-        Button btnInspeccionar = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
-        btnInspeccionar.setOnAction(e -> {
-            logger.info("Botón Inspeccionar presionado desde barra inferior");
-            mostrarInformacionFilaSeleccionada();
-        });
+        // Button btnInspeccionar = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
+        // btnInspeccionar.setOnAction(e -> {
+        //     logger.info("Botón Inspeccionar presionado desde barra inferior");
+        //     mostrarInformacionFilaSeleccionada();
+        // });
         
         // Botón Comenzar con icono de play
         Button btnComenzar = crearBotonConIcono("▶️ Comenzar", "#27ae60", "#229954");
-        btnComenzar.setOnAction(e ->  mostrarAlert("▶️ Comenzar"));
+        btnComenzar.setOnAction(e -> {
+            logger.info("Botón Comenzar presionado desde barra inferior");
+            iniciarCursoSeleccionado();
+        });
         
         // Botón Reanudar con icono de pausa/play
         Button btnReanudar = crearBotonConIcono("⏯️ Reanudar", "#f39c12", "#e67e22");
         btnReanudar.setOnAction(e -> mostrarAlert("⏯️ Reanudar"));
         
         // Botón Flashcards con icono de tarjetas
-        Button btnFlashcards = crearBotonConIcono("🗂️ Flashcards", "#9b59b6", "#8e44ad");
-        btnFlashcards.setOnAction(e -> mostrarAlert("🗂️ Flashcards"));
+        // Button btnFlashcards = crearBotonConIcono("🗂️ Flashcards", "#9b59b6", "#8e44ad");
+        // btnFlashcards.setOnAction(e -> mostrarAlert("🗂️ Flashcards"));
         
         // Botón Estadísticas con icono de gráfico
         Button btnEstadisticas = crearBotonConIcono("📊 Estadísticas", "#e74c3c", "#c0392b");
@@ -207,7 +220,7 @@ public class KursorApplication extends Application {
         Button btnAbout = crearBotonConIcono("🎓 About", "#34495e", "#2c3e50");
         btnAbout.setOnAction(e -> AboutDialog.show());
         
-        bottomBar.getChildren().addAll(btnInspeccionar, btnComenzar, btnReanudar, btnFlashcards, btnEstadisticas, spacer, btnAbout);
+        bottomBar.getChildren().addAll(btnComenzar, btnReanudar, btnEstadisticas, spacer, btnAbout);
         
         return bottomBar;
     }
@@ -291,7 +304,7 @@ public class KursorApplication extends Application {
     
     
     private Node crearVistaCursos() {
-        List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
+        List<CursoDTO> cursos = CursoManager.getInstance().cargarCursosCompletos();
         
         // Panel izquierdo: ListView con títulos de cursos
         listViewCursos = new ListView<>();
@@ -300,9 +313,9 @@ public class KursorApplication extends Application {
         listViewCursos.setMaxWidth(300);
         
         // Configurar el ListView para mostrar solo el título
-        listViewCursos.setCellFactory(param -> new ListCell<CursoPreviewDTO>() {
+        listViewCursos.setCellFactory(param -> new ListCell<CursoDTO>() {
             @Override
-            protected void updateItem(CursoPreviewDTO item, boolean empty) {
+            protected void updateItem(CursoDTO item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
@@ -356,48 +369,40 @@ public class KursorApplication extends Application {
         return contenedorPrincipal;
     }
     
-    private void mostrarDetallesCurso(CursoPreviewDTO cursoPreview, VBox panelDetalles) {
-        logger.info("📋 Mostrando detalles del curso: '{}'", cursoPreview.getTitulo());
+    private void mostrarDetallesCurso(CursoDTO cursoDTO, VBox panelDetalles) {
+        logger.info("📋 Mostrando detalles del curso: '{}'", cursoDTO.getTitulo());
         
         // Limpiar el panel de detalles
         panelDetalles.getChildren().clear();
         
         try {
-            // Cargar el curso completo para obtener información detallada
-            Curso cursoCompleto = CursoManager.getInstance().obtenerCursoCompleto(cursoPreview.getId());
-            
-            if (cursoCompleto == null) {
-                mostrarErrorCargaCurso(panelDetalles, cursoPreview);
-                return;
-            }
-            
-            // Crear contenido detallado
-            VBox contenidoDetallado = crearContenidoDetallado(cursoPreview, cursoCompleto);
+            // Crear contenido detallado directamente desde CursoDTO
+            VBox contenidoDetallado = crearContenidoDetallado(cursoDTO);
             panelDetalles.getChildren().add(contenidoDetallado);
             
         } catch (Exception e) {
-            logger.error("❌ Error al cargar detalles del curso: {}", e.getMessage());
-            mostrarErrorCargaCurso(panelDetalles, cursoPreview);
+            logger.error("❌ Error al mostrar detalles del curso: {}", e.getMessage());
+            mostrarErrorCargaCurso(panelDetalles, cursoDTO);
         }
     }
     
-    private VBox crearContenidoDetallado(CursoPreviewDTO cursoPreview, Curso cursoCompleto) {
+    private VBox crearContenidoDetallado(CursoDTO cursoDTO) {
         VBox contenido = new VBox(20);
         
         // Sección 1: Información básica del curso
-        VBox infoBasica = crearSeccionInfoBasica(cursoPreview, cursoCompleto);
+        VBox infoBasica = crearSeccionInfoBasica(cursoDTO);
         
         // Sección 2: Estadísticas generales
-        VBox estadisticas = crearSeccionEstadisticas(cursoCompleto);
+        VBox estadisticas = crearSeccionEstadisticas(cursoDTO);
         
         // Sección 3: Lista de bloques
-        VBox listaBloques = crearSeccionBloques(cursoCompleto);
+        VBox listaBloques = crearSeccionBloques(cursoDTO);
         
         contenido.getChildren().addAll(infoBasica, estadisticas, listaBloques);
         return contenido;
     }
     
-    private VBox crearSeccionInfoBasica(CursoPreviewDTO cursoPreview, Curso cursoCompleto) {
+    private VBox crearSeccionInfoBasica(CursoDTO cursoDTO) {
         VBox seccion = new VBox(10);
         seccion.setStyle("-fx-background-color: #f8f9fa; -fx-padding: 15px; -fx-background-radius: 8px;");
         
@@ -407,7 +412,7 @@ public class KursorApplication extends Application {
         tituloSeccion.setTextFill(Color.web("#2c3e50"));
         
         // Título del curso
-        Label labelTitulo = new Label("🎯 Título: " + cursoPreview.getTitulo());
+        Label labelTitulo = new Label("🎯 Título: " + cursoDTO.getTitulo());
         labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
         labelTitulo.setTextFill(Color.web("#2c3e50"));
         
@@ -416,7 +421,7 @@ public class KursorApplication extends Application {
         labelDescripcion.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
         labelDescripcion.setTextFill(Color.web("#7f8c8d"));
         
-        TextArea textAreaDescripcion = new TextArea(cursoPreview.getDescripcion());
+        TextArea textAreaDescripcion = new TextArea(cursoDTO.getDescripcion());
         textAreaDescripcion.setWrapText(true);
         textAreaDescripcion.setEditable(false);
         textAreaDescripcion.setPrefRowCount(3);
@@ -431,12 +436,12 @@ public class KursorApplication extends Application {
         );
         
         // ID del curso
-        Label labelId = new Label("🆔 ID: " + cursoPreview.getId());
+        Label labelId = new Label("🆔 ID: " + cursoDTO.getId());
         labelId.setFont(Font.font("Segoe UI", 12));
         labelId.setTextFill(Color.web("#27ae60"));
         
         // Nombre del archivo
-        Label labelArchivo = new Label("📁 Archivo: " + cursoPreview.getId() + ".yaml");
+        Label labelArchivo = new Label("📁 Archivo: " + cursoDTO.getNombreArchivo());
         labelArchivo.setFont(Font.font("Segoe UI", 12));
         labelArchivo.setTextFill(Color.web("#7f8c8d"));
         
@@ -444,7 +449,7 @@ public class KursorApplication extends Application {
         return seccion;
     }
     
-    private VBox crearSeccionEstadisticas(Curso cursoCompleto) {
+    private VBox crearSeccionEstadisticas(CursoDTO cursoDTO) {
         VBox seccion = new VBox(10);
         seccion.setStyle("-fx-background-color: #e8f5e8; -fx-padding: 15px; -fx-background-radius: 8px;");
         
@@ -454,15 +459,13 @@ public class KursorApplication extends Application {
         tituloSeccion.setTextFill(Color.web("#2c3e50"));
         
         // Total de bloques
-        int totalBloques = cursoCompleto.getBloques().size();
+        int totalBloques = cursoDTO.getTotalBloques();
         Label labelBloques = new Label("📦 Total de bloques: " + totalBloques);
         labelBloques.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
         labelBloques.setTextFill(Color.web("#27ae60"));
         
         // Total de preguntas
-        int totalPreguntas = cursoCompleto.getBloques().stream()
-            .mapToInt(bloque -> bloque.getPreguntas().size())
-            .sum();
+        int totalPreguntas = cursoDTO.getTotalPreguntas();
         Label labelPreguntas = new Label("❓ Total de preguntas: " + totalPreguntas);
         labelPreguntas.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
         labelPreguntas.setTextFill(Color.web("#27ae60"));
@@ -471,7 +474,7 @@ public class KursorApplication extends Application {
         return seccion;
     }
     
-    private VBox crearSeccionBloques(Curso cursoCompleto) {
+    private VBox crearSeccionBloques(CursoDTO cursoDTO) {
         VBox seccion = new VBox(10);
         seccion.setStyle("-fx-background-color: #fff3cd; -fx-padding: 15px; -fx-background-radius: 8px;");
         
@@ -482,9 +485,9 @@ public class KursorApplication extends Application {
         
         VBox listaBloques = new VBox(8);
         
-        for (int i = 0; i < cursoCompleto.getBloques().size(); i++) {
-            Bloque bloque = cursoCompleto.getBloques().get(i);
-            VBox bloqueItem = crearItemBloque(bloque, i + 1);
+        for (int i = 0; i < cursoDTO.getBloques().size(); i++) {
+            com.kursor.yaml.dto.BloqueDTO bloqueDTO = cursoDTO.getBloques().get(i);
+            VBox bloqueItem = crearItemBloque(bloqueDTO, i + 1);
             listaBloques.getChildren().add(bloqueItem);
         }
         
@@ -492,17 +495,17 @@ public class KursorApplication extends Application {
         return seccion;
     }
     
-    private VBox crearItemBloque(Bloque bloque, int numero) {
+    private VBox crearItemBloque(com.kursor.yaml.dto.BloqueDTO bloqueDTO, int numero) {
         VBox item = new VBox(5);
         item.setStyle("-fx-background-color: white; -fx-padding: 10px; -fx-background-radius: 5px; -fx-border-color: #e0e0e0; -fx-border-width: 1px;");
         
         // Título del bloque
-        Label labelTitulo = new Label("🎯 Bloque " + numero + ": " + bloque.getTitulo());
+        Label labelTitulo = new Label("🎯 Bloque " + numero + ": " + bloqueDTO.getTitulo());
         labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
         labelTitulo.setTextFill(Color.web("#2c3e50"));
         
         // Tipo de preguntas
-        Label labelTipo = new Label("   📝 Tipo: " + bloque.getTipo() + " (" + bloque.getPreguntas().size() + " preguntas)");
+        Label labelTipo = new Label("   📝 Tipo: " + bloqueDTO.getTipo() + " (" + bloqueDTO.getTotalPreguntas() + " preguntas)");
         labelTipo.setFont(Font.font("Segoe UI", 11));
         labelTipo.setTextFill(Color.web("#7f8c8d"));
         
@@ -510,7 +513,7 @@ public class KursorApplication extends Application {
         return item;
     }
     
-    private void mostrarErrorCargaCurso(VBox panelDetalles, CursoPreviewDTO cursoPreview) {
+    private void mostrarErrorCargaCurso(VBox panelDetalles, CursoDTO cursoDTO) {
         panelDetalles.getChildren().clear();
         
         Label errorLabel = new Label("❌ Error al cargar los detalles del curso");
@@ -527,14 +530,14 @@ public class KursorApplication extends Application {
         VBox infoBasica = new VBox(10);
         infoBasica.setStyle("-fx-background-color: #f8f9fa; -fx-padding: 15px; -fx-background-radius: 8px;");
         
-        Label titulo = new Label("🎯 Título: " + cursoPreview.getTitulo());
+        Label titulo = new Label("🎯 Título: " + cursoDTO.getTitulo());
         titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
         
-        Label descripcion = new Label("📝 Descripción: " + cursoPreview.getDescripcion());
+        Label descripcion = new Label("📝 Descripción: " + cursoDTO.getDescripcion());
         descripcion.setFont(Font.font("Segoe UI", 12));
         descripcion.setWrapText(true);
         
-        Label id = new Label("🆔 ID: " + cursoPreview.getId());
+        Label id = new Label("🆔 ID: " + cursoDTO.getId());
         id.setFont(Font.font("Segoe UI", 12));
         
         infoBasica.getChildren().addAll(titulo, descripcion, id);
@@ -587,42 +590,6 @@ public class KursorApplication extends Application {
         logger.debug("Usuario cerró el alert");
     }
 
-    /**
-     * Muestra un alert informativo cuando se selecciona un curso con click simple.
-     * 
-     * @param curso El curso seleccionado
-     */
-    private void mostrarAlertSeleccion(CursoPreviewDTO curso) {
-        logger.debug("Mostrando alert de selección para curso: '{}'", curso.getTitulo());
-        
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Curso Seleccionado");
-        alert.setHeaderText("Has seleccionado el siguiente curso:");
-        alert.setContentText(String.format("📚 %s\n\n%s\n\nID: %s", 
-            curso.getTitulo(), 
-            curso.getDescripcion(), 
-            curso.getId()));
-        
-        // Configurar el diálogo como modal
-        alert.initModality(Modality.APPLICATION_MODAL);
-        alert.initOwner(this.primaryStage);
-        
-        // Agregar botones adicionales
-        ButtonType inspeccionarButton = new ButtonType("🔍 Inspeccionar");
-        ButtonType cerrarButton = new ButtonType("Cerrar", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(inspeccionarButton, cerrarButton);
-        
-        // Mostrar el alert y manejar la respuesta
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == inspeccionarButton) {
-            logger.info("Usuario eligió inspeccionar curso desde alert: '{}'", curso.getTitulo());
-            InspeccionarCurso.mostrar(curso, this.primaryStage);
-        } else {
-            logger.debug("Usuario cerró el alert de selección");
-        }
-    }
-
-
     private void mostrarInformacionFilaSeleccionada() {
         logger.info("🔍 Mostrando información de la fila seleccionada en ListView");
         
@@ -632,7 +599,7 @@ public class KursorApplication extends Application {
             return;
         }
         
-        CursoPreviewDTO seleccionado = listViewCursos.getSelectionModel().getSelectedItem();
+        CursoDTO seleccionado = listViewCursos.getSelectionModel().getSelectedItem();
         int indiceSeleccionado = listViewCursos.getSelectionModel().getSelectedIndex();
         
         if (seleccionado == null) {
@@ -656,6 +623,39 @@ public class KursorApplication extends Application {
         
         logger.info("✅ Mostrando información de fila %d: '%s'", indiceSeleccionado + 1, seleccionado.getTitulo());
         mostrarAlert("🔍 Información de Fila Seleccionada", mensaje);
+    }
+
+    /**
+     * Inicia la ejecución del curso seleccionado.
+     * 
+     * <p>Este método verifica si hay un curso seleccionado y, si es así,
+     * inicia el flujo de ejecución usando el CursoInterfaceController.</p>
+     */
+    private void iniciarCursoSeleccionado() {
+        CursoDTO cursoSeleccionado = listViewCursos.getSelectionModel().getSelectedItem();
+        
+        if (cursoSeleccionado == null) {
+            logger.warn("No hay curso seleccionado para comenzar");
+            mostrarAlert("Selección requerida", "Por favor, selecciona un curso para comenzar.");
+            return;
+        }
+        
+        logger.info("Iniciando curso seleccionado: " + cursoSeleccionado.getTitulo());
+        
+        try {
+            // Usar el controlador para iniciar el curso
+            boolean iniciado = cursoController.iniciarCurso(cursoSeleccionado);
+            
+            if (iniciado) {
+                logger.info("Curso iniciado correctamente: " + cursoSeleccionado.getTitulo());
+            } else {
+                logger.info("Usuario canceló la ejecución del curso: " + cursoSeleccionado.getTitulo());
+            }
+            
+        } catch (Exception e) {
+            logger.error("Error al iniciar curso: " + cursoSeleccionado.getTitulo(), e);
+            mostrarAlert("Error", "No se pudo iniciar el curso: " + e.getMessage());
+        }
     }
 
     /**

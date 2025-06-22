@@ -181,58 +181,6 @@
                 </executions>
             </plugin>
 
-            <!-- Build de estrategias -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.0</version>
-                <executions>
-                    <execution>
-                        <id>copy-strategy-modules</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>com.kursor</groupId>
-                                    <artifactId>kursor-secuencial-strategy</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>jar</type>
-                                    <outputDirectory>${project.build.directory}/strategies</outputDirectory>
-                                    <destFileName>kursor-secuencial-strategy.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.kursor</groupId>
-                                    <artifactId>kursor-aleatoria-strategy</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>jar</type>
-                                    <outputDirectory>${project.build.directory}/strategies</outputDirectory>
-                                    <destFileName>kursor-aleatoria-strategy.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.kursor</groupId>
-                                    <artifactId>kursor-repeticion-espaciada-strategy</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>jar</type>
-                                    <outputDirectory>${project.build.directory}/strategies</outputDirectory>
-                                    <destFileName>kursor-repeticion-espaciada-strategy.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>com.kursor</groupId>
-                                    <artifactId>kursor-repetir-incorrectas-strategy</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>jar</type>
-                                    <outputDirectory>${project.build.directory}/strategies</outputDirectory>
-                                    <destFileName>kursor-repetir-incorrectas-strategy.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <!-- Resources -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

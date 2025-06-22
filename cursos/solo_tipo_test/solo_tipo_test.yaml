@@ -1,0 +1,471 @@
+id: solo_tipo_test
+titulo: "Curso de Tecnología e Informática"
+descripcion: "Curso completo de preguntas tipo test sobre tecnología, informática y programación"
+bloques:
+  - id: bloque1
+    titulo: "Fundamentos de Informática"
+    descripcion: "Test sobre conceptos básicos de informática y computación"
+    tipo: "test"
+    preguntas:
+      - id: p1
+        tipo: "test"
+        enunciado: "¿Qué significa CPU?"
+        opciones:
+          - "Central Processing Unit"
+          - "Computer Personal Unit"
+          - "Central Personal Unit"
+          - "Computer Processing Unit"
+        respuestaCorrecta: "Central Processing Unit"
+      - id: p2
+        tipo: "test"
+        enunciado: "¿Cuál es la unidad básica de información en informática?"
+        opciones:
+          - "Byte"
+          - "Bit"
+          - "Kilobyte"
+          - "Megabyte"
+        respuestaCorrecta: "Bit"
+      - id: p3
+        tipo: "test"
+        enunciado: "¿Cuántos bits tiene un byte?"
+        opciones:
+          - "4"
+          - "8"
+          - "16"
+          - "32"
+        respuestaCorrecta: "8"
+      - id: p4
+        tipo: "test"
+        enunciado: "¿Qué tipo de memoria es volátil?"
+        opciones:
+          - "Disco duro"
+          - "RAM"
+          - "SSD"
+          - "USB"
+        respuestaCorrecta: "RAM"
+      - id: p5
+        tipo: "test"
+        enunciado: "¿Qué significa RAM?"
+        opciones:
+          - "Random Access Memory"
+          - "Read Access Memory"
+          - "Random Available Memory"
+          - "Read Available Memory"
+        respuestaCorrecta: "Random Access Memory"
+      - id: p6
+        tipo: "test"
+        enunciado: "¿Cuál es el lenguaje de programación más antiguo?"
+        opciones:
+          - "Java"
+          - "Python"
+          - "FORTRAN"
+          - "C++"
+        respuestaCorrecta: "FORTRAN"
+      - id: p7
+        tipo: "test"
+        enunciado: "¿Qué significa HTML?"
+        opciones:
+          - "HyperText Markup Language"
+          - "High Tech Modern Language"
+          - "Hyper Transfer Markup Language"
+          - "Home Tool Markup Language"
+        respuestaCorrecta: "HyperText Markup Language"
+      - id: p8
+        tipo: "test"
+        enunciado: "¿Cuál es el protocolo principal de Internet?"
+        opciones:
+          - "HTTP"
+          - "FTP"
+          - "SMTP"
+          - "TCP/IP"
+        respuestaCorrecta: "TCP/IP"
+      - id: p9
+        tipo: "test"
+        enunciado: "¿Qué significa URL?"
+        opciones:
+          - "Uniform Resource Locator"
+          - "Universal Resource Link"
+          - "Uniform Resource Link"
+          - "Universal Resource Locator"
+        respuestaCorrecta: "Uniform Resource Locator"
+      - id: p10
+        tipo: "test"
+        enunciado: "¿Cuál es la extensión de un archivo ejecutable en Windows?"
+        opciones:
+          - ".txt"
+          - ".exe"
+          - ".doc"
+          - ".pdf"
+        respuestaCorrecta: ".exe"
+      - id: p11
+        tipo: "test"
+        enunciado: "¿Qué significa BIOS?"
+        opciones:
+          - "Basic Input Output System"
+          - "Binary Input Output System"
+          - "Basic Internal Operating System"
+          - "Binary Internal Operating System"
+        respuestaCorrecta: "Basic Input Output System"
+      - id: p12
+        tipo: "test"
+        enunciado: "¿Cuál es el sistema operativo más usado en el mundo?"
+        opciones:
+          - "Windows"
+          - "macOS"
+          - "Linux"
+          - "Android"
+        respuestaCorrecta: "Android"
+      - id: p13
+        tipo: "test"
+        enunciado: "¿Qué significa DNS?"
+        opciones:
+          - "Domain Name System"
+          - "Digital Network Service"
+          - "Domain Network System"
+          - "Digital Name Service"
+        respuestaCorrecta: "Domain Name System"
+      - id: p14
+        tipo: "test"
+        enunciado: "¿Cuál es la velocidad de la luz en el vacío?"
+        opciones:
+          - "299,792 km/s"
+          - "199,792 km/s"
+          - "399,792 km/s"
+          - "499,792 km/s"
+        respuestaCorrecta: "299,792 km/s"
+      - id: p15
+        tipo: "test"
+        enunciado: "¿Qué significa VPN?"
+        opciones:
+          - "Virtual Private Network"
+          - "Virtual Public Network"
+          - "Very Private Network"
+          - "Very Public Network"
+        respuestaCorrecta: "Virtual Private Network"
+
+  - id: bloque2
+    titulo: "Programación y Desarrollo"
+    descripcion: "Test sobre lenguajes de programación y desarrollo de software"
+    tipo: "test"
+    preguntas:
+      - id: p16
+        tipo: "test"
+        enunciado: "¿Qué significa IDE?"
+        opciones:
+          - "Integrated Development Environment"
+          - "Internet Development Environment"
+          - "Integrated Design Environment"
+          - "Internet Design Environment"
+        respuestaCorrecta: "Integrated Development Environment"
+      - id: p17
+        tipo: "test"
+        enunciado: "¿Cuál es el lenguaje de programación más popular según GitHub?"
+        opciones:
+          - "Python"
+          - "JavaScript"
+          - "Java"
+          - "C++"
+        respuestaCorrecta: "JavaScript"
+      - id: p18
+        tipo: "test"
+        enunciado: "¿Qué significa API?"
+        opciones:
+          - "Application Programming Interface"
+          - "Advanced Programming Interface"
+          - "Application Public Interface"
+          - "Advanced Public Interface"
+        respuestaCorrecta: "Application Programming Interface"
+      - id: p19
+        tipo: "test"
+        enunciado: "¿Cuál es el paradigma de programación más antiguo?"
+        opciones:
+          - "Orientado a objetos"
+          - "Funcional"
+          - "Procedural"
+          - "Lógico"
+        respuestaCorrecta: "Procedural"
+      - id: p20
+        tipo: "test"
+        enunciado: "¿Qué significa SQL?"
+        opciones:
+          - "Structured Query Language"
+          - "Simple Query Language"
+          - "Structured Question Language"
+          - "Simple Question Language"
+        respuestaCorrecta: "Structured Query Language"
+      - id: p21
+        tipo: "test"
+        enunciado: "¿Cuál es el framework web más popular para Python?"
+        opciones:
+          - "Django"
+          - "Flask"
+          - "FastAPI"
+          - "Pyramid"
+        respuestaCorrecta: "Django"
+      - id: p22
+        tipo: "test"
+        enunciado: "¿Qué significa MVC?"
+        opciones:
+          - "Model View Controller"
+          - "Model View Component"
+          - "Model View Class"
+          - "Model View Container"
+        respuestaCorrecta: "Model View Controller"
+      - id: p23
+        tipo: "test"
+        enunciado: "¿Cuál es el sistema de control de versiones más usado?"
+        opciones:
+          - "SVN"
+          - "Git"
+          - "Mercurial"
+          - "CVS"
+        respuestaCorrecta: "Git"
+      - id: p24
+        tipo: "test"
+        enunciado: "¿Qué significa REST?"
+        opciones:
+          - "Representational State Transfer"
+          - "Remote State Transfer"
+          - "Representational Service Transfer"
+          - "Remote Service Transfer"
+        respuestaCorrecta: "Representational State Transfer"
+      - id: p25
+        tipo: "test"
+        enunciado: "¿Cuál es el lenguaje de programación creado por Google?"
+        opciones:
+          - "Java"
+          - "Go"
+          - "Rust"
+          - "Kotlin"
+        respuestaCorrecta: "Go"
+      - id: p26
+        tipo: "test"
+        enunciado: "¿Qué significa JSON?"
+        opciones:
+          - "JavaScript Object Notation"
+          - "Java Object Notation"
+          - "JavaScript Online Notation"
+          - "Java Online Notation"
+        respuestaCorrecta: "JavaScript Object Notation"
+      - id: p27
+        tipo: "test"
+        enunciado: "¿Cuál es el patrón de diseño más común?"
+        opciones:
+          - "Singleton"
+          - "Factory"
+          - "Observer"
+          - "Strategy"
+        respuestaCorrecta: "Singleton"
+      - id: p28
+        tipo: "test"
+        enunciado: "¿Qué significa TDD?"
+        opciones:
+          - "Test Driven Development"
+          - "Type Driven Development"
+          - "Test Design Development"
+          - "Type Design Development"
+        respuestaCorrecta: "Test Driven Development"
+      - id: p29
+        tipo: "test"
+        enunciado: "¿Cuál es el lenguaje de programación más rápido?"
+        opciones:
+          - "C"
+          - "C++"
+          - "Rust"
+          - "Assembly"
+        respuestaCorrecta: "Assembly"
+      - id: p30
+        tipo: "test"
+        enunciado: "¿Qué significa OOP?"
+        opciones:
+          - "Object Oriented Programming"
+          - "Online Oriented Programming"
+          - "Object Online Programming"
+          - "Online Object Programming"
+        respuestaCorrecta: "Object Oriented Programming"
+      - id: p31
+        tipo: "test"
+        enunciado: "¿Cuál es el framework más popular para JavaScript?"
+        opciones:
+          - "React"
+          - "Angular"
+          - "Vue"
+          - "jQuery"
+        respuestaCorrecta: "React"
+
+  - id: bloque3
+    titulo: "Tecnologías Web y Cloud"
+    descripcion: "Test sobre tecnologías web, cloud computing y servicios en línea"
+    tipo: "test"
+    preguntas:
+      - id: p32
+        tipo: "test"
+        enunciado: "¿Qué significa CSS?"
+        opciones:
+          - "Cascading Style Sheets"
+          - "Computer Style Sheets"
+          - "Cascading System Sheets"
+          - "Computer System Sheets"
+        respuestaCorrecta: "Cascading Style Sheets"
+      - id: p33
+        tipo: "test"
+        enunciado: "¿Cuál es el navegador web más usado en el mundo?"
+        opciones:
+          - "Chrome"
+          - "Firefox"
+          - "Safari"
+          - "Edge"
+        respuestaCorrecta: "Chrome"
+      - id: p34
+        tipo: "test"
+        enunciado: "¿Qué significa SaaS?"
+        opciones:
+          - "Software as a Service"
+          - "System as a Service"
+          - "Software as a System"
+          - "System as a Software"
+        respuestaCorrecta: "Software as a Service"
+      - id: p35
+        tipo: "test"
+        enunciado: "¿Cuál es el proveedor de cloud más grande?"
+        opciones:
+          - "Amazon Web Services"
+          - "Microsoft Azure"
+          - "Google Cloud"
+          - "IBM Cloud"
+        respuestaCorrecta: "Amazon Web Services"
+      - id: p36
+        tipo: "test"
+        enunciado: "¿Qué significa IoT?"
+        opciones:
+          - "Internet of Things"
+          - "Internet of Technology"
+          - "Internet of Tools"
+          - "Internet of Tasks"
+        respuestaCorrecta: "Internet of Things"
+      - id: p37
+        tipo: "test"
+        enunciado: "¿Cuál es el protocolo de correo electrónico más usado?"
+        opciones:
+          - "SMTP"
+          - "POP3"
+          - "IMAP"
+          - "HTTP"
+        respuestaCorrecta: "SMTP"
+      - id: p38
+        tipo: "test"
+        enunciado: "¿Qué significa SSL?"
+        opciones:
+          - "Secure Sockets Layer"
+          - "Secure System Layer"
+          - "Secure Software Layer"
+          - "Secure Service Layer"
+        respuestaCorrecta: "Secure Sockets Layer"
+      - id: p39
+        tipo: "test"
+        enunciado: "¿Cuál es la base de datos NoSQL más popular?"
+        opciones:
+          - "MongoDB"
+          - "Redis"
+          - "Cassandra"
+          - "CouchDB"
+        respuestaCorrecta: "MongoDB"
+      - id: p40
+        tipo: "test"
+        enunciado: "¿Qué significa CDN?"
+        opciones:
+          - "Content Delivery Network"
+          - "Content Distribution Network"
+          - "Computer Delivery Network"
+          - "Computer Distribution Network"
+        respuestaCorrecta: "Content Delivery Network"
+      - id: p41
+        tipo: "test"
+        enunciado: "¿Cuál es el lenguaje de marcado más usado?"
+        opciones:
+          - "HTML"
+          - "XML"
+          - "JSON"
+          - "YAML"
+        respuestaCorrecta: "HTML"
+      - id: p42
+        tipo: "test"
+        enunciado: "¿Qué significa AJAX?"
+        opciones:
+          - "Asynchronous JavaScript and XML"
+          - "Advanced JavaScript and XML"
+          - "Asynchronous Java and XML"
+          - "Advanced Java and XML"
+        respuestaCorrecta: "Asynchronous JavaScript and XML"
+      - id: p43
+        tipo: "test"
+        enunciado: "¿Cuál es el servidor web más usado?"
+        opciones:
+          - "Apache"
+          - "Nginx"
+          - "IIS"
+          - "Lighttpd"
+        respuestaCorrecta: "Apache"
+      - id: p44
+        tipo: "test"
+        enunciado: "¿Qué significa CMS?"
+        opciones:
+          - "Content Management System"
+          - "Computer Management System"
+          - "Content Management Software"
+          - "Computer Management Software"
+        respuestaCorrecta: "Content Management System"
+      - id: p45
+        tipo: "test"
+        enunciado: "¿Cuál es el CMS más popular?"
+        opciones:
+          - "WordPress"
+          - "Joomla"
+          - "Drupal"
+          - "Magento"
+        respuestaCorrecta: "WordPress"
+      - id: p46
+        tipo: "test"
+        enunciado: "¿Qué significa SEO?"
+        opciones:
+          - "Search Engine Optimization"
+          - "Search Engine Organization"
+          - "Search Engine Operation"
+          - "Search Engine Orientation"
+        respuestaCorrecta: "Search Engine Optimization"
+      - id: p47
+        tipo: "test"
+        enunciado: "¿Cuál es el protocolo de transferencia de archivos más usado?"
+        opciones:
+          - "FTP"
+          - "SFTP"
+          - "HTTP"
+          - "HTTPS"
+        respuestaCorrecta: "FTP"
+      - id: p48
+        tipo: "test"
+        enunciado: "¿Qué significa W3C?"
+        opciones:
+          - "World Wide Web Consortium"
+          - "World Wide Web Committee"
+          - "World Wide Web Council"
+          - "World Wide Web Corporation"
+        respuestaCorrecta: "World Wide Web Consortium"
+      - id: p49
+        tipo: "test"
+        enunciado: "¿Cuál es el lenguaje de programación más fácil para principiantes?"
+        opciones:
+          - "Python"
+          - "JavaScript"
+          - "Java"
+          - "C#"
+        respuestaCorrecta: "Python"
+      - id: p50
+        tipo: "test"
+        enunciado: "¿Qué significa HTTP?"
+        opciones:
+          - "HyperText Transfer Protocol"
+          - "High Text Transfer Protocol"
+          - "HyperText Transport Protocol"
+          - "High Text Transport Protocol"
+        respuestaCorrecta: "HyperText Transfer Protocol" 

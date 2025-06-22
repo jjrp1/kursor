@@ -119,78 +119,102 @@ bloques:
   - id: bloque2
     titulo: "Química Básica"
     descripcion: "Flashcards con conceptos fundamentales de química"
-    tipo: "flashcards"
+    tipo: "flashcard"
     preguntas:
       - id: p13
+        tipo: "flashcard"
         anverso: "Átomo"
         reverso: "La unidad más pequeña de un elemento que mantiene las propiedades químicas"
       - id: p14
+        tipo: "flashcard"
         anverso: "Molécula"
         reverso: "Grupo de átomos unidos por enlaces químicos"
       - id: p15
+        tipo: "flashcard"
         anverso: "Elemento"
         reverso: "Sustancia que no puede descomponerse en sustancias más simples"
       - id: p16
+        tipo: "flashcard"
         anverso: "Compuesto"
         reverso: "Sustancia formada por dos o más elementos químicamente combinados"
       - id: p17
+        tipo: "flashcard"
         anverso: "Mezcla"
         reverso: "Combinación de sustancias que no están químicamente unidas"
       - id: p18
+        tipo: "flashcard"
         anverso: "Enlace químico"
         reverso: "Fuerza que mantiene unidos los átomos en una molécula"
       - id: p19
+        tipo: "flashcard"
         anverso: "Tabla Periódica"
         reverso: "Organización de los elementos químicos según sus propiedades"
       - id: p20
+        tipo: "flashcard"
         anverso: "pH"
         reverso: "Medida de la acidez o basicidad de una solución"
       - id: p21
+        tipo: "flashcard"
         anverso: "Ácido"
         reverso: "Sustancia que libera iones H+ en solución acuosa"
       - id: p22
+        tipo: "flashcard"
         anverso: "Base"
         reverso: "Sustancia que libera iones OH- en solución acuosa"
       - id: p23
+        tipo: "flashcard"
         anverso: "Neutralización"
         reverso: "Reacción entre un ácido y una base que forma sal y agua"
       - id: p24
+        tipo: "flashcard"
         anverso: "Oxidación"
         reverso: "Proceso en el que una sustancia pierde electrones"
       - id: p25
+        tipo: "flashcard"
         anverso: "Reducción"
         reverso: "Proceso en el que una sustancia gana electrones"
       - id: p26
+        tipo: "flashcard"
         anverso: "Catalizador"
         reverso: "Sustancia que acelera una reacción química sin consumirse"
       - id: p27
+        tipo: "flashcard"
         anverso: "Isótopo"
         reverso: "Átomos del mismo elemento con diferente número de neutrones"
       - id: p28
+        tipo: "flashcard"
         anverso: "Ión"
         reverso: "Átomo o molécula con carga eléctrica neta"
       - id: p29
+        tipo: "flashcard"
         anverso: "Valencia"
         reverso: "Capacidad de un átomo para combinarse con otros átomos"
       - id: p30
+        tipo: "flashcard"
         anverso: "Masa atómica"
         reverso: "Promedio ponderado de las masas de los isótopos de un elemento"
       - id: p31
+        tipo: "flashcard"
         anverso: "Número atómico"
         reverso: "Número de protones en el núcleo de un átomo"
       - id: p32
+        tipo: "flashcard"
         anverso: "Densidad"
         reverso: "Relación entre la masa y el volumen de una sustancia"
       - id: p33
+        tipo: "flashcard"
         anverso: "Solubilidad"
         reverso: "Capacidad de una sustancia para disolverse en otra"
       - id: p34
+        tipo: "flashcard"
         anverso: "Punto de ebullición"
         reverso: "Temperatura a la que una sustancia cambia de líquido a gas"
       - id: p35
+        tipo: "flashcard"
         anverso: "Punto de fusión"
         reverso: "Temperatura a la que una sustancia cambia de sólido a líquido"
       - id: p36
+        tipo: "flashcard"
         anverso: "Concentración"
         reverso: "Cantidad de soluto disuelto en una cantidad específica de disolvente"
 
@@ -200,38 +224,50 @@ bloques:
     tipo: "completar_huecos"
     preguntas:
       - id: p37
+        tipo: "completar_huecos"
         enunciado: "La _____ es la medida de la cantidad de materia en un objeto."
         respuestaCorrecta: "masa"
       - id: p38
+        tipo: "completar_huecos"
         enunciado: "La _____ es la fuerza que atrae los objetos hacia el centro de la Tierra."
         respuestaCorrecta: "gravedad"
       - id: p39
+        tipo: "completar_huecos"
         enunciado: "La _____ es la distancia recorrida por unidad de tiempo."
         respuestaCorrecta: "velocidad"
       - id: p40
+        tipo: "completar_huecos"
         enunciado: "La _____ es la capacidad de realizar trabajo o transferir calor."
         respuestaCorrecta: "energía"
       - id: p41
+        tipo: "completar_huecos"
         enunciado: "La _____ es la medida de la energía térmica de un objeto."
         respuestaCorrecta: "temperatura"
       - id: p42
+        tipo: "completar_huecos"
         enunciado: "La _____ es la fuerza por unidad de área."
         respuestaCorrecta: "presión"
       - id: p43
+        tipo: "completar_huecos"
         enunciado: "La _____ es la medida de la inercia de un objeto."
         respuestaCorrecta: "masa"
       - id: p44
+        tipo: "completar_huecos"
         enunciado: "La _____ es la capacidad de un material para conducir electricidad."
         respuestaCorrecta: "conductividad"
       - id: p45
+        tipo: "completar_huecos"
         enunciado: "La _____ es la distancia entre dos puntos consecutivos de una onda."
         respuestaCorrecta: "longitud de onda"
       - id: p46
+        tipo: "completar_huecos"
         enunciado: "La _____ es el número de oscilaciones por segundo."
         respuestaCorrecta: "frecuencia"
       - id: p47
+        tipo: "completar_huecos"
         enunciado: "La _____ es la fuerza que se opone al movimiento entre superficies."
         respuestaCorrecta: "fricción"
       - id: p48
+        tipo: "completar_huecos"
         enunciado: "La _____ es la capacidad de un objeto para flotar en un fluido."
         respuestaCorrecta: "flotabilidad" 

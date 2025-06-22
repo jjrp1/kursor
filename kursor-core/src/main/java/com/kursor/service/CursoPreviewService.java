@@ -115,13 +115,27 @@ public class CursoPreviewService {
         logger.debug("Buscando archivo YAML - Directorio: " + directory.getPath() + 
                     ", Nombre base: " + baseName);
         
+        // Primero, buscar archivos que coincidan exactamente con el nombre base
         List<File> matchingFiles = YAML_EXTENSIONS.stream()
             .map(ext -> new File(directory, baseName + ext))
             .filter(File::exists)
             .collect(Collectors.toList());
 
+        // Si no se encontraron archivos con el nombre exacto, buscar cualquier archivo YAML en el directorio
         if (matchingFiles.isEmpty()) {
-            logger.error("No se encontró el archivo YAML para el curso: " + baseName);
+            logger.debug("No se encontraron archivos YAML con nombre exacto, buscando cualquier archivo YAML en el directorio");
+            
+            File[] files = directory.listFiles();
+            if (files != null) {
+                matchingFiles = Arrays.stream(files)
+                    .filter(file -> file.isFile() && YAML_EXTENSIONS.stream()
+                        .anyMatch(ext -> file.getName().toLowerCase().endsWith(ext)))
+                    .collect(Collectors.toList());
+            }
+        }
+
+        if (matchingFiles.isEmpty()) {
+            logger.error("No se encontró ningún archivo YAML en el directorio: " + directory.getPath());
             return null;
         }
 
@@ -129,7 +143,7 @@ public class CursoPreviewService {
             String files = matchingFiles.stream()
                 .map(File::getName)
                 .collect(Collectors.joining(", "));
-            logger.warn("Se encontraron múltiples archivos YAML para " + baseName + ": " + files + ". Usando el primero.");
+            logger.warn("Se encontraron múltiples archivos YAML en " + directory.getPath() + ": " + files + ". Usando el primero.");
         }
 
         File selectedFile = matchingFiles.get(0);
@@ -290,8 +304,12 @@ public class CursoPreviewService {
                         
                         for (Map<String, Object> preguntaData : preguntasData) {
                             String tipo = (String) preguntaData.get("tipo");
+                            // Si la pregunta no tiene campo 'tipo', usar el tipo del bloque
+                            if (tipo == null || tipo.isEmpty()) {
+                                preguntaData.put("tipo", bloqueTipo);
+                                tipo = bloqueTipo;
+                            }
                             logger.debug("Procesando pregunta de tipo: " + tipo);
-                            
                             try {
                                 // Usar PreguntaFactory para crear la pregunta
                                 Pregunta pregunta = PreguntaFactory.crearPregunta(preguntaData);
@@ -353,5 +371,84 @@ public class CursoPreviewService {
         boolean valido = dir.exists() && dir.isDirectory() && dir.canRead();
         logger.debug("Verificando validez del directorio de cursos - Válido: " + valido);
         return valido;
+    }
+    
+    /**
+     * Carga todos los cursos completos disponibles.
+     * 
+     * <p>Este método recorre el directorio de cursos y carga la información
+     * completa de cada curso, incluyendo bloques, preguntas y configuración
+     * detallada. Es útil para cargar todos los cursos en memoria de una vez.</p>
+     * 
+     * <p>El método maneja automáticamente:</p>
+     * <ul>
+     *   <li>Directorios que no existen</li>
+     *   <li>Archivos YAML corruptos o malformados</li>
+     *   <li>Errores de lectura de archivos</li>
+     *   <li>Cursos individuales que fallan al cargar</li>
+     * </ul>
+     * 
+     * @return Lista de todos los cursos completos cargados exitosamente.
+     *         Si ocurre un error, retorna una lista vacía en lugar de lanzar una excepción
+     */
+    public List<Curso> cargarTodosLosCursosCompletos() {
+        System.err.println("🔄 FATAL - Iniciando carga de todos los cursos completos - Directorio: " + cursosDir);
+        logger.error("🔄 INICIO - Iniciando carga de todos los cursos completos - Directorio: " + cursosDir);
+        
+        List<Curso> cursosCompletos = new ArrayList<>();
+        try {
+            File dir = new File(cursosDir);
+            if (!dir.exists() || !dir.isDirectory()) {
+                String errorMessage = "El directorio de cursos no existe: " + cursosDir;
+                logger.error(errorMessage);
+                return cursosCompletos;
+            }
+            
+            File[] cursoDirs = dir.listFiles();
+            if (cursoDirs == null) {
+                logger.warn("No se pudieron listar archivos en el directorio: " + cursosDir);
+                return cursosCompletos;
+            }
+            
+            System.err.println("Encontrados " + cursoDirs.length + " elementos en el directorio de cursos");
+            logger.error("Encontrados " + cursoDirs.length + " elementos en el directorio de cursos");
+            
+            for (File cursoDir : cursoDirs) {
+                System.err.println("Procesando elemento: " + cursoDir.getName() + " - Es directorio: " + cursoDir.isDirectory());
+                logger.error("Procesando elemento: " + cursoDir.getName() + " - Es directorio: " + cursoDir.isDirectory());
+                
+                if (cursoDir.isDirectory()) {
+                    String cursoId = cursoDir.getName();
+                    System.err.println("Procesando directorio de curso: " + cursoId);
+                    logger.error("Procesando directorio de curso: " + cursoId);
+                    
+                    try {
+                        Curso cursoCompleto = cargarCursoCompleto(cursoId);
+                        if (cursoCompleto != null) {
+                            cursosCompletos.add(cursoCompleto);
+                            System.err.println("✅ Curso completo cargado exitosamente: " + cursoId);
+                            logger.error("✅ Curso completo cargado exitosamente: " + cursoId);
+                        } else {
+                            System.err.println("❌ No se pudo cargar el curso completo: " + cursoId);
+                            logger.error("❌ No se pudo cargar el curso completo: " + cursoId);
+                        }
+                    } catch (Exception e) {
+                        System.err.println("❌ Error al cargar curso completo " + cursoId + ": " + e.getMessage());
+                        logger.error("❌ Error al cargar curso completo " + cursoId + ": " + e.getMessage(), e);
+                        // Continuar con el siguiente curso en lugar de fallar completamente
+                    }
+                } else {
+                    System.err.println("Ignorando archivo no-directorio: " + cursoDir.getName());
+                    logger.error("Ignorando archivo no-directorio: " + cursoDir.getName());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("❌ Error general al cargar todos los cursos completos: " + e.getMessage());
+            logger.error("❌ Error general al cargar todos los cursos completos: " + e.getMessage(), e);
+        }
+        
+        System.err.println("✅ FIN - Carga de todos los cursos completos finalizada - Cursos cargados: " + cursosCompletos.size());
+        logger.error("✅ FIN - Carga de todos los cursos completos finalizada - Cursos cargados: " + cursosCompletos.size());
+        return cursosCompletos;
     }
 } 

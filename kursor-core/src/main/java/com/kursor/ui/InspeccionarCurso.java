@@ -3,7 +3,7 @@ package com.kursor.ui;
 import com.kursor.domain.Curso;
 import com.kursor.domain.Bloque;
 import com.kursor.util.CursoManager;
-import com.kursor.yaml.dto.CursoPreviewDTO;
+import com.kursor.yaml.dto.CursoDTO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,18 +25,18 @@ public class InspeccionarCurso {
     
     private static final Logger logger = LoggerFactory.getLogger(InspeccionarCurso.class);
     
-    public static void mostrar(CursoPreviewDTO preview, Stage owner) {
+    public static void mostrar(CursoDTO cursoDTO, Stage owner) {
         logger.info("================================================");
         logger.info("🚀 INICIANDO: Diálogo de inspección de curso");
         logger.info("================================================");
         
         // Validar parámetros de entrada
         logger.debug("🔍 Validando parámetros de entrada...");
-        if (preview == null) {
-            logger.warn("⚠️  CursoPreviewDTO es null - mostrando diálogo sin datos específicos");
+        if (cursoDTO == null) {
+            logger.warn("⚠️  CursoDTO es null - mostrando diálogo sin datos específicos");
         } else {
-            logger.debug("✅ CursoPreviewDTO recibido - ID: '{}', Título: '{}', Descripción: '{}'", 
-                preview.getId(), preview.getTitulo(), preview.getDescripcion());
+            logger.debug("✅ CursoDTO recibido - ID: '{}', Título: '{}', Descripción: '{}'", 
+                cursoDTO.getId(), cursoDTO.getTitulo(), cursoDTO.getDescripcion());
         }
         
         if (owner == null) {
@@ -48,11 +48,11 @@ public class InspeccionarCurso {
         
         // Cargar curso completo
         Curso curso = null;
-        if (preview != null) {
-            logger.info("📚 Cargando curso completo para ID: '{}'", preview.getId());
+        if (cursoDTO != null) {
+            logger.info("📚 Cargando curso completo para ID: '{}'", cursoDTO.getId());
             try {
-                logger.debug("🔄 Llamando a CursoManager.getInstance().obtenerCursoCompleto('{}')", preview.getId());
-                curso = CursoManager.getInstance().obtenerCursoCompleto(preview.getId());
+                logger.debug("🔄 Llamando a CursoManager.getInstance().obtenerCursoCompleto('{}')", cursoDTO.getId());
+                curso = CursoManager.getInstance().obtenerCursoCompleto(cursoDTO.getId());
                 
                 if (curso != null) {
                     logger.info("✅ Curso cargado exitosamente");
@@ -67,15 +67,15 @@ public class InspeccionarCurso {
                             i + 1, bloque.getId(), bloque.getTitulo(), bloque.getTipo(), bloque.getPreguntas().size());
                     }
                 } else {
-                    logger.warn("⚠️  No se pudo cargar el curso completo para ID: '{}' - CursoManager retornó null", preview.getId());
+                    logger.warn("⚠️  No se pudo cargar el curso completo para ID: '{}' - CursoManager retornó null", cursoDTO.getId());
                 }
             } catch (Exception e) {
-                logger.error("❌ Error al cargar curso completo para ID: '{}'", preview.getId(), e);
+                logger.error("❌ Error al cargar curso completo para ID: '{}'", cursoDTO.getId(), e);
                 logger.error("🔍 Detalles del error: {}", e.getMessage());
                 logger.debug("📚 Stack trace completo:", e);
             }
         } else {
-            logger.warn("⚠️  No se puede cargar curso completo - preview es null");
+            logger.warn("⚠️  No se puede cargar curso completo - cursoDTO es null");
         }
         
         // Crear ventana modal
@@ -129,7 +129,7 @@ public class InspeccionarCurso {
             logger.debug("🔧 Creando campos de información básica...");
             info.getChildren().addAll(
                 crearCampo("Código (ID):", curso.getId()),
-                crearCampo("Fichero:", preview.getId() + ".yaml"),
+                crearCampo("Fichero:", cursoDTO.getId() + ".yaml"),
                 crearCampo("Título:", curso.getTitulo()),
                 crearCampo("Descripción:", curso.getDescripcion()),
                 crearCampo("Total de preguntas:", String.valueOf(curso.getNumeroPreguntas()))

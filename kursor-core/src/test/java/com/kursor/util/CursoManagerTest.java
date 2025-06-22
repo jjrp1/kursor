@@ -1,7 +1,7 @@
 package com.kursor.util;
 
 import com.kursor.domain.Curso;
-import com.kursor.yaml.dto.CursoPreviewDTO;
+import com.kursor.yaml.dto.CursoDTO;
 import com.kursor.service.CursoPreviewService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -42,10 +42,10 @@ class CursoManagerTest {
     private CursoPreviewService cursoPreviewService;
 
     @Mock
-    private CursoPreviewDTO cursoPreview1;
+    private CursoDTO curso1;
 
     @Mock
-    private CursoPreviewDTO cursoPreview2;
+    private CursoDTO curso2;
 
     @Mock
     private Curso cursoCompleto;
@@ -53,8 +53,8 @@ class CursoManagerTest {
     @BeforeEach
     void setUp() {
         // Configurar comportamiento básico de los mocks
-        when(cursoPreview1.getTitulo()).thenReturn("Curso de Inglés");
-        when(cursoPreview2.getTitulo()).thenReturn("Curso de Matemáticas");
+        when(curso1.getTitulo()).thenReturn("Curso de Inglés");
+        when(curso2.getTitulo()).thenReturn("Curso de Matemáticas");
         when(cursoCompleto.getTitulo()).thenReturn("Curso Completo");
     }
 
@@ -95,23 +95,21 @@ class CursoManagerTest {
         @DisplayName("Debería cargar cursos exitosamente")
         void deberiaCargarCursosExitosamente() {
             // Given
-            List<CursoPreviewDTO> cursosEsperados = List.of(cursoPreview1, cursoPreview2);
-            when(cursoPreviewService.cargarPreviews()).thenReturn(cursosEsperados);
+            List<Curso> cursosEsperados = List.of(cursoCompleto);
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenReturn(cursosEsperados);
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenReturn(cursosEsperados);
+                        when(mock.cargarTodosLosCursosCompletos()).thenReturn(cursosEsperados);
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> resultado = manager.cargarCursos();
+                List<CursoDTO> resultado = manager.cargarCursos();
 
                 // Then
                 assertNotNull(resultado);
-                assertEquals(2, resultado.size());
-                assertTrue(resultado.contains(cursoPreview1));
-                assertTrue(resultado.contains(cursoPreview2));
+                assertEquals(1, resultado.size());
             }
         }
 
@@ -119,17 +117,17 @@ class CursoManagerTest {
         @DisplayName("Debería retornar lista vacía cuando no hay cursos")
         void deberiaRetornarListaVaciaCuandoNoHayCursos() {
             // Given
-            List<CursoPreviewDTO> cursosVacios = List.of();
-            when(cursoPreviewService.cargarPreviews()).thenReturn(cursosVacios);
+            List<Curso> cursosVacios = List.of();
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenReturn(cursosVacios);
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenReturn(cursosVacios);
+                        when(mock.cargarTodosLosCursosCompletos()).thenReturn(cursosVacios);
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> resultado = manager.cargarCursos();
+                List<CursoDTO> resultado = manager.cargarCursos();
 
                 // Then
                 assertNotNull(resultado);
@@ -141,16 +139,16 @@ class CursoManagerTest {
         @DisplayName("Debería retornar lista vacía cuando ocurre excepción")
         void deberiaRetornarListaVaciaCuandoOcurreExcepcion() {
             // Given
-            when(cursoPreviewService.cargarPreviews()).thenThrow(new RuntimeException("Error de carga"));
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenThrow(new RuntimeException("Error de carga"));
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenThrow(new RuntimeException("Error de carga"));
+                        when(mock.cargarTodosLosCursosCompletos()).thenThrow(new RuntimeException("Error de carga"));
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> resultado = manager.cargarCursos();
+                List<CursoDTO> resultado = manager.cargarCursos();
 
                 // Then
                 assertNotNull(resultado);
@@ -162,16 +160,16 @@ class CursoManagerTest {
         @DisplayName("Debería manejar excepción de NullPointerException")
         void deberiaManejarExcepcionNullPointerException() {
             // Given
-            when(cursoPreviewService.cargarPreviews()).thenThrow(new NullPointerException("NPE"));
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenThrow(new NullPointerException("NPE"));
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenThrow(new NullPointerException("NPE"));
+                        when(mock.cargarTodosLosCursosCompletos()).thenThrow(new NullPointerException("NPE"));
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> resultado = manager.cargarCursos();
+                List<CursoDTO> resultado = manager.cargarCursos();
 
                 // Then
                 assertNotNull(resultado);
@@ -183,16 +181,16 @@ class CursoManagerTest {
         @DisplayName("Debería manejar excepción de IllegalArgumentException")
         void deberiaManejarExcepcionIllegalArgumentException() {
             // Given
-            when(cursoPreviewService.cargarPreviews()).thenThrow(new IllegalArgumentException("Argumento inválido"));
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenThrow(new IllegalArgumentException("Argumento inválido"));
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenThrow(new IllegalArgumentException("Argumento inválido"));
+                        when(mock.cargarTodosLosCursosCompletos()).thenThrow(new IllegalArgumentException("Argumento inválido"));
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> resultado = manager.cargarCursos();
+                List<CursoDTO> resultado = manager.cargarCursos();
 
                 // Then
                 assertNotNull(resultado);
@@ -382,19 +380,19 @@ class CursoManagerTest {
         @DisplayName("Debería manejar múltiples llamadas consecutivas")
         void deberiaManejarMultiplesLlamadasConsecutivas() {
             // Given
-            List<CursoPreviewDTO> cursos = List.of(cursoPreview1);
-            when(cursoPreviewService.cargarPreviews()).thenReturn(cursos);
+            List<Curso> cursos = List.of(cursoCompleto);
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenReturn(cursos);
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenReturn(cursos);
+                        when(mock.cargarTodosLosCursosCompletos()).thenReturn(cursos);
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> resultado1 = manager.cargarCursos();
-                List<CursoPreviewDTO> resultado2 = manager.cargarCursos();
-                List<CursoPreviewDTO> resultado3 = manager.cargarCursos();
+                List<CursoDTO> resultado1 = manager.cargarCursos();
+                List<CursoDTO> resultado2 = manager.cargarCursos();
+                List<CursoDTO> resultado3 = manager.cargarCursos();
 
                 // Then
                 assertNotNull(resultado1);
@@ -410,21 +408,21 @@ class CursoManagerTest {
         @DisplayName("Debería manejar llamadas mixtas de carga y obtención")
         void deberiaManejarLlamadasMixtas() {
             // Given
-            List<CursoPreviewDTO> cursos = List.of(cursoPreview1);
+            List<Curso> cursos = List.of(cursoCompleto);
             String cursoId = "curso_test";
             
-            when(cursoPreviewService.cargarPreviews()).thenReturn(cursos);
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenReturn(cursos);
             when(cursoPreviewService.cargarCursoCompleto(cursoId)).thenReturn(cursoCompleto);
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenReturn(cursos);
+                        when(mock.cargarTodosLosCursosCompletos()).thenReturn(cursos);
                         when(mock.cargarCursoCompleto(cursoId)).thenReturn(cursoCompleto);
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> cursosList = manager.cargarCursos();
+                List<CursoDTO> cursosList = manager.cargarCursos();
                 Curso cursoCompleto = manager.obtenerCursoCompleto(cursoId);
 
                 // Then
@@ -438,18 +436,18 @@ class CursoManagerTest {
         @DisplayName("Debería manejar excepciones en cascada")
         void deberiaManejarExcepcionesEnCascada() {
             // Given
-            when(cursoPreviewService.cargarPreviews()).thenThrow(new RuntimeException("Error 1"));
+            when(cursoPreviewService.cargarTodosLosCursosCompletos()).thenThrow(new RuntimeException("Error 1"));
             when(cursoPreviewService.cargarCursoCompleto("curso1")).thenThrow(new RuntimeException("Error 2"));
 
             try (MockedConstruction<CursoPreviewService> mockedConstruction = 
                     mockConstruction(CursoPreviewService.class, (mock, context) -> {
-                        when(mock.cargarPreviews()).thenThrow(new RuntimeException("Error 1"));
+                        when(mock.cargarTodosLosCursosCompletos()).thenThrow(new RuntimeException("Error 1"));
                         when(mock.cargarCursoCompleto("curso1")).thenThrow(new RuntimeException("Error 2"));
                     })) {
 
                 // When
                 CursoManager manager = CursoManager.getInstance();
-                List<CursoPreviewDTO> cursos = manager.cargarCursos();
+                List<CursoDTO> cursos = manager.cargarCursos();
                 Curso curso = manager.obtenerCursoCompleto("curso1");
 
                 // Then
