@@ -30,6 +30,32 @@ El sistema de aprendizaje de Kursor requiere persistencia robusta para:
 - Soportar múltiples usuarios y cursos
 - Cargar cursos desde formatos JSON y YAML
 
+### 1.3 Modelo de Usuario
+
+#### **1.3.1 Aplicación Monousuario**
+- **Diseño actual**: La aplicación está diseñada para ser utilizada por un solo usuario
+- **Campo `usuarioId`**: Se mantiene en todas las entidades para futuras expansiones
+- **Valor por defecto**: Se utiliza un ID fijo (ej: "default_user") para simplificar
+- **Ventajas**: No requiere autenticación ni gestión de sesiones de usuario
+
+#### **1.3.2 Consideraciones de Diseño**
+- **Extensibilidad**: La arquitectura permite futuras expansiones a multiusuario
+- **Simplicidad**: Consultas más simples sin filtros de usuario
+- **Compatibilidad**: Los datos existentes se pueden migrar fácilmente
+- **Rendimiento**: Menor complejidad en las consultas de base de datos
+
+#### **1.3.3 Implementación Técnica**
+```java
+// Constante para el usuario por defecto
+public static final String DEFAULT_USER_ID = "default_user";
+
+// Ejemplo de uso en repositorios
+public List<Sesion> buscarSesionesUsuario(String usuarioId) {
+    // Para aplicación monousuario, siempre usar DEFAULT_USER_ID
+    return buscarSesionesUsuario(DEFAULT_USER_ID);
+}
+```
+
 ## 2. Arquitectura de Persistencia
 
 ### 2.1 Estrategia de Persistencia

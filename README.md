@@ -74,6 +74,12 @@
 - **Carga dinámica**: Los módulos se cargan automáticamente mediante ServiceLoader
 - **Patrones de diseño**: Factory, Builder, Strategy y Plugin patterns
 
+### 🔒 Modelo de Usuario
+- **Aplicación monousuario**: Diseñada para un solo usuario por simplicidad
+- **Campo `usuarioId`**: Se mantiene para futuras expansiones a multiusuario
+- **Sin autenticación**: No requiere login ni gestión de sesiones de usuario
+- **Extensibilidad**: Arquitectura preparada para futuras expansiones
+
 ### 📚 Tipos de Preguntas Soportados
 - **🃏 Flashcards**: Tarjetas de memoria con pregunta y respuesta
 - **☑️ Opción Múltiple**: Preguntas con múltiples opciones y explicaciones

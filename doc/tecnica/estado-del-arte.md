@@ -6,6 +6,7 @@
 - **Fecha de última actualización**: 21 de junio de 2025
 - **Estado**: ✅ **COMPLETADO** - Sistema modular completo implementado
 - **Cumplimiento enunciado**: ✅ **100% CUMPLIDO** - Todos los requisitos implementados
+- **Modelo de Usuario**: 🔒 **MONOUSUARIO** - Aplicación diseñada para un solo usuario por simplicidad
 
 ## 🎯 Resumen Ejecutivo
 
@@ -18,6 +19,7 @@ El proyecto Kursor ha **completado exitosamente** todos los requisitos del enunc
 - ✅ **Interfaz JavaFX** moderna y funcional
 - ✅ **96 pruebas unitarias** en el modelo de dominio
 - ✅ **Documentación completa** técnica y de usuario
+- 🔒 **Modelo monousuario** - Simplificado para un solo usuario
 
 ## ✅ Funcionalidades Completadas
 
@@ -286,4 +288,35 @@ El proyecto Kursor ha **alcanzado exitosamente todos sus objetivos principales**
 
 La versión 1.0.0 representa un hito importante en el desarrollo del proyecto, estableciendo una base sólida para futuras extensiones y mejoras.
 
-**✅ PROYECTO COMPLETADO EXITOSAMENTE** - Todos los requisitos del enunciado original han sido implementados y el sistema está listo para uso productivo. 
+**✅ PROYECTO COMPLETADO EXITOSAMENTE** - Todos los requisitos del enunciado original han sido implementados y el sistema está listo para uso productivo.
+
+## 🔒 Modelo de Usuario Monousuario
+
+### Diseño Actual
+- **Aplicación monousuario**: Diseñada para ser utilizada por un solo usuario
+- **Campo `usuarioId`**: Se mantiene en la base de datos para futuras expansiones
+- **Valor por defecto**: Se utiliza un ID fijo (ej: "default_user" o "main_user")
+- **Simplificación**: No requiere sistema de autenticación ni gestión de múltiples usuarios
+
+### Ventajas del Enfoque Actual
+- ✅ **Simplicidad**: No requiere autenticación ni gestión de sesiones de usuario
+- ✅ **Rendimiento**: Consultas más simples sin filtros de usuario
+- ✅ **Mantenimiento**: Menos complejidad en el código
+- ✅ **Extensibilidad**: El campo `usuarioId` permite futuras expansiones
+
+### Consideraciones para el Futuro
+- **Expansión a multiusuario**: La arquitectura permite agregar autenticación
+- **Migración**: Los datos existentes se pueden migrar fácilmente
+- **Compatibilidad**: El campo `usuarioId` ya está presente en todas las entidades
+
+### Implementación Técnica
+```java
+// Ejemplo de uso actual
+String usuarioId = "default_user"; // Valor fijo para aplicación monousuario
+
+// Crear sesión
+Sesion sesion = new Sesion(usuarioId, cursoId, bloqueId, estrategiaTipo);
+
+// Buscar sesiones del usuario
+List<Sesion> sesiones = sesionRepository.buscarSesionesUsuario(usuarioId);
+``` 

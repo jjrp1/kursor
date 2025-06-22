@@ -1,6 +1,7 @@
 package com.kursor.ui;
 
 // import com.kursor.PreguntaModule;
+import com.kursor.domain.Bloque;
 import com.kursor.domain.Curso;
 import com.kursor.util.CursoManager;
 import com.kursor.util.ModuleManager;
@@ -85,8 +86,8 @@ public class KursorApplication extends Application {
     /** Referencia a la ventana principal */
     private Stage primaryStage;
     
-    /** Referencia al TableView de cursos para acceder a la selección */
-    private TableView<CursoPreviewDTO> tableViewCursos;
+    /** Referencia al ListView de cursos para acceder a la selección */
+    private ListView<CursoPreviewDTO> listViewCursos;
     
     /**
      * Inicializa y muestra la ventana principal de la aplicación.
@@ -290,161 +291,255 @@ public class KursorApplication extends Application {
     
     
     private Node crearVistaCursos() {
-        // Crear la tabla
-        tableViewCursos = new TableView<>();
         List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
-        tableViewCursos.getItems().addAll(cursos);
-
-        // Configurar la tabla
-        tableViewCursos.setPlaceholder(new Label("No hay cursos disponibles"));
-        tableViewCursos.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
         
-        // Columna 1: Título
-        TableColumn<CursoPreviewDTO, String> tituloCol = new TableColumn<>("Título");
-        tituloCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-        tituloCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
+        // Panel izquierdo: ListView con títulos de cursos
+        listViewCursos = new ListView<>();
+        listViewCursos.getItems().addAll(cursos);
+        listViewCursos.setPrefWidth(300);
+        listViewCursos.setMaxWidth(300);
+        
+        // Configurar el ListView para mostrar solo el título
+        listViewCursos.setCellFactory(param -> new ListCell<CursoPreviewDTO>() {
             @Override
-            protected void updateItem(String item, boolean empty) {
+            protected void updateItem(CursoPreviewDTO item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
                     setStyle("-fx-background-color: transparent;");
                 } else {
-                    setText(item);
-                    setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold; -fx-font-size: 14px;");
+                    setText(item.getTitulo());
+                    setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 10px;");
                 }
             }
         });
-        tituloCol.setPrefWidth(200);
-        tituloCol.setResizable(true);
-
-        // Columna 2: Descripción (con TextArea para texto justificado y múltiples líneas)
-        TableColumn<CursoPreviewDTO, String> descripcionCol = new TableColumn<>("Descripción");
-        descripcionCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
-        descripcionCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setGraphic(null);
-                    setStyle("-fx-background-color: transparent;");
-                } else {
-                    // Crear TextArea para texto justificado y múltiples líneas
-                    TextArea textArea = new TextArea(item);
-                    textArea.setWrapText(true);
-                    textArea.setEditable(false);
-                    textArea.setPrefRowCount(3); // Altura mínima de 3 líneas
-                    textArea.setMaxHeight(120); // Altura máxima
-                    textArea.setMinHeight(60);  // Altura mínima
-                    
-                    // Configurar el TextArea para que se ajuste al contenido
-                    textArea.setPrefColumnCount(50);
-                    textArea.setMaxWidth(Double.MAX_VALUE);
-                    
-                    // Ajustar altura automáticamente según el contenido
-                    textArea.textProperty().addListener((obs, oldText, newText) -> {
-                        if (newText != null) {
-                            // Calcular altura basada en el número de líneas
-                            int lineCount = newText.split("\n").length;
-                            int estimatedLines = Math.max(3, Math.min(lineCount + 1, 6));
-                            textArea.setPrefRowCount(estimatedLines);
-                        }
-                    });
-                    
-                    // Aplicar estilo base sin padding y que respete la selección
-                    aplicarEstiloTextArea(textArea, isSelected());
-                    
-                    // Escuchar cambios en la selección para actualizar el estilo
-                    selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
-                        aplicarEstiloTextArea(textArea, isNowSelected);
-                    });
-                    
-                    setGraphic(textArea);
-                    setText(null); // No usar setText cuando usamos setGraphic
-                }
-            }
-            
-            private void aplicarEstiloTextArea(TextArea textArea, boolean seleccionado) {
-                if (seleccionado) {
-                    // Estilo para fila seleccionada
-                    textArea.setStyle(
-                        "-fx-text-fill: white; " +
-                        "-fx-font-size: 12px; " +
-                        "-fx-background-color: transparent; " +
-                        "-fx-border-color: transparent; " +
-                        "-fx-text-alignment: justify; " +
-                        "-fx-padding: 0px;"
-                    );
-                } else {
-                    // Estilo para fila no seleccionada
-                    textArea.setStyle(
-                        "-fx-text-fill: #7f8c8d; " +
-                        "-fx-font-size: 12px; " +
-                        "-fx-background-color: transparent; " +
-                        "-fx-border-color: transparent; " +
-                        "-fx-text-alignment: justify; " +
-                        "-fx-padding: 0px;"
-                    );
-                }
-            }
-        });
-        descripcionCol.setPrefWidth(400);
-        descripcionCol.setResizable(true);
-
-        // Columna 3: ID
-        TableColumn<CursoPreviewDTO, String> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        idCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
-            @Override
-            protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setStyle("-fx-background-color: transparent;");
-                } else {
-                    setText(item);
-                    setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
-                }
-            }
-        });
-        idCol.setPrefWidth(150);
-        idCol.setResizable(true);
-
-        // Agregar columnas a la tabla
-        tableViewCursos.getColumns().addAll(tituloCol, descripcionCol, idCol);
-
+        
+        // Panel derecho: Detalles del curso seleccionado
+        VBox panelDetalles = new VBox(15);
+        panelDetalles.setPadding(new Insets(20));
+        panelDetalles.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
+        
+        // Contenido inicial del panel de detalles
+        Label labelSeleccion = new Label("Selecciona un curso para ver sus detalles");
+        labelSeleccion.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        labelSeleccion.setTextFill(Color.GRAY);
+        labelSeleccion.setAlignment(Pos.CENTER);
+        
+        panelDetalles.getChildren().add(labelSeleccion);
+        
+        // Hacer que el panel de detalles sea scrollable
+        ScrollPane scrollPaneDetalles = new ScrollPane(panelDetalles);
+        scrollPaneDetalles.setFitToWidth(true);
+        scrollPaneDetalles.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPaneDetalles.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
+        
+        // Contenedor principal con los dos paneles
+        HBox contenedorPrincipal = new HBox(0);
+        contenedorPrincipal.getChildren().addAll(listViewCursos, scrollPaneDetalles);
+        HBox.setHgrow(scrollPaneDetalles, Priority.ALWAYS);
+        
         // Seleccionar automáticamente el primer elemento si hay cursos disponibles
         if (!cursos.isEmpty()) {
             logger.debug("Seleccionando automáticamente el primer curso: '{}'", cursos.get(0).getTitulo());
-            tableViewCursos.getSelectionModel().select(0);
+            listViewCursos.getSelectionModel().select(0);
+            mostrarDetallesCurso(cursos.get(0), panelDetalles);
         }
-
-        // Manejo de eventos de mouse para click simple y doble-click
-        /*
-        tableViewCursos.setOnMouseClicked(event -> {
-            CursoPreviewDTO seleccionado = tableViewCursos.getSelectionModel().getSelectedItem();
-            if (seleccionado != null) {
-                logger.debug("Click detectado en TableView - ID: {}, Título: '{}', ClickCount: {}", 
-                    seleccionado.getId(), seleccionado.getTitulo(), event.getClickCount());
-                
-                if (event.getClickCount() == 1) {
-                    // Click simple: mostrar alert con el nombre del curso
-                    logger.info("Click simple detectado en TableView - mostrando alert para curso: '{}'", seleccionado.getTitulo());     
-                    InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
-                }
+        
+        // Listener para cuando se selecciona un curso
+        listViewCursos.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                logger.info("Curso seleccionado: '{}'", newVal.getTitulo());
+                mostrarDetallesCurso(newVal, panelDetalles);
             }
         });
-         */
-
-        VBox contenedor = new VBox(15, tableViewCursos); 
-        contenedor.setPadding(new Insets(20));
-        return contenedor;
+        
+        return contenedorPrincipal;
     }
     
-    private void mostrarDetallesCurso(CursoPreviewDTO cursoPreview) {
-        CursoDialog dialog = new CursoDialog(cursoPreview, this.primaryStage);
-        dialog.showAndWait();
+    private void mostrarDetallesCurso(CursoPreviewDTO cursoPreview, VBox panelDetalles) {
+        logger.info("📋 Mostrando detalles del curso: '{}'", cursoPreview.getTitulo());
+        
+        // Limpiar el panel de detalles
+        panelDetalles.getChildren().clear();
+        
+        try {
+            // Cargar el curso completo para obtener información detallada
+            Curso cursoCompleto = CursoManager.getInstance().obtenerCursoCompleto(cursoPreview.getId());
+            
+            if (cursoCompleto == null) {
+                mostrarErrorCargaCurso(panelDetalles, cursoPreview);
+                return;
+            }
+            
+            // Crear contenido detallado
+            VBox contenidoDetallado = crearContenidoDetallado(cursoPreview, cursoCompleto);
+            panelDetalles.getChildren().add(contenidoDetallado);
+            
+        } catch (Exception e) {
+            logger.error("❌ Error al cargar detalles del curso: {}", e.getMessage());
+            mostrarErrorCargaCurso(panelDetalles, cursoPreview);
+        }
+    }
+    
+    private VBox crearContenidoDetallado(CursoPreviewDTO cursoPreview, Curso cursoCompleto) {
+        VBox contenido = new VBox(20);
+        
+        // Sección 1: Información básica del curso
+        VBox infoBasica = crearSeccionInfoBasica(cursoPreview, cursoCompleto);
+        
+        // Sección 2: Estadísticas generales
+        VBox estadisticas = crearSeccionEstadisticas(cursoCompleto);
+        
+        // Sección 3: Lista de bloques
+        VBox listaBloques = crearSeccionBloques(cursoCompleto);
+        
+        contenido.getChildren().addAll(infoBasica, estadisticas, listaBloques);
+        return contenido;
+    }
+    
+    private VBox crearSeccionInfoBasica(CursoPreviewDTO cursoPreview, Curso cursoCompleto) {
+        VBox seccion = new VBox(10);
+        seccion.setStyle("-fx-background-color: #f8f9fa; -fx-padding: 15px; -fx-background-radius: 8px;");
+        
+        // Título de la sección
+        Label tituloSeccion = new Label("📚 INFORMACIÓN BÁSICA");
+        tituloSeccion.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        tituloSeccion.setTextFill(Color.web("#2c3e50"));
+        
+        // Título del curso
+        Label labelTitulo = new Label("🎯 Título: " + cursoPreview.getTitulo());
+        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        labelTitulo.setTextFill(Color.web("#2c3e50"));
+        
+        // Descripción
+        Label labelDescripcion = new Label("📝 Descripción:");
+        labelDescripcion.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        labelDescripcion.setTextFill(Color.web("#7f8c8d"));
+        
+        TextArea textAreaDescripcion = new TextArea(cursoPreview.getDescripcion());
+        textAreaDescripcion.setWrapText(true);
+        textAreaDescripcion.setEditable(false);
+        textAreaDescripcion.setPrefRowCount(3);
+        textAreaDescripcion.setMaxHeight(80);
+        textAreaDescripcion.setStyle(
+            "-fx-text-fill: #7f8c8d; " +
+            "-fx-font-size: 12px; " +
+            "-fx-background-color: white; " +
+            "-fx-border-color: #e0e0e0; " +
+            "-fx-text-alignment: justify; " +
+            "-fx-padding: 8px;"
+        );
+        
+        // ID del curso
+        Label labelId = new Label("🆔 ID: " + cursoPreview.getId());
+        labelId.setFont(Font.font("Segoe UI", 12));
+        labelId.setTextFill(Color.web("#27ae60"));
+        
+        // Nombre del archivo
+        Label labelArchivo = new Label("📁 Archivo: " + cursoPreview.getId() + ".yaml");
+        labelArchivo.setFont(Font.font("Segoe UI", 12));
+        labelArchivo.setTextFill(Color.web("#7f8c8d"));
+        
+        seccion.getChildren().addAll(tituloSeccion, labelTitulo, labelDescripcion, textAreaDescripcion, labelId, labelArchivo);
+        return seccion;
+    }
+    
+    private VBox crearSeccionEstadisticas(Curso cursoCompleto) {
+        VBox seccion = new VBox(10);
+        seccion.setStyle("-fx-background-color: #e8f5e8; -fx-padding: 15px; -fx-background-radius: 8px;");
+        
+        // Título de la sección
+        Label tituloSeccion = new Label("📊 ESTADÍSTICAS GENERALES");
+        tituloSeccion.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        tituloSeccion.setTextFill(Color.web("#2c3e50"));
+        
+        // Total de bloques
+        int totalBloques = cursoCompleto.getBloques().size();
+        Label labelBloques = new Label("📦 Total de bloques: " + totalBloques);
+        labelBloques.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        labelBloques.setTextFill(Color.web("#27ae60"));
+        
+        // Total de preguntas
+        int totalPreguntas = cursoCompleto.getBloques().stream()
+            .mapToInt(bloque -> bloque.getPreguntas().size())
+            .sum();
+        Label labelPreguntas = new Label("❓ Total de preguntas: " + totalPreguntas);
+        labelPreguntas.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        labelPreguntas.setTextFill(Color.web("#27ae60"));
+        
+        seccion.getChildren().addAll(tituloSeccion, labelBloques, labelPreguntas);
+        return seccion;
+    }
+    
+    private VBox crearSeccionBloques(Curso cursoCompleto) {
+        VBox seccion = new VBox(10);
+        seccion.setStyle("-fx-background-color: #fff3cd; -fx-padding: 15px; -fx-background-radius: 8px;");
+        
+        // Título de la sección
+        Label tituloSeccion = new Label("📋 BLOQUES DE CONTENIDO");
+        tituloSeccion.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        tituloSeccion.setTextFill(Color.web("#2c3e50"));
+        
+        VBox listaBloques = new VBox(8);
+        
+        for (int i = 0; i < cursoCompleto.getBloques().size(); i++) {
+            Bloque bloque = cursoCompleto.getBloques().get(i);
+            VBox bloqueItem = crearItemBloque(bloque, i + 1);
+            listaBloques.getChildren().add(bloqueItem);
+        }
+        
+        seccion.getChildren().addAll(tituloSeccion, listaBloques);
+        return seccion;
+    }
+    
+    private VBox crearItemBloque(Bloque bloque, int numero) {
+        VBox item = new VBox(5);
+        item.setStyle("-fx-background-color: white; -fx-padding: 10px; -fx-background-radius: 5px; -fx-border-color: #e0e0e0; -fx-border-width: 1px;");
+        
+        // Título del bloque
+        Label labelTitulo = new Label("🎯 Bloque " + numero + ": " + bloque.getTitulo());
+        labelTitulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 12));
+        labelTitulo.setTextFill(Color.web("#2c3e50"));
+        
+        // Tipo de preguntas
+        Label labelTipo = new Label("   📝 Tipo: " + bloque.getTipo() + " (" + bloque.getPreguntas().size() + " preguntas)");
+        labelTipo.setFont(Font.font("Segoe UI", 11));
+        labelTipo.setTextFill(Color.web("#7f8c8d"));
+        
+        item.getChildren().addAll(labelTitulo, labelTipo);
+        return item;
+    }
+    
+    private void mostrarErrorCargaCurso(VBox panelDetalles, CursoPreviewDTO cursoPreview) {
+        panelDetalles.getChildren().clear();
+        
+        Label errorLabel = new Label("❌ Error al cargar los detalles del curso");
+        errorLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+        errorLabel.setTextFill(Color.RED);
+        errorLabel.setAlignment(Pos.CENTER);
+        
+        Label infoLabel = new Label("Solo se muestra información básica del curso");
+        infoLabel.setFont(Font.font("Segoe UI", 12));
+        infoLabel.setTextFill(Color.GRAY);
+        infoLabel.setAlignment(Pos.CENTER);
+        
+        // Mostrar información básica disponible
+        VBox infoBasica = new VBox(10);
+        infoBasica.setStyle("-fx-background-color: #f8f9fa; -fx-padding: 15px; -fx-background-radius: 8px;");
+        
+        Label titulo = new Label("🎯 Título: " + cursoPreview.getTitulo());
+        titulo.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
+        
+        Label descripcion = new Label("📝 Descripción: " + cursoPreview.getDescripcion());
+        descripcion.setFont(Font.font("Segoe UI", 12));
+        descripcion.setWrapText(true);
+        
+        Label id = new Label("🆔 ID: " + cursoPreview.getId());
+        id.setFont(Font.font("Segoe UI", 12));
+        
+        infoBasica.getChildren().addAll(titulo, descripcion, id);
+        
+        panelDetalles.getChildren().addAll(errorLabel, infoLabel, infoBasica);
     }
 
     /**
@@ -529,18 +624,38 @@ public class KursorApplication extends Application {
 
 
     private void mostrarInformacionFilaSeleccionada() {
-        logger.info("🔍 Mostrando información de la fila seleccionada en TableView");
+        logger.info("🔍 Mostrando información de la fila seleccionada en ListView");
         
-        CursoPreviewDTO seleccionado = tableViewCursos.getSelectionModel().getSelectedItem();
+        if (listViewCursos == null) {
+            logger.warn("⚠️ ListView no está disponible");
+            mostrarAlert("⚠️ Error", "No hay lista de cursos disponible");
+            return;
+        }
+        
+        CursoPreviewDTO seleccionado = listViewCursos.getSelectionModel().getSelectedItem();
+        int indiceSeleccionado = listViewCursos.getSelectionModel().getSelectedIndex();
         
         if (seleccionado == null) {
-            logger.warn("⚠️ No hay fila seleccionada en el TableView");
-            mostrarAlert("⚠️ Sin selección", "No hay ningún curso seleccionado en la tabla.\n\nPor favor, selecciona una fila haciendo clic en ella.");
+            logger.warn("⚠️ No hay fila seleccionada en el ListView");
+            mostrarAlert("⚠️ Sin selección", "No hay ningún curso seleccionado en la lista.\n\nPor favor, selecciona un curso haciendo clic en él.");
             return;
         }
 
-        InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
-
+        // Crear mensaje con información de la fila seleccionada
+        String mensaje = String.format(
+            "📋 INFORMACIÓN DE LA FILA SELECCIONADA\n\n" +
+            "📍 Número de fila: %d\n\n" +
+            "📚 Título: %s\n" +
+            "📝 Descripción: %s\n" +
+            "🆔 ID: %s",
+            indiceSeleccionado + 1,
+            seleccionado.getTitulo(),
+            seleccionado.getDescripcion(),
+            seleccionado.getId()
+        );
+        
+        logger.info("✅ Mostrando información de fila %d: '%s'", indiceSeleccionado + 1, seleccionado.getTitulo());
+        mostrarAlert("🔍 Información de Fila Seleccionada", mensaje);
     }
 
     /**
