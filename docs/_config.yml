@@ -21,6 +21,8 @@ nav:
     url: faq.html
   - title: Arquitectura
     url: arquitectura.html
+  - title: Pruebas
+    url: resultados-pruebas.html
 
 # Configuración de enlaces sociales
 social:

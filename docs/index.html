@@ -124,9 +124,45 @@
         .badge-multiple { background-color: #3498db; color: white; }
         .badge-fillblanks { background-color: #e67e22; color: white; }
         .badge-truefalse { background-color: #e74c3c; color: white; }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>Kursor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guia-inicio-rapido.html">Guía Rápida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="arquitectura.html">Arquitectura</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="resultados-pruebas.html">Pruebas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -316,8 +352,73 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <p class="text-muted">Código Abierto</p>
+                        <div class="stat-number">95%</div>
+                        <p class="text-muted">Cobertura de Pruebas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 mb-3">📚 Documentación</h2>
+                    <p class="lead">Accede a toda la información que necesitas para usar y contribuir a Kursor</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon text-primary">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h5 class="card-title">👤 Documentación de Usuario</h5>
+                            <p class="card-text">Guías y recursos para usuarios finales.</p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-arrow-right text-primary me-2"></i><a href="guia-inicio-rapido.html">Guía de Inicio Rápido</a></li>
+                                <li><i class="fas fa-arrow-right text-primary me-2"></i><a href="faq.html">Preguntas Frecuentes</a></li>
+                                <li><i class="fas fa-arrow-right text-primary me-2"></i><a href="doc/usuario/README.md">Manual Completo</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon text-success">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h5 class="card-title">🔧 Documentación Técnica</h5>
+                            <p class="card-text">Información para desarrolladores y contribuidores.</p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-arrow-right text-success me-2"></i><a href="arquitectura.html">Arquitectura del Sistema</a></li>
+                                <li><i class="fas fa-arrow-right text-success me-2"></i><a href="resultados-pruebas.html">Resultados de Pruebas</a></li>
+                                <li><i class="fas fa-arrow-right text-success me-2"></i><a href="doc/tecnica/README.md">Documentación Técnica</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon text-warning">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5 class="card-title">📊 Calidad y Métricas</h5>
+                            <p class="card-text">Información sobre la calidad del código y pruebas.</p>
+                            <ul class="list-unstyled text-start">
+                                <li><i class="fas fa-arrow-right text-warning me-2"></i><a href="resultados-pruebas.html">Métricas de Pruebas</a></li>
+                                <li><i class="fas fa-arrow-right text-warning me-2"></i><a href="https://github.com/jjrp1/kursor/actions">CI/CD Pipeline</a></li>
+                                <li><i class="fas fa-arrow-right text-warning me-2"></i><a href="https://github.com/jjrp1/kursor/issues">Issues y Bugs</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -338,7 +439,7 @@
                         <a href="https://github.com/jjrp1/kursor" class="btn btn-outline-light btn-custom">
                             <i class="fab fa-github me-2"></i>Ver en GitHub
                         </a>
-                        <a href="doc/usuario/guia-inicio-rapido.md" class="btn btn-outline-light btn-custom">
+                        <a href="guia-inicio-rapido.html" class="btn btn-outline-light btn-custom">
                             <i class="fas fa-book me-2"></i>Guía Rápida
                         </a>
                     </div>
@@ -358,10 +459,10 @@
                 <div class="col-lg-4">
                     <h5>🔗 Enlaces Útiles</h5>
                     <ul class="list-unstyled">
-                        <li><a href="doc/usuario/guia-inicio-rapido.md" class="text-light">Guía de Inicio Rápido</a></li>
-                        <li><a href="doc/usuario/faq.md" class="text-light">FAQ</a></li>
-                        <li><a href="doc/tecnica/arquitectura-modular-dominio.md" class="text-light">Arquitectura</a></li>
-                        <li><a href="https://github.com/jjrp1/kursor/issues" class="text-light">Issues</a></li>
+                        <li><a href="guia-inicio-rapido.html" class="text-light">Guía de Inicio Rápido</a></li>
+                        <li><a href="faq.html" class="text-light">FAQ</a></li>
+                        <li><a href="arquitectura.html" class="text-light">Arquitectura</a></li>
+                        <li><a href="resultados-pruebas.html" class="text-light">Pruebas</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
