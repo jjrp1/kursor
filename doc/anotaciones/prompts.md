@@ -1,5 +1,12 @@
 crea un documento "estado-del-arte" en "doc/tecnica" y registra en el todo lo que necesites anotar para poder retomar el desarrollo del proyecto el próximo día. Recuerda que no tienes memoria entre un chat y otro, así es que registra todo lo que creas necesario para continuar otro día donde lo dejamos hoy.
 
+# Revisión de código
+Revisa que todo el código fuente esté correctamente documentado siguiendo/utilizando javadoc. Verifica también que se utiliza el registro (logger) adecuadamente, introduce tantas lineas de registro como consideres oportunas o necesarias, en todos los ámbitos: debug, info, warning y error.
+
+# GUI - Estrategias
+
+Necesitamos una ventana MODAL que nos presente a elegir una estrategia de entre las disponibles que hemos cargado de forma dinámica al arrancar el programa
+
 # Persistencia
 
 Sobre la persistencia. Queremos que la aplicación implemente persistencia sobre ciertos objetos, algunos, no todos, por ejemplo: Curso, Bloque y Pregunta, NO requieren persistencia, se cargan de forma dinámica a partir de un documento YAML. Sin embargo, queremos que el usuario pueda reanudar un curso por donde lo dejó o reiniciarlo desde el principio, tantas veces como quiera. También queremos extraer ciertas estadísticas de rendimiento y progreso, para esto, quizás podemos sacar estadísticas por sesión, y por curso (comparar las sesiones existentes sobre un mismo curso). Revisa el modelo de dominio, piensa lo que hemos comentado y hazme una propuesta, no escribas nada todavía, vamos a estudiarlo. Entre la documentación (doc/) es posible que encuentres alguna información que te pueda resultar de interés para investigar sobre este asunto, en concreto, quizás el documento "pds-enunciado-original.md" puede ser el más relevante.
@@ -38,6 +45,8 @@ java -Dlogback.configurationFile=kursor-ui/src/main/resources/logback.xml -Dfile
 ### Tests (JUnit + JaCoCo)
 ```
 mvn clean test
+
+mvn clean test jacoco:report
 
 mvn clean test -pl kursor-core
 
@@ -102,7 +111,10 @@ Debajo de lo anterior habrá un área donde mostrar el "contenido" de la pregunt
 Empieza por hacer tu propuesta antes de lanzarte a escribir código; una vez que tengamos todo claro y estemos de acuerdo, empezamos a generar código, antes NO!.
 
 
-
+# PARA ACTIVAR 📋 LO QUE ESTÁ LISTO PARA ACTIVAR (CUANDO QUIERAS):
+- Branch Protection - Configurado (activación opcional)
+- Codecov - Configurado (activación opcional)
+- GitHub Discussions - Configurado (activación opcional)
 
 
 # Tests - apuntes

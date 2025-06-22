@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategias de Aprendizaje - Kursor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .strategy-card {
+            transition: transform 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .strategy-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        .feature-list i {
+            color: #28a745;
+            margin-right: 0.5rem;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-brain"></i> Kursor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="estrategias.html">Estrategias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="arquitectura.html">Arquitectura</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 mb-4">
+                <i class="fas fa-lightbulb"></i> Estrategias de Aprendizaje
+            </h1>
+            <p class="lead mb-4">
+                Descubre las cuatro estrategias inteligentes que optimizan tu proceso de aprendizaje
+            </p>
+            <p class="mb-0">
+                Cada estrategia está diseñada para diferentes necesidades y estilos de aprendizaje
+            </p>
+        </div>
+    </section>
+
+    <!-- Strategies Overview -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card strategy-card h-100 text-center">
+                        <div class="card-body">
+                            <div class="strategy-icon text-primary">
+                                <i class="fas fa-sort-numeric-down"></i>
+                            </div>
+                            <h5 class="card-title">Secuencial</h5>
+                            <p class="card-text">Presenta las preguntas en orden secuencial para un aprendizaje estructurado.</p>
+                            <a href="#secuencial" class="btn btn-outline-primary">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card strategy-card h-100 text-center">
+                        <div class="card-body">
+                            <div class="strategy-icon text-success">
+                                <i class="fas fa-random"></i>
+                            </div>
+                            <h5 class="card-title">Aleatoria</h5>
+                            <p class="card-text">Presenta las preguntas en orden aleatorio para evitar sesgos de memoria.</p>
+                            <a href="#aleatoria" class="btn btn-outline-success">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card strategy-card h-100 text-center">
+                        <div class="card-body">
+                            <div class="strategy-icon text-warning">
+                                <i class="fas fa-redo"></i>
+                            </div>
+                            <h5 class="card-title">Repetición Espaciada</h5>
+                            <p class="card-text">Repite preguntas con intervalos crecientes para optimizar la retención.</p>
+                            <a href="#repeticion-espaciada" class="btn btn-outline-warning">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card strategy-card h-100 text-center">
+                        <div class="card-body">
+                            <div class="strategy-icon text-danger">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h5 class="card-title">Repetir Incorrectas</h5>
+                            <p class="card-text">Repite automáticamente las preguntas que respondiste incorrectamente.</p>
+                            <a href="#repetir-incorrectas" class="btn btn-outline-danger">Ver detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Details -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <!-- Secuencial -->
+            <div id="secuencial" class="mb-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2><i class="fas fa-sort-numeric-down text-primary"></i> Estrategia Secuencial</h2>
+                        <p class="lead">Aprendizaje estructurado y predecible</p>
+                        <p>La estrategia secuencial presenta las preguntas en el orden exacto en que aparecen en el curso, proporcionando una experiencia de aprendizaje estructurada y fácil de seguir.</p>
+                        
+                        <h5>Características principales:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Orden predecible y estructurado</li>
+                            <li><i class="fas fa-check"></i> Progreso lineal y fácil de seguir</li>
+                            <li><i class="fas fa-check"></i> Ideal para cursos con secuencia lógica</li>
+                            <li><i class="fas fa-check"></i> Fácil de pausar y reanudar</li>
+                        </ul>
+
+                        <h5>Cuándo usar:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i> Cursos con progresión lógica (matemáticas, programación)</li>
+                            <li><i class="fas fa-arrow-right"></i> Cuando prefieres un orden estructurado</li>
+                            <li><i class="fas fa-arrow-right"></i> Para revisar material en secuencia específica</li>
+                            <li><i class="fas fa-arrow-right"></i> Aprendizaje inicial de conceptos nuevos</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ejemplo de flujo:</h5>
+                                <div class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center mb-3">
+                                        <span class="badge bg-primary me-2">1</span>
+                                        <i class="fas fa-arrow-right me-2"></i>
+                                        <span class="badge bg-primary me-2">2</span>
+                                        <i class="fas fa-arrow-right me-2"></i>
+                                        <span class="badge bg-primary me-2">3</span>
+                                        <i class="fas fa-arrow-right me-2"></i>
+                                        <span class="badge bg-primary">N</span>
+                                    </div>
+                                    <p class="text-muted">Progresión lineal y predecible</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aleatoria -->
+            <div id="aleatoria" class="mb-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <h2><i class="fas fa-random text-success"></i> Estrategia Aleatoria</h2>
+                        <p class="lead">Aprendizaje sin sesgos de memoria</p>
+                        <p>La estrategia aleatoria presenta las preguntas en orden completamente aleatorio, evitando el sesgo de orden y mejorando la retención a largo plazo.</p>
+                        
+                        <h5>Características principales:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Evita el sesgo de orden</li>
+                            <li><i class="fas fa-check"></i> Mejora la retención a largo plazo</li>
+                            <li><i class="fas fa-check"></i> Ideal para repaso y práctica</li>
+                            <li><i class="fas fa-check"></i> Desafía la memoria de manera impredecible</li>
+                        </ul>
+
+                        <h5>Cuándo usar:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i> Repaso de material ya estudiado</li>
+                            <li><i class="fas fa-arrow-right"></i> Preparación para exámenes</li>
+                            <li><i class="fas fa-arrow-right"></i> Cuando quieres evitar la memorización por orden</li>
+                            <li><i class="fas fa-arrow-right"></i> Práctica de conceptos ya aprendidos</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ejemplo de flujo:</h5>
+                                <div class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center mb-3 flex-wrap">
+                                        <span class="badge bg-success me-2 mb-1">7</span>
+                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
+                                        <span class="badge bg-success me-2 mb-1">2</span>
+                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
+                                        <span class="badge bg-success me-2 mb-1">15</span>
+                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
+                                        <span class="badge bg-success mb-1">3</span>
+                                    </div>
+                                    <p class="text-muted">Orden impredecible y desafiante</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repetición Espaciada -->
+            <div id="repeticion-espaciada" class="mb-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h2><i class="fas fa-redo text-warning"></i> Repetición Espaciada</h2>
+                        <p class="lead">Optimización científica de la retención</p>
+                        <p>La estrategia de repetición espaciada repite preguntas con intervalos crecientes, basándose en la curva del olvido para optimizar el momento de repaso.</p>
+                        
+                        <h5>Características principales:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Basada en la curva del olvido</li>
+                            <li><i class="fas fa-check"></i> Optimiza el momento de repaso</li>
+                            <li><i class="fas fa-check"></i> Mejora la retención a largo plazo</li>
+                            <li><i class="fas fa-check"></i> Intervalo configurable (por defecto: cada 3 preguntas)</li>
+                        </ul>
+
+                        <h5>Cuándo usar:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i> Memorización de conceptos clave</li>
+                            <li><i class="fas fa-arrow-right"></i> Vocabulario y definiciones</li>
+                            <li><i class="fas fa-arrow-right"></i> Preparación para exámenes importantes</li>
+                            <li><i class="fas fa-arrow-right"></i> Cuando quieres maximizar la retención</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ejemplo de flujo:</h5>
+                                <div class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center mb-3 flex-wrap">
+                                        <span class="badge bg-warning me-2 mb-1">1</span>
+                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
+                                        <span class="badge bg-warning me-2 mb-1">2</span>
+                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
+                                        <span class="badge bg-warning me-2 mb-1">3</span>
+                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
+                                        <span class="badge bg-info mb-1">[Repite 1]</span>
+                                    </div>
+                                    <p class="text-muted">Repetición inteligente con intervalos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repetir Incorrectas -->
+            <div id="repetir-incorrectas" class="mb-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <h2><i class="fas fa-exclamation-triangle text-danger"></i> Repetir Incorrectas</h2>
+                        <p class="lead">Enfoque en áreas de dificultad</p>
+                        <p>La estrategia de repetir incorrectas funciona en dos fases: primero presenta todas las preguntas, luego repite automáticamente las que respondiste incorrectamente.</p>
+                        
+                        <h5>Características principales:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Dos fases: original + repetición de incorrectas</li>
+                            <li><i class="fas fa-check"></i> Enfoque en áreas de dificultad</li>
+                            <li><i class="fas fa-check"></i> Mejora progresiva en conceptos débiles</li>
+                            <li><i class="fas fa-check"></i> Sesiones más largas pero más efectivas</li>
+                        </ul>
+
+                        <h5>Cuándo usar:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-arrow-right"></i> Identificar y mejorar áreas débiles</li>
+                            <li><i class="fas fa-arrow-right"></i> Preparación intensiva para exámenes</li>
+                            <li><i class="fas fa-arrow-right"></i> Cuando tienes tiempo para sesiones más largas</li>
+                            <li><i class="fas fa-arrow-right"></i> Aprendizaje de conceptos difíciles</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ejemplo de flujo:</h5>
+                                <div class="text-center">
+                                    <div class="mb-3">
+                                        <h6 class="text-primary">Fase 1: Original</h6>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <span class="badge bg-primary me-2">1</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-primary me-2">2</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-primary">N</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-danger">Fase 2: Repetición</h6>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <span class="badge bg-danger me-2">2</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-danger me-2">7</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-danger">...</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mt-2">Enfoque en conceptos difíciles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Comparación de Estrategias</h2>
+            <div class="comparison-table">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Estrategia</th>
+                                <th>Mejor para</th>
+                                <th>Dificultad</th>
+                                <th>Tiempo</th>
+                                <th>Retención</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Secuencial</strong></td>
+                                <td>Aprendizaje inicial</td>
+                                <td><span class="badge bg-success">Fácil</span></td>
+                                <td><span class="badge bg-success">Rápido</span></td>
+                                <td><span class="badge bg-warning">Media</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Aleatoria</strong></td>
+                                <td>Repaso general</td>
+                                <td><span class="badge bg-warning">Media</span></td>
+                                <td><span class="badge bg-success">Rápido</span></td>
+                                <td><span class="badge bg-success">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Repetición Espaciada</strong></td>
+                                <td>Memorización</td>
+                                <td><span class="badge bg-warning">Media</span></td>
+                                <td><span class="badge bg-warning">Medio</span></td>
+                                <td><span class="badge bg-success">Muy Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Repetir Incorrectas</strong></td>
+                                <td>Mejorar debilidades</td>
+                                <td><span class="badge bg-danger">Difícil</span></td>
+                                <td><span class="badge bg-danger">Largo</span></td>
+                                <td><span class="badge bg-success">Muy Alta</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-brain"></i> Kursor</h5>
+                    <p>Sistema de aprendizaje adaptativo con estrategias inteligentes.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Desarrollado por Juan José Ruiz Pérez</p>
+                    <p><i class="fas fa-envelope"></i> jjrp1@um.es</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
