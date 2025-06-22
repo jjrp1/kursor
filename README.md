@@ -4,6 +4,9 @@
 [![JavaFX](https://img.shields.io/badge/JavaFX-17.0.2-blue.svg)](https://openjfx.io/)
 [![Maven](https://img.shields.io/badge/Maven-3.8+-green.svg)](https://maven.apache.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI/CD](https://github.com/jjrp1/kursor/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/jjrp1/kursor/actions)
+[![Release](https://img.shields.io/github/v/release/jjrp1/kursor)](https://github.com/jjrp1/kursor/releases)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Enabled-brightgreen.svg)](https://jjrp1.github.io/kursor)
 
 ## 📋 Descripción
 
