@@ -29,7 +29,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
-            <version>1.4.11</version>
+            <version>1.5.18</version>
         </dependency>
         
         <!-- Logback Classic (implementación de SLF4J) -->
