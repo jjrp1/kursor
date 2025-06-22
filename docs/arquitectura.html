@@ -436,26 +436,24 @@
                     
                     <div class="architecture-card card">
                         <div class="card-body">
-                            <h5 class="card-title">🏛️ Entidades Principales</h5>
-                            <p>El modelo de dominio representa las entidades principales del sistema de aprendizaje:</p>
+                            <h5 class="card-title">🏛️ Entidades Principales del Sistema</h5>
+                            <p>El modelo de dominio de Kursor representa las entidades principales del sistema de aprendizaje interactivo:</p>
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h6>Curso</h6>
+                                    <h6>📚 Entidades de Contenido</h6>
                                     <ul>
-                                        <li><strong>ID:</strong> Identificador único</li>
-                                        <li><strong>Título:</strong> Nombre del curso</li>
-                                        <li><strong>Descripción:</strong> Información detallada</li>
-                                        <li><strong>Bloques:</strong> Colección de bloques</li>
+                                        <li><strong>Curso</strong> - Entidad raíz que contiene todo el contenido educativo</li>
+                                        <li><strong>Bloque</strong> - Agrupación de preguntas por tipo y tema</li>
+                                        <li><strong>Pregunta</strong> - Entidad base abstracta para todos los tipos</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Bloque</h6>
+                                    <h6>🎯 Entidades de Aprendizaje</h6>
                                     <ul>
-                                        <li><strong>ID:</strong> Identificador único</li>
-                                        <li><strong>Título:</strong> Nombre del bloque</li>
-                                        <li><strong>Tipo:</strong> Tipo de preguntas</li>
-                                        <li><strong>Preguntas:</strong> Colección de preguntas</li>
+                                        <li><strong>Sesión</strong> - Representa una sesión de aprendizaje activa</li>
+                                        <li><strong>Respuesta</strong> - Respuestas del usuario a las preguntas</li>
+                                        <li><strong>PreguntaSesion</strong> - Estado de una pregunta en una sesión</li>
                                     </ul>
                                 </div>
                             </div>
@@ -463,17 +461,277 @@
                     </div>
 
                     <div class="code-example">
-                        <h6>Ejemplo de Estructura YAML:</h6>
+                        <h6>Ejemplo de Estructura YAML Completa:</h6>
                         <pre><code class="language-yaml">id: curso_ejemplo
-titulo: "Curso de Ejemplo"
-descripcion: "Un curso para demostrar las capacidades"
+titulo: "Curso de Ejemplo Completo"
+descripcion: "Un curso que demuestra todas las capacidades"
 bloques:
-  - id: bloque_1
-    titulo: "Preguntas Básicas"
+  - id: bloque_flashcards
+    titulo: "Flashcards de Vocabulario"
+    descripcion: "Aprende vocabulario básico"
     tipo: "flashcard"
     preguntas:
-      - pregunta: "¿Pregunta ejemplo?"
-        respuesta: "Respuesta ejemplo"</code></pre>
+      - pregunta: "¿Qué significa 'Hello'?"
+        respuesta: "Hola"
+        metadatos:
+          categoria: "saludos"
+          dificultad: "facil"
+      
+  - id: bloque_multiple
+    titulo: "Preguntas de Opción Múltiple"
+    descripcion: "Elige la respuesta correcta"
+    tipo: "multiplechoice"
+    preguntas:
+      - pregunta: "¿Cuál es la capital de España?"
+        opciones:
+          - "Madrid"
+          - "Barcelona"
+          - "Valencia"
+          - "Sevilla"
+        respuesta_correcta: 0
+        explicacion: "Madrid es la capital de España desde 1561"
+      
+  - id: bloque_huecos
+    titulo: "Completar Huecos"
+    descripcion: "Rellena los espacios en blanco"
+    tipo: "fillblanks"
+    preguntas:
+      - texto: "La capital de España es ___."
+        huecos:
+          - respuesta: "Madrid"
+            alternativas: ["Madrid", "madrid"]
+      
+  - id: bloque_truefalse
+    titulo: "Verdadero o Falso"
+    descripcion: "Determina si es verdadero o falso"
+    tipo: "truefalse"
+    preguntas:
+      - pregunta: "Madrid es la capital de España."
+        respuesta: true
+        explicacion: "Madrid es efectivamente la capital de España"</code></pre>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-layer-group me-2"></i>Jerarquía de Tipos de Pregunta
+                                    </h5>
+                                    <div class="mb-3">
+                                        <h6>Pregunta (Clase Abstracta)</h6>
+                                        <ul class="list-unstyled ms-3">
+                                            <li>├── <strong>Flashcard</strong>
+                                                <ul>
+                                                    <li>• pregunta: String</li>
+                                                    <li>• respuesta: String</li>
+                                                    <li>• metadatos: Map&lt;String, Object&gt;</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>PreguntaTest</strong> (Opción Múltiple)
+                                                <ul>
+                                                    <li>• pregunta: String</li>
+                                                    <li>• opciones: List&lt;String&gt;</li>
+                                                    <li>• respuestaCorrecta: int</li>
+                                                    <li>• explicacion: String</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>PreguntaCompletarHuecos</strong>
+                                                <ul>
+                                                    <li>• texto: String</li>
+                                                    <li>• huecos: List&lt;Hueco&gt;</li>
+                                                    <li>• validacion: ValidacionHuecos</li>
+                                                </ul>
+                                            </li>
+                                            <li>└── <strong>PreguntaTrueFalse</strong>
+                                                <ul>
+                                                    <li>• pregunta: String</li>
+                                                    <li>• respuesta: boolean</li>
+                                                    <li>• explicacion: String</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-brain me-2"></i>Estrategias de Aprendizaje
+                                    </h5>
+                                    <div class="mb-3">
+                                        <h6>EstrategiaAprendizaje (Interfaz)</h6>
+                                        <ul class="list-unstyled ms-3">
+                                            <li>├── <strong>EstrategiaSecuencial</strong>
+                                                <ul>
+                                                    <li>• ordenaPreguntas(List&lt;Pregunta&gt;)</li>
+                                                    <li>• Mantiene orden original</li>
+                                                    <li>• Ideal para progresión lógica</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>EstrategiaAleatoria</strong>
+                                                <ul>
+                                                    <li>• ordenaPreguntas(List&lt;Pregunta&gt;)</li>
+                                                    <li>• Mezcla aleatoriamente</li>
+                                                    <li>• Evita memorización por orden</li>
+                                                </ul>
+                                            </li>
+                                            <li>└── <strong>EstrategiaRepeticionEspaciada</strong>
+                                                <ul>
+                                                    <li>• ordenaPreguntas(List&lt;Pregunta&gt;)</li>
+                                                    <li>• Algoritmo de intervalos</li>
+                                                    <li>• Optimiza retención a largo plazo</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="architecture-card card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-project-diagram me-2"></i>Relaciones entre Entidades
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>📚 Relaciones de Contenido</h6>
+                                    <ul>
+                                        <li><strong>Curso → Bloques</strong> (1:N) - Un curso contiene múltiples bloques</li>
+                                        <li><strong>Bloque → Preguntas</strong> (1:N) - Un bloque contiene múltiples preguntas</li>
+                                        <li><strong>Pregunta → Tipos Específicos</strong> (1:1) - Herencia polimórfica</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>🎯 Relaciones de Aprendizaje</h6>
+                                    <ul>
+                                        <li><strong>Sesión → Curso</strong> (N:1) - Múltiples sesiones por curso</li>
+                                        <li><strong>Sesión → PreguntaSesiones</strong> (1:N) - Estado de cada pregunta</li>
+                                        <li><strong>PreguntaSesion → Respuesta</strong> (1:1) - Respuesta del usuario</li>
+                                        <li><strong>Sesión → Estrategia</strong> (1:1) - Estrategia aplicada</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-database me-2"></i>Modelo de Persistencia
+                                    </h5>
+                                    <div class="mb-3">
+                                        <h6>Entidades JPA</h6>
+                                        <ul class="list-unstyled ms-3">
+                                            <li>├── <strong>EstadisticasUsuario</strong>
+                                                <ul>
+                                                    <li>• id: Long</li>
+                                                    <li>• usuarioId: String</li>
+                                                    <li>• sesionesCompletadas: int</li>
+                                                    <li>• preguntasRespondidas: int</li>
+                                                    <li>• porcentajeExito: double</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>EstadoSesion</strong>
+                                                <ul>
+                                                    <li>• id: Long</li>
+                                                    <li>• cursoId: String</li>
+                                                    <li>• fechaInicio: LocalDateTime</li>
+                                                    <li>• fechaFin: LocalDateTime</li>
+                                                    <li>• estrategia: String</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>RespuestaPregunta</strong>
+                                                <ul>
+                                                    <li>• id: Long</li>
+                                                    <li>• sesionId: Long</li>
+                                                    <li>• preguntaId: String</li>
+                                                    <li>• respuesta: String</li>
+                                                    <li>• correcta: boolean</li>
+                                                    <li>• tiempoRespuesta: int</li>
+                                                </ul>
+                                            </li>
+                                            <li>└── <strong>EstadoEstrategia</strong>
+                                                <ul>
+                                                    <li>• id: Long</li>
+                                                    <li>• usuarioId: String</li>
+                                                    <li>• estrategia: String</li>
+                                                    <li>• configuracion: String (JSON)</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-puzzle-piece me-2"></i>Patrones de Diseño Aplicados
+                                    </h5>
+                                    <div class="mb-3">
+                                        <h6>Patrones Implementados</h6>
+                                        <ul class="list-unstyled ms-3">
+                                            <li>├── <strong>Strategy Pattern</strong>
+                                                <ul>
+                                                    <li>• Estrategias de aprendizaje</li>
+                                                    <li>• Intercambio dinámico</li>
+                                                    <li>• Extensibilidad</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>Factory Pattern</strong>
+                                                <ul>
+                                                    <li>• PreguntaFactory</li>
+                                                    <li>• Creación de preguntas</li>
+                                                    <li>• Encapsulación de lógica</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>Builder Pattern</strong>
+                                                <ul>
+                                                    <li>• CursoBuilder</li>
+                                                    <li>• Construcción fluida</li>
+                                                    <li>• Validación durante construcción</li>
+                                                </ul>
+                                            </li>
+                                            <li>├── <strong>Observer Pattern</strong>
+                                                <ul>
+                                                    <li>• Notificaciones de progreso</li>
+                                                    <li>• Actualización de UI</li>
+                                                    <li>• Desacoplamiento</li>
+                                                </ul>
+                                            </li>
+                                            <li>└── <strong>Plugin Pattern</strong>
+                                                <ul>
+                                                    <li>• Módulos extensibles</li>
+                                                    <li>• ServiceLoader</li>
+                                                    <li>• Carga dinámica</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h5><i class="fas fa-info-circle me-2"></i>Características del Modelo de Dominio</h5>
+                        <ul>
+                            <li><strong>Rico en Comportamiento:</strong> Las entidades no son solo datos, sino que encapsulan lógica de negocio</li>
+                            <li><strong>Extensible:</strong> Nuevos tipos de preguntas se pueden añadir sin modificar el núcleo</li>
+                            <li><strong>Persistente:</strong> Integración completa con JPA/Hibernate para persistencia</li>
+                            <li><strong>Validado:</strong> Validaciones a nivel de dominio y persistencia</li>
+                            <li><strong>Testeable:</strong> Diseño que facilita las pruebas unitarias</li>
+                        </ul>
                     </div>
                 </section>
 
