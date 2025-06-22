@@ -43,6 +43,7 @@
 - **Secuencial**: Preguntas en orden fijo
 - **Aleatoria**: Preguntas en orden aleatorio
 - **Repetición Espaciada**: Algoritmos de memoria optimizados
+- **Repetir Incorrectas**: Repite automáticamente las preguntas falladas
 
 ### 🎨 Interfaz de Usuario
 - **JavaFX moderno**: Interfaz gráfica intuitiva y responsive
@@ -102,6 +103,10 @@ kursor/
 ├── kursor-multiplechoice-module/ # Módulo de opción múltiple
 ├── kursor-fillblanks-module/    # Módulo de completar huecos
 ├── kursor-truefalse-module/     # Módulo verdadero/falso
+├── kursor-secuencial-strategy/  # Estrategia secuencial
+├── kursor-aleatoria-strategy/   # Estrategia aleatoria
+├── kursor-repeticion-espaciada-strategy/ # Estrategia repetición espaciada
+├── kursor-repetir-incorrectas-strategy/ # Estrategia repetir incorrectas
 ├── cursos/                      # Cursos de ejemplo
 ├── doc/                         # Documentación
 ├── docs/                        # GitHub Pages
@@ -174,7 +179,7 @@ mvn install
 - **Líneas de código**: ~6,000
 - **Módulos implementados**: 4
 - **Tipos de preguntas**: 4
-- **Estrategias de aprendizaje**: 3
+- **Estrategias de aprendizaje**: 4
 - **Tests unitarios**: 5
 
 ## 🤝 Contribuir

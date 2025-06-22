@@ -198,63 +198,7 @@ while (estrategia.hayMasPreguntas()) {
 
 ### 3.1 Estrategia Secuencial
 
-```java
-public class EstrategiaSecuencial implements EstrategiaAprendizaje {
-    private List<Pregunta> preguntas;
-    private int indiceActual = 0;
-    private Pregunta preguntaActual;
-    
-    public EstrategiaSecuencial(List<Pregunta> preguntas) {
-        this.preguntas = new ArrayList<>(preguntas);
-        this.indiceActual = 0;
-    }
-    
-    @Override
-    public Pregunta primeraPregunta() {
-        if (preguntas.isEmpty()) {
-            return null;
-        }
-        preguntaActual = preguntas.get(0);
-        return preguntaActual;
-    }
-    
-    @Override
-    public void registrarRespuesta(Respuesta respuesta) {
-        // La estrategia secuencial no reacciona a las respuestas
-        // Solo mantiene el progreso
-    }
-    
-    @Override
-    public boolean hayMasPreguntas() {
-        return indiceActual < preguntas.size();
-    }
-    
-    @Override
-    public Pregunta siguientePregunta() {
-        if (!hayMasPreguntas()) {
-            return null;
-        }
-        indiceActual++;
-        if (indiceActual < preguntas.size()) {
-            preguntaActual = preguntas.get(indiceActual);
-            return preguntaActual;
-        }
-        return null;
-    }
-    
-    @Override
-    public double getProgreso() {
-        if (preguntas.isEmpty()) return 0.0;
-        return (double) indiceActual / preguntas.size();
-    }
-    
-    @Override
-    public void reiniciar() {
-        indiceActual = 0;
-        preguntaActual = null;
-    }
-}
-```
+**Descripción:** Presenta las preguntas en el orden original del bloque.
 
 **Características:**
 - **Reordenación**: Ninguna (mantiene orden original)
@@ -264,71 +208,7 @@ public class EstrategiaSecuencial implements EstrategiaAprendizaje {
 
 ### 3.2 Estrategia Aleatoria
 
-```java
-public class EstrategiaAleatoria implements EstrategiaAprendizaje {
-    private List<Pregunta> preguntas;
-    private List<Pregunta> preguntasDisponibles;
-    private Pregunta preguntaActual;
-    private Random random = new Random();
-    
-    public EstrategiaAleatoria(List<Pregunta> preguntas) {
-        this.preguntas = new ArrayList<>(preguntas);
-        this.preguntasDisponibles = new ArrayList<>(preguntas);
-    }
-    
-    @Override
-    public Pregunta primeraPregunta() {
-        if (preguntasDisponibles.isEmpty()) {
-            return null;
-        }
-        int indiceAleatorio = random.nextInt(preguntasDisponibles.size());
-        preguntaActual = preguntasDisponibles.get(indiceAleatorio);
-        return preguntaActual;
-    }
-    
-    @Override
-    public void registrarRespuesta(Respuesta respuesta) {
-        // La estrategia aleatoria no reacciona a las respuestas
-        // Solo mantiene el progreso
-    }
-    
-    @Override
-    public boolean hayMasPreguntas() {
-        return !preguntasDisponibles.isEmpty();
-    }
-    
-    @Override
-    public Pregunta siguientePregunta() {
-        if (!hayMasPreguntas()) {
-            return null;
-        }
-        
-        // Remover la pregunta actual de las disponibles
-        preguntasDisponibles.remove(preguntaActual);
-        
-        if (preguntasDisponibles.isEmpty()) {
-            preguntaActual = null;
-            return null;
-        }
-        
-        int indiceAleatorio = random.nextInt(preguntasDisponibles.size());
-        preguntaActual = preguntasDisponibles.get(indiceAleatorio);
-        return preguntaActual;
-    }
-    
-    @Override
-    public double getProgreso() {
-        if (preguntas.isEmpty()) return 0.0;
-        return (double) (preguntas.size() - preguntasDisponibles.size()) / preguntas.size();
-    }
-    
-    @Override
-    public void reiniciar() {
-        preguntasDisponibles = new ArrayList<>(preguntas);
-        preguntaActual = null;
-    }
-}
-```
+**Descripción:** Presenta las preguntas en orden aleatorio.
 
 **Características:**
 - **Reordenación**: Aleatoria, sin repetición
@@ -336,7 +216,27 @@ public class EstrategiaAleatoria implements EstrategiaAprendizaje {
 - **Reactividad**: No reacciona a respuestas
 - **Complejidad**: Baja
 
-## 4. Propuesta: Estrategia Repetición de Incorrectas
+### 3.3 Estrategia de Repetición Espaciada
+
+**Descripción:** Repite preguntas con intervalos crecientes para optimizar la retención.
+
+**Características:**
+- **Reordenación**: Con repetición según intervalos
+- **Estado**: Índice actual, intervalo configurable, preguntas procesadas
+- **Reactividad**: Ajusta intervalos según respuestas
+- **Complejidad**: Media
+
+### 3.4 Estrategia de Repetir Incorrectas
+
+**Descripción:** Repite automáticamente las preguntas que respondiste incorrectamente.
+
+**Características:**
+- **Reordenación**: Dos fases (originales + incorrectas)
+- **Estado**: Índice actual, cola de incorrectas, fase actual
+- **Reactividad**: Registra incorrectas para repetición
+- **Complejidad**: Media
+
+## 4. Estrategia Repetición de Incorrectas - IMPLEMENTADA
 
 ### 4.1 Concepto
 
@@ -346,110 +246,13 @@ Una estrategia que mantiene dos fases:
 
 ### 4.2 Implementación
 
-```java
-public class EstrategiaRepeticionIncorrectas implements EstrategiaAprendizaje {
-    private List<Pregunta> preguntasBloque;           // Preguntas originales del bloque
-    private Queue<Pregunta> colaIncorrectas;          // Preguntas falladas para repetir
-    private int indiceActual = 0;                     // Índice en preguntas originales
-    private boolean enFaseRepeticion = false;         // Si estamos repitiendo incorrectas
-    private Set<Long> preguntasIncorrectas;           // IDs de preguntas incorrectas
-    private Pregunta preguntaActual;                  // Pregunta actual
-    
-    public EstrategiaRepeticionIncorrectas(List<Pregunta> preguntasBloque) {
-        this.preguntasBloque = new ArrayList<>(preguntasBloque);
-        this.colaIncorrectas = new LinkedList<>();
-        this.preguntasIncorrectas = new HashSet<>();
-    }
-    
-    @Override
-    public Pregunta primeraPregunta() {
-        if (preguntasBloque.isEmpty()) {
-            return null;
-        }
-        preguntaActual = preguntasBloque.get(0);
-        return preguntaActual;
-    }
-    
-    @Override
-    public void registrarRespuesta(Respuesta respuesta) {
-        if (!respuesta.esCorrecta() && !preguntasIncorrectas.contains(preguntaActual.getId())) {
-            // Es incorrecta y no la hemos marcado antes
-            preguntasIncorrectas.add(preguntaActual.getId());
-            colaIncorrectas.offer(preguntaActual);
-        }
-    }
-    
-    @Override
-    public boolean hayMasPreguntas() {
-        // Hay siguiente si: estamos en preguntas originales O hay incorrectas para repetir
-        return indiceActual < preguntasBloque.size() || !colaIncorrectas.isEmpty();
-    }
-    
-    @Override
-    public Pregunta siguientePregunta() {
-        if (!hayMasPreguntas()) {
-            return null;
-        }
-        
-        // Fase 1: Preguntas originales del bloque
-        if (indiceActual < preguntasBloque.size()) {
-            indiceActual++;
-            if (indiceActual < preguntasBloque.size()) {
-                preguntaActual = preguntasBloque.get(indiceActual);
-                return preguntaActual;
-            } else {
-                // Terminamos fase principal, comenzamos repetición
-                enFaseRepeticion = true;
-                if (!colaIncorrectas.isEmpty()) {
-                    preguntaActual = colaIncorrectas.poll();
-                    return preguntaActual;
-                }
-                return null;
-            }
-        }
-        
-        // Fase 2: Repetición de incorrectas
-        if (!colaIncorrectas.isEmpty()) {
-            preguntaActual = colaIncorrectas.poll();
-            return preguntaActual;
-        }
-        
-        return null;
-    }
-    
-    @Override
-    public double getProgreso() {
-        int totalPreguntas = preguntasBloque.size() + colaIncorrectas.size();
-        if (totalPreguntas == 0) return 0.0;
-        
-        int preguntasVistas = indiceActual;
-        return (double) preguntasVistas / totalPreguntas;
-    }
-    
-    @Override
-    public void reiniciar() {
-        indiceActual = 0;
-        colaIncorrectas.clear();
-        preguntasIncorrectas.clear();
-        enFaseRepeticion = false;
-        preguntaActual = null;
-    }
-    
-    /**
-     * Obtiene el número de preguntas incorrectas registradas.
-     */
-    public int getNumeroIncorrectas() {
-        return colaIncorrectas.size();
-    }
-    
-    /**
-     * Verifica si estamos en la fase de repetición.
-     */
-    public boolean estaEnFaseRepeticion() {
-        return enFaseRepeticion;
-    }
-}
-```
+La estrategia ya está implementada en el módulo `kursor-repetir-incorrectas-strategy` con las siguientes características:
+
+- **Módulo independiente**: Carga dinámica mediante ServiceLoader
+- **Dos fases claras**: Originales + repetición de incorrectas
+- **Reactiva**: Registra incorrectas automáticamente
+- **Persistencia**: Estado serializable para continuar sesiones
+- **Progreso inteligente**: Calcula progreso considerando ambas fases
 
 ### 4.3 Ventajas de esta Estrategia
 
@@ -459,23 +262,24 @@ public class EstrategiaRepeticionIncorrectas implements EstrategiaAprendizaje {
 4. **✅ Valor educativo real**: Refuerza lo que el usuario no sabe
 5. **✅ Implementación sencilla**: Solo dos colas y un método de registro
 6. **✅ Reactiva**: Ajusta su comportamiento según las respuestas
+7. **✅ Modular**: Implementada como módulo independiente
 
-## 5. Plan de Implementación
+## 5. Estado Actual de Implementación
 
-### 5.1 Fase 1: Actualizar Interfaz (1 semana)
-- [ ] Actualizar `EstrategiaAprendizaje` con nuevos métodos
-- [ ] Refactorizar estrategias existentes (Secuencial, Aleatoria)
-- [ ] Testing de compatibilidad
+### ✅ Completado
+- **Interfaz EstrategiaAprendizaje**: Implementada y estable
+- **Estrategia Secuencial**: Implementada como módulo independiente
+- **Estrategia Aleatoria**: Implementada como módulo independiente
+- **Estrategia de Repetición Espaciada**: Implementada como módulo independiente
+- **Estrategia de Repetir Incorrectas**: Implementada como módulo independiente
+- **Sistema de módulos**: Carga dinámica mediante ServiceLoader
+- **Testing**: Pruebas unitarias completas para todas las estrategias
 
-### 5.2 Fase 2: Implementar Estrategia Repetición de Incorrectas (1 semana)
-- [ ] Implementar `EstrategiaRepeticionIncorrectas`
-- [ ] Testing exhaustivo
-- [ ] Documentación
-
-### 5.3 Fase 3: Módulos de Carga Dinámica (2-3 semanas)
-- [ ] Diseñar sistema de módulos
-- [ ] Refactorizar a módulos
-- [ ] Testing y optimización
+### 🔧 Mejoras Futuras
+- **Optimización de rendimiento**: Mejoras en algoritmos de estrategias
+- **Nuevas estrategias**: Implementación de estrategias más avanzadas
+- **Configuración avanzada**: Parámetros configurables por estrategia
+- **Analytics**: Métricas detalladas de rendimiento por estrategia
 
 ## 6. Consideraciones Técnicas
 
@@ -508,9 +312,15 @@ public class Respuesta {
 
 ## 7. Conclusiones
 
-1. **Las estrategias son iteradores especializados** que trabajan a nivel de bloque
-2. **La interfaz mejorada** incluye `primeraPregunta()`, `registrarRespuesta()` sin parámetro pregunta, y control de flujo
-3. **La Estrategia Repetición de Incorrectas** es la propuesta más adecuada: sencilla, reactiva, y con valor educativo real
-4. **Los módulos de carga dinámica** son una excelente idea para el futuro
+1. **Las estrategias son iteradores especializados** que trabajan a nivel de bloque ✅ **IMPLEMENTADO**
+2. **La interfaz mejorada** incluye `primeraPregunta()`, `registrarRespuesta()` sin parámetro pregunta, y control de flujo ✅ **IMPLEMENTADO**
+3. **Las 4 estrategias están implementadas** como módulos independientes con carga dinámica ✅ **IMPLEMENTADO**
+4. **El sistema modular** permite extensibilidad sin modificar el código principal ✅ **IMPLEMENTADO**
 
-**Recomendación**: Empezar actualizando la interfaz y implementando la Estrategia Repetición de Incorrectas como prueba de concepto. 
+**Estado Actual**: Todas las estrategias están implementadas y funcionando correctamente. El sistema es modular, extensible y bien documentado.
+
+**Próximos Pasos**: 
+- Optimización de rendimiento
+- Nuevas estrategias avanzadas
+- Mejoras en la configuración
+- Analytics detallados 

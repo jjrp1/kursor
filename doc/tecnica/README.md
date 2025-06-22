@@ -1,6 +1,54 @@
-# Documentación Técnica - Proyecto Kursor
+# 📚 Documentación Técnica - Kursor
 
-Este directorio contiene la documentación técnica del proyecto **Kursor**, una plataforma de formación interactiva desarrollada como parte de la asignatura "Proceso de Desarrollo de Software" de la Facultad de Informática de la Universidad de Murcia.
+## 🎯 Estado Actual del Proyecto
+
+### ✅ Funcionalidades Implementadas
+
+#### 🏗️ Arquitectura Modular
+- **Sistema modular completo** con 4 tipos de preguntas
+- **4 estrategias de aprendizaje** implementadas como módulos independientes
+- **Carga dinámica** mediante ServiceLoader
+- **Patrones de diseño** implementados (Factory, Builder, Strategy, Plugin)
+
+#### 📚 Tipos de Preguntas
+- ✅ **Flashcards**: Tarjetas de memoria con pregunta y respuesta
+- ✅ **Opción Múltiple**: Preguntas con múltiples opciones y explicaciones
+- ✅ **Completar Huecos**: Texto con espacios para rellenar
+- ✅ **Verdadero/Falso**: Preguntas de tipo booleano
+
+#### 🎯 Estrategias de Aprendizaje
+- ✅ **Secuencial**: Preguntas en orden fijo
+- ✅ **Aleatoria**: Preguntas en orden aleatorio
+- ✅ **Repetición Espaciada**: Algoritmos optimizados de memoria
+- ✅ **Repetir Incorrectas**: Repite automáticamente las preguntas falladas
+
+#### 🎨 Interfaz de Usuario
+- ✅ **JavaFX moderno** con diseño responsive
+- ✅ **Diálogos modales** para interacciones específicas
+- ✅ **Gestión de sesiones** con persistencia de progreso
+- ✅ **Estadísticas detalladas** de rendimiento
+
+### 📊 Métricas del Proyecto
+- **Líneas de código**: ~6,000
+- **Módulos implementados**: 4 tipos de preguntas + 4 estrategias
+- **Tests unitarios**: Completos para todas las funcionalidades
+- **Documentación**: Guías de usuario y técnica completas
+
+### 🔧 Tecnologías Utilizadas
+- **Java 17** con características modernas
+- **JavaFX 17.0.2** para interfaz gráfica
+- **Maven 3.8+** para gestión de dependencias
+- **SLF4J + Logback** para logging
+- **SnakeYAML** para procesamiento de archivos YAML
+- **JUnit 5** para testing
+
+### 🚀 Próximas Mejoras
+- Optimización de rendimiento
+- Nuevas estrategias avanzadas
+- Configuración avanzada por estrategia
+- Analytics detallados de aprendizaje
+- Soporte para múltiples idiomas
+- Integración con sistemas LMS
 
 ## Autor
 - **Nombre**: Juan José Ruiz Pérez

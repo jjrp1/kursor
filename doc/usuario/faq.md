@@ -171,6 +171,43 @@ run.cmd DEBUG
 - **Pasos**: Cómo reproducir el error
 - **Configuración**: Modificaciones realizadas
 
+## Preguntas Frecuentes
+
+### ¿Cuántas estrategias de aprendizaje están disponibles?
+Kursor ofrece **4 estrategias de aprendizaje** diferentes:
+- **Secuencial**: Preguntas en orden fijo
+- **Aleatoria**: Preguntas en orden aleatorio  
+- **Repetición Espaciada**: Repite preguntas con intervalos optimizados
+- **Repetir Incorrectas**: Repite automáticamente las preguntas falladas
+
+### ¿Cuál es la mejor estrategia para principiantes?
+Para principiantes se recomienda la **Estrategia Secuencial** porque:
+- Proporciona estructura y orden
+- Es fácil de seguir y entender
+- Ideal para aprender conceptos nuevos
+- Progreso predecible y lineal
+
+### ¿Cuál es la mejor estrategia para repaso?
+Para repaso se recomienda la **Estrategia Aleatoria** porque:
+- Evita la memorización por orden
+- Mejora la retención real
+- Ideal para preparar exámenes
+- Desafía la memoria de manera impredecible
+
+### ¿Cuál es la mejor estrategia para memorización?
+Para memorización se recomienda la **Estrategia de Repetición Espaciada** porque:
+- Optimiza el momento de repaso
+- Basada en principios científicos de la curva del olvido
+- Mejora la retención a largo plazo
+- Intervalo configurable según necesidades
+
+### ¿Cuál es la mejor estrategia para mejorar áreas débiles?
+Para mejorar áreas débiles se recomienda la **Estrategia de Repetir Incorrectas** porque:
+- Enfoque específico en conceptos difíciles
+- Mejora progresiva en áreas problemáticas
+- Sesiones más intensivas pero efectivas
+- Dos fases: originales + repetición de incorrectas
+
 ---
 
 **¿No encuentras tu pregunta?** Ejecuta `run.cmd DEBUG` y revisa los logs para más información. 
