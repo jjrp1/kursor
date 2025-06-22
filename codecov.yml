@@ -1,0 +1,217 @@
+# Configuración de Codecov para Kursor
+# https://docs.codecov.io/docs/codecov-yaml
+
+coverage:
+  # Umbral mínimo de cobertura global
+  minimum: 80
+  
+  # Precisión de los reportes
+  precision: 2
+  
+  # Redondeo de cobertura
+  round: down
+  
+  # Rangos de cobertura con colores
+  range: "80...100"
+  
+  # Estado de cobertura
+  status:
+    project:
+      default:
+        # Umbral mínimo para el proyecto
+        target: 80%
+        # Umbral de advertencia
+        threshold: 5%
+        # Si fallar en cobertura insuficiente
+        if_ci_failed: error
+        # Solo informar en cambios
+        only_pulls: true
+    
+    patch:
+      default:
+        # Umbral mínimo para parches
+        target: 80%
+        # Umbral de advertencia
+        threshold: 5%
+        # Si fallar en cobertura insuficiente
+        if_ci_failed: error
+        # Solo informar en cambios
+        only_pulls: true
+
+# Configuración de comentarios
+comment:
+  # Habilitar comentarios en PRs
+  layout: "reach, diff, flags, files"
+  
+  # Comportamiento de comentarios
+  behavior: default
+  
+  # Requerir cambios para comentar
+  require_changes: false
+
+# Configuración de parches
+parsers:
+  gcov:
+    branch_detection:
+      conditional: yes
+      loop: yes
+      method: no
+      macro: no
+
+# Configuración de archivos
+ignore:
+  # Ignorar archivos de configuración
+  - "**/pom.xml"
+  - "**/logback*.xml"
+  - "**/persistence.xml"
+  - "**/META-INF/**"
+  
+  # Ignorar archivos de test
+  - "**/test/**"
+  - "**/*Test.java"
+  - "**/*Tests.java"
+  
+  # Ignorar archivos de configuración
+  - "**/config/**"
+  - "**/dto/**"
+  
+  # Ignorar archivos de documentación
+  - "**/docs/**"
+  - "**/doc/**"
+  - "**/*.md"
+  - "**/*.txt"
+  - "**/*.yml"
+  - "**/*.yaml"
+
+# Configuración de notificaciones
+notify:
+  # Notificaciones por email
+  email:
+    # Habilitar notificaciones
+    enabled: true
+    
+    # Destinatarios
+    recipients:
+      - jjrp1@um.es
+
+# Configuración de badges
+badges:
+  # Habilitar badges
+  enabled: true
+  
+  # Configuración de badges
+  configuration:
+    # Badge de cobertura
+    coverage:
+      enabled: true
+      format: "svg"
+    
+    # Badge de parches
+    patch:
+      enabled: true
+      format: "svg"
+    
+    # Badge de cambios
+    changes:
+      enabled: true
+      format: "svg"
+
+# Configuración de reportes
+reports:
+  # Reporte de cobertura
+  coverage:
+    # Formato del reporte
+    format: "html,json"
+    
+    # Incluir archivos sin cobertura
+    include_uncovered: true
+    
+    # Incluir archivos ignorados
+    include_ignored: false
+
+# Configuración de flags
+flags:
+  # Flag para módulos principales
+  core:
+    paths:
+      - "kursor-core/src/main/java"
+    carryforward: true
+  
+  # Flag para módulos de preguntas
+  modules:
+    paths:
+      - "kursor-*-module/src/main/java"
+    carryforward: true
+  
+  # Flag para estrategias
+  strategies:
+    paths:
+      - "kursor-*-strategy/src/main/java"
+    carryforward: true
+
+# Configuración de archivos de cobertura
+coverage_reports:
+  # Reportes de JaCoCo
+  - "**/target/site/jacoco/jacoco.xml"
+  - "**/target/jacoco.xml"
+  
+  # Reportes de Cobertura
+  - "**/target/coverage.xml"
+  - "**/coverage.xml"
+
+# Configuración de umbrales por módulo
+thresholds:
+  # Umbral para módulo core
+  kursor-core:
+    target: 85%
+    threshold: 5%
+  
+  # Umbral para módulos de preguntas
+  kursor-flashcard-module:
+    target: 80%
+    threshold: 5%
+  
+  kursor-multiplechoice-module:
+    target: 80%
+    threshold: 5%
+  
+  kursor-fillblanks-module:
+    target: 80%
+    threshold: 5%
+  
+  kursor-truefalse-module:
+    target: 80%
+    threshold: 5%
+  
+  # Umbral para estrategias
+  kursor-secuencial-strategy:
+    target: 80%
+    threshold: 5%
+  
+  kursor-aleatoria-strategy:
+    target: 80%
+    threshold: 5%
+  
+  kursor-repeticion-espaciada-strategy:
+    target: 80%
+    threshold: 5%
+  
+  kursor-repetir-incorrectas-strategy:
+    target: 80%
+    threshold: 5%
+
+# Configuración de caché
+cache:
+  # Habilitar caché
+  enabled: true
+  
+  # Tiempo de expiración (en segundos)
+  expire: 86400
+
+# Configuración de debug
+debug:
+  # Habilitar modo debug
+  enabled: false
+  
+  # Nivel de log
+  level: info 

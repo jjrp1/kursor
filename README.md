@@ -7,6 +7,9 @@
 [![CI/CD](https://github.com/jjrp1/kursor/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/jjrp1/kursor/actions)
 [![Release](https://img.shields.io/github/v/release/jjrp1/kursor)](https://github.com/jjrp1/kursor/releases)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Enabled-brightgreen.svg)](https://jjrp1.github.io/kursor)
+[![Codecov](https://codecov.io/gh/jjrp1/kursor/branch/master/graph/badge.svg)](https://codecov.io/gh/jjrp1/kursor)
+[![Coverage](https://img.shields.io/codecov/c/github/jjrp1/kursor/master.svg)](https://codecov.io/gh/jjrp1/kursor)
+[![Quality Gate](https://img.shields.io/badge/Quality%20Gate-Passed-brightgreen.svg)](https://github.com/jjrp1/kursor/actions)
 
 ## 📋 Descripción
 
@@ -211,3 +214,172 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 ---
 
 ⭐ **Si te gusta este proyecto, ¡dale una estrella en GitHub!** 
+
+## 🧠 Estrategias de Aprendizaje
+- **Secuencial**: Presenta preguntas en orden secuencial
+- **Aleatoria**: Presenta preguntas en orden aleatorio
+- **Repetición Espaciada**: Repite preguntas con intervalos crecientes
+- **Repetir Incorrectas**: Repite preguntas falladas al final de la sesión
+
+## 📝 Tipos de Preguntas
+- **Opción Múltiple**: Preguntas con múltiples opciones de respuesta
+- **Verdadero/Falso**: Preguntas de verdadero o falso
+- **Flashcards**: Tarjetas de memoria
+- **Completar Huecos**: Preguntas de completar espacios en blanco
+
+## 💾 Persistencia Robusta
+- **Sesiones**: Guardado y restauración de sesiones de aprendizaje
+- **Estado de Estrategias**: Persistencia del estado interno de cada estrategia
+- **Estadísticas**: Seguimiento del progreso del usuario
+- **Base de Datos**: SQLite con JPA para datos persistentes
+
+## Arquitectura Modular
+
+### Módulos de Preguntas
+```
+kursor-multiplechoice-module/
+kursor-truefalse-module/
+kursor-flashcard-module/
+kursor-fillblanks-module/
+```
+
+### Módulos de Estrategias
+```
+kursor-secuencial-strategy/
+kursor-aleatoria-strategy/
+kursor-repeticion-espaciada-strategy/
+kursor-repetir-incorrectas-strategy/
+```
+
+### Distribución Final
+```
+kursor-portable/
+├── strategies/          # Estrategias de aprendizaje
+├── modules/            # Tipos de preguntas
+├── kursor-core.jar     # Núcleo del sistema
+├── kursor.db          # Base de datos SQLite
+└── [configuración]
+```
+
+## Instalación y Uso
+
+### Requisitos
+- Java 17 o superior
+- Maven 3.6 o superior
+
+### Compilación
+```bash
+# Compilar todos los módulos
+mvn clean install
+
+# Compilar solo el core
+cd kursor-core
+mvn clean install
+
+# Compilar módulos de preguntas
+cd kursor-multiplechoice-module
+mvn clean install
+```
+
+### Ejecución
+```bash
+# Ejecutar desde el directorio raíz
+java -jar kursor-core/target/kursor-core-1.0.0.jar
+
+# O usar el script de desarrollo
+./scripts/dev.sh
+```
+
+## Desarrollo
+
+### Estructura del Proyecto
+```
+inflexion/
+├── kursor-core/                    # Núcleo del sistema
+├── kursor-*-module/               # Módulos de preguntas
+├── kursor-*-strategy/             # Módulos de estrategias
+├── doc/                           # Documentación técnica
+├── docs/                          # Documentación web
+├── scripts/                       # Scripts de desarrollo
+└── cursos/                        # Cursos de ejemplo
+```
+
+### Agregar un Nuevo Tipo de Pregunta
+1. Crear nuevo módulo siguiendo el patrón `kursor-[nombre]-module`
+2. Implementar la interfaz `PreguntaModule`
+3. Crear la clase de pregunta específica
+4. Registrar el módulo en `META-INF/services/`
+
+### Agregar una Nueva Estrategia
+1. Crear nuevo módulo siguiendo el patrón `kursor-[nombre]-strategy`
+2. Implementar la interfaz `EstrategiaModule`
+3. Crear la clase de estrategia específica
+4. Registrar el módulo en `META-INF/services/`
+
+## Documentación
+
+### Documentación Técnica
+- [Arquitectura Modular](doc/tecnica/arquitectura-modular-dominio.md)
+- [Plan de Persistencia](doc/tecnica/persistencia-plan-inicial.md)
+- [Modularización de Estrategias](doc/tecnica/estrategias-modularizacion.md)
+
+### Documentación de Usuario
+- [Guía de Inicio Rápido](doc/usuario/guia-inicio-rapido.md)
+- [FAQ](doc/usuario/faq.md)
+
+### Documentación Web
+- [Sitio Web](docs/index.html)
+- [Arquitectura](docs/arquitectura.html)
+
+## Estado del Proyecto
+
+### ✅ Completado
+- [x] Arquitectura modular de preguntas
+- [x] Estrategias de aprendizaje básicas
+- [x] Sistema de persistencia JPA + SQLite
+- [x] Pruebas unitarias y de integración
+- [x] Documentación técnica básica
+
+### 🔄 En Desarrollo
+- [ ] Modularización de estrategias
+- [ ] StrategyManager para carga dinámica
+- [ ] Integración completa de persistencia
+- [ ] Documentación de usuario
+
+### 📋 Pendiente
+- [ ] Interfaz gráfica de usuario
+- [ ] Sistema de estadísticas avanzado
+- [ ] Soporte para múltiples idiomas
+- [ ] API REST para integración externa
+
+## Contribución
+
+### Guías de Desarrollo
+1. Seguir las convenciones de código establecidas
+2. Agregar pruebas unitarias para nuevas funcionalidades
+3. Actualizar la documentación correspondiente
+4. Usar commits descriptivos
+
+### Reporte de Bugs
+- Usar el sistema de issues de GitHub
+- Incluir información del entorno y pasos para reproducir
+- Adjuntar logs de error cuando sea posible
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## Autores
+
+- **Juan José Ruiz Pérez** <jjrp1@um.es>
+- **Equipo de Desarrollo Kursor**
+
+## Changelog
+
+Ver [CHANGELOG.md](CHANGELOG.md) para un historial detallado de cambios.
+
+## Contacto
+
+- **Email**: jjrp1@um.es
+- **Proyecto**: [GitHub Repository](https://github.com/jjrp1/kursor)
+- **Documentación**: [GitHub Pages](https://jjrp1.github.io/kursor) 

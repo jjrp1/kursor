@@ -60,15 +60,35 @@ jobs:
         cache: maven
     
     - name: Run tests with coverage
-      run: mvn test jacoco:report
+      run: mvn clean test jacoco:report jacoco:report-aggregate
+    
+    - name: Generate coverage report
+      run: |
+        echo "=== Coverage Summary ==="
+        find . -name "jacoco.xml" -exec echo "Found: {}" \;
+        echo "========================"
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        file: ./kursor-core/target/site/jacoco/jacoco.xml
-        flags: unittests
+        files: |
+          ./kursor-core/target/site/jacoco/jacoco.xml
+          ./kursor-flashcard-module/target/site/jacoco/jacoco.xml
+          ./kursor-multiplechoice-module/target/site/jacoco/jacoco.xml
+          ./kursor-fillblanks-module/target/site/jacoco/jacoco.xml
+          ./kursor-truefalse-module/target/site/jacoco/jacoco.xml
+          ./kursor-secuencial-strategy/target/site/jacoco/jacoco.xml
+          ./kursor-aleatoria-strategy/target/site/jacoco/jacoco.xml
+          ./kursor-repeticion-espaciada-strategy/target/site/jacoco/jacoco.xml
+          ./kursor-repetir-incorrectas-strategy/target/site/jacoco/jacoco.xml
+        flags: |
+          core
+          modules
+          strategies
         name: codecov-umbrella
         fail_ci_if_error: false
+        verbose: true
+        token: ${{ secrets.CODECOV_TOKEN }}
 
   security-scan:
     runs-on: ubuntu-latest
