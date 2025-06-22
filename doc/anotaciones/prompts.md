@@ -72,6 +72,10 @@ mvn jacoco:report
 - **VSCode**: es mejor opción para ver los logs, porque los *colorea*.  
 
 
+# Construir CURSOS
+
+lee los archivos yaml que hay en la carpeta cursos y contruye al menos tres cursos más tomando como referencia el contenido de los que ya tenemos; necesitamos que cada curso tenga un mínimo de 3 bloques y cada bloque un mínimo de 12 preguntas, eres libre de elegir el dominio de cada curso, pero todo el curso referente al mismo dominio; recuerta que los bloques determinan el tipo de pregunta
+
 
 
 # PROMPT Inicial de introducción y situación:

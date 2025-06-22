@@ -1,0 +1,201 @@
+id: curso_historia
+titulo: "Historia Universal"
+descripcion: "Curso completo de Historia Universal desde la antigüedad hasta la época moderna"
+bloques:
+  - id: bloque1
+    titulo: "Historia Antigua"
+    descripcion: "Test sobre civilizaciones antiguas y eventos históricos fundamentales"
+    tipo: "test"
+    preguntas:
+      - id: p1
+        tipo: "test"
+        enunciado: "¿En qué año aproximadamente comenzó la civilización egipcia?"
+        opciones:
+          - "3000 a.C."
+          - "2000 a.C."
+          - "1000 a.C."
+          - "500 a.C."
+        respuestaCorrecta: "3000 a.C."
+      - id: p2
+        tipo: "test"
+        enunciado: "¿Quién fue el primer emperador de Roma?"
+        opciones:
+          - "Julio César"
+          - "Augusto"
+          - "Nerón"
+          - "Trajano"
+        respuestaCorrecta: "Augusto"
+      - id: p3
+        tipo: "test"
+        enunciado: "¿En qué año cayó el Imperio Romano de Occidente?"
+        opciones:
+          - "395 d.C."
+          - "476 d.C."
+          - "1453 d.C."
+          - "800 d.C."
+        respuestaCorrecta: "476 d.C."
+      - id: p4
+        tipo: "test"
+        enunciado: "¿Qué civilización construyó las pirámides de Giza?"
+        opciones:
+          - "Los griegos"
+          - "Los egipcios"
+          - "Los romanos"
+          - "Los babilonios"
+        respuestaCorrecta: "Los egipcios"
+      - id: p5
+        tipo: "test"
+        enunciado: "¿Quién fue Alejandro Magno?"
+        opciones:
+          - "Un emperador romano"
+          - "Un rey macedonio que conquistó gran parte del mundo conocido"
+          - "Un faraón egipcio"
+          - "Un emperador chino"
+        respuestaCorrecta: "Un rey macedonio que conquistó gran parte del mundo conocido"
+      - id: p6
+        tipo: "test"
+        enunciado: "¿En qué año comenzó la construcción del Coliseo de Roma?"
+        opciones:
+          - "72 d.C."
+          - "100 d.C."
+          - "50 d.C."
+          - "200 d.C."
+        respuestaCorrecta: "72 d.C."
+      - id: p7
+        tipo: "test"
+        enunciado: "¿Qué dinastía gobernó China durante más tiempo?"
+        opciones:
+          - "Dinastía Han"
+          - "Dinastía Ming"
+          - "Dinastía Qing"
+          - "Dinastía Zhou"
+        respuestaCorrecta: "Dinastía Zhou"
+      - id: p8
+        tipo: "test"
+        enunciado: "¿En qué año se fundó la ciudad de Roma según la tradición?"
+        opciones:
+          - "753 a.C."
+          - "509 a.C."
+          - "27 a.C."
+          - "1000 a.C."
+        respuestaCorrecta: "753 a.C."
+      - id: p9
+        tipo: "test"
+        enunciado: "¿Quién escribió 'La República'?"
+        opciones:
+          - "Aristóteles"
+          - "Platón"
+          - "Sócrates"
+          - "Heródoto"
+        respuestaCorrecta: "Platón"
+      - id: p10
+        tipo: "test"
+        enunciado: "¿En qué año murió Cleopatra?"
+        opciones:
+          - "30 a.C."
+          - "44 a.C."
+          - "27 a.C."
+          - "14 d.C."
+        respuestaCorrecta: "30 a.C."
+      - id: p11
+        tipo: "test"
+        enunciado: "¿Qué imperio fue el más extenso de la antigüedad?"
+        opciones:
+          - "Imperio Romano"
+          - "Imperio Persa"
+          - "Imperio Macedonio"
+          - "Imperio Egipcio"
+        respuestaCorrecta: "Imperio Persa"
+      - id: p12
+        tipo: "test"
+        enunciado: "¿En qué año se construyó la Gran Muralla China?"
+        opciones:
+          - "Siglo III a.C."
+          - "Siglo I d.C."
+          - "Siglo V a.C."
+          - "Siglo II d.C."
+        respuestaCorrecta: "Siglo III a.C."
+
+  - id: bloque2
+    titulo: "Historia Medieval"
+    descripcion: "Complete las oraciones con los términos históricos correctos"
+    tipo: "completar_huecos"
+    preguntas:
+      - id: p13
+        enunciado: "En el año 800, el Papa León III coronó a _____ como emperador del Sacro Imperio Romano."
+        respuestaCorrecta: "Carlomagno"
+      - id: p14
+        enunciado: "La _____ fue una serie de expediciones militares cristianas a Tierra Santa."
+        respuestaCorrecta: "Cruzadas"
+      - id: p15
+        enunciado: "En 1066, Guillermo el _____ conquistó Inglaterra en la Batalla de Hastings."
+        respuestaCorrecta: "Conquistador"
+      - id: p16
+        enunciado: "La _____ Negra devastó Europa entre 1347 y 1351."
+        respuestaCorrecta: "Peste"
+      - id: p17
+        enunciado: "En 1453, los _____ conquistaron Constantinopla."
+        respuestaCorrecta: "otomanos"
+      - id: p18
+        enunciado: "El _____ fue un documento que limitó el poder del rey de Inglaterra en 1215."
+        respuestaCorrecta: "Magna Carta"
+      - id: p19
+        enunciado: "Los _____ fueron una orden militar cristiana fundada durante las Cruzadas."
+        respuestaCorrecta: "Templarios"
+      - id: p20
+        enunciado: "En 1492, _____ descubrió América."
+        respuestaCorrecta: "Colón"
+      - id: p21
+        enunciado: "La _____ fue una guerra entre Inglaterra y Francia que duró 116 años."
+        respuestaCorrecta: "Guerra de los Cien Años"
+      - id: p22
+        enunciado: "Los _____ fueron una dinastía que gobernó el Sacro Imperio Romano."
+        respuestaCorrecta: "Habsburgo"
+      - id: p23
+        enunciado: "La _____ fue una institución medieval que regulaba el comercio."
+        respuestaCorrecta: "Guilda"
+      - id: p24
+        enunciado: "En 1095, el Papa _____ llamó a la Primera Cruzada."
+        respuestaCorrecta: "Urbano II"
+
+  - id: bloque3
+    titulo: "Historia Moderna"
+    descripcion: "Flashcards con términos y conceptos de la historia moderna"
+    tipo: "flashcards"
+    preguntas:
+      - id: p25
+        anverso: "Revolución Industrial"
+        reverso: "Período de grandes cambios tecnológicos y sociales que comenzó en Gran Bretaña a finales del siglo XVIII"
+      - id: p26
+        anverso: "Revolución Francesa"
+        reverso: "Movimiento social y político que comenzó en 1789 y derrocó la monarquía absoluta en Francia"
+      - id: p27
+        anverso: "Napoleón Bonaparte"
+        reverso: "Emperador francés que conquistó gran parte de Europa a principios del siglo XIX"
+      - id: p28
+        anverso: "Guerra de Independencia de Estados Unidos"
+        reverso: "Conflicto entre las 13 colonias americanas y Gran Bretaña (1775-1783)"
+      - id: p29
+        anverso: "Revolución Rusa"
+        reverso: "Serie de revoluciones en 1917 que derrocaron al zar y establecieron el gobierno bolchevique"
+      - id: p30
+        anverso: "Primera Guerra Mundial"
+        reverso: "Conflicto global que duró de 1914 a 1918, involucrando a las principales potencias mundiales"
+      - id: p31
+        anverso: "Segunda Guerra Mundial"
+        reverso: "Conflicto global de 1939 a 1945 entre las potencias del Eje y los Aliados"
+      - id: p32
+        anverso: "Guerra Fría"
+        reverso: "Período de tensión geopolítica entre Estados Unidos y la Unión Soviética (1947-1991)"
+      - id: p33
+        anverso: "Caída del Muro de Berlín"
+        reverso: "Evento de 1989 que simbolizó el fin de la Guerra Fría y la reunificación de Alemania"
+      - id: p34
+        anverso: "Revolución Americana"
+        reverso: "Proceso de independencia de las 13 colonias británicas en América del Norte"
+      - id: p35
+        anverso: "Imperio Británico"
+        reverso: "El imperio más extenso de la historia, que alcanzó su apogeo en el siglo XIX"
+      - id: p36
+        anverso: "Revolución Industrial"
+        reverso: "Transición de métodos de producción artesanales a la producción mecanizada" 

@@ -1,0 +1,201 @@
+id: curso_matematicas
+titulo: "Matemáticas Básicas"
+descripcion: "Curso completo de matemáticas básicas: aritmética, álgebra y geometría"
+bloques:
+  - id: bloque1
+    titulo: "Aritmética Fundamental"
+    descripcion: "Test sobre operaciones básicas, fracciones y porcentajes"
+    tipo: "test"
+    preguntas:
+      - id: p1
+        tipo: "test"
+        enunciado: "¿Cuál es el resultado de 15 + 27?"
+        opciones:
+          - "40"
+          - "42"
+          - "43"
+          - "41"
+        respuestaCorrecta: "42"
+      - id: p2
+        tipo: "test"
+        enunciado: "¿Cuánto es 8 × 7?"
+        opciones:
+          - "54"
+          - "56"
+          - "58"
+          - "60"
+        respuestaCorrecta: "56"
+      - id: p3
+        tipo: "test"
+        enunciado: "¿Cuál es el resultado de 100 ÷ 4?"
+        opciones:
+          - "20"
+          - "25"
+          - "30"
+          - "35"
+        respuestaCorrecta: "25"
+      - id: p4
+        tipo: "test"
+        enunciado: "¿Cuál es el 20% de 150?"
+        opciones:
+          - "25"
+          - "30"
+          - "35"
+          - "40"
+        respuestaCorrecta: "30"
+      - id: p5
+        tipo: "test"
+        enunciado: "¿Cuál es la fracción equivalente a 0.5?"
+        opciones:
+          - "1/3"
+          - "1/2"
+          - "2/3"
+          - "3/4"
+        respuestaCorrecta: "1/2"
+      - id: p6
+        tipo: "test"
+        enunciado: "¿Cuál es el resultado de 3² + 4²?"
+        opciones:
+          - "25"
+          - "49"
+          - "7"
+          - "12"
+        respuestaCorrecta: "25"
+      - id: p7
+        tipo: "test"
+        enunciado: "¿Cuál es el máximo común divisor de 12 y 18?"
+        opciones:
+          - "3"
+          - "6"
+          - "9"
+          - "12"
+        respuestaCorrecta: "6"
+      - id: p8
+        tipo: "test"
+        enunciado: "¿Cuál es el mínimo común múltiplo de 6 y 8?"
+        opciones:
+          - "12"
+          - "24"
+          - "48"
+          - "16"
+        respuestaCorrecta: "24"
+      - id: p9
+        tipo: "test"
+        enunciado: "¿Cuál es el resultado de 2/3 + 1/6?"
+        opciones:
+          - "3/9"
+          - "5/6"
+          - "1/2"
+          - "4/6"
+        respuestaCorrecta: "5/6"
+      - id: p10
+        tipo: "test"
+        enunciado: "¿Cuál es el resultado de 0.25 × 0.4?"
+        opciones:
+          - "0.1"
+          - "0.01"
+          - "1.0"
+          - "0.001"
+        respuestaCorrecta: "0.1"
+      - id: p11
+        tipo: "test"
+        enunciado: "¿Cuál es la raíz cuadrada de 64?"
+        opciones:
+          - "6"
+          - "7"
+          - "8"
+          - "9"
+        respuestaCorrecta: "8"
+      - id: p12
+        tipo: "test"
+        enunciado: "¿Cuál es el resultado de 5! (factorial de 5)?"
+        opciones:
+          - "120"
+          - "60"
+          - "24"
+          - "720"
+        respuestaCorrecta: "120"
+
+  - id: bloque2
+    titulo: "Álgebra Básica"
+    descripcion: "Complete las ecuaciones y expresiones algebraicas"
+    tipo: "completar_huecos"
+    preguntas:
+      - id: p13
+        enunciado: "Si x + 5 = 12, entonces x = _____"
+        respuestaCorrecta: "7"
+      - id: p14
+        enunciado: "Si 2x - 3 = 7, entonces x = _____"
+        respuestaCorrecta: "5"
+      - id: p15
+        enunciado: "La expresión (a + b)² = a² + 2ab + _____"
+        respuestaCorrecta: "b²"
+      - id: p16
+        enunciado: "Si 3x + 2y = 10 y x = 2, entonces y = _____"
+        respuestaCorrecta: "2"
+      - id: p17
+        enunciado: "El valor de x en la ecuación 4x = 20 es _____"
+        respuestaCorrecta: "5"
+      - id: p18
+        enunciado: "Si x² = 16, entonces x = _____ o x = _____"
+        respuestaCorrecta: "4"
+      - id: p19
+        enunciado: "La expresión (x + 3)(x - 3) = x² - _____"
+        respuestaCorrecta: "9"
+      - id: p20
+        enunciado: "Si 2x + 1 = 9, entonces x = _____"
+        respuestaCorrecta: "4"
+      - id: p21
+        enunciado: "La expresión x² + 6x + 9 = (x + _____)²"
+        respuestaCorrecta: "3"
+      - id: p22
+        enunciado: "Si 5x - 2 = 13, entonces x = _____"
+        respuestaCorrecta: "3"
+      - id: p23
+        enunciado: "La expresión (a - b)² = a² - 2ab + _____"
+        respuestaCorrecta: "b²"
+      - id: p24
+        enunciado: "Si x/3 = 4, entonces x = _____"
+        respuestaCorrecta: "12"
+
+  - id: bloque3
+    titulo: "Geometría y Medidas"
+    descripcion: "Preguntas de verdadero o falso sobre geometría y medidas"
+    tipo: "truefalse"
+    preguntas:
+      - id: p25
+        enunciado: "La suma de los ángulos internos de un triángulo es 180 grados."
+        respuestaCorrecta: true
+      - id: p26
+        enunciado: "Un cuadrado tiene 4 lados iguales y 4 ángulos rectos."
+        respuestaCorrecta: true
+      - id: p27
+        enunciado: "El área de un círculo se calcula con la fórmula πr²."
+        respuestaCorrecta: true
+      - id: p28
+        enunciado: "Un triángulo equilátero tiene todos sus ángulos iguales a 60 grados."
+        respuestaCorrecta: true
+      - id: p29
+        enunciado: "El perímetro de un rectángulo es la suma de sus cuatro lados."
+        respuestaCorrecta: true
+      - id: p30
+        enunciado: "Un rombo tiene todos sus lados iguales pero no necesariamente ángulos rectos."
+        respuestaCorrecta: true
+      - id: p31
+        enunciado: "El volumen de un cubo se calcula multiplicando lado × lado × lado."
+        respuestaCorrecta: true
+      - id: p32
+        enunciado: "Un triángulo isósceles tiene dos lados iguales y dos ángulos iguales."
+        respuestaCorrecta: true
+      - id: p33
+        enunciado: "El área de un triángulo es base × altura ÷ 2."
+        respuestaCorrecta: true
+      - id: p34
+        enunciado: "Un pentágono tiene 5 lados y 5 ángulos."
+        respuestaCorrecta: true
+      - id: p35
+        enunciado: "La circunferencia de un círculo se calcula con la fórmula 2πr."
+        respuestaCorrecta: true
+      - id: p36
+        enunciado: "Un trapecio tiene exactamente un par de lados paralelos."
+        respuestaCorrecta: true 

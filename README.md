@@ -15,7 +15,48 @@
 
 **Kursor** es una plataforma de formación interactiva modular desarrollada en Java que permite crear y gestionar cursos educativos con diferentes tipos de preguntas. La aplicación está diseñada con una arquitectura modular que facilita la extensión con nuevos tipos de preguntas sin modificar el código principal.
 
-## 🌐 Documentación Web
+## 📑 Índice de Contenido
+
+### 🚀 **Inicio Rápido**
+- [📋 Descripción](#-descripción)
+- [🌐 Documentación Web](#-documentación-web)
+- [✨ Características Principales](#-características-principales)
+- [🚀 Instalación y Uso](#-instalación-y-uso)
+
+### 🏗️ **Arquitectura y Estructura**
+- [📁 Estructura del Proyecto](#-estructura-del-proyecto)
+- [🧠 Estrategias de Aprendizaje](#-estrategias-de-aprendizaje)
+- [📝 Tipos de Preguntas](#-tipos-de-preguntas)
+- [💾 Persistencia Robusta](#-persistencia-robusta)
+- [🏗️ Arquitectura Modular](#arquitectura-modular)
+
+### 🛠️ **Desarrollo**
+- [Instalación y Uso](#instalación-y-uso)
+- [Desarrollo](#desarrollo)
+- [Agregar un Nuevo Tipo de Pregunta](#agregar-un-nuevo-tipo-de-pregunta)
+- [Agregar una Nueva Estrategia](#agregar-una-nueva-estrategia)
+
+### 📚 **Documentación**
+- [Documentación](#documentación)
+- [Documentación Técnica](#documentación-técnica)
+- [Documentación de Usuario](#documentación-de-usuario)
+- [Documentación Web](#documentación-web)
+
+### 📊 **Estado y Contribución**
+- [Estado del Proyecto](#estado-del-proyecto)
+- [Contribución](#contribución)
+- [Guías de Desarrollo](#guías-de-desarrollo)
+- [Reporte de Bugs](#reporte-de-bugs)
+
+### 📄 **Información del Proyecto**
+- [📄 Licencia](#-licencia)
+- [👨‍💻 Autor](#-autor)
+- [🙏 Agradecimientos](#-agradecimientos)
+- [📞 Soporte](#-soporte)
+
+---
+
+## �� Documentación Web
 
 **📖 [Visita las GitHub Pages](https://jjrp1.github.io/kursor)** para documentación completa, guías interactivas y ejemplos.
 

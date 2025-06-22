@@ -1574,3 +1574,243 @@ if (sesion != null) {
 **Fecha:** 2024-12-19  
 **Versión:** 2.0.0  
 **Estado:** En desarrollo 
+
+---
+
+## 9. Estado Actual del Proyecto - Análisis Reciente (Enero 2025)
+
+### 9.1 Análisis del Estado Real vs Documentado
+
+**Fecha de análisis:** 27 de enero de 2025  
+**Analista:** IA Assistant  
+**Metodología:** Revisión de código fuente y documentación existente
+
+#### **9.1.1 Discrepancias Encontradas**
+
+**Documentación vs Realidad:**
+- ❌ **Documentación dice**: "EstrategiaStateManager: ✅ Implementado completamente"
+- ❌ **Realidad**: Solo existen las pruebas (`EstrategiaStateManagerTest.java`), pero **NO existe la implementación** (`EstrategiaStateManager.java`)
+
+- ❌ **Documentación dice**: "Sistema de persistencia completo con SQLite"
+- ⚠️ **Realidad**: Entidades y repositorios JPA están implementados, pero **NO están integrados con la interfaz de usuario**
+
+- ❌ **Documentación dice**: "Soporte para formatos JSON y YAML"
+- ⚠️ **Realidad**: Solo soporte YAML implementado, JSON está documentado pero no implementado
+
+### 9.2 Estado Real de la Implementación
+
+#### **9.2.1 ✅ COMPLETADO - Entidades y Repositorios JPA**
+
+**Ubicación:** `kursor-core/src/main/java/com/kursor/persistence/`
+
+**Entidades implementadas:**
+- ✅ `Sesion.java` - Estado de sesiones de aprendizaje (322 líneas)
+- ✅ `EstadoEstrategia.java` - Estado interno de estrategias (170 líneas)
+- ✅ `RespuestaPregunta.java` - Historial de respuestas (198 líneas)
+- ✅ `EstadisticasUsuario.java` - Estadísticas históricas (267 líneas)
+- ✅ `EstadoSesion.java` - Enum para estados (31 líneas)
+
+**Repositorios implementados:**
+- ✅ `SesionRepository.java` - Gestión completa de sesiones (351 líneas)
+- ✅ `EstadoEstrategiaRepository.java` - Gestión de estado de estrategias (417 líneas)
+- ✅ `RespuestaPreguntaRepository.java` - Historial de respuestas (510 líneas)
+- ✅ `EstadisticasUsuarioRepository.java` - Estadísticas de usuario (562 líneas)
+
+**Configuración JPA:**
+- ✅ `PersistenceConfig.java` - Configuración centralizada (235 líneas)
+- ✅ SQLite como base de datos
+- ✅ Configuración automática de directorios y conexiones
+
+#### **9.2.2 ✅ COMPLETADO - Carga de Cursos YAML**
+
+**Estado actual:**
+- ✅ Carga de cursos desde archivos YAML funcional
+- ✅ 3 nuevos cursos creados: Historia, Matemáticas, Ciencias
+- ✅ Estructura de bloques y preguntas validada
+- ✅ Integración con módulos de preguntas
+
+#### **9.2.3 ❌ PENDIENTE - EstrategiaStateManager**
+
+**Estado crítico:**
+- ❌ **Implementación faltante**: No existe `EstrategiaStateManager.java`
+- ✅ **Pruebas existentes**: `EstrategiaStateManagerTest.java` (373 líneas)
+- ✅ **Documentación completa**: Diseño detallado en secciones anteriores
+- ❌ **Integración**: No hay conexión entre estrategias y persistencia
+
+**Impacto:** Sin esta clase, **NO se puede cumplir el requisito del enunciado** de "guardar el estado actual del curso y reanudarse en cualquier momento"
+
+#### **9.2.4 ❌ PENDIENTE - Integración UI-Persistencia**
+
+**Estado actual:**
+- ❌ La interfaz de usuario no está conectada con los repositorios JPA
+- ❌ No hay guardado automático de estado de sesiones
+- ❌ No hay funcionalidad de reanudar sesiones
+- ❌ No hay persistencia de estadísticas de usuario
+
+#### **9.2.5 ❌ PENDIENTE - Soporte JSON**
+
+**Estado actual:**
+- ❌ Solo soporte YAML implementado
+- ✅ Documentación completa del diseño JSON
+- ❌ No hay implementación de `CursoLoader` multi-formato
+
+### 9.3 Cumplimiento del Enunciado Original
+
+#### **9.3.1 Requisitos del Enunciado**
+
+1. **"Guardar estado actual del curso y reanudarse"**
+   - ❌ **NO CUMPLIDO** - Falta `EstrategiaStateManager` e integración UI
+
+2. **"Guardar estadísticas de uso"**
+   - ❌ **NO CUMPLIDO** - Entidades creadas pero no integradas
+
+3. **"Cursos en JSON o YAML"**
+   - ⚠️ **PARCIALMENTE CUMPLIDO** - Solo YAML, falta JSON
+
+4. **"Persistencia con JPA"**
+   - ✅ **CUMPLIDO** - Entidades y repositorios implementados
+
+#### **9.3.2 Porcentaje de Cumplimiento**
+
+- **Persistencia JPA**: 100% ✅
+- **Carga de cursos**: 50% ⚠️ (solo YAML)
+- **Guardado de estado**: 0% ❌
+- **Estadísticas**: 0% ❌
+- **Integración UI**: 0% ❌
+
+**Cumplimiento total: ~37.5%**
+
+### 9.4 Gaps Críticos Identificados
+
+#### **9.4.1 Gap Crítico 1: EstrategiaStateManager**
+
+**Descripción:** Clase faltante que conecta estrategias con persistencia
+**Impacto:** Bloquea cumplimiento del requisito principal del enunciado
+**Solución:** Implementar siguiendo el diseño documentado
+**Prioridad:** CRÍTICA
+
+#### **9.4.2 Gap Crítico 2: Integración UI-Persistencia**
+
+**Descripción:** La interfaz no usa los repositorios JPA
+**Impacto:** Usuario no puede guardar/reanudar sesiones
+**Solución:** Conectar `CursoSessionManager` con repositorios
+**Prioridad:** ALTA
+
+#### **9.4.3 Gap Menor 3: Soporte JSON**
+
+**Descripción:** Solo soporte YAML implementado
+**Impacto:** Limitación en formatos de curso
+**Solución:** Implementar `CursoLoader` multi-formato
+**Prioridad:** MEDIA
+
+### 9.5 Plan de Acción Prioritario
+
+#### **9.5.1 Fase 1: EstrategiaStateManager (CRÍTICA)**
+
+**Objetivo:** Implementar la clase faltante
+**Tareas:**
+1. Crear `kursor-core/src/main/java/com/kursor/persistence/manager/EstrategiaStateManager.java`
+2. Implementar serialización/deserialización JSON de estado
+3. Integrar con `EstadoEstrategiaRepository`
+4. Testing con `EstrategiaStateManagerTest`
+
+**Tiempo estimado:** 1-2 días
+
+#### **9.5.2 Fase 2: Integración UI-Persistencia (ALTA)**
+
+**Objetivo:** Conectar interfaz con persistencia
+**Tareas:**
+1. Modificar `CursoSessionManager` para usar repositorios JPA
+2. Implementar guardado automático de estado
+3. Agregar funcionalidad de reanudar sesiones
+4. Integrar estadísticas de usuario
+
+**Tiempo estimado:** 2-3 días
+
+#### **9.5.3 Fase 3: Soporte JSON (MEDIA)**
+
+**Objetivo:** Agregar soporte multi-formato
+**Tareas:**
+1. Implementar `CursoLoader` con detección automática
+2. Agregar conversión YAML ↔ JSON
+3. Testing de carga multi-formato
+
+**Tiempo estimado:** 1-2 días
+
+### 9.6 Recomendaciones Inmediatas
+
+#### **9.6.1 Implementar EstrategiaStateManager**
+
+```java
+// Ubicación: kursor-core/src/main/java/com/kursor/persistence/manager/EstrategiaStateManager.java
+public class EstrategiaStateManager {
+    private final ObjectMapper objectMapper;
+    private final EstadoEstrategiaRepository estadoRepository;
+    private final EntityManager entityManager;
+    
+    public EstrategiaStateManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+        this.estadoRepository = new EstadoEstrategiaRepository(entityManager);
+        this.objectMapper = new ObjectMapper();
+    }
+    
+    public void guardarEstadoEstrategia(Sesion sesion, EstrategiaAprendizaje estrategia) {
+        // Implementar serialización JSON y guardado
+    }
+    
+    public EstrategiaAprendizaje restaurarEstadoEstrategia(Sesion sesion, String tipoEstrategia) {
+        // Implementar deserialización y restauración
+    }
+}
+```
+
+#### **9.6.2 Integrar con CursoSessionManager**
+
+```java
+// Modificar CursoSessionManager para usar persistencia
+public class CursoSessionManager {
+    private final SesionRepository sesionRepository;
+    private final EstrategiaStateManager stateManager;
+    
+    public void iniciarSesion(String usuarioId, String cursoId, String bloqueId, String estrategiaTipo) {
+        // Crear sesión en BD y guardar estado inicial
+    }
+    
+    public void reanudarSesion(Long sesionId) {
+        // Restaurar sesión desde BD
+    }
+}
+```
+
+### 9.7 Conclusión del Análisis
+
+#### **9.7.1 Estado Real vs Documentado**
+
+La documentación **NO refleja el estado real** del proyecto. Hay una discrepancia significativa entre lo que se documenta como "completado" y lo que realmente está implementado.
+
+#### **9.7.2 Cumplimiento del Enunciado**
+
+El proyecto **NO cumple completamente** con los requisitos del enunciado original. Aunque tiene una base sólida de persistencia JPA, faltan componentes críticos para la funcionalidad de guardado/reanudación de sesiones.
+
+#### **9.7.3 Próximos Pasos Críticos**
+
+1. **Implementar EstrategiaStateManager** (CRÍTICO)
+2. **Integrar UI con persistencia** (ALTO)
+3. **Agregar soporte JSON** (MEDIO)
+4. **Actualizar documentación** para reflejar estado real
+
+#### **9.7.4 Estimación de Completado**
+
+Con las implementaciones faltantes, el proyecto podría alcanzar **100% de cumplimiento** del enunciado en aproximadamente **1 semana** de desarrollo.
+
+---
+
+**Autor:** Juan José Ruiz Pérez <jjrp1@um.es>  
+**Fecha:** 2024-12-19  
+**Versión:** 2.0.0  
+**Estado:** En desarrollo
+
+**Análisis adicional:** IA Assistant  
+**Fecha de análisis:** 2025-01-27  
+**Versión del análisis:** 1.0.0  
+**Estado del análisis:** Completado 

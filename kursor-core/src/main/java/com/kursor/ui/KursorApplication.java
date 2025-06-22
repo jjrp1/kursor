@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
@@ -412,21 +413,99 @@ public class KursorApplication extends Application {
     }
     
     private Node crearVistaCursos() {
-        ListView<CursoPreviewDTO> listView = new ListView<>();
+        // Crear la tabla
+        TableView<CursoPreviewDTO> tableView = new TableView<>();
         List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
-        listView.getItems().addAll(cursos);
+        tableView.getItems().addAll(cursos);
+
+        // Configurar la tabla
+        tableView.setPlaceholder(new Label("No hay cursos disponibles"));
+        tableView.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
+        
+        // Columna 1: Título
+        TableColumn<CursoPreviewDTO, String> tituloCol = new TableColumn<>("Título");
+        tituloCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        tituloCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("-fx-background-color: transparent;");
+                } else {
+                    setText(item);
+                    setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold; -fx-font-size: 14px;");
+                }
+            }
+        });
+        tituloCol.setPrefWidth(200);
+        tituloCol.setResizable(true);
+
+        // Columna 2: Descripción con TextArea
+        TableColumn<CursoPreviewDTO, String> descripcionCol = new TableColumn<>("Descripción");
+        descripcionCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        descripcionCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                    setStyle("-fx-background-color: transparent;");
+                } else {
+                    TextArea textArea = new TextArea(item);
+                    textArea.setWrapText(true);
+                    textArea.setEditable(false);
+                    textArea.setPrefRowCount(3);
+                    textArea.setMaxHeight(80);
+                    textArea.setStyle("-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: #7f8c8d; -fx-font-size: 12px; -fx-text-alignment: justify;");
+                    
+                    // Ajustar altura automáticamente
+                    textArea.textProperty().addListener((obs, oldText, newText) -> {
+                        textArea.setPrefRowCount(Math.min(4, newText.length() / 50 + 1));
+                    });
+                    
+                    setGraphic(textArea);
+                    setStyle("-fx-background-color: transparent;");
+                }
+            }
+        });
+        descripcionCol.setPrefWidth(400);
+        descripcionCol.setResizable(true);
+
+        // Columna 3: ID
+        TableColumn<CursoPreviewDTO, String> idCol = new TableColumn<>("ID");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setCellFactory(col -> new TableCell<CursoPreviewDTO, String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle("-fx-background-color: transparent;");
+                } else {
+                    setText("ID: " + item);
+                    setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
+                }
+            }
+        });
+        idCol.setPrefWidth(150);
+        idCol.setResizable(true);
+
+        // Agregar columnas a la tabla
+        tableView.getColumns().addAll(tituloCol, descripcionCol, idCol);
 
         // Seleccionar automáticamente el primer elemento si hay cursos disponibles
         if (!cursos.isEmpty()) {
             logger.debug("Seleccionando automáticamente el primer curso: '{}'", cursos.get(0).getTitulo());
-            listView.getSelectionModel().select(0);
+            tableView.getSelectionModel().select(0);
         }
 
         // Botón Inspeccionar
         Button inspectButton = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
         inspectButton.setDisable(cursos.isEmpty());
         inspectButton.setOnAction(e -> {
-            CursoPreviewDTO seleccionado = listView.getSelectionModel().getSelectedItem();
+            CursoPreviewDTO seleccionado = tableView.getSelectionModel().getSelectedItem();
             if (seleccionado != null) {
                 logger.info("Inspeccionando curso desde botón - ID: {}, Título: '{}'", 
                     seleccionado.getId(), seleccionado.getTitulo());
@@ -435,75 +514,42 @@ public class KursorApplication extends Application {
         });
 
         // Habilitar el botón solo si hay selección
-        listView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+        tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             inspectButton.setDisable(newVal == null);
         });
 
         // Manejo de eventos de mouse para click simple y doble-click
-        listView.setOnMouseClicked(event -> {
-            CursoPreviewDTO seleccionado = listView.getSelectionModel().getSelectedItem();
+        tableView.setOnMouseClicked(event -> {
+            CursoPreviewDTO seleccionado = tableView.getSelectionModel().getSelectedItem();
             if (seleccionado != null) {
-                logger.debug("Click detectado en ListView - ID: {}, Título: '{}', ClickCount: {}", 
+                logger.debug("Click detectado en TableView - ID: {}, Título: '{}', ClickCount: {}", 
                     seleccionado.getId(), seleccionado.getTitulo(), event.getClickCount());
                 
                 if (event.getClickCount() == 1) {
                     // Click simple: mostrar alert con el nombre del curso
-                    logger.info("Click simple detectado en ListView - mostrando alert para curso: '{}'", seleccionado.getTitulo());
+                    logger.info("Click simple detectado en TableView - mostrando alert para curso: '{}'", seleccionado.getTitulo());
                     mostrarAlertSeleccion(seleccionado);
                 } else if (event.getClickCount() == 2) {
                     // Doble-click: inspeccionar curso
-                    logger.info("Doble-click detectado en ListView - inspeccionando curso: '{}'", seleccionado.getTitulo());
+                    logger.info("Doble-click detectado en TableView - inspeccionando curso: '{}'", seleccionado.getTitulo());
                     InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
                 }
             }
         });
 
-        // Configurar el estilo del ListView para mejor visibilidad
-        listView.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
-
-        listView.setCellFactory(param -> new ListCell<CursoPreviewDTO>() {
+        // Configurar estilos de selección
+        tableView.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
+        
+        // Estilo para filas seleccionadas
+        tableView.setRowFactory(tv -> new TableRow<CursoPreviewDTO>() {
             @Override
             protected void updateItem(CursoPreviewDTO item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                    setGraphic(null);
+                if (empty) {
                     setStyle("-fx-background-color: transparent;");
                 } else {
-                    HBox hbox = new HBox(10);
-                    hbox.setAlignment(Pos.CENTER_LEFT);
-                    hbox.setPadding(new Insets(8, 12, 8, 12));
-                    
-                    VBox vbox = new VBox(5);
-                    
-                    // Título del curso con color explícito
-                    Label nameLabel = new Label(item.getTitulo());
-                    nameLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
-                    nameLabel.setTextFill(Color.web("#2c3e50")); // Color azul oscuro
-                    nameLabel.setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold;");
-                    
-                    // Descripción del curso con color explícito
-                    Label descLabel = new Label(item.getDescripcion());
-                    descLabel.setWrapText(true);
-                    descLabel.setMaxWidth(300);
-                    descLabel.setTextFill(Color.web("#7f8c8d")); // Color gris
-                    descLabel.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 12px;");
-                    
-                    // ID del curso con estilo distintivo
-                    Label idLabel = new Label("ID: " + item.getId());
-                    idLabel.setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
-                    
-                    vbox.getChildren().addAll(nameLabel, descLabel, idLabel);
-                    hbox.getChildren().addAll(vbox);
-                    setGraphic(hbox);
-                    
-                    // Estilo para elementos seleccionados
                     if (isSelected()) {
                         setStyle("-fx-background-color: #3498db; -fx-text-fill: white;");
-                        // Cambiar colores de los labels cuando está seleccionado
-                        nameLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
-                        descLabel.setStyle("-fx-text-fill: #ecf0f1; -fx-font-size: 12px;");
-                        idLabel.setStyle("-fx-text-fill: #2ecc71; -fx-font-size: 11px; -fx-font-style: italic;");
                     } else {
                         setStyle("-fx-background-color: white; -fx-text-fill: black;");
                     }
@@ -511,7 +557,7 @@ public class KursorApplication extends Application {
             }
         });
 
-        VBox contenedor = new VBox(15, listView, inspectButton);
+        VBox contenedor = new VBox(15, tableView, inspectButton);
         contenedor.setPadding(new Insets(20));
         return contenedor;
     }
