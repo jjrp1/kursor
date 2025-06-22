@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://jjrp1.github.io/kursor/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1 

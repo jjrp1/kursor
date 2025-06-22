@@ -12,6 +12,16 @@
 
 **Kursor** es una plataforma de formación interactiva modular desarrollada en Java que permite crear y gestionar cursos educativos con diferentes tipos de preguntas. La aplicación está diseñada con una arquitectura modular que facilita la extensión con nuevos tipos de preguntas sin modificar el código principal.
 
+## 🌐 Documentación Web
+
+**📖 [Visita las GitHub Pages](https://jjrp1.github.io/kursor)** para documentación completa, guías interactivas y ejemplos.
+
+### 📚 Páginas Disponibles
+- **[🏠 Página Principal](https://jjrp1.github.io/kursor/)** - Visión general del proyecto
+- **[🚀 Guía de Inicio Rápido](https://jjrp1.github.io/kursor/guia-inicio-rapido.html)** - Tutorial paso a paso
+- **[❓ FAQ](https://jjrp1.github.io/kursor/faq.html)** - Preguntas frecuentes
+- **[🏗️ Arquitectura](https://jjrp1.github.io/kursor/arquitectura.html)** - Documentación técnica
+
 ## ✨ Características Principales
 
 ### 🏗️ Arquitectura Modular
@@ -91,17 +101,24 @@ kursor/
 ├── kursor-truefalse-module/     # Módulo verdadero/falso
 ├── cursos/                      # Cursos de ejemplo
 ├── doc/                         # Documentación
+├── docs/                        # GitHub Pages
 └── scripts/                     # Scripts de utilidad
 ```
 
 ## 📖 Documentación
 
-### 📚 Guías de Usuario
+### 🌐 Documentación Web (Recomendada)
+- **[🏠 Página Principal](https://jjrp1.github.io/kursor/)** - Visión general y características
+- **[🚀 Guía de Inicio Rápido](https://jjrp1.github.io/kursor/guia-inicio-rapido.html)** - Tutorial interactivo
+- **[❓ FAQ](https://jjrp1.github.io/kursor/faq.html)** - Preguntas frecuentes y solución de problemas
+- **[🏗️ Arquitectura](https://jjrp1.github.io/kursor/arquitectura.html)** - Documentación técnica detallada
+
+### 📚 Guías de Usuario (Markdown)
 - [Guía de Inicio Rápido](doc/usuario/guia-inicio-rapido.md)
 - [FAQ](doc/usuario/faq.md)
 - [README de Usuario](doc/usuario/README.md)
 
-### 🔧 Documentación Técnica
+### 🔧 Documentación Técnica (Markdown)
 - [Arquitectura Modular](doc/tecnica/arquitectura-modular-dominio.md)
 - [Estructura del Proyecto](doc/tecnica/estructura-proyecto.md)
 - [Configuración de Logging](doc/tecnica/logging-configuracion.md)
@@ -175,6 +192,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 - **GitHub**: [@jjrp1](https://github.com/jjrp1)
 - **Proyecto**: [Kursor](https://github.com/jjrp1/kursor)
+- **Documentación**: [GitHub Pages](https://jjrp1.github.io/kursor)
 
 ## 🙏 Agradecimientos
 
@@ -185,8 +203,9 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 ## 📞 Soporte
 
+- **🌐 Documentación Web**: [GitHub Pages](https://jjrp1.github.io/kursor)
 - **Issues**: [GitHub Issues](https://github.com/jjrp1/kursor/issues)
-- **Documentación**: [Wiki del Proyecto](https://github.com/jjrp1/kursor/wiki)
+- **Discusiones**: [GitHub Discussions](https://github.com/jjrp1/kursor/discussions)
 - **Email**: jjrp1@um.es
 
 ---

@@ -1,0 +1,178 @@
+# Configuración de GitHub Pages para Kursor
+title: Kursor - Plataforma de Formación Interactiva Modular
+description: Una aplicación Java moderna que permite crear y gestionar cursos educativos con diferentes tipos de preguntas mediante una arquitectura modular extensible.
+author: Juan José Ruiz Pérez
+email: jjrp1@um.es
+url: https://jjrp1.github.io/kursor
+
+# Configuración de Jekyll
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Configuración de navegación
+nav:
+  - title: Inicio
+    url: index.html
+  - title: Guía Rápida
+    url: guia-inicio-rapido.html
+  - title: FAQ
+    url: faq.html
+  - title: Arquitectura
+    url: arquitectura.html
+
+# Configuración de enlaces sociales
+social:
+  github: jjrp1/kursor
+  email: jjrp1@um.es
+
+# Configuración de metadatos
+meta:
+  keywords: java, educación, aprendizaje, flashcards, preguntas, módulos, formación
+  robots: index, follow
+  author: Juan José Ruiz Pérez
+  viewport: width=device-width, initial-scale=1
+
+# Configuración de analytics (opcional)
+# google_analytics: UA-XXXXXXXXX-X
+
+# Configuración de comentarios (opcional)
+# disqus:
+#   shortname: kursor
+
+# Configuración de búsqueda
+search: true
+
+# Configuración de paginación
+paginate: 10
+paginate_path: "/page/:num/"
+
+# Configuración de feeds
+feed:
+  path: atom.xml
+  limit: 10
+
+# Configuración de compresión
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
+
+# Configuración de markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+# Configuración de sintaxis highlighting
+highlighter: rouge
+rouge:
+  line_numbers: false
+
+# Configuración de includes
+include:
+  - _pages
+  - _posts
+  - _layouts
+  - _includes
+  - _sass
+  - assets
+
+# Configuración de excludes
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Configuración de collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Configuración de defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# Configuración de permalinks
+permalink: /:year/:month/:day/:title/
+
+# Configuración de timezone
+timezone: Europe/Madrid
+
+# Configuración de encoding
+encoding: utf-8
+
+# Configuración de safe mode
+safe: true
+
+# Configuración de whitelist
+whitelist: []
+
+# Configuración de plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Configuración de sitemap
+sitemap:
+  changefreq: weekly
+  priority: 0.5
+  exclude: ['/atom.xml', '/feed.xml']
+
+# Configuración de feed
+feed:
+  path: atom.xml
+  limit: 10
+  categories:
+    - blog
+    - news
+    - updates
+
+# Configuración de SEO
+seo:
+  title: Kursor - Plataforma de Formación Interactiva Modular
+  description: Una aplicación Java moderna que permite crear y gestionar cursos educativos con diferentes tipos de preguntas mediante una arquitectura modular extensible.
+  author: Juan José Ruiz Pérez
+  image: /assets/images/kursor-logo.png
+  twitter:
+    card: summary_large_image
+    creator: "@jjrp1"
+  facebook:
+    app_id: ""
+    pages: ""
+  google_plus:
+    publisher: ""
+  open_graph:
+    locale: es_ES
+    type: website
+  twitter_cards:
+    type: summary_large_image
+    creator: "@jjrp1"
+    site: "@jjrp1" 

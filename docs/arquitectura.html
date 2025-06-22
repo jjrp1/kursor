@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Arquitectura - Kursor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .architecture-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .architecture-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .layer-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .badge-ui { background-color: #3498db; color: white; }
+        .badge-service { background-color: #e67e22; color: white; }
+        .badge-domain { background-color: #9b59b6; color: white; }
+        .badge-persistence { background-color: #e74c3c; color: white; }
+        .badge-module { background-color: #27ae60; color: white; }
+        
+        .code-example {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            margin: 1rem 0;
+        }
+        
+        .pattern-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar .nav-link {
+            color: var(--primary-color);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .sidebar .nav-link.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .info-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .success-box {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .architecture-diagram {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>Kursor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guia-inicio-rapido.html">Guía Rápida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="arquitectura.html">Arquitectura</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/jjrp1/kursor">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 mb-3">🏗️ Arquitectura de Kursor</h1>
+            <p class="lead">Descubre el diseño modular y extensible que hace de Kursor una plataforma única</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <h5 class="mb-3">📋 Contenido</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#overview">Visión General</a>
+                        <a class="nav-link" href="#layers">Capas de Arquitectura</a>
+                        <a class="nav-link" href="#patterns">Patrones de Diseño</a>
+                        <a class="nav-link" href="#modules">Sistema Modular</a>
+                        <a class="nav-link" href="#domain">Modelo de Dominio</a>
+                        <a class="nav-link" href="#persistence">Persistencia</a>
+                        <a class="nav-link" href="#extensibility">Extensibilidad</a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Visión General -->
+                <section id="overview" class="mb-5">
+                    <h2><i class="fas fa-eye text-primary me-2"></i>Visión General</h2>
+                    
+                    <div class="architecture-card card">
+                        <div class="card-body">
+                            <h5 class="card-title">🎯 Principios de Diseño</h5>
+                            <p>Kursor está construido siguiendo principios de arquitectura limpia y diseño modular:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><strong>Separación de Responsabilidades:</strong> Cada capa tiene una función específica</li>
+                                        <li><strong>Inversión de Dependencias:</strong> Las capas internas no dependen de las externas</li>
+                                        <li><strong>Extensibilidad:</strong> Fácil adición de nuevos tipos de preguntas</li>
+                                        <li><strong>Mantenibilidad:</strong> Código organizado y bien estructurado</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><strong>Testabilidad:</strong> Componentes aislados y fáciles de probar</li>
+                                        <li><strong>Escalabilidad:</strong> Arquitectura preparada para crecimiento</li>
+                                        <li><strong>Flexibilidad:</strong> Múltiples estrategias de aprendizaje</li>
+                                        <li><strong>Portabilidad:</strong> Funciona en múltiples plataformas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="architecture-diagram">
+                        <h5 class="text-center mb-4">📊 Arquitectura en Capas</h5>
+                        <div class="text-center">
+                            <div class="layer-badge badge-ui mb-2">🎨 Capa de Presentación (UI)</div>
+                            <div class="layer-badge badge-service mb-2">⚙️ Capa de Servicios</div>
+                            <div class="layer-badge badge-domain mb-2">🏛️ Capa de Dominio</div>
+                            <div class="layer-badge badge-persistence mb-2">💾 Capa de Persistencia</div>
+                            <div class="layer-badge badge-module">🧩 Módulos Extensibles</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Capas de Arquitectura -->
+                <section id="layers" class="mb-5">
+                    <h2><i class="fas fa-layer-group text-success me-2"></i>Capas de Arquitectura</h2>
+                    
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="layer-badge badge-ui">🎨 UI</span>
+                                        <h5 class="card-title mb-0 ms-3">Capa de Presentación</h5>
+                                    </div>
+                                    <p>Interfaz gráfica desarrollada con JavaFX que proporciona una experiencia de usuario moderna e intuitiva.</p>
+                                    <h6>Componentes principales:</h6>
+                                    <ul>
+                                        <li><code>KursorApplication.java</code> - Aplicación principal</li>
+                                        <li><code>CursoSessionManager.java</code> - Gestión de sesiones</li>
+                                        <li><code>CursoDialog.java</code> - Diálogos modales</li>
+                                        <li><code>EstadisticasDialog.java</code> - Visualización de estadísticas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="layer-badge badge-service">⚙️ Servicios</span>
+                                        <h5 class="card-title mb-0 ms-3">Capa de Servicios</h5>
+                                    </div>
+                                    <p>Orquesta la lógica de negocio y coordina las operaciones entre las diferentes capas.</p>
+                                    <h6>Servicios principales:</h6>
+                                    <ul>
+                                        <li><code>CursoPreviewService.java</code> - Vista previa de cursos</li>
+                                        <li><code>CursoManager.java</code> - Gestión de cursos</li>
+                                        <li><code>ModuleManager.java</code> - Gestión de módulos</li>
+                                        <li><code>PreguntaFactory.java</code> - Creación de preguntas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="layer-badge badge-domain">🏛️ Dominio</span>
+                                        <h5 class="card-title mb-0 ms-3">Capa de Dominio</h5>
+                                    </div>
+                                    <p>Contiene las entidades principales y la lógica de negocio del sistema de aprendizaje.</p>
+                                    <h6>Entidades principales:</h6>
+                                    <ul>
+                                        <li><code>Curso.java</code> - Entidad principal del curso</li>
+                                        <li><code>Bloque.java</code> - Agrupación de preguntas</li>
+                                        <li><code>Pregunta.java</code> - Pregunta base</li>
+                                        <li><code>Sesion.java</code> - Sesión de aprendizaje</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 mb-4">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <span class="layer-badge badge-persistence">💾 Persistencia</span>
+                                        <h5 class="card-title mb-0 ms-3">Capa de Persistencia</h5>
+                                    </div>
+                                    <p>Gestiona el almacenamiento y recuperación de datos utilizando JPA/Hibernate con SQLite.</p>
+                                    <h6>Componentes principales:</h6>
+                                    <ul>
+                                        <li><code>SQLiteDialect.java</code> - Dialecto para SQLite</li>
+                                        <li><code>persistence.xml</code> - Configuración JPA</li>
+                                        <li>Entidades JPA para persistencia</li>
+                                        <li>Repositorios de datos</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Patrones de Diseño -->
+                <section id="patterns" class="mb-5">
+                    <h2><i class="fas fa-puzzle-piece text-warning me-2"></i>Patrones de Diseño</h2>
+                    
+                    <div class="pattern-box">
+                        <h4><i class="fas fa-cube me-2"></i>Patrón Factory</h4>
+                        <p>Utilizado para crear diferentes tipos de preguntas de manera uniforme, permitiendo la extensibilidad del sistema.</p>
+                        <div class="code-example">
+                            <pre><code class="language-java">public class PreguntaFactory {
+    public static Pregunta crearPregunta(String tipo, Map&lt;String, Object&gt; datos) {
+        // Lógica para crear preguntas según el tipo
+    }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-sitemap me-2"></i>Patrón Strategy</h5>
+                                    <p>Implementado para las estrategias de aprendizaje, permitiendo cambiar el comportamiento de la presentación de preguntas.</p>
+                                    <ul>
+                                        <li><code>EstrategiaSecuencial.java</code></li>
+                                        <li><code>EstrategiaAleatoria.java</code></li>
+                                        <li><code>EstrategiaRepeticionEspaciada.java</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="architecture-card card">
+                                <div class="card-body">
+                                    <h5><i class="fas fa-building me-2"></i>Patrón Builder</h5>
+                                    <p>Utilizado para construir objetos complejos como cursos de manera fluida y legible.</p>
+                                    <ul>
+                                        <li><code>CursoBuilder.java</code> - Construcción de cursos</li>
+                                        <li>API fluida para configuración</li>
+                                        <li>Validación durante la construcción</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h5><i class="fas fa-info-circle me-2"></i>Beneficios de los Patrones</h5>
+                        <ul>
+                            <li><strong>Mantenibilidad:</strong> Código más organizado y fácil de entender</li>
+                            <li><strong>Extensibilidad:</strong> Fácil adición de nuevas funcionalidades</li>
+                            <li><strong>Testabilidad:</strong> Componentes aislados y fáciles de probar</li>
+                            <li><strong>Reutilizabilidad:</strong> Patrones probados y documentados</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Sistema Modular -->
+                <section id="modules" class="mb-5">
+                    <h2><i class="fas fa-cubes text-info me-2"></i>Sistema Modular</h2>
+                    
+                    <div class="architecture-card card">
+                        <div class="card-body">
+                            <h5 class="card-title">🧩 Arquitectura de Módulos</h5>
+                            <p>Kursor utiliza un sistema modular basado en el patrón Service Provider Interface (SPI) de Java, permitiendo la extensión dinámica de tipos de preguntas.</p>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Módulos Disponibles:</h6>
+                                    <ul>
+                                        <li><strong>Flashcard Module:</strong> Tarjetas de memoria</li>
+                                        <li><strong>Multiple Choice Module:</strong> Preguntas de opción múltiple</li>
+                                        <li><strong>Fill Blanks Module:</strong> Completar huecos</li>
+                                        <li><strong>True/False Module:</strong> Preguntas booleanas</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Estructura de Módulo:</h6>
+                                    <ul>
+                                        <li><code>Module.java</code> - Interfaz principal</li>
+                                        <li><code>Pregunta.java</code> - Implementación específica</li>
+                                        <li><code>services/</code> - Registro SPI</li>
+                                        <li><code>pom.xml</code> - Dependencias</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <h6>Ejemplo de Interfaz de Módulo:</h6>
+                        <pre><code class="language-java">public interface PreguntaModule {
+    String getTipo();
+    Pregunta crearPregunta(Map&lt;String, Object&gt; datos);
+    boolean validarPregunta(Pregunta pregunta);
+    ComponenteUI crearComponenteUI(Pregunta pregunta);
+}</code></pre>
+                    </div>
+
+                    <div class="success-box">
+                        <h5><i class="fas fa-check-circle me-2"></i>Ventajas del Sistema Modular</h5>
+                        <ul>
+                            <li><strong>Extensibilidad:</strong> Nuevos tipos de preguntas sin modificar el núcleo</li>
+                            <li><strong>Mantenimiento:</strong> Módulos independientes y aislados</li>
+                            <li><strong>Distribución:</strong> Módulos pueden distribuirse por separado</li>
+                            <li><strong>Testing:</strong> Pruebas unitarias por módulo</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Modelo de Dominio -->
+                <section id="domain" class="mb-5">
+                    <h2><i class="fas fa-sitemap text-success me-2"></i>Modelo de Dominio</h2>
+                    
+                    <div class="architecture-card card">
+                        <div class="card-body">
+                            <h5 class="card-title">🏛️ Entidades Principales</h5>
+                            <p>El modelo de dominio representa las entidades principales del sistema de aprendizaje:</p>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Curso</h6>
+                                    <ul>
+                                        <li><strong>ID:</strong> Identificador único</li>
+                                        <li><strong>Título:</strong> Nombre del curso</li>
+                                        <li><strong>Descripción:</strong> Información detallada</li>
+                                        <li><strong>Bloques:</strong> Colección de bloques</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Bloque</h6>
+                                    <ul>
+                                        <li><strong>ID:</strong> Identificador único</li>
+                                        <li><strong>Título:</strong> Nombre del bloque</li>
+                                        <li><strong>Tipo:</strong> Tipo de preguntas</li>
+                                        <li><strong>Preguntas:</strong> Colección de preguntas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-example">
+                        <h6>Ejemplo de Estructura YAML:</h6>
+                        <pre><code class="language-yaml">id: curso_ejemplo
+titulo: "Curso de Ejemplo"
+descripcion: "Un curso para demostrar las capacidades"
+bloques:
+  - id: bloque_1
+    titulo: "Preguntas Básicas"
+    tipo: "flashcard"
+    preguntas:
+      - pregunta: "¿Pregunta ejemplo?"
+        respuesta: "Respuesta ejemplo"</code></pre>
+                    </div>
+                </section>
+
+                <!-- Persistencia -->
+                <section id="persistence" class="mb-5">
+                    <h2><i class="fas fa-database text-warning me-2"></i>Persistencia</h2>
+                    
+                    <div class="architecture-card card">
+                        <div class="card-body">
+                            <h5 class="card-title">💾 Estrategia de Persistencia</h5>
+                            <p>Kursor utiliza JPA/Hibernate con SQLite para proporcionar una base de datos ligera y portable.</p>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Características:</h6>
+                                    <ul>
+                                        <li><strong>SQLite:</strong> Base de datos ligera y sin servidor</li>
+                                        <li><strong>JPA/Hibernate:</strong> ORM para mapeo objeto-relacional</li>
+                                        <li><strong>Portabilidad:</strong> Base de datos en archivo único</li>
+                                        <li><strong>Transacciones:</strong> Gestión automática de transacciones</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Ventajas:</h6>
+                                    <ul>
+                                        <li><strong>Simplicidad:</strong> No requiere instalación de servidor</li>
+                                        <li><strong>Portabilidad:</strong> Fácil backup y restauración</li>
+                                        <li><strong>Rendimiento:</strong> Adecuado para aplicaciones de escritorio</li>
+                                        <li><strong>Compatibilidad:</strong> Funciona en múltiples plataformas</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Extensibilidad -->
+                <section id="extensibility" class="mb-5">
+                    <h2><i class="fas fa-expand-arrows-alt text-primary me-2"></i>Extensibilidad</h2>
+                    
+                    <div class="architecture-card card">
+                        <div class="card-body">
+                            <h5 class="card-title">🔧 Crear Nuevos Módulos</h5>
+                            <p>Kursor está diseñado para ser altamente extensible. Aquí te mostramos cómo crear un nuevo módulo:</p>
+                            
+                            <div class="code-example">
+                                <h6>1. Implementar la Interfaz:</h6>
+                                <pre><code class="language-java">public class MiNuevoModule implements PreguntaModule {
+    @Override
+    public String getTipo() {
+        return "mi_nuevo_tipo";
+    }
+    
+    @Override
+    public Pregunta crearPregunta(Map&lt;String, Object&gt; datos) {
+        // Implementar lógica de creación
+        return new MiNuevaPregunta(datos);
+    }
+}</code></pre>
+                            </div>
+                            
+                            <div class="code-example">
+                                <h6>2. Registrar el Módulo:</h6>
+                                <pre><code class="language-properties"># META-INF/services/com.kursor.modules.PreguntaModule
+com.kursor.mimodulo.MiNuevoModule</code></pre>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <h5><i class="fas fa-exclamation-triangle me-2"></i>Consideraciones</h5>
+                                <ul>
+                                    <li>Asegúrate de que el módulo sea compatible con la versión de Kursor</li>
+                                    <li>Implementa validaciones adecuadas</li>
+                                    <li>Proporciona documentación clara</li>
+                                    <li>Incluye tests unitarios</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <h5><i class="fas fa-info-circle me-2"></i>Recursos para Desarrolladores</h5>
+                        <ul>
+                            <li><a href="https://github.com/jjrp1/kursor">Repositorio en GitHub</a></li>
+                            <li><a href="https://github.com/jjrp1/kursor/issues">Reportar Issues</a></li>
+                            <li><a href="https://github.com/jjrp1/kursor/discussions">Discusiones</a></li>
+                            <li><a href="mailto:jjrp1@um.es">Contacto Directo</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Call to Action -->
+                <section class="mb-5">
+                    <div class="card bg-gradient text-white" style="background: linear-gradient(135deg, var(--success-color), var(--secondary-color));">
+                        <div class="card-body text-center">
+                            <h3>🚀 ¿Listo para Contribuir?</h3>
+                            <p class="lead">Únete al desarrollo de Kursor y ayuda a mejorar la plataforma</p>
+                            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                <a href="https://github.com/jjrp1/kursor" class="btn btn-light">
+                                    <i class="fab fa-github me-2"></i>Ver en GitHub
+                                </a>
+                                <a href="https://github.com/jjrp1/kursor/issues" class="btn btn-outline-light">
+                                    <i class="fas fa-bug me-2"></i>Reportar Issues
+                                </a>
+                                <a href="https://github.com/jjrp1/kursor/discussions" class="btn btn-outline-light">
+                                    <i class="fas fa-comments me-2"></i>Discusiones
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>🎓 Kursor</h5>
+                    <p>Plataforma de formación interactiva modular</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Juan José Ruiz Pérez. Licencia MIT.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/jjrp1/kursor" class="text-white me-3">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:jjrp1@um.es" class="text-white me-3">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar .nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❓ FAQ - Kursor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--primary-color);
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .faq-item {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .faq-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            border-radius: 15px 15px 0 0;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-header:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .faq-body {
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .badge-instalacion { background-color: var(--success-color); color: white; }
+        .badge-uso { background-color: var(--secondary-color); color: white; }
+        .badge-tecnico { background-color: var(--warning-color); color: white; }
+        .badge-problemas { background-color: var(--accent-color); color: white; }
+        
+        .search-box {
+            background: white;
+            border-radius: 25px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .sidebar .nav-link {
+            color: var(--primary-color);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar .nav-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .sidebar .nav-link.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .info-box {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i>Kursor
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guia-inicio-rapido.html">Guía Rápida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/jjrp1/kursor">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 mb-3">❓ Preguntas Frecuentes</h1>
+            <p class="lead">Encuentra respuestas rápidas a las preguntas más comunes sobre Kursor</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+                <div class="sidebar">
+                    <h5 class="mb-3">📋 Categorías</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#instalacion">Instalación</a>
+                        <a class="nav-link" href="#uso">Uso Básico</a>
+                        <a class="nav-link" href="#tecnico">Técnico</a>
+                        <a class="nav-link" href="#problemas">Solución de Problemas</a>
+                    </nav>
+                    
+                    <div class="mt-4">
+                        <h6>🔍 Buscar</h6>
+                        <input type="text" id="searchInput" class="form-control" placeholder="Buscar en FAQ...">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Search Box -->
+                <div class="search-box">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" id="mainSearch" class="form-control" placeholder="Buscar preguntas frecuentes...">
+                    </div>
+                </div>
+
+                <!-- Instalación -->
+                <section id="instalacion" class="mb-5">
+                    <h2><i class="fas fa-download text-success me-2"></i>Instalación</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <span class="category-badge badge-instalacion">Instalación</span>
+                            <h5 class="mb-0">¿Qué requisitos necesito para ejecutar Kursor?</h5>
+                        </div>
+                        <div class="collapse" id="faq1">
+                            <div class="faq-body">
+                                <p>Kursor requiere los siguientes requisitos mínimos:</p>
+                                <ul>
+                                    <li><strong>Sistema Operativo:</strong> Windows 10/11, macOS 10.15+, o Linux (Ubuntu 20.04+)</li>
+                                    <li><strong>Java:</strong> Java 11 o superior</li>
+                                    <li><strong>Memoria RAM:</strong> 4 GB mínimo</li>
+                                    <li><strong>Espacio en disco:</strong> 500 MB libres</li>
+                                </ul>
+                                <div class="info-box">
+                                    <strong>💡 Tip:</strong> Puedes verificar tu versión de Java ejecutando <code>java -version</code> en la terminal.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <span class="category-badge badge-instalacion">Instalación</span>
+                            <h5 class="mb-0">¿Cómo instalo Kursor en mi sistema?</h5>
+                        </div>
+                        <div class="collapse" id="faq2">
+                            <div class="faq-body">
+                                <p>La instalación de Kursor es muy sencilla:</p>
+                                <ol>
+                                    <li>Descarga la última versión desde <a href="https://github.com/jjrp1/kursor/releases">GitHub Releases</a></li>
+                                    <li>Extrae el archivo ZIP en una carpeta de tu elección</li>
+                                    <li>Ejecuta el script correspondiente a tu sistema:
+                                        <ul>
+                                            <li><strong>Windows:</strong> <code>kursor.bat</code></li>
+                                            <li><strong>Linux/macOS:</strong> <code>./kursor.sh</code></li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                                <div class="warning-box">
+                                    <strong>⚠️ Nota:</strong> En Linux/macOS, asegúrate de que el script tenga permisos de ejecución: <code>chmod +x kursor.sh</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            <span class="category-badge badge-instalacion">Instalación</span>
+                            <h5 class="mb-0">¿Kursor funciona sin conexión a internet?</h5>
+                        </div>
+                        <div class="collapse" id="faq3">
+                            <div class="faq-body">
+                                <p><strong>Sí, Kursor funciona completamente sin conexión a internet.</strong></p>
+                                <p>Una vez descargado e instalado, Kursor es una aplicación de escritorio que:</p>
+                                <ul>
+                                    <li>No requiere conexión a internet para funcionar</li>
+                                    <li>Almacena todos los datos localmente</li>
+                                    <li>Permite crear y gestionar cursos offline</li>
+                                    <li>Guarda el progreso en tu dispositivo</li>
+                                </ul>
+                                <p>La conexión a internet solo es necesaria para:</p>
+                                <ul>
+                                    <li>Descargar actualizaciones</li>
+                                    <li>Compartir cursos con otros usuarios</li>
+                                    <li>Acceder a la documentación online</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Uso Básico -->
+                <section id="uso" class="mb-5">
+                    <h2><i class="fas fa-play text-primary me-2"></i>Uso Básico</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            <span class="category-badge badge-uso">Uso</span>
+                            <h5 class="mb-0">¿Cómo creo mi primer curso?</h5>
+                        </div>
+                        <div class="collapse" id="faq4">
+                            <div class="faq-body">
+                                <p>Para crear tu primer curso:</p>
+                                <ol>
+                                    <li>Crea un archivo con extensión <code>.yaml</code> en la carpeta <code>cursos/</code></li>
+                                    <li>Define la estructura básica del curso (ID, título, descripción)</li>
+                                    <li>Añade bloques de preguntas con el tipo deseado</li>
+                                    <li>Guarda el archivo y selecciónalo en Kursor</li>
+                                </ol>
+                                <p>Ejemplo básico:</p>
+                                <pre><code>id: mi_curso
+titulo: "Mi Primer Curso"
+descripcion: "Un curso de ejemplo"
+bloques:
+  - id: bloque_1
+    titulo: "Preguntas Básicas"
+    tipo: "flashcard"
+    preguntas:
+      - pregunta: "¿Pregunta ejemplo?"
+        respuesta: "Respuesta ejemplo"</code></pre>
+                                <div class="info-box">
+                                    <strong>💡 Tip:</strong> Consulta la <a href="guia-inicio-rapido.html">Guía de Inicio Rápido</a> para ejemplos más detallados.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            <span class="category-badge badge-uso">Uso</span>
+                            <h5 class="mb-0">¿Qué tipos de preguntas soporta Kursor?</h5>
+                        </div>
+                        <div class="collapse" id="faq5">
+                            <div class="faq-body">
+                                <p>Kursor soporta actualmente 4 tipos de preguntas:</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6>🃏 Flashcards</h6>
+                                        <p>Tarjetas con pregunta y respuesta para memorización.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>☑️ Opción Múltiple</h6>
+                                        <p>Preguntas con múltiples opciones y respuesta correcta.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>🔤 Completar Huecos</h6>
+                                        <p>Texto con espacios en blanco para completar.</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>✅ Verdadero/Falso</h6>
+                                        <p>Preguntas de tipo booleano.</p>
+                                    </div>
+                                </div>
+                                <div class="info-box">
+                                    <strong>🔮 Futuro:</strong> Se están desarrollando nuevos tipos de preguntas gracias a la arquitectura modular.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq6">
+                            <span class="category-badge badge-uso">Uso</span>
+                            <h5 class="mb-0">¿Qué estrategias de aprendizaje están disponibles?</h5>
+                        </div>
+                        <div class="collapse" id="faq6">
+                            <div class="faq-body">
+                                <p>Kursor ofrece 3 estrategias de aprendizaje:</p>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h6>📖 Secuencial</h6>
+                                        <p>Preguntas en el orden definido en el curso.</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6>🎲 Aleatoria</h6>
+                                        <p>Preguntas mezcladas aleatoriamente.</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6>🧠 Repetición Espaciada</h6>
+                                        <p>Optimiza la memorización con intervalos inteligentes.</p>
+                                    </div>
+                                </div>
+                                <p>Puedes cambiar la estrategia al inicio de cada sesión de aprendizaje.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Técnico -->
+                <section id="tecnico" class="mb-5">
+                    <h2><i class="fas fa-cog text-warning me-2"></i>Técnico</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq7">
+                            <span class="category-badge badge-tecnico">Técnico</span>
+                            <h5 class="mb-0">¿Puedo crear mis propios módulos de preguntas?</h5>
+                        </div>
+                        <div class="collapse" id="faq7">
+                            <div class="faq-body">
+                                <p><strong>Sí, Kursor está diseñado para ser extensible.</strong></p>
+                                <p>Para crear un nuevo módulo de preguntas:</p>
+                                <ol>
+                                    <li>Implementa la interfaz <code>PreguntaModule</code></li>
+                                    <li>Crea las clases de dominio para tu tipo de pregunta</li>
+                                    <li>Registra el módulo en el archivo de servicios</li>
+                                    <li>Compila y añade el JAR a la carpeta <code>modules/</code></li>
+                                </ol>
+                                <div class="info-box">
+                                    <strong>💻 Desarrollo:</strong> Consulta la documentación técnica para detalles sobre la API de módulos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq8">
+                            <span class="category-badge badge-tecnico">Técnico</span>
+                            <h5 class="mb-0">¿Qué tecnologías usa Kursor?</h5>
+                        </div>
+                        <div class="collapse" id="faq8">
+                            <div class="faq-body">
+                                <p>Kursor está desarrollado con las siguientes tecnologías:</p>
+                                <ul>
+                                    <li><strong>Lenguaje:</strong> Java 11+</li>
+                                    <li><strong>Interfaz:</strong> JavaFX</li>
+                                    <li><strong>Persistencia:</strong> JPA/Hibernate con SQLite</li>
+                                    <li><strong>Configuración:</strong> YAML</li>
+                                    <li><strong>Logging:</strong> SLF4J + Logback</li>
+                                    <li><strong>Testing:</strong> JUnit 5</li>
+                                    <li><strong>Build:</strong> Maven</li>
+                                </ul>
+                                <p>La arquitectura modular utiliza el patrón Service Provider Interface (SPI) de Java.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq9">
+                            <span class="category-badge badge-tecnico">Técnico</span>
+                            <h5 class="mb-0">¿Dónde se almacenan mis datos?</h5>
+                        </div>
+                        <div class="collapse" id="faq9">
+                            <div class="faq-body">
+                                <p>Kursor almacena todos los datos localmente en tu dispositivo:</p>
+                                <ul>
+                                    <li><strong>Base de datos:</strong> <code>kursor.db</code> (SQLite)</li>
+                                    <li><strong>Logs:</strong> Carpeta <code>log/</code></li>
+                                    <li><strong>Cursos:</strong> Carpeta <code>cursos/</code></li>
+                                    <li><strong>Módulos:</strong> Carpeta <code>modules/</code></li>
+                                </ul>
+                                <p>Todos los datos se almacenan en el directorio de instalación de Kursor.</p>
+                                <div class="warning-box">
+                                    <strong>⚠️ Importante:</strong> Haz copias de seguridad de la carpeta de cursos si tienes contenido importante.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Solución de Problemas -->
+                <section id="problemas" class="mb-5">
+                    <h2><i class="fas fa-tools text-danger me-2"></i>Solución de Problemas</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq10">
+                            <span class="category-badge badge-problemas">Problemas</span>
+                            <h5 class="mb-0">Kursor no se inicia, ¿qué hago?</h5>
+                        </div>
+                        <div class="collapse" id="faq10">
+                            <div class="faq-body">
+                                <p>Si Kursor no se inicia, sigue estos pasos:</p>
+                                <ol>
+                                    <li><strong>Verifica Java:</strong> Ejecuta <code>java -version</code> en la terminal</li>
+                                    <li><strong>Revisa los logs:</strong> Consulta los archivos en la carpeta <code>log/</code></li>
+                                    <li><strong>Verifica permisos:</strong> Asegúrate de que tienes permisos de escritura en el directorio</li>
+                                    <li><strong>Reinstala:</strong> Descarga una nueva copia desde GitHub</li>
+                                </ol>
+                                <p>Si el problema persiste, puedes:</p>
+                                <ul>
+                                    <li>Reportar el problema en <a href="https://github.com/jjrp1/kursor/issues">GitHub Issues</a></li>
+                                    <li>Incluir los logs de error en tu reporte</li>
+                                    <li>Especificar tu sistema operativo y versión de Java</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq11">
+                            <span class="category-badge badge-problemas">Problemas</span>
+                            <h5 class="mb-0">Mi curso no se carga correctamente</h5>
+                        </div>
+                        <div class="collapse" id="faq11">
+                            <div class="faq-body">
+                                <p>Si tu curso no se carga, verifica:</p>
+                                <ul>
+                                    <li><strong>Formato YAML:</strong> Asegúrate de que el archivo tiene la sintaxis correcta</li>
+                                    <li><strong>Estructura:</strong> Verifica que todos los campos obligatorios están presentes</li>
+                                    <li><strong>Codificación:</strong> El archivo debe estar en UTF-8</li>
+                                    <li><strong>Ubicación:</strong> El archivo debe estar en la carpeta <code>cursos/</code></li>
+                                </ul>
+                                <p>Errores comunes:</p>
+                                <ul>
+                                    <li>Espacios incorrectos en la indentación</li>
+                                    <li>Caracteres especiales sin comillas</li>
+                                    <li>Campos obligatorios faltantes</li>
+                                    <li>Tipos de preguntas no soportados</li>
+                                </ul>
+                                <div class="info-box">
+                                    <strong>🔧 Herramienta:</strong> Usa un editor con soporte YAML para detectar errores de sintaxis.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-header" data-bs-toggle="collapse" data-bs-target="#faq12">
+                            <span class="category-badge badge-problemas">Problemas</span>
+                            <h5 class="mb-0">¿Cómo puedo reportar un bug o solicitar una función?</h5>
+                        </div>
+                        <div class="collapse" id="faq12">
+                            <div class="faq-body">
+                                <p>Para reportar problemas o solicitar nuevas funciones:</p>
+                                <ol>
+                                    <li>Ve a <a href="https://github.com/jjrp1/kursor/issues">GitHub Issues</a></li>
+                                    <li>Haz clic en "New Issue"</li>
+                                    <li>Selecciona el tipo apropiado (Bug report o Feature request)</li>
+                                    <li>Completa la plantilla con toda la información solicitada</li>
+                                    <li>Incluye logs, capturas de pantalla o ejemplos si es necesario</li>
+                                </ol>
+                                <p>Información útil para incluir:</p>
+                                <ul>
+                                    <li>Sistema operativo y versión</li>
+                                    <li>Versión de Java</li>
+                                    <li>Versión de Kursor</li>
+                                    <li>Pasos para reproducir el problema</li>
+                                    <li>Comportamiento esperado vs. actual</li>
+                                </ul>
+                                <div class="info-box">
+                                    <strong>💬 Discusiones:</strong> Para preguntas generales, usa <a href="https://github.com/jjrp1/kursor/discussions">GitHub Discussions</a>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="mb-5">
+                    <div class="card bg-light">
+                        <div class="card-body text-center">
+                            <h3>¿No encontraste tu respuesta?</h3>
+                            <p class="lead">Estamos aquí para ayudarte</p>
+                            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                <a href="https://github.com/jjrp1/kursor/issues" class="btn btn-primary">
+                                    <i class="fas fa-bug me-2"></i>Reportar Problema
+                                </a>
+                                <a href="https://github.com/jjrp1/kursor/discussions" class="btn btn-outline-secondary">
+                                    <i class="fas fa-comments me-2"></i>Discusiones
+                                </a>
+                                <a href="mailto:jjrp1@um.es" class="btn btn-outline-info">
+                                    <i class="fas fa-envelope me-2"></i>Contactar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>🎓 Kursor</h5>
+                    <p>Plataforma de formación interactiva modular</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Juan José Ruiz Pérez. Licencia MIT.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/jjrp1/kursor" class="text-white me-3">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:jjrp1@um.es" class="text-white me-3">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Search functionality
+        function filterFAQ() {
+            const searchTerm = document.getElementById('mainSearch').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('h5').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-body').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        document.getElementById('mainSearch').addEventListener('input', filterFAQ);
+        document.getElementById('searchInput').addEventListener('input', function() {
+            document.getElementById('mainSearch').value = this.value;
+            filterFAQ();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.sidebar .nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
