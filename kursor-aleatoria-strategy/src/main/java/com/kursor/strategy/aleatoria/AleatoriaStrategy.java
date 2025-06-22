@@ -1,8 +1,8 @@
 package com.kursor.strategy.aleatoria;
 
-import com.cursor.domain.EstrategiaAprendizaje;
-import com.cursor.domain.Pregunta;
-import com.cursor.domain.Respuesta;
+import com.kursor.domain.EstrategiaAprendizaje;
+import com.kursor.domain.Pregunta;
+import com.kursor.domain.Respuesta;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;

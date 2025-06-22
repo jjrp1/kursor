@@ -16,9 +16,9 @@ bloques:
         respuestaCorrecta: "London"
   - id: bloque2
     titulo: "Frases"
-    tipo: "fill_gap"
+    tipo: "completar_huecos"
     preguntas:
       - id: p2
-        tipo: "fill_gap"
+        tipo: "completar_huecos"
         enunciado: "She ____ to school every day."
         respuestaCorrecta: "goes"

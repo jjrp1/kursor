@@ -47,7 +47,7 @@ import java.io.Serializable;
  * 
  * while (estrategia.hayMasPreguntas()) {
  *     // Mostrar pregunta al usuario
- *     Respuesta respuesta = /* respuesta del usuario */;
+ *     Respuesta respuesta = obtenerRespuestaUsuario(); // obtener respuesta del usuario
  *     estrategia.registrarRespuesta(respuesta);
  *     Pregunta siguiente = estrategia.siguientePregunta();
  * }
@@ -139,42 +139,24 @@ public interface EstrategiaAprendizaje extends Serializable {
     double getProgreso();
     
     /**
-     * Guarda el estado actual de la estrategia.
+     * Serializa el estado actual de la estrategia.
      * 
-     * <p>Este método debe persistir el estado interno de la estrategia para
-     * permitir su restauración posterior. El estado incluye información
-     * como el progreso de iteración, pregunta actual, preguntas ya vistas, etc.</p>
+     * <p>Este método debe convertir el estado interno de la estrategia
+     * a una representación String que pueda ser almacenada y restaurada
+     * posteriormente.</p>
      * 
-     * <p>Implementaciones típicas:</p>
-     * <ul>
-     *   <li>Guardar en archivo local</li>
-     *   <li>Persistir en base de datos</li>
-     *   <li>Almacenar en memoria con backup</li>
-     * </ul>
+     * @return String que representa el estado actual de la estrategia
      */
-    void guardarEstado();
+    String serializarEstado();
     
     /**
-     * Restaura el estado previamente guardado de la estrategia.
+     * Deserializa y restaura el estado de la estrategia.
      * 
-     * <p>Este método debe recuperar el estado guardado por {@link #guardarEstado()}
+     * <p>Este método debe recuperar el estado serializado por {@link #serializarEstado()}
      * y restaurar la estrategia a ese punto, permitiendo continuar el aprendizaje
      * desde donde se dejó.</p>
      * 
-     * <p>Consideraciones:</p>
-     * <ul>
-     *   <li>Debe manejar casos donde no existe estado previo</li>
-     *   <li>Debe validar la integridad del estado restaurado</li>
-     *   <li>Debe ser compatible con versiones anteriores</li>
-     * </ul>
+     * @param estado String que representa el estado a restaurar
      */
-    void restaurarEstado();
-    
-    /**
-     * Reinicia la estrategia al inicio de la iteración.
-     * 
-     * <p>Este método resetea el estado interno de la estrategia,
-     * permitiendo comenzar una nueva iteración desde el principio.</p>
-     */
-    void reiniciar();
+    void deserializarEstado(String estado);
 } 

@@ -16,7 +16,7 @@ import java.util.HashSet;
 public class RepetirIncorrectasStrategy implements EstrategiaAprendizaje {
     private final List<Pregunta> preguntasBloque;
     private final Queue<Pregunta> colaIncorrectas;
-    private final Set<Long> preguntasIncorrectas;
+    private final Set<String> preguntasIncorrectas;
     private int indiceActual;
     private boolean enFaseRepeticion;
     private Pregunta preguntaActual;
