@@ -1,0 +1,302 @@
+id: curso_ingles_b2
+titulo: "English B2 Level Course"
+descripcion: "Curso completo de inglés nivel B2 con vocabulario, gramática y expresiones avanzadas"
+bloques:
+  - id: bloque1
+    titulo: "Grammar and Vocabulary Test"
+    descripcion: "Test de gramática y vocabulario"
+    tipo: "test"
+    preguntas:
+      - id: p1
+        tipo: "test"
+        enunciado: "Which sentence is grammatically correct?"
+        opciones:
+          - "I wish I would have more time yesterday"
+          - "I wish I had had more time yesterday"
+          - "I wish I have had more time yesterday"
+        respuestaCorrecta: "I wish I had had more time yesterday"
+      - id: p2
+        tipo: "test"
+        enunciado: "Choose the correct phrasal verb: 'The meeting was _____ until next week.'"
+        opciones:
+          - "put off"
+          - "put on"
+          - "put up"
+        respuestaCorrecta: "put off"
+      - id: p3
+        tipo: "test"
+        enunciado: "What's the meaning of 'to break the ice'?"
+        opciones:
+          - "To destroy something frozen"
+          - "To start a conversation in a social situation"
+          - "To work very hard"
+        respuestaCorrecta: "To start a conversation in a social situation"
+      - id: p4
+        tipo: "test"
+        enunciado: "Which modal verb expresses strong obligation?"
+        opciones:
+          - "should"
+          - "must"
+          - "might"
+        respuestaCorrecta: "must"
+      - id: p5
+        tipo: "test"
+        enunciado: "Choose the correct form: 'If I _____ you, I would apologize immediately.'"
+        opciones:
+          - "am"
+          - "was"
+          - "were"
+        respuestaCorrecta: "were"
+      - id: p6
+        tipo: "test"
+        enunciado: "What does 'to cut corners' mean?"
+        opciones:
+          - "To take shortcuts or reduce quality to save time/money"
+          - "To be very precise"
+          - "To decorate something"
+        respuestaCorrecta: "To take shortcuts or reduce quality to save time/money"
+      - id: p7
+        tipo: "test"
+        enunciado: "Which sentence uses the passive voice correctly?"
+        opciones:
+          - "The report was written by Sarah yesterday"
+          - "The report was wrote by Sarah yesterday"
+          - "The report has written by Sarah yesterday"
+        respuestaCorrecta: "The report was written by Sarah yesterday"
+      - id: p8
+        tipo: "test"
+        enunciado: "Choose the correct preposition: 'She's very good _____ handling difficult situations.'"
+        opciones:
+          - "in"
+          - "at"
+          - "on"
+        respuestaCorrecta: "at"
+      - id: p9
+        tipo: "test"
+        enunciado: "What's the opposite of 'obsolete'?"
+        opciones:
+          - "modern"
+          - "ancient"
+          - "broken"
+        respuestaCorrecta: "modern"
+      - id: p10
+        tipo: "test"
+        enunciado: "Which sentence shows reported speech correctly?"
+        opciones:
+          - "He said that he will come tomorrow"
+          - "He said that he would come the next day"
+          - "He said that he comes tomorrow"
+        respuestaCorrecta: "He said that he would come the next day"
+      - id: p11
+        tipo: "test"
+        enunciado: "Choose the correct collocation: 'to _____ a decision'"
+        opciones:
+          - "do"
+          - "make"
+          - "take"
+        respuestaCorrecta: "make"
+      - id: p12
+        tipo: "test"
+        enunciado: "What does 'to be over the moon' mean?"
+        opciones:
+          - "To be very happy"
+          - "To be confused"
+          - "To be tired"
+        respuestaCorrecta: "To be very happy"
+      - id: p13
+        tipo: "test"
+        enunciado: "Which relative pronoun is correct: 'The book _____ I bought yesterday is excellent.'"
+        opciones:
+          - "who"
+          - "which"
+          - "what"
+        respuestaCorrecta: "which"
+      - id: p14
+        tipo: "test"
+        enunciado: "Choose the correct form: 'I'd rather you _____ smoking in here.'"
+        opciones:
+          - "don't"
+          - "didn't"
+          - "not"
+        respuestaCorrecta: "didn't"
+      - id: p15
+        tipo: "test"
+        enunciado: "What's the meaning of 'to spill the beans'?"
+        opciones:
+          - "To make a mess"
+          - "To reveal a secret"
+          - "To cook badly"
+        respuestaCorrecta: "To reveal a secret"
+      - id: p16
+        tipo: "test"
+        enunciado: "Which sentence is in the third conditional?"
+        opciones:
+          - "If I had studied harder, I would have passed the exam"
+          - "If I study harder, I will pass the exam"
+          - "If I studied harder, I would pass the exam"
+        respuestaCorrecta: "If I had studied harder, I would have passed the exam"
+      - id: p17
+        tipo: "test"
+        enunciado: "Choose the correct word: 'The company's _____ has improved significantly this year.'"
+        opciones:
+          - "performance"
+          - "performence"
+          - "preformance"
+        respuestaCorrecta: "performance"
+      - id: p18
+        tipo: "test"
+        enunciado: "What does 'to hit the nail on the head' mean?"
+        opciones:
+          - "To be exactly right"
+          - "To hurt yourself"
+          - "To build something"
+        respuestaCorrecta: "To be exactly right"
+      - id: p19
+        tipo: "test"
+        enunciado: "Which sentence uses 'used to' correctly?"
+        opciones:
+          - "I used to going to the gym every day"
+          - "I used to go to the gym every day"
+          - "I used to went to the gym every day"
+        respuestaCorrecta: "I used to go to the gym every day"
+      - id: p20
+        tipo: "test"
+        enunciado: "Choose the correct quantifier: 'There are _____ people who can solve this problem.'"
+        opciones:
+          - "little"
+          - "few"
+          - "less"
+        respuestaCorrecta: "few"
+
+  - id: bloque2
+    titulo: "Complete the Sentences"
+    descripcion: "Complete las oraciones con las palabras correctas"
+    tipo: "completar_huecos"
+    preguntas:
+      - id: p21
+        enunciado: "I haven't seen her _____ last month."
+        respuestaCorrecta: "since"
+      - id: p22
+        enunciado: "The meeting has been _____ off until next Friday."
+        respuestaCorrecta: "put"
+      - id: p23
+        enunciado: "She's been working here _____ five years."
+        respuestaCorrecta: "for"
+      - id: p24
+        enunciado: "I wish I _____ spoken to him yesterday."
+        respuestaCorrecta: "had"
+      - id: p25
+        enunciado: "The car needs to be _____ before we can sell it."
+        respuestaCorrecta: "repaired"
+      - id: p26
+        enunciado: "I'm looking forward _____ hearing from you soon."
+        respuestaCorrecta: "to"
+      - id: p27
+        enunciado: "If I _____ more time, I would help you with the project."
+        respuestaCorrecta: "had"
+      - id: p28
+        enunciado: "The book _____ was written by Shakespeare is very famous."
+        respuestaCorrecta: "which"
+      - id: p29
+        enunciado: "I'd rather _____ stayed home tonight."
+        respuestaCorrecta: "we"
+      - id: p30
+        enunciado: "She's used to _____ up early for work."
+        respuestaCorrecta: "getting"
+      - id: p31
+        enunciado: "The problem should _____ been solved by now."
+        respuestaCorrecta: "have"
+      - id: p32
+        enunciado: "I can't stand _____ to loud music."
+        respuestaCorrecta: "listening"
+      - id: p33
+        enunciado: "He denied _____ the money from the office."
+        respuestaCorrecta: "taking"
+      - id: p34
+        enunciado: "The house _____ we lived as children has been demolished."
+        respuestaCorrecta: "where"
+      - id: p35
+        enunciado: "I suggest _____ the meeting until everyone can attend."
+        respuestaCorrecta: "postponing"
+      - id: p36
+        enunciado: "She's not only intelligent _____ also very creative."
+        respuestaCorrecta: "but"
+      - id: p37
+        enunciado: "The more you practice, the _____ you'll become."
+        respuestaCorrecta: "better"
+      - id: p38
+        enunciado: "I'd like to know _____ time the train arrives."
+        respuestaCorrecta: "what"
+      - id: p39
+        enunciado: "Despite _____ tired, she continued working."
+        respuestaCorrecta: "being"
+      - id: p40
+        enunciado: "The project must _____ completed by the end of the month."
+        respuestaCorrecta: "be"
+
+  - id: bloque3
+    titulo: "Vocabulary Flashcards"
+    descripcion: "Voltee las tarjetas para ver el reverso"
+    tipo: "flashcards"
+    preguntas:
+      - id: p41
+        anverso: "Comprehensive"
+        reverso: "Complete and including everything that is necessary"
+      - id: p42
+        anverso: "Deteriorate"
+        reverso: "To become worse in quality or condition"
+      - id: p43
+        anverso: "Resilient"
+        reverso: "Able to recover quickly from difficult conditions"
+      - id: p44
+        anverso: "Substantial"
+        reverso: "Large in size, value, or importance"
+      - id: p45
+        anverso: "Arbitrary"
+        reverso: "Based on personal opinion rather than facts or reason"
+      - id: p46
+        anverso: "Prevalent"
+        reverso: "Existing very commonly or happening often"
+      - id: p47
+        anverso: "Scrutinize"
+        reverso: "To examine something very carefully"
+      - id: p48
+        anverso: "Ambiguous"
+        reverso: "Having more than one possible meaning"
+      - id: p49
+        anverso: "Legitimate"
+        reverso: "Reasonable and acceptable according to agreed standards"
+      - id: p50
+        anverso: "Unprecedented"
+        reverso: "Never having happened or existed before"
+      - id: p51
+        anverso: "Lucrative"
+        reverso: "Producing a lot of money; profitable"
+      - id: p52
+        anverso: "Meticulous"
+        reverso: "Very careful and precise"
+      - id: p53
+        anverso: "Vulnerable"
+        reverso: "Easily hurt, influenced, or attacked"
+      - id: p54
+        anverso: "Intricate"
+        reverso: "Very complicated or detailed"
+      - id: p55
+        anverso: "Contagious"
+        reverso: "Spreading quickly from one person to another"
+      - id: p56
+        anverso: "Versatile"
+        reverso: "Able to adapt or be adapted to many different functions"
+      - id: p57
+        anverso: "Obsolete"
+        reverso: "No longer in use; out of date"
+      - id: p58
+        anverso: "Rigorous"
+        reverso: "Extremely thorough and careful"
+      - id: p59
+        anverso: "Profound"
+        reverso: "Very great or intense; having deep meaning"
+      - id: p60
+        anverso: "Inevitable"
+        reverso: "Certain to happen; unavoidable"
+

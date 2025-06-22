@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <!-- Configuración simplificada para tests -->
+    <property name="LOG_LEVEL" value="${kursor.log.level:-DEBUG}"/>
+    <property name="TEST_LOG_DIR" value="target/test-logs"/>
+    
+    <!-- Patrón de formato consistente con la configuración principal -->
+    <property name="TEST_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %logger{1} - %msg%n"/>
+    
+    <!-- Appender para tests en memoria -->
+    <appender name="TEST_APPENDER" class="ch.qos.logback.core.read.ListAppender">
+        <encoder charset="UTF-8">
+            <pattern>${TEST_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Appender para archivo de test -->
+    <appender name="TEST_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${TEST_LOG_DIR}/test.log</file>
+        <encoder charset="UTF-8">
+            <pattern>${TEST_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Appender para consola (solo para debugging de tests) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${TEST_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Configuración específica para tests de logging -->
+    <logger name="com.kursor.core.util.KursorLogger" level="DEBUG" additivity="false">
+        <appender-ref ref="TEST_APPENDER"/>
+        <appender-ref ref="TEST_FILE"/>
+    </logger>
+    
+    <!-- Logger para tests -->
+    <logger name="TestLogger" level="DEBUG" additivity="false">
+        <appender-ref ref="TEST_APPENDER"/>
+        <appender-ref ref="TEST_FILE"/>
+    </logger>
+    
+    <!-- Configuración raíz para tests -->
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="TEST_APPENDER"/>
+        <appender-ref ref="TEST_FILE"/>
+    </root>
+    
+</configuration> 

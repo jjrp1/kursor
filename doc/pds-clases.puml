@@ -1,0 +1,69 @@
+@startuml clases 
+class Curso {
+  +id: Long
+  +nombre: String
+  +descripcion: String
+}
+class Bloque {
+  +id: Long
+  +titulo: String
+  +tipo: String
+}
+abstract class Pregunta {
+  +id: Long
+  +tipo: String
+  +enunciado: String
+}
+class PreguntaTest
+class PreguntaCompletarHuecos
+class Flashcard
+
+class Sesion {
+  +id: Long
+  +fechaComienzo: Date
+  +fechaUltimaRevision: Date
+  +tiempoDedicado: int
+  +porcentajeCompletitud: int
+  +tasaAciertos: int
+  +mejorRachaAciertos: int
+  +guardarSesion()
+  +restaurarSesion()
+  +responderPregunta()
+  +actualizarEstadisticas()
+  +finalizarSesion()
+}
+
+class PreguntaSesion {
+  +resultado: String
+  +tiempoDedicado: int
+  +intentos: int
+  +pistasUsadas: int
+}
+abstract class EstrategiaAprendizaje {
+  +nombre: String
+  +guardarEstado()
+  +restaurarEstado()
+  +siguientePregunta()
+}
+class EstrategiaSecuencial
+class EstrategiaAleatoria
+class EstrategiaRepeticionEspaciada
+class EstadisticasGlobales {
+  +tiempoTotalUso: int
+  +mejorRachaDias: int
+}
+
+Curso "1" -- "1..*" Bloque
+Bloque "1" -- "1..*" Pregunta
+Pregunta <|-- PreguntaTest
+Pregunta <|-- PreguntaCompletarHuecos
+Pregunta <|-- Flashcard
+Curso "1" -- "0..*" Sesion
+Sesion "1" -- "1" EstrategiaAprendizaje
+Sesion "1" -- "1..*" PreguntaSesion
+PreguntaSesion "1" -- "1" Pregunta
+EstadisticasGlobales "1" -- "0..*" Sesion
+EstrategiaAprendizaje <|-- EstrategiaSecuencial
+EstrategiaAprendizaje <|-- EstrategiaAleatoria
+EstrategiaAprendizaje <|-- EstrategiaRepeticionEspaciada
+@enduml

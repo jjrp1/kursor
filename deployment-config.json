@@ -1,0 +1,129 @@
+{
+  "project": {
+    "name": "Kursor",
+    "version": "1.0.0",
+    "description": "Plataforma de Formación Interactiva",
+    "author": "Juan José Ruiz Pérez <jjrp1@um.es>"
+  },
+  "build": {
+    "javaVersion": "17",
+    "javafxVersion": "17.0.2",
+    "mavenVersion": "3.8.0+"
+  },
+  "distribution": {
+    "portable": {
+      "enabled": true,
+      "includeJavaFX": true,
+      "includeDocumentation": true,
+      "includeScripts": true,
+      "targetFormats": ["zip"],
+      "outputName": "kursor-portable-v{version}.zip"
+    },
+    "installer": {
+      "enabled": false,
+      "type": "msi",
+      "includeJava": false
+    }
+  },
+  "platforms": {
+    "windows": {
+      "enabled": true,
+      "scripts": ["run.bat", "install-java.bat"],
+      "javaFXModules": ["controls", "fxml", "graphics", "base"],
+      "javaFXPlatform": "win"
+    },
+    "linux": {
+      "enabled": true,
+      "scripts": ["run.sh", "install-java.sh"],
+      "javaFXModules": ["controls", "fxml", "graphics", "base"],
+      "javaFXPlatform": "linux"
+    },
+    "macos": {
+      "enabled": true,
+      "scripts": ["run.sh", "install-java.sh"],
+      "javaFXModules": ["controls", "fxml", "graphics", "base"],
+      "javaFXPlatform": "mac"
+    }
+  },
+  "modules": {
+    "core": {
+      "name": "kursor-core",
+      "version": "1.0.0",
+      "required": true
+    },
+    "ui": {
+      "name": "kursor-ui",
+      "version": "1.0.0",
+      "required": true,
+      "mainClass": "com.kursor.ui.KursorApplication"
+    },
+    "fillblanks": {
+      "name": "kursor-fillblanks-module",
+      "version": "1.0.0",
+      "required": false
+    },
+    "flashcard": {
+      "name": "kursor-flashcard-module",
+      "version": "1.0.0",
+      "required": false
+    },
+    "multiplechoice": {
+      "name": "kursor-multiplechoice-module",
+      "version": "1.0.0",
+      "required": false
+    },
+    "truefalse": {
+      "name": "kursor-truefalse-module",
+      "version": "1.0.0",
+      "required": false
+    }
+  },
+  "resources": {
+    "cursos": {
+      "source": "cursos/",
+      "include": ["*.yaml", "*.yml", "*.json"],
+      "recursive": true
+    },
+    "documentation": {
+      "source": "doc/",
+      "include": ["*.md", "*.txt", "*.pdf"],
+      "recursive": true
+    },
+    "scripts": {
+      "source": "scripts/",
+      "include": ["*.bat", "*.sh", "*.ps1"],
+      "recursive": false
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "kursor.log",
+    "directory": "log",
+    "maxSize": "10MB",
+    "maxHistory": 30
+  },
+  "requirements": {
+    "minimum": {
+      "java": "17",
+      "memory": "2GB",
+      "disk": "100MB"
+    },
+    "recommended": {
+      "java": "17",
+      "memory": "4GB",
+      "disk": "500MB"
+    }
+  },
+  "urls": {
+    "java": "https://adoptium.net/",
+    "javafx": "https://openjfx.io/",
+    "documentation": "https://github.com/kursor-team/kursor",
+    "support": "https://github.com/kursor-team/kursor/issues"
+  },
+  "application": {
+    "name": "Kursor",
+    "version": "1.0.0",
+    "author": "Juan José Ruiz Pérez <jjrp1@um.es>",
+    "description": "Plataforma de formación interactiva modular"
+  }
+} 

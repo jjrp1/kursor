@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kursor - Mockup GUI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        /* Barra de navegación */
+        .nav-bar {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 15px 20px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-button {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-button.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Contenido principal */
+        .main-content {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            text-align: center;
+        }
+
+        .dashboard-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .action-button.blue {
+            background: linear-gradient(135deg, #3498db, #5dade2);
+        }
+
+        .action-button.red {
+            background: linear-gradient(135deg, #e74c3c, #ec7063);
+        }
+
+        /* Cursos */
+        .courses-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .course-info h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .course-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+            max-width: 400px;
+        }
+
+        .course-button {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Vista de cursos detallada */
+        .courses-view {
+            display: flex;
+            gap: 20px;
+            height: 600px;
+        }
+
+        .courses-list {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .course-item {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .course-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .course-item.selected {
+            background-color: #e8f5e8;
+            border-left: 4px solid #27ae60;
+        }
+
+        .course-details {
+            flex: 2;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .detail-section {
+            margin-bottom: 20px;
+        }
+
+        .detail-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .block-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Módulos */
+        .modules-view {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .modules-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .modules-message {
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+
+        /* Estadísticas */
+        .stats-view {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .stats-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .stats-message {
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .courses-view {
+                flex-direction: column;
+            }
+
+            .course-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="nav-bar">
+        <div class="nav-content">
+            <div class="logo">🎓 Kursor</div>
+            <button class="nav-button active" onclick="showView('dashboard')">🏠 Dashboard</button>
+            <button class="nav-button" onclick="showView('cursos')">📚 Cursos</button>
+            <button class="nav-button" onclick="showView('modulos')">🔧 Módulos</button>
+            <button class="nav-button" onclick="showView('estadisticas')">📊 Estadísticas</button>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard fade-in">
+            <h1 class="dashboard-title">🏠 Dashboard</h1>
+            
+            <div class="quick-actions">
+                <button class="action-button">▶️ Inspeccionar</button>
+                <button class="action-button">▶️ Comenzar</button>
+                <button class="action-button">▶️ Reanudar</button>
+                <button class="action-button blue">📚 Flashcards</button>
+                <button class="action-button red">📊 Estadísticas</button>
+            </div>
+
+            <div class="courses-section">
+                <h2 class="section-title">Cursos Disponibles</h2>
+                
+                <div class="course-card">
+                    <div class="course-info">
+                        <h3>Curso de Inglés Básico</h3>
+                        <p>Curso completo de inglés para principiantes con ejercicios interactivos y flashcards</p>
+                    </div>
+                    <button class="course-button">Comenzar</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-info">
+                        <h3>Curso de Inglés B2</h3>
+                        <p>Curso avanzado de inglés nivel B2 con preguntas complejas y ejercicios de comprensión</p>
+                    </div>
+                    <button class="course-button">Comenzar</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-info">
+                        <h3>Flashcards de Inglés</h3>
+                        <p>Colección de flashcards para memorizar vocabulario y expresiones en inglés</p>
+                    </div>
+                    <button class="course-button">Comenzar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista de Cursos -->
+        <div id="cursos" class="courses-view" style="display: none;">
+            <div class="courses-list">
+                <h2 class="section-title">Lista de Cursos</h2>
+                
+                <div class="course-item selected" onclick="selectCourse(this, 'ingles-basico')">
+                    <h3>Curso de Inglés Básico</h3>
+                    <p>3 bloques • 45 preguntas</p>
+                </div>
+                
+                <div class="course-item" onclick="selectCourse(this, 'ingles-b2')">
+                    <h3>Curso de Inglés B2</h3>
+                    <p>5 bloques • 78 preguntas</p>
+                </div>
+                
+                <div class="course-item" onclick="selectCourse(this, 'flashcards')">
+                    <h3>Flashcards de Inglés</h3>
+                    <p>1 bloque • 25 flashcards</p>
+                </div>
+            </div>
+
+            <div class="course-details">
+                <div id="ingles-basico" class="course-detail">
+                    <h2>Curso de Inglés Básico</h2>
+                    <p><strong>Descripción:</strong> Curso completo de inglés para principiantes con ejercicios interactivos y flashcards.</p>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-title">📚 Bloques del Curso</h3>
+                        <div class="block-item">
+                            <strong>Bloque 1: Saludos y Presentaciones</strong><br>
+                            15 preguntas • Múltiple choice, True/False
+                        </div>
+                        <div class="block-item">
+                            <strong>Bloque 2: Vocabulario Básico</strong><br>
+                            20 preguntas • Flashcards, Completar huecos
+                        </div>
+                        <div class="block-item">
+                            <strong>Bloque 3: Gramática Simple</strong><br>
+                            10 preguntas • Múltiple choice, True/False
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="action-button">▶️ Inspeccionar</button>
+                        <button class="action-button">▶️ Comenzar</button>
+                        <button class="action-button blue">📚 Flashcards</button>
+                    </div>
+                </div>
+
+                <div id="ingles-b2" class="course-detail" style="display: none;">
+                    <h2>Curso de Inglés B2</h2>
+                    <p><strong>Descripción:</strong> Curso avanzado de inglés nivel B2 con preguntas complejas y ejercicios de comprensión.</p>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-title">📚 Bloques del Curso</h3>
+                        <div class="block-item">
+                            <strong>Bloque 1: Gramática Avanzada</strong><br>
+                            20 preguntas • Múltiple choice, Completar huecos
+                        </div>
+                        <div class="block-item">
+                            <strong>Bloque 2: Comprensión Lectora</strong><br>
+                            15 preguntas • Múltiple choice, True/False
+                        </div>
+                        <div class="block-item">
+                            <strong>Bloque 3: Vocabulario Avanzado</strong><br>
+                            18 preguntas • Flashcards, Completar huecos
+                        </div>
+                        <div class="block-item">
+                            <strong>Bloque 4: Expresiones Idiomáticas</strong><br>
+                            15 preguntas • Múltiple choice, True/False
+                        </div>
+                        <div class="block-item">
+                            <strong>Bloque 5: Práctica General</strong><br>
+                            10 preguntas • Varios tipos
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="action-button">▶️ Inspeccionar</button>
+                        <button class="action-button">▶️ Comenzar</button>
+                        <button class="action-button blue">📚 Flashcards</button>
+                    </div>
+                </div>
+
+                <div id="flashcards" class="course-detail" style="display: none;">
+                    <h2>Flashcards de Inglés</h2>
+                    <p><strong>Descripción:</strong> Colección de flashcards para memorizar vocabulario y expresiones en inglés.</p>
+                    
+                    <div class="detail-section">
+                        <h3 class="detail-title">📚 Contenido</h3>
+                        <div class="block-item">
+                            <strong>Vocabulario Básico</strong><br>
+                            25 flashcards • Palabras y traducciones
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <button class="action-button">▶️ Inspeccionar</button>
+                        <button class="action-button">▶️ Comenzar</button>
+                        <button class="action-button blue">📚 Flashcards</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista de Módulos -->
+        <div id="modulos" class="modules-view" style="display: none;">
+            <h1 class="modules-title">🔧 Módulos de Preguntas</h1>
+            <p class="module

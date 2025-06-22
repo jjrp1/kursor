@@ -1,0 +1,791 @@
+id: flashcards_ingles
+titulo: "English B2 Level Course (flashcards)"
+descripcion: "flashcards de un curso de inglés nivel B2. Solo vocabulario, phrasal verbs y collocations (varios temas/subject)"
+bloques:
+  - id: edu001
+    titulo: "Educación"
+    descripcion: "Escuelas, universidades, métodos de aprendizaje, sistemas educativos."
+    tipo: flashcards
+    preguntas:
+      - id: 1
+        anverso: "curriculum"
+        reverso: "plan de estudios"
+      - id: 2
+        anverso: "syllabus"
+        reverso: "programa (de una asignatura)"
+      - id: 3
+        anverso: "assessment"
+        reverso: "evaluación"
+      - id: 4
+        anverso: "tuition fees"
+        reverso: "tasas de matrícula"
+      - id: 5
+        anverso: "scholarship"
+        reverso: "beca"
+      - id: 6
+        anverso: "enrolment"
+        reverso: "matrícula (inscripción)"
+      - id: 7
+        anverso: "compulsory"
+        reverso: "obligatorio"
+      - id: 8
+        anverso: "elective"
+        reverso: "optativo"
+      - id: 9
+        anverso: "dropout"
+        reverso: "abandono escolar"
+      - id: 10
+        anverso: "undergraduate"
+        reverso: "estudiante de grado"
+      - id: 11
+        anverso: "postgraduate"
+        reverso: "posgrado"
+      - id: 12
+        anverso: "degree"
+        reverso: "título universitario"
+      - id: 13
+        anverso: "bachelor’s degree"
+        reverso: "licenciatura"
+      - id: 14
+        anverso: "master’s degree"
+        reverso: "máster"
+      - id: 15
+        anverso: "PhD"
+        reverso: "doctorado"
+      - id: 16
+        anverso: "lecture"
+        reverso: "clase magistral"
+      - id: 17
+        anverso: "seminar"
+        reverso: "seminario"
+      - id: 18
+        anverso: "tutorial"
+        reverso: "tutoría"
+      - id: 19
+        anverso: "workshop"
+        reverso: "taller"
+      - id: 20
+        anverso: "internship"
+        reverso: "prácticas"
+      - id: 21
+        anverso: "placement"
+        reverso: "colocación/prácticas"
+      - id: 22
+        anverso: "faculty"
+        reverso: "facultad (personal docente o edificio)"
+      - id: 23
+        anverso: "campus"
+        reverso: "campus"
+      - id: 24
+        anverso: "headmaster"
+        reverso: "director (de escuela)"
+      - id: 25
+        anverso: "principal"
+        reverso: "director (de instituto/colegio)"
+      - id: 26
+        anverso: "dean"
+        reverso: "decano"
+      - id: 27
+        anverso: "professor"
+        reverso: "profesor universitario"
+      - id: 28
+        anverso: "lecturer"
+        reverso: "profesor (universidad)"
+      - id: 29
+        anverso: "teacher"
+        reverso: "profesor (escuela)"
+      - id: 30
+        anverso: "pupil"
+        reverso: "alumno (escuela)"
+      - id: 31
+        anverso: "student"
+        reverso: "estudiante"
+      - id: 32
+        anverso: "classmate"
+        reverso: "compañero de clase"
+      - id: 33
+        anverso: "peer"
+        reverso: "igual/compañero"
+      - id: 34
+        anverso: "attendance"
+        reverso: "asistencia"
+      - id: 35
+        anverso: "absenteeism"
+        reverso: "absentismo"
+      - id: 36
+        anverso: "achievement"
+        reverso: "logro"
+      - id: 37
+        anverso: "failure"
+        reverso: "fracaso"
+      - id: 38
+        anverso: "grade"
+        reverso: "nota/calificación"
+      - id: 39
+        anverso: "mark"
+        reverso: "nota/puntuación"
+      - id: 40
+        anverso: "exam"
+        reverso: "examen"
+      - id: 41
+        anverso: "quiz"
+        reverso: "prueba corta"
+      - id: 42
+        anverso: "assignment"
+        reverso: "tarea/trabajo"
+      - id: 43
+        anverso: "homework"
+        reverso: "deberes"
+      - id: 44
+        anverso: "project"
+        reverso: "proyecto"
+      - id: 45
+        anverso: "research"
+        reverso: "investigación"
+      - id: 46
+        anverso: "dissertation"
+        reverso: "tesina"
+      - id: 47
+        anverso: "thesis"
+        reverso: "tesis"
+      - id: 48
+        anverso: "library"
+        reverso: "biblioteca"
+      - id: 49
+        anverso: "laboratory"
+        reverso: "laboratorio"
+      - id: 50
+        anverso: "blackboard"
+        reverso: "pizarra"
+      - id: 51
+        anverso: "whiteboard"
+        reverso: "pizarra blanca"
+      - id: 52
+        anverso: "textbook"
+        reverso: "libro de texto"
+      - id: 53
+        anverso: "notebook"
+        reverso: "cuaderno"
+      - id: 54
+        anverso: "handout"
+        reverso: "material fotocopiado"
+      - id: 55
+        anverso: "worksheet"
+        reverso: "hoja de ejercicios"
+      - id: 56
+        anverso: "curricular"
+        reverso: "curricular"
+      - id: 57
+        anverso: "extracurricular"
+        reverso: "extracurricular"
+      - id: 58
+        anverso: "gap year"
+        reverso: "año sabático"
+      - id: 59
+        anverso: "distance learning"
+        reverso: "aprendizaje a distancia"
+      - id: 60
+        anverso: "blended learning"
+        reverso: "aprendizaje mixto"
+      - id: 61
+        anverso: "lifelong learning"
+        reverso: "aprendizaje permanente"
+      - id: 62
+        anverso: "self-study"
+        reverso: "autoestudio"
+      - id: 63
+        anverso: "critical thinking"
+        reverso: "pensamiento crítico"
+      - id: 64
+        anverso: "problem-solving"
+        reverso: "resolución de problemas"
+      - id: 65
+        anverso: "literacy"
+        reverso: "alfabetización"
+      - id: 66
+        anverso: "numeracy"
+        reverso: "habilidad numérica"
+      - id: 67
+        anverso: "skills"
+        reverso: "habilidades"
+      - id: 68
+        anverso: "competence"
+        reverso: "competencia"
+      - id: 69
+        anverso: "knowledge"
+        reverso: "conocimiento"
+      - id: 70
+        anverso: "understanding"
+        reverso: "comprensión"
+      - id: 71
+        anverso: "memorize"
+        reverso: "memorizar"
+      - id: 72
+        anverso: "revise"
+        reverso: "repasar"
+      - id: 73
+        anverso: "cheat"
+        reverso: "hacer trampa"
+      - id: 74
+        anverso: "expel"
+        reverso: "expulsar"
+      - id: 75
+        anverso: "suspend"
+        reverso: "suspender (expulsar temporalmente)"
+      - id: 76
+        anverso: "discipline"
+        reverso: "disciplina"
+      - id: 77
+        anverso: "bullying"
+        reverso: "acoso escolar"
+      - id: 78
+        anverso: "guidance counselor"
+        reverso: "orientador escolar"
+      - id: 79
+        anverso: "tutor"
+        reverso: "tutor"
+      - id: 80
+        anverso: "mentor"
+        reverso: "mentor"
+      - id: 81
+        anverso: "principal"
+        reverso: "director"
+      - id: 82
+        anverso: "certificate"
+        reverso: "certificado"
+      - id: 83
+        anverso: "qualification"
+        reverso: "titulación"
+      - id: 84
+        anverso: "enrol"
+        reverso: "matricularse"
+      - id: 85
+        anverso: "register"
+        reverso: "registrarse"
+      - id: 86
+        anverso: "submit"
+        reverso: "entregar (un trabajo)"
+      - id: 87
+        anverso: "deadline"
+        reverso: "fecha límite"
+      - id: 88
+        anverso: "extension"
+        reverso: "prórroga"
+      - id: 89
+        anverso: "scholarly"
+        reverso: "académico"
+      - id: 90
+        anverso: "academic year"
+        reverso: "año académico"
+      - id: 91
+        anverso: "term"
+        reverso: "trimestre/semestre"
+      - id: 92
+        anverso: "semester"
+        reverso: "semestre"
+      - id: 93
+        anverso: "holiday"
+        reverso: "vacaciones"
+      - id: 94
+        anverso: "school trip"
+        reverso: "excursión escolar"
+      - id: 95
+        anverso: "boarding school"
+        reverso: "internado"
+      - id: 96
+        anverso: "public school"
+        reverso: "escuela pública"
+      - id: 97
+        anverso: "private school"
+        reverso: "escuela privada"
+      - id: 98
+        anverso: "comprehensive school"
+        reverso: "instituto de educación secundaria"
+      - id: 99
+        anverso: "nursery school"
+        reverso: "guardería"
+      - id: 100
+        anverso: "primary school"
+        reverso: "escuela primaria"
+      - id: 101
+        anverso: "catch up (with/on)"
+        reverso: "ponerse al día (con/en)"
+      - id: 102
+        anverso: "fall behind (in/with)"
+        reverso: "quedarse atrás (en/con)"
+      - id: 103
+        anverso: "drop out (of)"
+        reverso: "abandonar (los estudios)"
+      - id: 104
+        anverso: "hand in"
+        reverso: "entregar (un trabajo)"
+      - id: 105
+        anverso: "hand out"
+        reverso: "repartir (material, exámenes)"
+      - id: 106
+        anverso: "go over"
+        reverso: "repasar, revisar"
+      - id: 107
+        anverso: "read up on"
+        reverso: "informarse, documentarse sobre"
+      - id: 108
+        anverso: "sign up (for)"
+        reverso: "apuntarse, inscribirse (en)"
+      - id: 109
+        anverso: "stay behind"
+        reverso: "quedarse después de clase"
+      - id: 110
+        anverso: "sum up"
+        reverso: "resumir"
+      - id: 111
+        anverso: "take up"
+        reverso: "empezar (una actividad, asignatura)"
+      - id: 112
+        anverso: "work out"
+        reverso: "resolver, solucionar"
+      - id: 113
+        anverso: "write down"
+        reverso: "anotar, apuntar"
+      - id: 114
+        anverso: "brush up on"
+        reverso: "refrescar conocimientos"
+      - id: 115
+        anverso: "look up"
+        reverso: "buscar (información, palabra)"
+      - id: 116
+        anverso: "copy out"
+        reverso: "copiar (exactamente)"
+      - id: 117
+        anverso: "sail through"
+        reverso: "aprobar fácilmente"
+      - id: 118
+        anverso: "reel off"
+        reverso: "recitar de memoria"
+      - id: 119
+        anverso: "get through (an exam)"
+        reverso: "superar (un examen)"
+      - id: 120
+        anverso: "pick up (a language/skill)"
+        reverso: "aprender (un idioma/habilidad) de manera informal"
+      - id: 121
+        anverso: "turn in"
+        reverso: "entregar (un trabajo)"
+      - id: 122
+        anverso: "set up (a project)"
+        reverso: "organizar (un proyecto)"
+      - id: 123
+        anverso: "back up (an argument)"
+        reverso: "respaldar (un argumento)"
+      - id: 124
+        anverso: "figure out"
+        reverso: "descifrar, entender"
+      - id: 125
+        anverso: "go into (detail)"
+        reverso: "entrar en (detalle)"
+      - id: 126
+        anverso: "go over (notes)"
+        reverso: "repasar (apuntes)"
+      - id: 127
+        anverso: "keep up (with homework)"
+        reverso: "mantenerse al día (con los deberes)"
+      - id: 128
+        anverso: "put off (an assignment)"
+        reverso: "posponer (una tarea)"
+      - id: 129
+        anverso: "catch on (quickly)"
+        reverso: "entender rápido"
+      - id: 130
+        anverso: "read over"
+        reverso: "leer para revisar"
+      - id: 131
+        anverso: "take in (information)"
+        reverso: "asimilar (información)"
+      - id: 132
+        anverso: "work on (a project)"
+        reverso: "trabajar en (un proyecto)"
+      - id: 133
+        anverso: "bring up (a topic)"
+        reverso: "sacar (un tema)"
+      - id: 134
+        anverso: "run through"
+        reverso: "repasar rápidamente"
+      - id: 135
+        anverso: "turn up (for class)"
+        reverso: "aparecer (en clase)"
+      - id: 136
+        anverso: "call on (a student)"
+        reverso: "preguntar a (un alumno)"
+      - id: 137
+        anverso: "go into (a subject)"
+        reverso: "profundizar en (una materia)"
+      - id: 138
+        anverso: "pass on (knowledge)"
+        reverso: "transmitir (conocimientos)"
+      - id: 139
+        anverso: "drop in (on a class)"
+        reverso: "pasar por (una clase)"
+      - id: 140
+        anverso: "move up (to the next grade)"
+        reverso: "pasar de curso"
+      - id: 141
+        anverso: "bring up (a question)"
+        reverso: "plantear (una pregunta)"
+      - id: 142
+        anverso: "go over (homework)"
+        reverso: "revisar (los deberes)"
+      - id: 143
+        anverso: "read aloud"
+        reverso: "leer en voz alta"
+      - id: 144
+        anverso: "break down (a problem)"
+        reverso: "desglosar (un problema)"
+      - id: 145
+        anverso: "check up on"
+        reverso: "comprobar, supervisar"
+      - id: 146
+        anverso: "fill in (a form)"
+        reverso: "rellenar (un formulario)"
+      - id: 147
+        anverso: "look over"
+        reverso: "echar un vistazo, revisar"
+      - id: 148
+        anverso: "read through"
+        reverso: "leer de principio a fin"
+      - id: 149
+        anverso: "sit for (an exam)"
+        reverso: "presentarse a (un examen)"
+      - id: 150
+        anverso: "swot up (on)"
+        reverso: "empollar (para un examen)"
+      - id: 151
+        anverso: "take notes"
+        reverso: "tomar apuntes"
+      - id: 152
+        anverso: "make progress"
+        reverso: "progresar"
+      - id: 153
+        anverso: "pay attention"
+        reverso: "prestar atención"
+      - id: 154
+        anverso: "do research"
+        reverso: "investigar"
+      - id: 155
+        anverso: "give a presentation"
+        reverso: "hacer una presentación"
+      - id: 156
+        anverso: "ask a question"
+        reverso: "hacer una pregunta"
+      - id: 157
+        anverso: "take part (in)"
+        reverso: "participar (en)"
+      - id: 158
+        anverso: "find out"
+        reverso: "averiguar, descubrir"
+  
+  - id: work001
+    titulo: "Trabajo y profesiones"
+    descripcion: "Empleos, entrevistas, desarrollo profesional, ambiente laboral."
+    tipo: flashcards
+    preguntas:
+      - id: 1
+        anverso: "job interview"
+        reverso: "entrevista de trabajo"
+      - id: 2
+        anverso: "cover letter"
+        reverso: "carta de presentación"
+      - id: 3
+        anverso: "curriculum vitae (CV)"
+        reverso: "currículum vitae"
+      - id: 4
+        anverso: "job vacancy"
+        reverso: "vacante de empleo"
+      - id: 5
+        anverso: "job offer"
+        reverso: "oferta de trabajo"
+      - id: 6
+        anverso: "job seeker"
+        reverso: "buscador de empleo"
+      - id: 7
+        anverso: "unemployment"
+        reverso: "desempleo"
+      - id: 8
+        anverso: "full-time job"
+        reverso: "trabajo a tiempo completo"
+      - id: 9
+        anverso: "part-time job"
+        reverso: "trabajo a tiempo parcial"
+      - id: 10
+        anverso: "internship"
+        reverso: "prácticas profesionales"
+      - id: 11
+        anverso: "trainee"
+        reverso: "aprendiz, becario"
+      - id: 12
+        anverso: "probation period"
+        reverso: "periodo de prueba"
+      - id: 13
+        anverso: "promotion"
+        reverso: "ascenso"
+      - id: 14
+        anverso: "demotion"
+        reverso: "descenso (laboral)"
+      - id: 15
+        anverso: "salary"
+        reverso: "salario"
+      - id: 16
+        anverso: "wages"
+        reverso: "sueldo (por horas, semanal)"
+      - id: 17
+        anverso: "bonus"
+        reverso: "bonificación"
+      - id: 18
+        anverso: "raise"
+        reverso: "aumento de sueldo"
+      - id: 19
+        anverso: "pay slip"
+        reverso: "nómina"
+      - id: 20
+        anverso: "resignation"
+        reverso: "dimisión"
+      - id: 21
+        anverso: "retirement"
+        reverso: "jubilación"
+      - id: 22
+        anverso: "pension"
+        reverso: "pensión"
+      - id: 23
+        anverso: "redundancy"
+        reverso: "despido (por recorte)"
+      - id: 24
+        anverso: "dismissal"
+        reverso: "despido"
+      - id: 25
+        anverso: "colleague"
+        reverso: "compañero de trabajo"
+      - id: 26
+        anverso: "boss"
+        reverso: "jefe"
+      - id: 27
+        anverso: "supervisor"
+        reverso: "supervisor"
+      - id: 28
+        anverso: "manager"
+        reverso: "gerente"
+      - id: 29
+        anverso: "executive"
+        reverso: "ejecutivo"
+      - id: 30
+        anverso: "employee"
+        reverso: "empleado"
+      - id: 31
+        anverso: "employer"
+        reverso: "empleador"
+      - id: 32
+        anverso: "teamwork"
+        reverso: "trabajo en equipo"
+      - id: 33
+        anverso: "deadline"
+        reverso: "fecha límite"
+      - id: 34
+        anverso: "workload"
+        reverso: "carga de trabajo"
+      - id: 35
+        anverso: "shift"
+        reverso: "turno"
+      - id: 36
+        anverso: "overtime"
+        reverso: "horas extra"
+      - id: 37
+        anverso: "flexible hours"
+        reverso: "horario flexible"
+      - id: 38
+        anverso: "remote work"
+        reverso: "trabajo remoto"
+      - id: 39
+        anverso: "telecommuting"
+        reverso: "teletrabajo"
+      - id: 40
+        anverso: "meeting"
+        reverso: "reunión"
+      - id: 41
+        anverso: "conference"
+        reverso: "conferencia"
+      - id: 42
+        anverso: "presentation"
+        reverso: "presentación"
+      - id: 43
+        anverso: "report"
+        reverso: "informe"
+      - id: 44
+        anverso: "project"
+        reverso: "proyecto"
+      - id: 45
+        anverso: "deal"
+        reverso: "acuerdo, trato"
+      - id: 46
+        anverso: "negotiation"
+        reverso: "negociación"
+      - id: 47
+        anverso: "contract"
+        reverso: "contrato"
+      - id: 48
+        anverso: "job satisfaction"
+        reverso: "satisfacción laboral"
+      - id: 49
+        anverso: "career prospects"
+        reverso: "perspectivas profesionales"
+      - id: 50
+        anverso: "job security"
+        reverso: "seguridad laboral"
+      # PHRASAL VERBS Y COLLOCATIONS
+      - id: 51
+        anverso: "apply for (a job)"
+        reverso: "solicitar (un empleo)"
+      - id: 52
+        anverso: "take on (responsibility)"
+        reverso: "asumir (responsabilidad)"
+      - id: 53
+        anverso: "take over (a position)"
+        reverso: "asumir (un puesto)"
+      - id: 54
+        anverso: "carry out (tasks)"
+        reverso: "llevar a cabo (tareas)"
+      - id: 55
+        anverso: "set up (a business)"
+        reverso: "montar (un negocio)"
+      - id: 56
+        anverso: "lay off"
+        reverso: "despedir (por recorte)"
+      - id: 57
+        anverso: "get ahead (in your career)"
+        reverso: "progresar (en la carrera)"
+      - id: 58
+        anverso: "move up (the career ladder)"
+        reverso: "ascender (en la carrera profesional)"
+      - id: 59
+        anverso: "hand in (your resignation)"
+        reverso: "presentar (la dimisión)"
+      - id: 60
+        anverso: "clock in / clock out"
+        reverso: "fichar (al entrar/salir)"
+      - id: 61
+        anverso: "fill in (for someone)"
+        reverso: "sustituir (a alguien)"
+      - id: 62
+        anverso: "burn out"
+        reverso: "quemarse (por exceso de trabajo)"
+      - id: 63
+        anverso: "call off (a meeting)"
+        reverso: "cancelar (una reunión)"
+      - id: 64
+        anverso: "draw up (a contract)"
+        reverso: "redactar (un contrato)"
+      - id: 65
+        anverso: "run a business"
+        reverso: "dirigir un negocio"
+      - id: 66
+        anverso: "work overtime"
+        reverso: "hacer horas extra"
+      - id: 67
+        anverso: "work from home"
+        reverso: "trabajar desde casa"
+      - id: 68
+        anverso: "be self-employed"
+        reverso: "ser autónomo"
+      - id: 69
+        anverso: "go on strike"
+        reverso: "ir a la huelga"
+      - id: 70
+        anverso: "make a living"
+        reverso: "ganarse la vida"
+      - id: 71
+        anverso: "get promoted"
+        reverso: "ser ascendido"
+      - id: 72
+        anverso: "get fired"
+        reverso: "ser despedido"
+      - id: 73
+        anverso: "get a raise"
+        reverso: "recibir un aumento"
+      - id: 74
+        anverso: "meet a deadline"
+        reverso: "cumplir una fecha límite"
+      - id: 75
+        anverso: "hold a meeting"
+        reverso: "celebrar una reunión"
+      - id: 76
+        anverso: "close a deal"
+        reverso: "cerrar un trato"
+      - id: 77
+        anverso: "sign a contract"
+        reverso: "firmar un contrato"
+      - id: 78
+        anverso: "attend an interview"
+        reverso: "asistir a una entrevista"
+      - id: 79
+        anverso: "land a job"
+        reverso: "conseguir un empleo"
+      - id: 80
+        anverso: "earn a living"
+        reverso: "ganarse la vida"
+      - id: 81
+        anverso: "submit an application"
+        reverso: "presentar una solicitud"
+      - id: 82
+        anverso: "take early retirement"
+        reverso: "jubilarse anticipadamente"
+      - id: 83
+        anverso: "work under pressure"
+        reverso: "trabajar bajo presión"
+      - id: 84
+        anverso: "gain experience"
+        reverso: "adquirir experiencia"
+      - id: 85
+        anverso: "seek employment"
+        reverso: "buscar empleo"
+      - id: 86
+        anverso: "pursue a career"
+        reverso: "desarrollar una carrera"
+      - id: 87
+        anverso: "job satisfaction"
+        reverso: "satisfacción laboral"
+      - id: 88
+        anverso: "career advancement"
+        reverso: "progresión profesional"
+      - id: 89
+        anverso: "job responsibilities"
+        reverso: "responsabilidades laborales"
+      - id: 90
+        anverso: "work-life balance"
+        reverso: "equilibrio entre vida laboral y personal"
+      - id: 91
+        anverso: "annual leave"
+        reverso: "vacaciones anuales"
+      - id: 92
+        anverso: "sick leave"
+        reverso: "baja por enfermedad"
+      - id: 93
+        anverso: "maternity leave"
+        reverso: "baja por maternidad"
+      - id: 94
+        anverso: "job description"
+        reverso: "descripción del puesto"
+      - id: 95
+        anverso: "job requirements"
+        reverso: "requisitos del puesto"
+      - id: 96
+        anverso: "job market"
+        reverso: "mercado laboral"
+      - id: 97
+        anverso: "job training"
+        reverso: "formación laboral"
+      - id: 98
+        anverso: "job offer"
+        reverso: "oferta de empleo"
+      - id: 99
+        anverso: "job application"
+        reverso: "solicitud de empleo"
+      - id: 100
+        anverso: "job interview"
+        reverso: "entrevista de trabajo"
+  
