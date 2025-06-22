@@ -637,4 +637,40 @@ public class ModuleManager {
         
         return info.toString();
     }
+
+    /**
+     * Método de utilidad para tests que permite establecer una instancia mock.
+     * 
+     * <p><strong>ADVERTENCIA:</strong> Este método está destinado únicamente para pruebas unitarias.
+     * No debe usarse en código de producción ya que rompe el patrón Singleton.</p>
+     * 
+     * <p>Este método permite a los tests inyectar una instancia mock de ModuleManager,
+     * evitando la necesidad de cargar módulos reales durante las pruebas.</p>
+     * 
+     * @param testInstance Instancia de ModuleManager para usar en tests. Puede ser {@code null}
+     *                     para resetear a la instancia real.
+     * @throws SecurityException Si se intenta usar fuera del contexto de tests
+     */
+    public static void setInstance(ModuleManager testInstance) {
+        // Verificar que estamos en un contexto de test
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        boolean isTestContext = false;
+        
+        for (StackTraceElement element : stackTrace) {
+            String className = element.getClassName();
+            if (className.contains("Test") || className.contains("test")) {
+                isTestContext = true;
+                break;
+            }
+        }
+        
+        if (!isTestContext) {
+            throw new SecurityException("setInstance() solo puede ser llamado desde contextos de test");
+        }
+        
+        logger.warn("Estableciendo instancia de test para ModuleManager: {}", 
+                   testInstance != null ? testInstance.getClass().getSimpleName() : "null");
+        
+        instance = testInstance;
+    }
 } 

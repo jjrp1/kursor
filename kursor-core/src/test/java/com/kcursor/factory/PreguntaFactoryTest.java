@@ -1,9 +1,8 @@
-package com.kursor.factory;
+package com.kcursor.factory;
 
-import com.kursor.domain.Pregunta;
-import com.kursor.modules.PreguntaModule;
-import com.kursor.util.ModuleManager;
-import com.kursor.yaml.dto.PreguntaDTO;
+import com.kcursor.domain.Pregunta;
+import com.kcursor.modules.PreguntaModule;
+import com.kcursor.util.ModuleManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,7 +51,8 @@ class PreguntaFactoryTest {
         // Configurar comportamiento básico del mock
         when(mockModule.getQuestionType()).thenReturn("test");
         when(mockModule.getModuleName()).thenReturn("Test Module");
-        when(mockModule.createPregunta(anyString(), anyString(), anyMap())).thenReturn(mockPregunta);
+        when(mockModule.parsePregunta(anyMap())).thenReturn(mockPregunta);
+        when(mockModule.createQuestion(anyString())).thenReturn(mockPregunta);
         
         // Establecer el mock como instancia de ModuleManager para tests
         ModuleManager.setInstance(new TestModuleManager(mockModule));
@@ -74,17 +74,13 @@ class PreguntaFactoryTest {
             // Given
             String id = "pregunta_1";
             String tipo = "test";
-            Map<String, Object> datos = new HashMap<>();
-            datos.put("pregunta", "¿Cuál es la capital de España?");
-            datos.put("opciones", new String[]{"Madrid", "Barcelona", "Valencia"});
-            datos.put("respuesta_correcta", 0);
 
             // When
-            Pregunta resultado = PreguntaFactory.createPregunta(id, tipo, datos);
+            Pregunta resultado = PreguntaFactory.crearPregunta(tipo, id);
 
             // Then
             assertNotNull(resultado);
-            verify(mockModule).createPregunta(id, tipo, datos);
+            verify(mockModule).createQuestion(id);
         }
 
         @Test
@@ -92,11 +88,10 @@ class PreguntaFactoryTest {
         void deberiaLanzarExcepcionCuandoIdEsNull() {
             // Given
             String tipo = "test";
-            Map<String, Object> datos = new HashMap<>();
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(null, tipo, datos);
+                PreguntaFactory.crearPregunta(tipo, null);
             });
         }
 
@@ -105,11 +100,10 @@ class PreguntaFactoryTest {
         void deberiaLanzarExcepcionCuandoIdEstaVacio() {
             // Given
             String tipo = "test";
-            Map<String, Object> datos = new HashMap<>();
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta("", tipo, datos);
+                PreguntaFactory.crearPregunta(tipo, "");
             });
         }
 
@@ -119,11 +113,10 @@ class PreguntaFactoryTest {
             // Given
             String id = "pregunta_1";
             String tipo = "tipo_inexistente";
-            Map<String, Object> datos = new HashMap<>();
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(id, tipo, datos);
+                PreguntaFactory.crearPregunta(tipo, id);
             });
         }
 
@@ -132,11 +125,10 @@ class PreguntaFactoryTest {
         void deberiaLanzarExcepcionCuandoTipoEsNull() {
             // Given
             String id = "pregunta_1";
-            Map<String, Object> datos = new HashMap<>();
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(id, null, datos);
+                PreguntaFactory.crearPregunta(null, id);
             });
         }
 
@@ -145,11 +137,10 @@ class PreguntaFactoryTest {
         void deberiaLanzarExcepcionCuandoTipoEstaVacio() {
             // Given
             String id = "pregunta_1";
-            Map<String, Object> datos = new HashMap<>();
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(id, "", datos);
+                PreguntaFactory.crearPregunta("", id);
             });
         }
 
@@ -159,14 +150,13 @@ class PreguntaFactoryTest {
             // Given
             String id = "pregunta_1";
             String tipo = "test";
-            Map<String, Object> datos = new HashMap<>();
             
-            when(mockModule.createPregunta(anyString(), anyString(), anyMap()))
+            when(mockModule.createQuestion(anyString()))
                 .thenThrow(new RuntimeException("Error del módulo"));
 
             // When & Then
             assertThrows(RuntimeException.class, () -> {
-                PreguntaFactory.createPregunta(id, tipo, datos);
+                PreguntaFactory.crearPregunta(tipo, id);
             });
         }
 
@@ -176,13 +166,12 @@ class PreguntaFactoryTest {
             // Given
             String id = "  pregunta_1  ";
             String tipo = "  test  ";
-            Map<String, Object> datos = new HashMap<>();
 
             // When
-            PreguntaFactory.createPregunta(id, tipo, datos);
+            PreguntaFactory.crearPregunta(tipo, id);
 
             // Then
-            verify(mockModule).createPregunta("pregunta_1", "test", datos);
+            verify(mockModule).createQuestion("pregunta_1");
         }
 
         @Test
@@ -191,13 +180,12 @@ class PreguntaFactoryTest {
             // Given
             String id = "pregunta_1";
             String tipo = "test";
-            Map<String, Object> datos = new HashMap<>();
             
-            when(mockModule.createPregunta(anyString(), anyString(), anyMap()))
+            when(mockModule.createQuestion(anyString()))
                 .thenReturn(null);
 
             // When
-            Pregunta resultado = PreguntaFactory.createPregunta(id, tipo, datos);
+            Pregunta resultado = PreguntaFactory.crearPregunta(tipo, id);
 
             // Then
             assertNull(resultado);
@@ -212,19 +200,17 @@ class PreguntaFactoryTest {
         @DisplayName("Debería crear pregunta desde datos YAML válidos")
         void deberiaCrearPreguntaDesdeDatosYAMLValidos() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_yaml_1");
-            datos.setTipo("test");
-            Map<String, Object> datosAdicionales = new HashMap<>();
-            datosAdicionales.put("pregunta", "¿Cuál es la capital de Francia?");
-            datos.setDatos(datosAdicionales);
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_yaml_1");
+            datos.put("tipo", "test");
+            datos.put("pregunta", "¿Cuál es la capital de Francia?");
 
             // When
-            Pregunta resultado = PreguntaFactory.createPregunta(datos);
+            Pregunta resultado = PreguntaFactory.crearPregunta(datos);
 
             // Then
             assertNotNull(resultado);
-            verify(mockModule).createPregunta("pregunta_yaml_1", "test", datosAdicionales);
+            verify(mockModule).parsePregunta(datos);
         }
 
         @Test
@@ -232,7 +218,7 @@ class PreguntaFactoryTest {
         void deberiaLanzarExcepcionCuandoDatosSonNull() {
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta((PreguntaDTO) null);
+                PreguntaFactory.crearPregunta((Map<String, Object>) null);
             });
         }
 
@@ -240,14 +226,13 @@ class PreguntaFactoryTest {
         @DisplayName("Debería lanzar excepción cuando no se encuentra módulo")
         void deberiaLanzarExcepcionCuandoNoSeEncuentraModulo() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo("tipo_inexistente");
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", "tipo_inexistente");
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(datos);
+                PreguntaFactory.crearPregunta(datos);
             });
         }
 
@@ -255,14 +240,13 @@ class PreguntaFactoryTest {
         @DisplayName("Debería lanzar excepción cuando tipo es null")
         void deberiaLanzarExcepcionCuandoTipoEsNull() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo(null);
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", null);
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(datos);
+                PreguntaFactory.crearPregunta(datos);
             });
         }
 
@@ -270,14 +254,13 @@ class PreguntaFactoryTest {
         @DisplayName("Debería lanzar excepción cuando tipo está vacío")
         void deberiaLanzarExcepcionCuandoTipoEstaVacio() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo("");
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", "");
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(datos);
+                PreguntaFactory.crearPregunta(datos);
             });
         }
 
@@ -285,14 +268,13 @@ class PreguntaFactoryTest {
         @DisplayName("Debería lanzar excepción cuando tipo solo tiene espacios")
         void deberiaLanzarExcepcionCuandoTipoSoloTieneEspacios() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo("   ");
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", "   ");
 
             // When & Then
             assertThrows(IllegalArgumentException.class, () -> {
-                PreguntaFactory.createPregunta(datos);
+                PreguntaFactory.crearPregunta(datos);
             });
         }
 
@@ -300,17 +282,16 @@ class PreguntaFactoryTest {
         @DisplayName("Debería lanzar RuntimeException cuando módulo lanza excepción")
         void deberiaLanzarRuntimeExceptionCuandoModuloLanzaExcepcion() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo("test");
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", "test");
             
-            when(mockModule.createPregunta(anyString(), anyString(), anyMap()))
+            when(mockModule.parsePregunta(anyMap()))
                 .thenThrow(new RuntimeException("Error del módulo"));
 
             // When & Then
             assertThrows(RuntimeException.class, () -> {
-                PreguntaFactory.createPregunta(datos);
+                PreguntaFactory.crearPregunta(datos);
             });
         }
 
@@ -318,17 +299,16 @@ class PreguntaFactoryTest {
         @DisplayName("Debería lanzar RuntimeException cuando módulo retorna null")
         void deberiaLanzarRuntimeExceptionCuandoModuloRetornaNull() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo("test");
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", "test");
             
-            when(mockModule.createPregunta(anyString(), anyString(), anyMap()))
+            when(mockModule.parsePregunta(anyMap()))
                 .thenReturn(null);
 
             // When & Then
             assertThrows(RuntimeException.class, () -> {
-                PreguntaFactory.createPregunta(datos);
+                PreguntaFactory.crearPregunta(datos);
             });
         }
 
@@ -336,16 +316,15 @@ class PreguntaFactoryTest {
         @DisplayName("Debería recortar espacios en blanco del tipo")
         void deberiaRecortarEspaciosEnBlancoDelTipo() {
             // Given
-            PreguntaDTO datos = new PreguntaDTO();
-            datos.setId("pregunta_1");
-            datos.setTipo("  test  ");
-            datos.setDatos(new HashMap<>());
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("id", "pregunta_1");
+            datos.put("tipo", "  test  ");
 
             // When
-            PreguntaFactory.createPregunta(datos);
+            PreguntaFactory.crearPregunta(datos);
 
             // Then
-            verify(mockModule).createPregunta("pregunta_1", "test", new HashMap<>());
+            verify(mockModule).parsePregunta(datos);
         }
     }
 
@@ -388,7 +367,7 @@ class PreguntaFactoryTest {
         @DisplayName("Debería retornar true cuando existe módulo para tipo")
         void deberiaRetornarTrueCuandoExisteModuloParaTipo() {
             // When
-            boolean resultado = PreguntaFactory.isTipoSoportado("test");
+            boolean resultado = PreguntaFactory.existeModuloParaTipo("test");
 
             // Then
             assertTrue(resultado);
@@ -398,7 +377,7 @@ class PreguntaFactoryTest {
         @DisplayName("Debería retornar false cuando no existe módulo para tipo")
         void deberiaRetornarFalseCuandoNoExisteModuloParaTipo() {
             // When
-            boolean resultado = PreguntaFactory.isTipoSoportado("tipo_inexistente");
+            boolean resultado = PreguntaFactory.existeModuloParaTipo("tipo_inexistente");
 
             // Then
             assertFalse(resultado);
@@ -408,7 +387,7 @@ class PreguntaFactoryTest {
         @DisplayName("Debería retornar false cuando tipo es null")
         void deberiaRetornarFalseCuandoTipoEsNull() {
             // When
-            boolean resultado = PreguntaFactory.isTipoSoportado(null);
+            boolean resultado = PreguntaFactory.existeModuloParaTipo(null);
 
             // Then
             assertFalse(resultado);
@@ -418,7 +397,7 @@ class PreguntaFactoryTest {
         @DisplayName("Debería retornar false cuando tipo está vacío")
         void deberiaRetornarFalseCuandoTipoEstaVacio() {
             // When
-            boolean resultado = PreguntaFactory.isTipoSoportado("");
+            boolean resultado = PreguntaFactory.existeModuloParaTipo("");
 
             // Then
             assertFalse(resultado);
@@ -428,7 +407,7 @@ class PreguntaFactoryTest {
         @DisplayName("Debería retornar false cuando tipo solo tiene espacios")
         void deberiaRetornarFalseCuandoTipoSoloTieneEspacios() {
             // When
-            boolean resultado = PreguntaFactory.isTipoSoportado("   ");
+            boolean resultado = PreguntaFactory.existeModuloParaTipo("   ");
 
             // Then
             assertFalse(resultado);
@@ -438,7 +417,7 @@ class PreguntaFactoryTest {
         @DisplayName("Debería recortar espacios en blanco del tipo")
         void deberiaRecortarEspaciosEnBlancoDelTipo() {
             // When
-            boolean resultado = PreguntaFactory.isTipoSoportado("  test  ");
+            boolean resultado = PreguntaFactory.existeModuloParaTipo("  test  ");
 
             // Then
             assertTrue(resultado);
@@ -464,11 +443,11 @@ class PreguntaFactoryTest {
         }
 
         @Override
-        public String[] getTiposSoportados() {
+        public java.util.List<PreguntaModule> getModules() {
             if (testModule != null) {
-                return new String[]{"test"};
+                return java.util.List.of(testModule);
             }
-            return new String[0];
+            return java.util.List.of();
         }
     }
 } 
