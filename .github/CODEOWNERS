@@ -1,0 +1,42 @@
+# Propietarios del código principal
+* @jjrp1
+
+# Documentación
+/docs/ @jjrp1
+/doc/ @jjrp1
+README.md @jjrp1
+CHANGELOG.md @jjrp1
+RELEASE_NOTES.md @jjrp1
+
+# Configuración de CI/CD
+.github/ @jjrp1
+.github/workflows/ @jjrp1
+.github/ISSUE_TEMPLATE/ @jjrp1
+
+# Configuración de Maven
+pom.xml @jjrp1
+kursor-*/pom.xml @jjrp1
+
+# Código fuente principal
+kursor-core/src/main/java/ @jjrp1
+kursor-core/src/test/java/ @jjrp1
+
+# Módulos de preguntas
+kursor-flashcard-module/ @jjrp1
+kursor-multiplechoice-module/ @jjrp1
+kursor-fillblanks-module/ @jjrp1
+kursor-truefalse-module/ @jjrp1
+
+# Configuración de persistencia
+kursor-core/src/main/resources/META-INF/ @jjrp1
+kursor-core/src/main/resources/logback.xml @jjrp1
+
+# Scripts y utilidades
+scripts/ @jjrp1
+create-portable-zip.ps1 @jjrp1
+
+# Cursos de ejemplo
+cursos/ @jjrp1
+
+# Configuración de IDE
+.vscode/ @jjrp1 
