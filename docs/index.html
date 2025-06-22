@@ -124,6 +124,10 @@
         .badge-multiple { background-color: #3498db; color: white; }
         .badge-fillblanks { background-color: #e67e22; color: white; }
         .badge-truefalse { background-color: #e74c3c; color: white; }
+        .badge-secuencial { background-color: #27ae60; color: white; }
+        .badge-aleatoria { background-color: #f39c12; color: white; }
+        .badge-espaciada { background-color: #8e44ad; color: white; }
+        .badge-incorrectas { background-color: #c0392b; color: white; }
         
         .navbar {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -211,10 +215,16 @@
                     <div class="card feature-card h-100">
                         <div class="card-body text-center">
                             <div class="feature-icon text-success">
-                                <i class="fas fa-graduation-cap"></i>
+                                <i class="fas fa-brain"></i>
                             </div>
-                            <h5 class="card-title">📚 4 Tipos de Preguntas</h5>
-                            <p class="card-text">Flashcards, opción múltiple, completar huecos y verdadero/falso con más en desarrollo.</p>
+                            <h5 class="card-title">4 Estrategias de Aprendizaje</h5>
+                            <p class="card-text">Sistema modular con estrategias inteligentes: Secuencial, Aleatoria, Repetición Espaciada y Repetir Incorrectas.</p>
+                            <div class="mt-3">
+                                <span class="module-badge badge-secuencial">Secuencial</span>
+                                <span class="module-badge badge-aleatoria">Aleatoria</span>
+                                <span class="module-badge badge-espaciada">Repetición Espaciada</span>
+                                <span class="module-badge badge-incorrectas">Repetir Incorrectas</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -223,10 +233,16 @@
                     <div class="card feature-card h-100">
                         <div class="card-body text-center">
                             <div class="feature-icon text-warning">
-                                <i class="fas fa-brain"></i>
+                                <i class="fas fa-puzzle-piece"></i>
                             </div>
-                            <h5 class="card-title">🎯 Estrategias de Aprendizaje</h5>
-                            <p class="card-text">Secuencial, aleatoria y repetición espaciada para optimizar el proceso de aprendizaje.</p>
+                            <h5 class="card-title">4 Tipos de Preguntas</h5>
+                            <p class="card-text">Módulos extensibles para diferentes tipos: Flashcards, Opción Múltiple, Completar Huecos y Verdadero/Falso.</p>
+                            <div class="mt-3">
+                                <span class="module-badge badge-flashcard">Flashcards</span>
+                                <span class="module-badge badge-multiple">Opción Múltiple</span>
+                                <span class="module-badge badge-fillblanks">Completar Huecos</span>
+                                <span class="module-badge badge-truefalse">Verdadero/Falso</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -346,7 +362,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="stat-item">
-                        <div class="stat-number">3</div>
+                        <div class="stat-number">4</div>
                         <p class="text-muted">Estrategias de Aprendizaje</p>
                     </div>
                 </div>

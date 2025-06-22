@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
 
 import javafx.scene.Node;
 import javafx.scene.text.Font;
@@ -18,6 +19,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.paint.Color;
 import com.kursor.yaml.dto.CursoPreviewDTO;
 import java.util.List;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -170,7 +172,10 @@ public class KursorApplication extends Application {
         
         // Botón Inspeccionar con icono de lupa
         Button btnInspeccionar = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
-        btnInspeccionar.setOnAction(e -> InspeccionarCurso.mostrar(null, this.primaryStage));
+        btnInspeccionar.setOnAction(e -> {
+            logger.info("Botón Inspeccionar presionado desde barra inferior");
+            mostrarDialogoSeleccionCurso();
+        });
         
         // Botón Comenzar con icono de play
         Button btnComenzar = crearBotonConIcono("▶️ Comenzar", "#27ae60", "#229954");
@@ -312,26 +317,43 @@ public class KursorApplication extends Application {
         tarjeta.setStyle("-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e0e0e0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 4); -fx-cursor: hand;");
         tarjeta.setAlignment(Pos.CENTER_LEFT);
         
-        // Hacer que toda la tarjeta sea clicleable
-        tarjeta.setOnMouseClicked(e -> mostrarDetallesCurso(curso));
-        
-        VBox infoCurso = new VBox(5);
-        
         // Log de depuración para verificar el título
         String tituloTexto = curso.getTitulo();
         logger.debug("Creando tarjeta para curso - ID: {}, Título: '{}'", curso.getId(), tituloTexto);
         
+        // Manejo de eventos de mouse para click simple y doble-click
+        tarjeta.setOnMouseClicked(e -> {
+            logger.debug("Click detectado en curso - ID: {}, Título: '{}', ClickCount: {}", 
+                curso.getId(), curso.getTitulo(), e.getClickCount());
+            
+            if (e.getClickCount() == 1) {
+                // Click simple: mostrar alert con el nombre del curso
+                logger.info("Click simple detectado - mostrando alert para curso: '{}'", curso.getTitulo());
+                mostrarAlertSeleccion(curso);
+            } else if (e.getClickCount() == 2) {
+                // Doble-click: inspeccionar curso
+                logger.info("Doble-click detectado - inspeccionando curso: '{}'", curso.getTitulo());
+                InspeccionarCurso.mostrar(curso, this.primaryStage);
+            }
+        });
+        
+        VBox infoCurso = new VBox(5);
+        
+        // Título del curso con color explícito y sin borde temporal
         Label tituloCurso = new Label(tituloTexto);
         tituloCurso.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
-        // Agregar borde temporal para hacer el título más visible
-        tituloCurso.setStyle("-fx-border-color: red; -fx-border-width: 1px; -fx-padding: 2px;");
+        tituloCurso.setTextFill(Color.web("#2c3e50")); // Color azul oscuro
+        tituloCurso.setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold;");
         
+        // Descripción del curso con color explícito
         Label descCurso = new Label(curso.getDescripcion());
         descCurso.setWrapText(true);
-        descCurso.setTextFill(Color.DARKSLATEGRAY);
+        descCurso.setTextFill(Color.web("#7f8c8d")); // Color gris
+        descCurso.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 12px;");
         
-        Label idCurso = new Label(curso.getId());
-        idCurso.setStyle("-fx-font-style: italic; -fx-font-size: 12px; -fx-text-fill: #28a745;");
+        // ID del curso con estilo distintivo
+        Label idCurso = new Label("ID: " + curso.getId());
+        idCurso.setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
         
         infoCurso.getChildren().addAll(tituloCurso, descCurso, idCurso);
         
@@ -391,14 +413,23 @@ public class KursorApplication extends Application {
     
     private Node crearVistaCursos() {
         ListView<CursoPreviewDTO> listView = new ListView<>();
-        listView.getItems().addAll(CursoManager.getInstance().cargarCursos());
+        List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
+        listView.getItems().addAll(cursos);
+
+        // Seleccionar automáticamente el primer elemento si hay cursos disponibles
+        if (!cursos.isEmpty()) {
+            logger.debug("Seleccionando automáticamente el primer curso: '{}'", cursos.get(0).getTitulo());
+            listView.getSelectionModel().select(0);
+        }
 
         // Botón Inspeccionar
         Button inspectButton = crearBotonConIcono("🔍 Inspeccionar", "#3498db", "#2980b9");
-        inspectButton.setDisable(true);
+        inspectButton.setDisable(cursos.isEmpty());
         inspectButton.setOnAction(e -> {
             CursoPreviewDTO seleccionado = listView.getSelectionModel().getSelectedItem();
             if (seleccionado != null) {
+                logger.info("Inspeccionando curso desde botón - ID: {}, Título: '{}'", 
+                    seleccionado.getId(), seleccionado.getTitulo());
                 InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
             }
         });
@@ -408,15 +439,27 @@ public class KursorApplication extends Application {
             inspectButton.setDisable(newVal == null);
         });
 
-        // Doble click para comenzar el curso
+        // Manejo de eventos de mouse para click simple y doble-click
         listView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                CursoPreviewDTO seleccionado = listView.getSelectionModel().getSelectedItem();
-                if (seleccionado != null) {
-                    mostrarDetallesCurso(seleccionado);
+            CursoPreviewDTO seleccionado = listView.getSelectionModel().getSelectedItem();
+            if (seleccionado != null) {
+                logger.debug("Click detectado en ListView - ID: {}, Título: '{}', ClickCount: {}", 
+                    seleccionado.getId(), seleccionado.getTitulo(), event.getClickCount());
+                
+                if (event.getClickCount() == 1) {
+                    // Click simple: mostrar alert con el nombre del curso
+                    logger.info("Click simple detectado en ListView - mostrando alert para curso: '{}'", seleccionado.getTitulo());
+                    mostrarAlertSeleccion(seleccionado);
+                } else if (event.getClickCount() == 2) {
+                    // Doble-click: inspeccionar curso
+                    logger.info("Doble-click detectado en ListView - inspeccionando curso: '{}'", seleccionado.getTitulo());
+                    InspeccionarCurso.mostrar(seleccionado, this.primaryStage);
                 }
             }
         });
+
+        // Configurar el estilo del ListView para mejor visibilidad
+        listView.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1;");
 
         listView.setCellFactory(param -> new ListCell<CursoPreviewDTO>() {
             @Override
@@ -425,18 +468,45 @@ public class KursorApplication extends Application {
                 if (empty || item == null) {
                     setText(null);
                     setGraphic(null);
+                    setStyle("-fx-background-color: transparent;");
                 } else {
                     HBox hbox = new HBox(10);
                     hbox.setAlignment(Pos.CENTER_LEFT);
+                    hbox.setPadding(new Insets(8, 12, 8, 12));
+                    
                     VBox vbox = new VBox(5);
+                    
+                    // Título del curso con color explícito
                     Label nameLabel = new Label(item.getTitulo());
-                    nameLabel.setFont(Font.font("System", FontWeight.BOLD, 18));
+                    nameLabel.setFont(Font.font("Segoe UI", FontWeight.BOLD, 16));
+                    nameLabel.setTextFill(Color.web("#2c3e50")); // Color azul oscuro
+                    nameLabel.setStyle("-fx-text-fill: #2c3e50; -fx-font-weight: bold;");
+                    
+                    // Descripción del curso con color explícito
                     Label descLabel = new Label(item.getDescripcion());
                     descLabel.setWrapText(true);
                     descLabel.setMaxWidth(300);
-                    vbox.getChildren().addAll(nameLabel, descLabel);
+                    descLabel.setTextFill(Color.web("#7f8c8d")); // Color gris
+                    descLabel.setStyle("-fx-text-fill: #7f8c8d; -fx-font-size: 12px;");
+                    
+                    // ID del curso con estilo distintivo
+                    Label idLabel = new Label("ID: " + item.getId());
+                    idLabel.setStyle("-fx-text-fill: #27ae60; -fx-font-size: 11px; -fx-font-style: italic;");
+                    
+                    vbox.getChildren().addAll(nameLabel, descLabel, idLabel);
                     hbox.getChildren().addAll(vbox);
                     setGraphic(hbox);
+                    
+                    // Estilo para elementos seleccionados
+                    if (isSelected()) {
+                        setStyle("-fx-background-color: #3498db; -fx-text-fill: white;");
+                        // Cambiar colores de los labels cuando está seleccionado
+                        nameLabel.setStyle("-fx-text-fill: white; -fx-font-weight: bold;");
+                        descLabel.setStyle("-fx-text-fill: #ecf0f1; -fx-font-size: 12px;");
+                        idLabel.setStyle("-fx-text-fill: #2ecc71; -fx-font-size: 11px; -fx-font-style: italic;");
+                    } else {
+                        setStyle("-fx-background-color: white; -fx-text-fill: black;");
+                    }
                 }
             }
         });
@@ -449,6 +519,83 @@ public class KursorApplication extends Application {
     private void mostrarDetallesCurso(CursoPreviewDTO cursoPreview) {
         CursoDialog dialog = new CursoDialog(cursoPreview, this.primaryStage);
         dialog.showAndWait();
+    }
+
+    /**
+     * Muestra un alert informativo cuando se selecciona un curso con click simple.
+     * 
+     * @param curso El curso seleccionado
+     */
+    private void mostrarAlertSeleccion(CursoPreviewDTO curso) {
+        logger.debug("Mostrando alert de selección para curso: '{}'", curso.getTitulo());
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Curso Seleccionado");
+        alert.setHeaderText("Has seleccionado el siguiente curso:");
+        alert.setContentText(String.format("📚 %s\n\n%s\n\nID: %s", 
+            curso.getTitulo(), 
+            curso.getDescripcion(), 
+            curso.getId()));
+        
+        // Configurar el diálogo como modal
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.initOwner(this.primaryStage);
+        
+        // Agregar botones adicionales
+        ButtonType inspeccionarButton = new ButtonType("🔍 Inspeccionar");
+        ButtonType cerrarButton = new ButtonType("Cerrar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(inspeccionarButton, cerrarButton);
+        
+        // Mostrar el alert y manejar la respuesta
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == inspeccionarButton) {
+            logger.info("Usuario eligió inspeccionar curso desde alert: '{}'", curso.getTitulo());
+            InspeccionarCurso.mostrar(curso, this.primaryStage);
+        } else {
+            logger.debug("Usuario cerró el alert de selección");
+        }
+    }
+
+    /**
+     * Muestra un diálogo de selección de curso cuando se presiona el botón Inspeccionar
+     * desde la barra inferior.
+     */
+    private void mostrarDialogoSeleccionCurso() {
+        logger.debug("Mostrando diálogo de selección de curso");
+        
+        List<CursoPreviewDTO> cursos = CursoManager.getInstance().cargarCursos();
+        
+        if (cursos.isEmpty()) {
+            logger.warn("No hay cursos disponibles para inspeccionar");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Sin Cursos Disponibles");
+            alert.setHeaderText("No hay cursos para inspeccionar");
+            alert.setContentText("No se encontraron cursos en el sistema.");
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(this.primaryStage);
+            alert.showAndWait();
+            return;
+        }
+        
+        // Crear ChoiceDialog con la lista de cursos
+        ChoiceDialog<CursoPreviewDTO> dialog = new ChoiceDialog<>(cursos.get(0), cursos);
+        dialog.setTitle("Seleccionar Curso para Inspeccionar");
+        dialog.setHeaderText("Elige el curso que deseas inspeccionar:");
+        dialog.setContentText("Curso:");
+        
+        // Configurar el diálogo como modal
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(this.primaryStage);
+        
+        // Mostrar el diálogo y manejar la respuesta
+        Optional<CursoPreviewDTO> result = dialog.showAndWait();
+        if (result.isPresent()) {
+            CursoPreviewDTO cursoSeleccionado = result.get();
+            logger.info("Usuario seleccionó curso para inspeccionar: '{}'", cursoSeleccionado.getTitulo());
+            InspeccionarCurso.mostrar(cursoSeleccionado, this.primaryStage);
+        } else {
+            logger.debug("Usuario canceló la selección de curso");
+        }
     }
 
     private void mostrarDialogoAbout() {

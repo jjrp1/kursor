@@ -30,9 +30,10 @@
 
 ### 📊 Métricas del Proyecto
 - **Líneas de código**: ~6,000
-- **Módulos implementados**: 4 tipos de preguntas + 4 estrategias
+- **Módulos implementados**: 8 (4 tipos de preguntas + 4 estrategias)
 - **Tests unitarios**: Completos para todas las funcionalidades
 - **Documentación**: Guías de usuario y técnica completas
+- **Cobertura de pruebas**: Alta
 
 ### 🔧 Tecnologías Utilizadas
 - **Java 17** con características modernas

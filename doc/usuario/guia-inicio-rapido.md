@@ -24,6 +24,13 @@
 - **Barra de progreso**: Muestra tu avance
 - **Título**: Nombre del curso y bloque actual
 - **Pregunta**: Contenido según el tipo
+- **Estrategia**: Indica qué estrategia de aprendizaje estás usando
+
+### Estrategias de Aprendizaje Disponibles
+- **Secuencial**: Preguntas en orden fijo (recomendado para principiantes)
+- **Aleatoria**: Preguntas en orden aleatorio (ideal para repaso)
+- **Repetición Espaciada**: Repite preguntas con intervalos optimizados (para memorización)
+- **Repetir Incorrectas**: Repite automáticamente las preguntas falladas (para mejorar áreas débiles)
 
 ### Botones de Control
 - **Verificar**: Comprueba tu respuesta
