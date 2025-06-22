@@ -1,0 +1,92 @@
+name: 📢 Anuncio
+description: Comparte noticias importantes sobre el proyecto
+title: "[ANUNCIO] "
+labels: ["announcement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por compartir este anuncio con la comunidad de Kursor! 🎉
+        
+        Por favor, proporciona la siguiente información para que tu anuncio sea claro y útil.
+
+  - type: input
+    id: announcement-title
+    attributes:
+      label: Título del Anuncio
+      description: Un título claro y descriptivo
+      placeholder: "Nueva funcionalidad: Soporte para preguntas de arrastrar y soltar"
+    validations:
+      required: true
+
+  - type: textarea
+    id: announcement-content
+    attributes:
+      label: Contenido del Anuncio
+      description: Describe detalladamente el anuncio
+      placeholder: |
+        ## Resumen
+        [Breve descripción del anuncio]
+        
+        ## Detalles
+        [Información detallada]
+        
+        ## Impacto
+        [Cómo afecta a los usuarios]
+        
+        ## Próximos Pasos
+        [Qué esperar a continuación]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: announcement-type
+    attributes:
+      label: Tipo de Anuncio
+      description: Selecciona el tipo de anuncio
+      options:
+        - Nueva funcionalidad
+        - Mejora importante
+        - Corrección de bug crítico
+        - Cambio en la API
+        - Actualización de documentación
+        - Evento o hackathon
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: announcement-links
+    attributes:
+      label: Enlaces Relacionados
+      description: Enlaces a documentación, issues, PRs, etc.
+      placeholder: |
+        - Documentación: [enlace]
+        - Issue relacionado: #[número]
+        - Pull Request: #[número]
+        - Release: [enlace]
+
+  - type: checkboxes
+    id: announcement-tags
+    attributes:
+      label: Etiquetas Adicionales
+      description: Selecciona etiquetas relevantes
+      options:
+        - label: "Breaking Change"
+        - label: "Feature Request"
+        - label: "Bug Fix"
+        - label: "Documentation"
+        - label: "Performance"
+        - label: "Security"
+
+  - type: checkboxes
+    id: announcement-terms
+    attributes:
+      label: Confirmación
+      description: Confirma que has leído las guidelines
+      options:
+        - label: He leído las [guidelines de la comunidad](https://github.com/jjrp1/kursor/blob/master/CODE_OF_CONDUCT.md)
+        - label: Mi anuncio es relevante para la comunidad de Kursor
+        - label: He verificado que la información es precisa
+    validations:
+      required: true 

@@ -1,0 +1,122 @@
+name: ❓ Pregunta
+description: Haz una pregunta sobre el proyecto
+title: "[PREGUNTA] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Hola! 👋 Gracias por tu pregunta sobre Kursor.
+        
+        Para ayudarte mejor, por favor proporciona la siguiente información.
+
+  - type: textarea
+    id: question-content
+    attributes:
+      label: Tu Pregunta
+      description: Describe tu pregunta de manera clara y detallada
+      placeholder: |
+        ## Contexto
+        [Describe el contexto de tu pregunta]
+        
+        ## Pregunta Específica
+        [¿Qué necesitas saber exactamente?]
+        
+        ## Lo que has intentado
+        [Describe lo que ya has probado]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: question-category
+    attributes:
+      label: Categoría
+      description: Selecciona la categoría más apropiada
+      options:
+        - Instalación y configuración
+        - Uso de la aplicación
+        - Desarrollo y extensión
+        - Problemas técnicos
+        - Documentación
+        - Rendimiento
+        - Otro
+    validations:
+      required: true
+
+  - type: input
+    id: question-version
+    attributes:
+      label: Versión de Kursor
+      description: ¿Qué versión estás usando?
+      placeholder: "1.0.0"
+
+  - type: input
+    id: question-os
+    attributes:
+      label: Sistema Operativo
+      description: ¿En qué sistema operativo estás trabajando?
+      placeholder: "Windows 10, macOS 12, Ubuntu 20.04"
+
+  - type: input
+    id: question-java
+    attributes:
+      label: Versión de Java
+      description: ¿Qué versión de Java tienes instalada?
+      placeholder: "Java 17"
+
+  - type: textarea
+    id: question-code
+    attributes:
+      label: Código (si aplica)
+      description: Si tu pregunta involucra código, compártelo aquí
+      placeholder: |
+        ```java
+        // Tu código aquí
+        ```
+
+  - type: textarea
+    id: question-error
+    attributes:
+      label: Mensajes de Error (si aplica)
+      description: Copia y pega cualquier mensaje de error
+      placeholder: |
+        ```
+        Error: [mensaje de error]
+        ```
+
+  - type: textarea
+    id: question-expected
+    attributes:
+      label: Comportamiento Esperado
+      description: ¿Qué esperabas que sucediera?
+
+  - type: textarea
+    id: question-actual
+    attributes:
+      label: Comportamiento Actual
+      description: ¿Qué está sucediendo realmente?
+
+  - type: checkboxes
+    id: question-search
+    attributes:
+      label: Búsqueda Previa
+      description: Confirma que has buscado antes de preguntar
+      options:
+        - label: He buscado en la [documentación](https://jjrp1.github.io/kursor)
+        - label: He revisado las [issues existentes](https://github.com/jjrp1/kursor/issues)
+        - label: He buscado en [GitHub Discussions](https://github.com/jjrp1/kursor/discussions)
+        - label: He consultado el [FAQ](https://jjrp1.github.io/kursor/faq.html)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: question-terms
+    attributes:
+      label: Confirmación
+      description: Confirma que has leído las guidelines
+      options:
+        - label: He leído las [guidelines de la comunidad](https://github.com/jjrp1/kursor/blob/master/CODE_OF_CONDUCT.md)
+        - label: Mi pregunta es específica y bien formulada
+        - label: He proporcionado suficiente contexto
+    validations:
+      required: true 

@@ -1,0 +1,150 @@
+name: 🎨 Show and Tell
+description: Comparte tu proyecto o contribución
+title: "[SHOW & TELL] "
+labels: ["show-and-tell"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Excelente! 🎉 Nos encanta ver lo que la comunidad está construyendo con Kursor.
+        
+        Comparte tu proyecto y ayúdanos a inspirar a otros desarrolladores.
+
+  - type: input
+    id: project-title
+    attributes:
+      label: Título del Proyecto
+      description: Un nombre descriptivo para tu proyecto
+      placeholder: "Curso de Inglés Avanzado con Kursor"
+    validations:
+      required: true
+
+  - type: textarea
+    id: project-description
+    attributes:
+      label: Descripción del Proyecto
+      description: Describe qué has creado y cómo funciona
+      placeholder: |
+        ## Resumen
+        [Breve descripción de tu proyecto]
+        
+        ## Características
+        - [Característica 1]
+        - [Característica 2]
+        - [Característica 3]
+        
+        ## Tecnologías Utilizadas
+        [Lista de tecnologías, frameworks, etc.]
+        
+        ## Desafíos y Soluciones
+        [Describe los desafíos que enfrentaste y cómo los resolviste]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: project-type
+    attributes:
+      label: Tipo de Proyecto
+      description: ¿Qué tipo de proyecto has creado?
+      options:
+        - Curso educativo
+        - Módulo de extensión
+        - Herramienta de desarrollo
+        - Integración con otra plataforma
+        - Mejora de la documentación
+        - Script o utilidad
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: project-features
+    attributes:
+      label: Características Destacadas
+      description: ¿Qué hace especial tu proyecto?
+      placeholder: |
+        ## Características Únicas
+        - [Característica única 1]
+        - [Característica única 2]
+        
+        ## Innovaciones
+        - [Innovación 1]
+        - [Innovación 2]
+
+  - type: textarea
+    id: project-screenshots
+    attributes:
+      label: Capturas de Pantalla
+      description: Comparte capturas de pantalla de tu proyecto
+      placeholder: |
+        ### Interfaz Principal
+        ![Interfaz principal](URL_DE_LA_IMAGEN)
+        
+        ### Funcionalidad Específica
+        ![Funcionalidad](URL_DE_LA_IMAGEN)
+
+  - type: input
+    id: project-repo
+    attributes:
+      label: Repositorio (si aplica)
+      description: Enlace al repositorio de tu proyecto
+      placeholder: "https://github.com/usuario/mi-proyecto-kursor"
+
+  - type: input
+    id: project-demo
+    attributes:
+      label: Demo en Vivo (si aplica)
+      description: Enlace a una demo o video
+      placeholder: "https://demo.mi-proyecto.com"
+
+  - type: textarea
+    id: project-lessons
+    attributes:
+      label: Lecciones Aprendidas
+      description: ¿Qué aprendiste durante el desarrollo?
+      placeholder: |
+        ## Aprendizajes Técnicos
+        - [Aprendizaje 1]
+        - [Aprendizaje 2]
+        
+        ## Desafíos Superados
+        - [Desafío 1]
+        - [Desafío 2]
+
+  - type: textarea
+    id: project-future
+    attributes:
+      label: Próximos Pasos
+      description: ¿Qué planeas hacer a continuación?
+      placeholder: |
+        ## Próximas Mejoras
+        - [Mejora 1]
+        - [Mejora 2]
+        
+        ## Roadmap
+        - [Fase 1]
+        - [Fase 2]
+
+  - type: checkboxes
+    id: project-permission
+    attributes:
+      label: Permisos
+      description: ¿Qué permisos das para tu proyecto?
+      options:
+        - label: "Pueden usar mi código como referencia"
+        - label: "Pueden contribuir a mi proyecto"
+        - label: "Pueden distribuir mi proyecto"
+        - label: "Pueden modificar mi proyecto"
+
+  - type: checkboxes
+    id: project-terms
+    attributes:
+      label: Confirmación
+      description: Confirma que has leído las guidelines
+      options:
+        - label: He leído las [guidelines de la comunidad](https://github.com/jjrp1/kursor/blob/master/CODE_OF_CONDUCT.md)
+        - label: Mi proyecto es apropiado para la comunidad
+        - label: He verificado que todos los enlaces funcionan
+        - label: He respetado los derechos de autor
+    validations:
+      required: true 
