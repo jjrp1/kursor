@@ -5,6 +5,7 @@ import com.kursor.domain.Bloque;
 import com.kursor.domain.Curso;
 import com.kursor.util.CursoManager;
 import com.kursor.util.ModuleManager;
+import com.kursor.util.StrategyManager;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,6 +26,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.kursor.ui.CursoInterfaceController;
+import javafx.scene.control.Alert;
+import javafx.application.Platform;
 
 /**
  * Aplicación principal de la interfaz gráfica de usuario para Kursor.
@@ -50,6 +53,7 @@ import com.kursor.ui.CursoInterfaceController;
  * <ul>
  *   <li>{@link CursoManager} para cargar y gestionar cursos</li>
  *   <li>{@link ModuleManager} para cargar y gestionar módulos de preguntas</li>
+ *   <li>{@link StrategyManager} para gestionar estrategias de aprendizaje</li>
  *   <li>SLF4J Logger para registrar eventos y errores</li>
  * </ul>
  * 
@@ -80,6 +84,9 @@ public class KursorApplication extends Application {
         
     /** Gestor de módulos de la aplicación */
     private ModuleManager moduleManager;
+    
+    /** Gestor de estrategias de la aplicación */
+    private StrategyManager strategyManager;
     
     /** Contenedor principal de la interfaz de usuario */
     private BorderPane rootContainer;
@@ -126,6 +133,56 @@ public class KursorApplication extends Application {
         // Inicializar gestor de módulos
         logger.info("Inicializando gestor de módulos...");
         moduleManager = ModuleManager.getInstance();
+        strategyManager = StrategyManager.getInstance();
+        
+        // Mostrar información de estrategias cargadas
+        if (strategyManager.hasStrategies()) {
+            logger.info("📊 Estrategias cargadas: {} estrategias disponibles", strategyManager.getStrategyCount());
+            logger.debug("📋 Información detallada de estrategias:\n{}", strategyManager.getStrategiesInfo());
+        } else {
+            logger.warn("⚠️ No se cargaron estrategias de aprendizaje. La funcionalidad de estrategias estará limitada.");
+        }
+        
+        // Validación crítica: verificar que hay al menos módulos o estrategias disponibles
+        if (!moduleManager.hasModules() && !strategyManager.hasStrategies()) {
+            String errorMsg = "❌ ERROR CRÍTICO: No se pudieron cargar módulos de preguntas ni estrategias de aprendizaje.\n" +
+                             "La aplicación no puede funcionar sin estos componentes esenciales.\n\n" +
+                             "Verifica que:\n" +
+                             "• Existen archivos JAR en el directorio 'modules/' con implementaciones de PreguntaModule\n" +
+                             "• Existen archivos JAR en el directorio 'strategies/' con implementaciones de EstrategiaModule\n" +
+                             "• Los archivos JAR contienen los archivos de servicios correctos\n" +
+                             "• Los archivos JAR no están corruptos\n\n" +
+                             "Rutas de búsqueda:\n" +
+                             "• Módulos: " + moduleManager.getModulosDir() + "\n" +
+                             "• Estrategias: " + strategyManager.getStrategiesDir();
+            
+            logger.error("=================================================");
+            logger.error("ERROR CRÍTICO - APLICACIÓN NO FUNCIONAL");
+            logger.error("=================================================");
+            logger.error(errorMsg);
+            logger.error("=================================================");
+            
+            // Mostrar alert crítico al usuario
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("❌ Error Crítico - Aplicación No Funcional");
+            alert.setHeaderText("No se pudieron cargar componentes esenciales");
+            alert.setContentText(errorMsg);
+            alert.setResizable(true);
+            alert.getDialogPane().setPrefWidth(600);
+            alert.getDialogPane().setPrefHeight(400);
+            
+            // Configurar el alert como modal y centrado
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.initOwner(primaryStage);
+            
+            // Mostrar el alert y terminar la aplicación
+            alert.showAndWait();
+            
+            // Terminar la aplicación con código de error
+            logger.error("Terminando aplicación debido a error crítico");
+            Platform.exit();
+            System.exit(1);
+        }
         
         logger.info("Gestor de módulos inicializado correctamente");
         

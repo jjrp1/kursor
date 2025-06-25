@@ -63,13 +63,19 @@
                         <a class="nav-link" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="guia-inicio-rapido.html">Guía Rápida</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="estrategias.html">Estrategias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="arquitectura.html">Arquitectura</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="faq.html">FAQ</a>
+                        <a class="nav-link" href="resultados-pruebas.html">Pruebas</a>
                     </li>
                 </ul>
             </div>
@@ -246,16 +252,18 @@
             <div id="repeticion-espaciada" class="mb-5">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <h2><i class="fas fa-redo text-warning"></i> Repetición Espaciada</h2>
-                        <p class="lead">Optimización científica de la retención</p>
-                        <p>La estrategia de repetición espaciada repite preguntas con intervalos crecientes, basándose en la curva del olvido para optimizar el momento de repaso.</p>
+                        <h2><i class="fas fa-brain text-warning"></i> Repetición Espaciada</h2>
+                        <p class="lead">Algoritmo científico SuperMemo 2</p>
+                        <p>La estrategia de repetición espaciada implementa el algoritmo <strong>SuperMemo 2</strong>, optimizando la retención a largo plazo mediante intervalos crecientes adaptativos y factor de facilidad dinámico.</p>
                         
                         <h5>Características principales:</h5>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check"></i> Basada en la curva del olvido</li>
-                            <li><i class="fas fa-check"></i> Optimiza el momento de repaso</li>
-                            <li><i class="fas fa-check"></i> Mejora la retención a largo plazo</li>
-                            <li><i class="fas fa-check"></i> Intervalo configurable (por defecto: cada 3 preguntas)</li>
+                            <li><i class="fas fa-check"></i> <strong>Algoritmo SuperMemo 2</strong> completo</li>
+                            <li><i class="fas fa-check"></i> <strong>Factor de Facilidad (EF)</strong> adaptativo</li>
+                            <li><i class="fas fa-check"></i> <strong>Intervalos crecientes</strong> basados en rendimiento</li>
+                            <li><i class="fas fa-check"></i> <strong>Calidad de respuesta</strong> 0-5 (perfecto a olvidado)</li>
+                            <li><i class="fas fa-check"></i> <strong>Programación inteligente</strong> con prioridades</li>
+                            <li><i class="fas fa-check"></i> <strong>Persistencia completa</strong> entre sesiones</li>
                         </ul>
 
                         <h5>Cuándo usar:</h5>
@@ -263,24 +271,48 @@
                             <li><i class="fas fa-arrow-right"></i> Memorización de conceptos clave</li>
                             <li><i class="fas fa-arrow-right"></i> Vocabulario y definiciones</li>
                             <li><i class="fas fa-arrow-right"></i> Preparación para exámenes importantes</li>
-                            <li><i class="fas fa-arrow-right"></i> Cuando quieres maximizar la retención</li>
+                            <li><i class="fas fa-arrow-right"></i> Cuando quieres maximizar la retención a largo plazo</li>
+                            <li><i class="fas fa-arrow-right"></i> Aprendizaje de idiomas y conceptos complejos</li>
+                        </ul>
+
+                        <h5>Algoritmo científico:</h5>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-calculator"></i> <strong>Primera repetición:</strong> 1 día</li>
+                            <li><i class="fas fa-calculator"></i> <strong>Segunda repetición:</strong> 6 días</li>
+                            <li><i class="fas fa-calculator"></i> <strong>Repeticiones posteriores:</strong> intervalo × factor de facilidad</li>
+                            <li><i class="fas fa-calculator"></i> <strong>Factor de facilidad:</strong> se ajusta según calidad (1.3 - ∞)</li>
                         </ul>
                     </div>
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Ejemplo de flujo:</h5>
+                                <h5 class="card-title">Ejemplo de flujo SuperMemo 2:</h5>
                                 <div class="text-center">
-                                    <div class="d-flex justify-content-center align-items-center mb-3 flex-wrap">
-                                        <span class="badge bg-warning me-2 mb-1">1</span>
-                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
-                                        <span class="badge bg-warning me-2 mb-1">2</span>
-                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
-                                        <span class="badge bg-warning me-2 mb-1">3</span>
-                                        <i class="fas fa-arrow-right me-2 mb-1"></i>
-                                        <span class="badge bg-info mb-1">[Repite 1]</span>
+                                    <div class="mb-3">
+                                        <h6 class="text-warning">Día 1: Primera presentación</h6>
+                                        <div class="d-flex justify-content-center align-items-center mb-2">
+                                            <span class="badge bg-warning me-2">Pregunta A</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-success">Calidad 5</span>
+                                        </div>
                                     </div>
-                                    <p class="text-muted">Repetición inteligente con intervalos</p>
+                                    <div class="mb-3">
+                                        <h6 class="text-info">Día 2: Primera repetición</h6>
+                                        <div class="d-flex justify-content-center align-items-center mb-2">
+                                            <span class="badge bg-info me-2">Pregunta A</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-success">Calidad 4</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="text-primary">Día 8: Segunda repetición</h6>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <span class="badge bg-primary me-2">Pregunta A</span>
+                                            <i class="fas fa-arrow-right me-2"></i>
+                                            <span class="badge bg-success">Calidad 5</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted mt-3">Intervalos adaptativos según rendimiento</p>
                                 </div>
                             </div>
                         </div>
@@ -380,10 +412,10 @@
                             </tr>
                             <tr>
                                 <td><strong>Repetición Espaciada</strong></td>
-                                <td>Memorización</td>
-                                <td><span class="badge bg-warning">Media</span></td>
+                                <td>Memorización científica</td>
+                                <td><span class="badge bg-danger">Alta</span></td>
                                 <td><span class="badge bg-warning">Medio</span></td>
-                                <td><span class="badge bg-success">Muy Alta</span></td>
+                                <td><span class="badge bg-success">Máxima</span></td>
                             </tr>
                             <tr>
                                 <td><strong>Repetir Incorrectas</strong></td>
@@ -394,6 +426,50 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Status -->
+    <section class="py-5 bg-success text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">
+                <i class="fas fa-check-circle"></i> Estado de Implementación
+            </h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="alert alert-light text-dark">
+                        <h4 class="alert-heading">
+                            <i class="fas fa-trophy"></i> ¡Todas las estrategias están completamente implementadas!
+                        </h4>
+                        <p class="mb-3">
+                            El sistema de estrategias de aprendizaje está <strong>100% funcional</strong> con las cuatro estrategias implementadas como módulos independientes.
+                        </p>
+                        <hr>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <i class="fas fa-sort-numeric-down fa-2x text-primary mb-2"></i>
+                                <h6>Secuencial</h6>
+                                <span class="badge bg-success">Completa</span>
+                            </div>
+                            <div class="col-md-3">
+                                <i class="fas fa-random fa-2x text-success mb-2"></i>
+                                <h6>Aleatoria</h6>
+                                <span class="badge bg-success">Completa</span>
+                            </div>
+                            <div class="col-md-3">
+                                <i class="fas fa-brain fa-2x text-warning mb-2"></i>
+                                <h6>Repetición Espaciada</h6>
+                                <span class="badge bg-success">SuperMemo 2</span>
+                            </div>
+                            <div class="col-md-3">
+                                <i class="fas fa-exclamation-triangle fa-2x text-danger mb-2"></i>
+                                <h6>Repetir Incorrectas</h6>
+                                <span class="badge bg-success">Completa</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

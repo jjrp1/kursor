@@ -685,4 +685,13 @@ public class ModuleManager {
         
         instance = testInstance;
     }
+
+    /**
+     * Obtiene la ruta del directorio de módulos.
+     * 
+     * @return La ruta completa del directorio de módulos
+     */
+    public String getModulosDir() {
+        return MODULES_DIR;
+    }
 } 

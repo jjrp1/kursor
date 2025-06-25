@@ -324,21 +324,52 @@ while (estrategia.hayMasPreguntas()) {
 
 ### 4.3 Estrategia de Repetición Espaciada
 
-**Descripción:** Repite preguntas con intervalos crecientes para optimizar la retención.
+**Descripción:** Implementa el algoritmo **SuperMemo 2** para optimizar la retención a largo plazo mediante intervalos crecientes adaptativos.
 
 **Características:**
-- **Reordenación**: Con repetición según intervalos
-- **Estado**: Índice actual, intervalo configurable, preguntas procesadas
-- **Reactividad**: Ajusta intervalos según respuestas
-- **Complejidad**: Media
+- **Algoritmo**: SuperMemo 2 completo con factor de facilidad (EF)
+- **Reordenación**: Programación inteligente basada en prioridad y tiempo
+- **Estado**: Factor de facilidad, intervalos, repeticiones, calidad de respuestas
+- **Reactividad**: Ajusta intervalos y factores según calidad de respuestas (0-5)
+- **Complejidad**: Alta (algoritmo científico)
 
 **Ubicación:** `kursor-repeticion-espaciada-strategy/src/main/java/com/kursor/strategy/repeticionespaciada/RepeticionEspaciadaStrategy.java`
 
+**Algoritmo SuperMemo 2:**
+- **Factor de Facilidad (EF)**: Se ajusta según la calidad de las respuestas
+- **Intervalos Crecientes**: Las preguntas fáciles se repiten con mayor espaciado
+- **Repetición Adaptativa**: Las preguntas difíciles se repiten más frecuentemente
+- **Calidad de Respuesta**: 0-5 donde 5 es "perfecto" y 0 es "completamente olvidado"
+
+**Fórmulas del Algoritmo:**
+```java
+// Actualización del factor de facilidad (EF)
+double newEF = EF + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02))
+EF = Math.max(1.3, newEF)
+
+// Cálculo de intervalos
+if (repeticiones == 1) intervalo = 1 día
+else if (repeticiones == 2) intervalo = 6 días
+else intervalo = Math.round(intervalo * EF)
+```
+
 **Métodos auxiliares:**
-- `getIndiceActual()`: Obtiene el índice actual
-- `getIntervalo()`: Obtiene el intervalo de repetición
-- `setIntervalo(int)`: Configura el intervalo
-- `getPreguntasProcesadas()`: Obtiene cantidad de preguntas procesadas
+- `getPreguntasProcesadas()`: Obtiene cantidad de preguntas procesadas en la sesión
+- `getTotalPreguntasSesion()`: Obtiene el total de preguntas en la sesión actual
+- `getTotalPreguntas()`: Obtiene el total de preguntas en la estrategia
+- `getPreguntasProgramadas()`: Obtiene el número de preguntas programadas para repetición
+- `getEstadoPregunta(String)`: Obtiene el estado de una pregunta específica
+- `getFactorFacilidadPromedio()`: Obtiene el factor de facilidad promedio de todas las preguntas
+
+**Clases Internas:**
+- `PreguntaProgramada`: Representa una pregunta programada para repetición
+- `EstadoPregunta`: Mantiene el estado de repetición espaciada de una pregunta
+
+**Características Avanzadas:**
+- **Cola de Prioridad**: Las preguntas se programan según urgencia y tiempo
+- **Serialización Completa**: Estado persistente entre sesiones
+- **Calidad Adaptativa**: Convierte respuestas a calidad 0-5 basada en tiempo y corrección
+- **Priorización Inteligente**: Preguntas incorrectas tienen mayor prioridad
 
 ### 4.4 Estrategia de Repetir Incorrectas
 
@@ -410,14 +441,23 @@ Cada módulo incluye:
 
 ### ✅ Completado
 - **Interfaz EstrategiaAprendizaje**: Implementada y estable
-- **Estrategia Secuencial**: Implementada como módulo independiente
-- **Estrategia Aleatoria**: Implementada como módulo independiente
-- **Estrategia de Repetición Espaciada**: Implementada como módulo independiente
-- **Estrategia de Repetir Incorrectas**: Implementada como módulo independiente
+- **Estrategia Secuencial**: ✅ **Completamente implementada** como módulo independiente
+- **Estrategia Aleatoria**: ✅ **Completamente implementada** como módulo independiente
+- **Estrategia de Repetición Espaciada**: ✅ **Completamente implementada** con algoritmo SuperMemo 2
+- **Estrategia de Repetir Incorrectas**: ✅ **Completamente implementada** como módulo independiente
 - **Sistema de módulos**: Carga dinámica mediante ServiceLoader
 - **Testing**: Pruebas unitarias completas para todas las estrategias
 - **Configuración Maven**: Todos los módulos configurados correctamente
 - **Documentación**: Completa y actualizada
+
+### 🎯 Resumen de Implementaciones
+
+| Estrategia | Estado | Algoritmo | Complejidad |
+|------------|--------|-----------|-------------|
+| **Secuencial** | ✅ Completa | Orden original | Muy baja |
+| **Aleatoria** | ✅ Completa | Barajado único | Baja |
+| **Repetición Espaciada** | ✅ Completa | SuperMemo 2 | Alta |
+| **Repetir Incorrectas** | ✅ Completa | Dos fases | Media |
 
 ### 🔧 Mejoras Futuras
 - **Optimización de rendimiento**: Mejoras en algoritmos de estrategias
@@ -487,10 +527,18 @@ public class Respuesta {
 
 1. **Las estrategias son iteradores especializados** que trabajan a nivel de bloque ✅ **IMPLEMENTADO**
 2. **La interfaz mejorada** incluye `primeraPregunta()`, `registrarRespuesta()` sin parámetro pregunta, y control de flujo ✅ **IMPLEMENTADO**
-3. **Las 4 estrategias están implementadas** como módulos independientes con carga dinámica ✅ **IMPLEMENTADO**
+3. **Las 4 estrategias están completamente implementadas** como módulos independientes con carga dinámica ✅ **IMPLEMENTADO**
 4. **El sistema modular** permite extensibilidad sin modificar el código principal ✅ **IMPLEMENTADO**
+5. **La estrategia de repetición espaciada** implementa el algoritmo científico SuperMemo 2 completo ✅ **IMPLEMENTADO**
 
-**Estado Actual**: Todas las estrategias están implementadas y funcionando correctamente. El sistema es modular, extensible y bien documentado.
+**Estado Actual**: ✅ **TODAS LAS ESTRATEGIAS COMPLETAMENTE IMPLEMENTADAS**
+
+- **Secuencial**: Presenta preguntas en orden original
+- **Aleatoria**: Baraja la lista una vez y presenta en orden aleatorio
+- **Repetición Espaciada**: Algoritmo SuperMemo 2 completo con factor de facilidad adaptativo
+- **Repetir Incorrectas**: Dos fases bien implementadas (originales + incorrectas)
+
+El sistema es modular, extensible, bien documentado y todas las estrategias funcionan correctamente.
 
 **Próximos Pasos**: 
 - Optimización de rendimiento
@@ -503,4 +551,4 @@ public class Respuesta {
 **Autor:** Juan José Ruiz Pérez <jjrp1@um.es>  
 **Fecha:** 2025-01-27  
 **Versión:** 2.0.0  
-**Estado:** Implementación Completada 
+**Estado:** ✅ **Implementación Completada - Todas las estrategias funcionales** 
