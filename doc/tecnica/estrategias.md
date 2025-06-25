@@ -1,15 +1,25 @@
 ---
-title: Plan Inicial de Estrategias de Aprendizaje
-subtitle: Documentación técnica del sistema de estrategias
-description: Análisis y propuestas para el sistema de estrategias de aprendizaje en Kursor
-keywords: estrategias, aprendizaje, módulos, iteradores
-status: desarrollo
+title: Sistema de Estrategias de Aprendizaje
+subtitle: Documentación técnica completa del sistema de estrategias
+description: Análisis, diseño, implementación y modularización del sistema de estrategias de aprendizaje en Kursor
+keywords: estrategias, aprendizaje, módulos, iteradores, modularización, ServiceLoader
+status: implementado
 created: 2025-01-27
 modified: 2025-01-27
 author: "Juanjo Ruiz"
 ---
 
-# Plan Inicial de Estrategias de Aprendizaje
+# Sistema de Estrategias de Aprendizaje
+
+## Resumen Ejecutivo
+
+El sistema de estrategias de aprendizaje en Kursor está completamente implementado y modularizado. Las estrategias funcionan como **iteradores especializados** que reciben preguntas de un bloque específico, las reordenan según su algoritmo, y las facilitan una a una bajo demanda, manteniendo estado interno y reaccionando a las respuestas del usuario.
+
+**Estado Actual**: ✅ **COMPLETAMENTE IMPLEMENTADO**
+- 4 estrategias implementadas como módulos independientes
+- Sistema de carga dinámica mediante ServiceLoader
+- Arquitectura modular consistente
+- Documentación completa y pruebas unitarias
 
 ## 1. Concepto Fundamental: Estrategias como Iteradores
 
@@ -32,9 +42,62 @@ Las **estrategias de aprendizaje** son **iteradores especializados** que:
 - **Persistencia**: Puede guardar/restaurar su estado de iteración
 - **Reactividad**: Puede ajustar su comportamiento basado en las respuestas del usuario
 
-## 2. Interfaz EstrategiaAprendizaje
+## 2. Arquitectura Modular Implementada
 
-### 2.1 Definición de la Interfaz
+### 2.1 Estructura de Módulos ✅ COMPLETADO
+
+```
+kursor-secuencial-strategy/
+├── pom.xml
+├── src/main/java/com/kursor/strategy/secuencial/
+│   ├── SecuencialStrategy.java
+│   └── SecuencialStrategyModule.java
+└── src/main/resources/META-INF/services/
+    └── com.kursor.strategy.EstrategiaModule
+
+kursor-aleatoria-strategy/
+├── pom.xml
+├── src/main/java/com/kursor/strategy/aleatoria/
+│   ├── AleatoriaStrategy.java
+│   └── AleatoriaStrategyModule.java
+└── src/main/resources/META-INF/services/
+    └── com.kursor.strategy.EstrategiaModule
+
+kursor-repeticion-espaciada-strategy/
+├── pom.xml
+├── src/main/java/com/kursor/strategy/repeticionespaciada/
+│   ├── RepeticionEspaciadaStrategy.java
+│   └── RepeticionEspaciadaStrategyModule.java
+└── src/main/resources/META-INF/services/
+    └── com.kursor.strategy.EstrategiaModule
+
+kursor-repetir-incorrectas-strategy/
+├── pom.xml
+├── src/main/java/com/kursor/strategy/repetirincorrectas/
+│   ├── RepetirIncorrectasStrategy.java
+│   └── RepetirIncorrectasStrategyModule.java
+└── src/main/resources/META-INF/services/
+    └── com.kursor.strategy.EstrategiaModule
+```
+
+### 2.2 Distribución Final ✅ IMPLEMENTADO
+
+```
+kursor-portable/
+├── strategies/          # Estrategias de aprendizaje
+│   ├── kursor-secuencial-strategy.jar
+│   ├── kursor-aleatoria-strategy.jar
+│   ├── kursor-repeticion-espaciada-strategy.jar
+│   └── kursor-repetir-incorrectas-strategy.jar
+├── modules/            # Tipos de preguntas
+├── kursor-core.jar     # Núcleo del sistema
+├── kursor.db          # Base de datos SQLite
+└── [configuración]
+```
+
+## 3. Interfaces del Sistema
+
+### 3.1 Interfaz EstrategiaAprendizaje
 
 ```java
 /**
@@ -169,7 +232,38 @@ public interface EstrategiaAprendizaje extends Serializable {
 }
 ```
 
-### 2.2 Flujo de Uso Típico
+### 3.2 Interfaz EstrategiaModule
+
+```java
+package com.kursor.strategy;
+
+import com.kursor.domain.EstrategiaAprendizaje;
+import java.util.List;
+
+public interface EstrategiaModule {
+    /**
+     * Obtiene el nombre de la estrategia
+     */
+    String getNombre();
+    
+    /**
+     * Crea una nueva instancia de la estrategia
+     */
+    EstrategiaAprendizaje crearEstrategia(List<Pregunta> preguntas);
+    
+    /**
+     * Obtiene la descripción de la estrategia
+     */
+    String getDescripcion();
+    
+    /**
+     * Obtiene la versión del módulo
+     */
+    String getVersion();
+}
+```
+
+### 3.3 Flujo de Uso Típico
 
 ```java
 // 1. Crear estrategia con preguntas del bloque
@@ -194,9 +288,9 @@ while (estrategia.hayMasPreguntas()) {
 // 4. Mostrar resultados del bloque
 ```
 
-## 3. Estrategias Implementadas
+## 4. Estrategias Implementadas
 
-### 3.1 Estrategia Secuencial
+### 4.1 Estrategia Secuencial
 
 **Descripción:** Presenta las preguntas en el orden original del bloque.
 
@@ -206,9 +300,15 @@ while (estrategia.hayMasPreguntas()) {
 - **Reactividad**: No reacciona a respuestas
 - **Complejidad**: Muy baja
 
-### 3.2 Estrategia Aleatoria
+**Ubicación:** `kursor-secuencial-strategy/src/main/java/com/kursor/strategy/secuencial/SecuencialStrategy.java`
 
-**Descripción:** Presenta las preguntas en orden aleatorio.
+**Métodos auxiliares:**
+- `getIndiceActual()`: Obtiene el índice actual
+- `getTotalPreguntas()`: Obtiene el total de preguntas
+
+### 4.2 Estrategia Aleatoria
+
+**Descripción:** Presenta las preguntas en orden completamente aleatorio.
 
 **Características:**
 - **Reordenación**: Aleatoria, sin repetición
@@ -216,7 +316,13 @@ while (estrategia.hayMasPreguntas()) {
 - **Reactividad**: No reacciona a respuestas
 - **Complejidad**: Baja
 
-### 3.3 Estrategia de Repetición Espaciada
+**Ubicación:** `kursor-aleatoria-strategy/src/main/java/com/kursor/strategy/aleatoria/AleatoriaStrategy.java`
+
+**Métodos auxiliares:**
+- `getPreguntasProcesadas()`: Obtiene cantidad de preguntas procesadas
+- `getTotalPreguntas()`: Obtiene el total de preguntas
+
+### 4.3 Estrategia de Repetición Espaciada
 
 **Descripción:** Repite preguntas con intervalos crecientes para optimizar la retención.
 
@@ -226,7 +332,15 @@ while (estrategia.hayMasPreguntas()) {
 - **Reactividad**: Ajusta intervalos según respuestas
 - **Complejidad**: Media
 
-### 3.4 Estrategia de Repetir Incorrectas
+**Ubicación:** `kursor-repeticion-espaciada-strategy/src/main/java/com/kursor/strategy/repeticionespaciada/RepeticionEspaciadaStrategy.java`
+
+**Métodos auxiliares:**
+- `getIndiceActual()`: Obtiene el índice actual
+- `getIntervalo()`: Obtiene el intervalo de repetición
+- `setIntervalo(int)`: Configura el intervalo
+- `getPreguntasProcesadas()`: Obtiene cantidad de preguntas procesadas
+
+### 4.4 Estrategia de Repetir Incorrectas
 
 **Descripción:** Repite automáticamente las preguntas que respondiste incorrectamente.
 
@@ -236,35 +350,63 @@ while (estrategia.hayMasPreguntas()) {
 - **Reactividad**: Registra incorrectas para repetición
 - **Complejidad**: Media
 
-## 4. Estrategia Repetición de Incorrectas - IMPLEMENTADA
+**Ubicación:** `kursor-repetir-incorrectas-strategy/src/main/java/com/kursor/strategy/repetirincorrectas/RepetirIncorrectasStrategy.java`
 
-### 4.1 Concepto
+**Métodos auxiliares:**
+- `getIndiceActual()`: Obtiene el índice actual
+- `estaEnFaseRepeticion()`: Verifica si está en fase de repetición
+- `getCantidadIncorrectas()`: Obtiene cantidad de preguntas incorrectas
+- `getCantidadOriginales()`: Obtiene cantidad de preguntas originales
 
-Una estrategia que mantiene dos fases:
-1. **Fase principal**: Preguntas del bloque en orden original
-2. **Fase de repetición**: Preguntas falladas que se repiten al final
+## 5. Configuración Maven ✅ IMPLEMENTADA
 
-### 4.2 Implementación
+### 5.1 pom.xml de cada módulo de estrategia
 
-La estrategia ya está implementada en el módulo `kursor-repetir-incorrectas-strategy` con las siguientes características:
+Cada módulo incluye:
+- **Dependencias del core**: Referencia a `kursor-core` con scope `provided`
+- **Jackson**: Para serialización JSON del estado
+- **Logging**: SLF4J para logging
+- **Testing**: JUnit 5 para pruebas
+- **Configuración Maven**: Compilador Java 17, plugins de JAR y recursos
 
-- **Módulo independiente**: Carga dinámica mediante ServiceLoader
-- **Dos fases claras**: Originales + repetición de incorrectas
-- **Reactiva**: Registra incorrectas automáticamente
-- **Persistencia**: Estado serializable para continuar sesiones
-- **Progreso inteligente**: Calcula progreso considerando ambas fases
+### 5.2 Ejemplo de configuración:
 
-### 4.3 Ventajas de esta Estrategia
+```xml
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.kursor</groupId>
+    <artifactId>kursor-secuencial-strategy</artifactId>
+    <version>1.0.0</version>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.kursor</groupId>
+            <artifactId>kursor-core</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Title>Secuencial Strategy</Implementation-Title>
+                            <Implementation-Version>1.0.0</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
 
-1. **✅ No modifica código existente**: Usa la interfaz actual
-2. **✅ Trabaja a nivel de bloque**: Solo maneja preguntas del mismo tipo/modelo
-3. **✅ Lógica simple**: Dos fases claras (originales + incorrectas)
-4. **✅ Valor educativo real**: Refuerza lo que el usuario no sabe
-5. **✅ Implementación sencilla**: Solo dos colas y un método de registro
-6. **✅ Reactiva**: Ajusta su comportamiento según las respuestas
-7. **✅ Modular**: Implementada como módulo independiente
-
-## 5. Estado Actual de Implementación
+## 6. Estado de Implementación
 
 ### ✅ Completado
 - **Interfaz EstrategiaAprendizaje**: Implementada y estable
@@ -274,6 +416,8 @@ La estrategia ya está implementada en el módulo `kursor-repetir-incorrectas-st
 - **Estrategia de Repetir Incorrectas**: Implementada como módulo independiente
 - **Sistema de módulos**: Carga dinámica mediante ServiceLoader
 - **Testing**: Pruebas unitarias completas para todas las estrategias
+- **Configuración Maven**: Todos los módulos configurados correctamente
+- **Documentación**: Completa y actualizada
 
 ### 🔧 Mejoras Futuras
 - **Optimización de rendimiento**: Mejoras en algoritmos de estrategias
@@ -281,9 +425,28 @@ La estrategia ya está implementada en el módulo `kursor-repetir-incorrectas-st
 - **Configuración avanzada**: Parámetros configurables por estrategia
 - **Analytics**: Métricas detalladas de rendimiento por estrategia
 
-## 6. Consideraciones Técnicas
+## 7. Ventajas de la Arquitectura Modular
 
-### 6.1 Clase Respuesta
+### Técnicas
+- **Separación de responsabilidades**: Cada estrategia es independiente ✅
+- **Carga dinámica**: Estrategias se cargan solo cuando se necesitan ✅
+- **Escalabilidad**: Fácil agregar nuevas estrategias ✅
+- **Testing**: Pruebas unitarias independientes por estrategia ✅
+
+### Arquitectónicas
+- **Consistencia**: Mismo patrón que módulos de preguntas ✅
+- **Flexibilidad**: Estrategias pueden tener dependencias específicas ✅
+- **Mantenibilidad**: Código más organizado y fácil de mantener ✅
+- **Reutilización**: Estrategias pueden usarse en otros proyectos ✅
+
+### Operativas
+- **Distribución**: JARs independientes en /strategies/ ✅
+- **Actualización**: Estrategias se pueden actualizar independientemente ✅
+- **Configuración**: Cada estrategia puede tener su propia configuración ✅
+
+## 8. Consideraciones Técnicas
+
+### 8.1 Clase Respuesta
 
 ```java
 public class Respuesta {
@@ -300,17 +463,27 @@ public class Respuesta {
 }
 ```
 
-### 6.2 Compatibilidad
+### 8.2 Compatibilidad
 - Mantener compatibilidad con estrategias existentes
 - No romper la interfaz actual
 - Migración gradual
 
-### 6.3 Testing
+### 8.3 Testing
 - Tests unitarios para cada estrategia
 - Tests de integración para el flujo completo
 - Tests de persistencia de estado
 
-## 7. Conclusiones
+### 8.4 Persistencia
+- El `EstrategiaStateManager` debe ser compatible con la nueva estructura
+- Los datos JSON de estado deben mantener compatibilidad
+- Las entidades JPA no cambian
+
+### 8.5 API Pública
+- La interfaz `EstrategiaAprendizaje` se mantiene igual
+- Los métodos públicos no cambian
+- Compatibilidad hacia atrás garantizada
+
+## 9. Conclusiones
 
 1. **Las estrategias son iteradores especializados** que trabajan a nivel de bloque ✅ **IMPLEMENTADO**
 2. **La interfaz mejorada** incluye `primeraPregunta()`, `registrarRespuesta()` sin parámetro pregunta, y control de flujo ✅ **IMPLEMENTADO**
@@ -323,4 +496,11 @@ public class Respuesta {
 - Optimización de rendimiento
 - Nuevas estrategias avanzadas
 - Mejoras en la configuración
-- Analytics detallados 
+- Analytics detallados
+
+---
+
+**Autor:** Juan José Ruiz Pérez <jjrp1@um.es>  
+**Fecha:** 2025-01-27  
+**Versión:** 2.0.0  
+**Estado:** Implementación Completada 
