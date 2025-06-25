@@ -5,6 +5,8 @@ import javafx.scene.Node;
 import com.kursor.domain.Pregunta;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * Interfaz para módulos de preguntas que manejan tipos específicos de preguntas.
  * 

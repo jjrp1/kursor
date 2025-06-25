@@ -462,6 +462,11 @@ public class CursoInterfaceModal extends Stage {
             // Crear la interfaz de usuario para la pregunta
             javafx.scene.Node preguntaUI = moduloActual.createQuestionUI(pregunta);
             
+            // Configurar eventos específicos para flashcards
+            if ("flashcard".equals(pregunta.getTipo())) {
+                configurarEventosFlashcard(preguntaUI);
+            }
+            
             // Actualizar el contenido del modal
             actualizarContenido(preguntaUI);
             
@@ -505,47 +510,177 @@ public class CursoInterfaceModal extends Stage {
         
         boolean requiereValidacion = moduloActual.requiresValidation();
         
-        // Para flashcards, habilitar directamente "Siguiente"
-        if (!requiereValidacion) {
+        // Para flashcards, manejo especial
+        if ("flashcard".equals(preguntaActualObj.getTipo())) {
+            // Ocultar botones estándar para flashcards (usan sus propios botones)
+            setVerificarHabilitado(false);
+            setSiguienteHabilitado(false);
+            
+            // Verificar si es la última pregunta para deshabilitar "Siguiente" en la flashcard
+            if (estrategia != null) {
+                com.kursor.domain.Pregunta siguientePregunta = estrategia.siguientePregunta();
+                if (siguientePregunta == null) {
+                    // Es la última pregunta, deshabilitar botón Siguiente en la flashcard
+                    deshabilitarBotonSiguienteFlashcard();
+                }
+            }
+        } else if (!requiereValidacion) {
+            // Para otros tipos que no requieren validación, habilitar directamente "Siguiente"
             setVerificarHabilitado(false);
             setSiguienteHabilitado(true);
         } else {
-            // Para otros tipos, habilitar "Verificar" primero
+            // Para tipos que requieren validación, habilitar "Verificar" primero
             setVerificarHabilitado(true);
             setSiguienteHabilitado(false);
         }
     }
     
     /**
-     * Valida la respuesta del usuario.
+     * Deshabilita el botón Siguiente en las flashcards cuando es la última pregunta.
+     */
+    private void deshabilitarBotonSiguienteFlashcard() {
+        if (contentSection.getChildren().isEmpty()) {
+            return;
+        }
+        
+        javafx.scene.Node contenidoPregunta = contentSection.getChildren().get(0);
+        Button botonSiguiente = buscarBotonFlashcard(contenidoPregunta, "Siguiente");
+        
+        if (botonSiguiente != null) {
+            botonSiguiente.setDisable(true);
+            botonSiguiente.setStyle("-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 8 16; -fx-cursor: default;");
+            logger.info("Botón Siguiente de flashcard deshabilitado - última pregunta");
+        }
+    }
+    
+    /**
+     * Verifica la respuesta del usuario.
      */
     private void verificarRespuesta() {
+        logger.info("Usuario presionó Verificar");
         logger.debug("Verificando respuesta del usuario");
         
         try {
-            // TODO: Obtener respuesta del usuario desde la UI
-            Object respuestaUsuario = obtenerRespuestaUsuario();
-            
-            if (respuestaUsuario == null) {
-                mostrarError("Por favor, proporciona una respuesta antes de verificar.");
+            // Para flashcards, verificar si se presionó algún botón específico
+            if (preguntaActualObj != null && "flashcard".equals(preguntaActualObj.getTipo())) {
+                manejarBotonesFlashcard();
                 return;
             }
             
-            // Validar respuesta usando el módulo
+            // Para otros tipos de pregunta, obtener respuesta y validar
+            Object respuestaUsuario = obtenerRespuestaUsuario();
+            
+            if (respuestaUsuario == null) {
+                mostrarError("Por favor, selecciona una respuesta antes de verificar.");
+                return;
+            }
+            
+            // Validar respuesta usando el módulo actual
             boolean esCorrecta = moduloActual.validateAnswer(preguntaActualObj, respuestaUsuario);
             
             // Mostrar resultado
             mostrarResultadoValidacion(esCorrecta);
             
-            // Habilitar botón "Siguiente"
-            setSiguienteHabilitado(true);
-            setVerificarHabilitado(false);
+            // Actualizar estadísticas
+            // TODO: Implementar actualización de estadísticas
             
-            logger.info("Respuesta verificada - Correcta: " + esCorrecta);
+            // Habilitar botón siguiente
+            setSiguienteHabilitado(true);
             
         } catch (Exception e) {
             logger.error("Error al verificar respuesta", e);
             mostrarError("Error al verificar la respuesta: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Maneja los botones específicos de las flashcards.
+     */
+    private void manejarBotonesFlashcard() {
+        if (contentSection.getChildren().isEmpty()) {
+            return;
+        }
+        
+        javafx.scene.Node contenidoPregunta = contentSection.getChildren().get(0);
+        
+        // Buscar botones específicos de flashcard
+        Button botonSiguiente = buscarBotonFlashcard(contenidoPregunta, "Siguiente");
+        Button botonTerminar = buscarBotonFlashcard(contenidoPregunta, "Terminar");
+        
+        // Si se presionó el botón Siguiente, marcar como correcta y avanzar
+        if (botonSiguiente != null && botonSiguiente.isPressed()) {
+            logger.info("Botón Siguiente de flashcard presionado - marcando como correcta");
+            // Las flashcards siempre son correctas
+            mostrarResultadoValidacion(true);
+            siguientePregunta();
+            return;
+        }
+        
+        // Si se presionó el botón Terminar, finalizar curso
+        if (botonTerminar != null && botonTerminar.isPressed()) {
+            logger.info("Botón Terminar de flashcard presionado - finalizando curso");
+            finalizarCurso();
+            return;
+        }
+        
+        // Si no se presionó ningún botón específico, solo mostrar que es correcta
+        logger.info("Flashcard marcada como correcta automáticamente");
+        mostrarResultadoValidacion(true);
+        setSiguienteHabilitado(true);
+    }
+    
+    /**
+     * Busca recursivamente un botón específico de flashcard en un nodo.
+     */
+    private Button buscarBotonFlashcard(javafx.scene.Node nodo, String textoBoton) {
+        if (nodo instanceof Button) {
+            Button boton = (Button) nodo;
+            if (boton.getText().contains(textoBoton)) {
+                return boton;
+            }
+        }
+        
+        if (nodo instanceof javafx.scene.Parent) {
+            javafx.scene.Parent parent = (javafx.scene.Parent) nodo;
+            for (javafx.scene.Node child : parent.getChildrenUnmodifiable()) {
+                Button resultado = buscarBotonFlashcard(child, textoBoton);
+                if (resultado != null) {
+                    return resultado;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Configura eventos específicos para botones de flashcard.
+     */
+    private void configurarEventosFlashcard(javafx.scene.Node contenidoPregunta) {
+        if (preguntaActualObj == null || !"flashcard".equals(preguntaActualObj.getTipo())) {
+            return;
+        }
+        
+        // Buscar botones específicos
+        Button botonSiguiente = buscarBotonFlashcard(contenidoPregunta, "Siguiente");
+        Button botonTerminar = buscarBotonFlashcard(contenidoPregunta, "Terminar");
+        
+        // Configurar evento para botón Siguiente
+        if (botonSiguiente != null) {
+            botonSiguiente.setOnAction(e -> {
+                logger.info("Botón Siguiente de flashcard presionado");
+                // Marcar como correcta y avanzar
+                mostrarResultadoValidacion(true);
+                siguientePregunta();
+            });
+        }
+        
+        // Configurar evento para botón Terminar
+        if (botonTerminar != null) {
+            botonTerminar.setOnAction(e -> {
+                logger.info("Botón Terminar de flashcard presionado");
+                finalizarCurso();
+            });
         }
     }
     
@@ -555,9 +690,123 @@ public class CursoInterfaceModal extends Stage {
      * @return Respuesta del usuario o null si no hay respuesta
      */
     private Object obtenerRespuestaUsuario() {
-        // TODO: Implementar lógica específica para obtener respuesta según el tipo de pregunta
-        // Por ahora, retornamos null como placeholder
-        logger.warn("Método obtenerRespuestaUsuario no implementado completamente");
+        if (moduloActual == null || preguntaActualObj == null) {
+            logger.warn("No hay módulo o pregunta actual para obtener respuesta");
+            return null;
+        }
+        
+        logger.debug("Obteniendo respuesta del usuario para pregunta: {}", preguntaActualObj.getId());
+        
+        try {
+            // Obtener la respuesta según el tipo de pregunta
+            String tipoPregunta = preguntaActualObj.getTipo();
+            
+            switch (tipoPregunta) {
+                case "test":
+                    return obtenerRespuestaMultipleChoice();
+                case "flashcard":
+                    return obtenerRespuestaFlashcard();
+                case "truefalse":
+                    return obtenerRespuestaTrueFalse();
+                case "completar_huecos":
+                    return obtenerRespuestaCompletarHuecos();
+                default:
+                    logger.warn("Tipo de pregunta no soportado para obtener respuesta: {}", tipoPregunta);
+                    return null;
+            }
+            
+        } catch (Exception e) {
+            logger.error("Error al obtener respuesta del usuario", e);
+            return null;
+        }
+    }
+    
+    /**
+     * Obtiene la respuesta para preguntas de opción múltiple.
+     */
+    private String obtenerRespuestaMultipleChoice() {
+        // Buscar el RadioButton seleccionado en el contenido actual
+        if (contentSection.getChildren().isEmpty()) {
+            return null;
+        }
+        
+        javafx.scene.Node contenidoPregunta = contentSection.getChildren().get(0);
+        return buscarRadioButtonSeleccionado(contenidoPregunta);
+    }
+    
+    /**
+     * Busca recursivamente un RadioButton seleccionado en un nodo.
+     */
+    private String buscarRadioButtonSeleccionado(javafx.scene.Node nodo) {
+        if (nodo instanceof javafx.scene.control.RadioButton) {
+            javafx.scene.control.RadioButton radioButton = (javafx.scene.control.RadioButton) nodo;
+            if (radioButton.isSelected()) {
+                return radioButton.getText();
+            }
+        }
+        
+        if (nodo instanceof javafx.scene.Parent) {
+            javafx.scene.Parent parent = (javafx.scene.Parent) nodo;
+            for (javafx.scene.Node child : parent.getChildrenUnmodifiable()) {
+                String resultado = buscarRadioButtonSeleccionado(child);
+                if (resultado != null) {
+                    return resultado;
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Obtiene la respuesta para flashcards (siempre correcta).
+     */
+    private String obtenerRespuestaFlashcard() {
+        // Las flashcards siempre se consideran correctas
+        return "correcta";
+    }
+    
+    /**
+     * Obtiene la respuesta para preguntas verdadero/falso.
+     */
+    private String obtenerRespuestaTrueFalse() {
+        // Similar a opción múltiple, pero con solo dos opciones
+        return buscarRadioButtonSeleccionado(contentSection.getChildren().get(0));
+    }
+    
+    /**
+     * Obtiene la respuesta para preguntas de completar huecos.
+     */
+    private String obtenerRespuestaCompletarHuecos() {
+        // Buscar el TextField en el contenido actual
+        if (contentSection.getChildren().isEmpty()) {
+            return null;
+        }
+        
+        javafx.scene.Node contenidoPregunta = contentSection.getChildren().get(0);
+        return buscarTextField(contenidoPregunta);
+    }
+    
+    /**
+     * Busca recursivamente un TextField en un nodo.
+     */
+    private String buscarTextField(javafx.scene.Node nodo) {
+        if (nodo instanceof javafx.scene.control.TextField) {
+            javafx.scene.control.TextField textField = (javafx.scene.control.TextField) nodo;
+            String texto = textField.getText();
+            return texto != null && !texto.trim().isEmpty() ? texto.trim() : null;
+        }
+        
+        if (nodo instanceof javafx.scene.Parent) {
+            javafx.scene.Parent parent = (javafx.scene.Parent) nodo;
+            for (javafx.scene.Node child : parent.getChildrenUnmodifiable()) {
+                String resultado = buscarTextField(child);
+                if (resultado != null) {
+                    return resultado;
+                }
+            }
+        }
+        
         return null;
     }
     

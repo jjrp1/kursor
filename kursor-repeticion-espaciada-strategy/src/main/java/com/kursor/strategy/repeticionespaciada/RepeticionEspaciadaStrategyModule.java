@@ -28,7 +28,7 @@ public class RepeticionEspaciadaStrategyModule implements EstrategiaModule {
 
     @Override
     public String getIcon() {
-        return "🧠";
+        return "📅";
     }
 
     @Override

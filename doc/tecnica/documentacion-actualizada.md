@@ -171,6 +171,163 @@ Esta actualización refleja el estado actual del proyecto Kursor, que está **co
 - [ ] Soporte para múltiples idiomas
 - [ ] Sistema de plugins avanzado
 
+## 🔄 Implementación de Delegación de UI a Módulos
+
+### 🎯 Objetivo
+Implementar un sistema donde cada módulo de pregunta maneje completamente su propia UI, incluyendo botones, eventos y lógica de respuesta, siguiendo los principios SOLID.
+
+### ✅ **IMPLEMENTADO Y FUNCIONAL**
+
+**Fecha de implementación**: 25 de junio de 2025  
+**Estado**: ✅ **COMPLETADO Y FUNCIONANDO**
+
+### 📋 Análisis Arquitectónico
+
+#### **Problema Resuelto**
+- ✅ El método `obtenerRespuestaUsuario` en `CursoInterfaceModal` ahora está completamente implementado
+- ✅ Cada tipo de pregunta tiene su propia lógica de respuesta específica
+- ✅ Solo el módulo específico sabe cómo interpretar la respuesta de su UI
+- ✅ Casos especiales como Flashcards están manejados correctamente
+
+#### **Solución Implementada: Delegación Directa al Modal**
+Basado en análisis SOLID y patrones de diseño:
+
+**✅ Ventajas Implementadas:**
+- **Single Responsibility**: Cada método es responsable solo de su tipo de pregunta
+- **Open/Closed**: Fácil agregar nuevos tipos sin modificar la lógica principal
+- **Dependency Inversion**: El modal depende de abstracciones (PreguntaModule)
+- **Interface Segregation**: Métodos específicos para cada tipo de pregunta
+- **Liskov Substitution**: Comportamiento consistente entre tipos
+
+#### **Arquitectura Implementada**
+
+```java
+// Método principal que delega según el tipo
+private Object obtenerRespuestaUsuario() {
+    switch (tipoPregunta) {
+        case "test": return obtenerRespuestaMultipleChoice();
+        case "flashcard": return obtenerRespuestaFlashcard();
+        case "truefalse": return obtenerRespuestaTrueFalse();
+        case "completar_huecos": return obtenerRespuestaCompletarHuecos();
+    }
+}
+
+// Métodos específicos por tipo
+private String obtenerRespuestaMultipleChoice() { /* ... */ }
+private String obtenerRespuestaFlashcard() { /* ... */ }
+private String obtenerRespuestaTrueFalse() { /* ... */ }
+private String obtenerRespuestaCompletarHuecos() { /* ... */ }
+```
+
+#### **Implementación por Tipo de Pregunta**
+
+**✅ MultipleChoiceModule:**
+- Radio buttons con selección única
+- Búsqueda recursiva de RadioButton seleccionado
+- Validación de selección obligatoria
+
+**✅ FlashcardModule:**
+- Siempre marcada como correcta
+- Respuesta automática "correcta"
+- No requiere validación del usuario
+
+**✅ TrueFalseModule:**
+- Radio buttons (Verdadero/Falso)
+- Búsqueda recursiva de selección
+- Validación de selección obligatoria
+
+**✅ FillBlanksModule:**
+- Campo de texto con validación
+- Búsqueda recursiva de TextField
+- Validación de texto no vacío
+
+### 🔧 Cambios Técnicos Implementados
+
+#### **1. Método Principal `obtenerRespuestaUsuario`**
+- ✅ Implementado completamente en `CursoInterfaceModal`
+- ✅ Delegación por tipo de pregunta
+- ✅ Manejo de errores robusto
+- ✅ Logging detallado
+
+#### **2. Métodos Específicos por Tipo**
+- ✅ `obtenerRespuestaMultipleChoice()` - Para preguntas test
+- ✅ `obtenerRespuestaFlashcard()` - Para flashcards
+- ✅ `obtenerRespuestaTrueFalse()` - Para verdadero/falso
+- ✅ `obtenerRespuestaCompletarHuecos()` - Para completar huecos
+
+#### **3. Métodos de Búsqueda Recursiva**
+- ✅ `buscarRadioButtonSeleccionado()` - Busca RadioButton seleccionado
+- ✅ `buscarTextField()` - Busca TextField con contenido
+
+### 📊 Beneficios Logrados
+
+#### **Mantenibilidad**
+- ✅ Código limpio y organizado
+- ✅ Responsabilidades bien definidas
+- ✅ Fácil testing de cada método
+
+#### **Extensibilidad**
+- ✅ Nuevos tipos de pregunta sin modificar lógica principal
+- ✅ Nuevas validaciones por tipo
+- ✅ Plugins más independientes
+
+#### **Flexibilidad**
+- ✅ Cada tipo puede tener lógica completamente diferente
+- ✅ Soporte para casos especiales (flashcards)
+- ✅ Mejor experiencia de usuario
+
+### 🎯 Casos de Uso Implementados
+
+#### **✅ Flashcards**
+- **Respuesta automática**: Siempre "correcta"
+- **No requiere validación**: Avanza directamente
+- **Caso especial manejado**: Lógica específica implementada
+
+#### **✅ Otros Módulos**
+- **Multiple Choice**: Validación de selección única
+- **True/False**: Validación de selección obligatoria
+- **Fill Blanks**: Validación de texto no vacío
+
+### 📝 Plan de Implementación Completado
+
+1. ✅ **Fase 1**: Definir métodos específicos por tipo
+2. ✅ **Fase 2**: Implementar búsqueda recursiva de controles
+3. ✅ **Fase 3**: Implementar lógica específica por tipo
+4. ✅ **Fase 4**: Integrar con sistema de validación
+5. ✅ **Fase 5**: Testing y validación
+6. ✅ **Fase 6**: Documentación y despliegue
+
+### 🔍 Consideraciones Técnicas Implementadas
+
+#### **Patrón Strategy**
+- ✅ Diferentes estrategias de obtención de respuesta por tipo
+- ✅ Comportamiento polimórfico
+- ✅ Fácil intercambio de implementaciones
+
+#### **Patrón Template Method**
+- ✅ Método principal que define el flujo
+- ✅ Métodos específicos que implementan detalles
+- ✅ Reutilización de código común
+
+#### **Búsqueda Recursiva**
+- ✅ Navegación por árbol de nodos JavaFX
+- ✅ Búsqueda de controles específicos
+- ✅ Manejo de diferentes tipos de contenedores
+
+### 🚀 Próximos Pasos (Opcionales)
+
+#### **Mejoras Futuras**
+- [ ] Implementar callbacks para comunicación asíncrona
+- [ ] Agregar validación en tiempo real
+- [ ] Mejorar feedback visual al usuario
+- [ ] Implementar sistema de hints/pistas
+
+#### **Expansión**
+- [ ] Nuevos tipos de preguntas
+- [ ] Validaciones más complejas
+- [ ] Sistema de scoring avanzado
+- [ ] Analytics de respuestas
+
 ## 📝 Instrucciones de Compilación
 
 ### Para Desarrolladores

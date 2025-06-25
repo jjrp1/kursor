@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Modal para seleccionar la estrategia de aprendizaje antes de comenzar un curso.
@@ -211,6 +212,9 @@ public class EstrategiaSelectionModal extends Stage {
         gridTarjetas.setVgap(15);
         gridTarjetas.setAlignment(Pos.CENTER);
         
+        // Inicializar la lista de tarjetas
+        tarjetasEstrategias = new ArrayList<>();
+        
         // Crear tarjetas para cada estrategia
         int columna = 0;
         int fila = 0;
@@ -218,6 +222,9 @@ public class EstrategiaSelectionModal extends Stage {
         
         for (EstrategiaModule estrategia : estrategias) {
             VBox tarjeta = crearTarjetaEstrategia(estrategia);
+            
+            // Almacenar la tarjeta en la lista
+            tarjetasEstrategias.add(tarjeta);
             
             gridTarjetas.add(tarjeta, columna, fila);
             
@@ -228,11 +235,8 @@ public class EstrategiaSelectionModal extends Stage {
             }
         }
         
-        // Seleccionar la primera estrategia por defecto
-        if (!estrategias.isEmpty()) {
-            estrategiaSeleccionada = estrategias.get(0).getNombre();
-            logger.debug("Estrategia seleccionada por defecto: " + estrategiaSeleccionada);
-        }
+        // No seleccionar ninguna estrategia por defecto
+        // estrategiaSeleccionada se mantiene como null hasta que el usuario seleccione una
         
         contenido.getChildren().add(gridTarjetas);
         
@@ -311,16 +315,29 @@ public class EstrategiaSelectionModal extends Stage {
         // Configurar eventos de la tarjeta
         tarjeta.setOnMouseClicked(e -> {
             // Deseleccionar todas las tarjetas
-            for (EstrategiaModule est : strategyManager.getStrategies()) {
-                VBox tarjetaEst = encontrarTarjetaPorEstrategia(est.getNombre());
-                if (tarjetaEst != null) {
-                    tarjetaEst.setStyle(estiloBase);
+            for (VBox tarjetaEst : tarjetasEstrategias) {
+                EstrategiaModule est = encontrarEstrategiaPorTarjeta(tarjetaEst);
+                if (est != null) {
+                    String estiloBaseTarjeta = String.format(
+                        "-fx-background-color: white; " +
+                        "-fx-border-color: %s; " +
+                        "-fx-border-width: 2; " +
+                        "-fx-border-radius: 10; " +
+                        "-fx-background-radius: 10; " +
+                        "-fx-cursor: hand; " +
+                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);",
+                        est.getColorTema()
+                    );
+                    tarjetaEst.setStyle(estiloBaseTarjeta);
                 }
             }
             
             // Seleccionar esta tarjeta
             tarjeta.setStyle(estiloSeleccionado);
             estrategiaSeleccionada = estrategia.getNombre();
+            
+            // Habilitar el botón Comenzar
+            btnComenzar.setDisable(false);
             
             logger.debug("Estrategia seleccionada: " + estrategiaSeleccionada);
         });
@@ -342,14 +359,18 @@ public class EstrategiaSelectionModal extends Stage {
     }
     
     /**
-     * Encuentra una tarjeta por el nombre de la estrategia.
+     * Encuentra una estrategia por una tarjeta específica.
      * 
-     * @param nombreEstrategia Nombre de la estrategia
-     * @return Tarjeta encontrada o null
+     * @param tarjeta Tarjeta de estrategia
+     * @return Estrategia encontrada o null
      */
-    private VBox encontrarTarjetaPorEstrategia(String nombreEstrategia) {
-        // Esta implementación es simplificada, en una implementación real
-        // se mantendría una referencia a las tarjetas
+    private EstrategiaModule encontrarEstrategiaPorTarjeta(VBox tarjeta) {
+        for (EstrategiaModule estrategia : strategyManager.getStrategies()) {
+            Label lblNombre = (Label) tarjeta.getChildren().get(1);
+            if (estrategia.getNombre().equals(lblNombre.getText())) {
+                return estrategia;
+            }
+        }
         return null;
     }
     
@@ -380,15 +401,16 @@ public class EstrategiaSelectionModal extends Stage {
         btnCancelar = new Button("❌ Cancelar");
         btnCancelar.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
         btnCancelar.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white; -fx-padding: 12 25; -fx-cursor: hand; -fx-background-radius: 8;");
-        btnCancelar.setPrefWidth(120);
+        btnCancelar.setPrefWidth(200);
         btnCancelar.setPrefHeight(40);
         
         // Botón Comenzar
         btnComenzar = new Button("✅ Comenzar");
         btnComenzar.setFont(Font.font("Segoe UI", FontWeight.BOLD, 14));
         btnComenzar.setStyle("-fx-background-color: #28a745; -fx-text-fill: white; -fx-padding: 12 25; -fx-cursor: hand; -fx-background-radius: 8;");
-        btnComenzar.setPrefWidth(120);
+        btnComenzar.setPrefWidth(200);
         btnComenzar.setPrefHeight(40);
+        btnComenzar.setDisable(true); // Deshabilitado inicialmente
         
         botones.getChildren().addAll(btnCancelar, btnComenzar);
         

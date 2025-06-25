@@ -3,6 +3,8 @@ package com.kursor.multiplechoice;
 import com.kursor.modules.PreguntaModule;
 import com.kursor.domain.Pregunta;
 import com.kursor.multiplechoice.domain.PreguntaTest;
+import com.kursor.multiplechoice.ui.MultipleChoiceUIHandler;
+import com.kursor.ui.QuestionUIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.scene.Node;
@@ -291,37 +293,36 @@ public class MultipleChoiceModule implements PreguntaModule {
      */
     @Override
     public boolean validateAnswer(Pregunta pregunta, Object answer) {
-        logger.debug("Validando respuesta de pregunta de opción múltiple - ID: " + 
-                    (pregunta != null ? pregunta.getId() : "null") + ", Respuesta: " + answer);
-        
         if (!(pregunta instanceof PreguntaTest)) {
-            String errorMsg = "Tipo de pregunta incorrecto para MultipleChoiceModule. Se esperaba PreguntaTest, se recibió: " + 
-                            (pregunta != null ? pregunta.getClass().getSimpleName() : "null");
-            logger.error(errorMsg);
-            throw new IllegalArgumentException(errorMsg);
-        }
-        
-        PreguntaTest preguntaTest = (PreguntaTest) pregunta;
-        
-        if (answer == null) {
-            logger.debug("Respuesta null considerada incorrecta - ID: " + preguntaTest.getId());
+            logger.error("Pregunta no es del tipo PreguntaTest: {}", pregunta.getClass().getSimpleName());
             return false;
         }
         
-        // Convertir la respuesta a String
-        String respuestaUsuario;
-        if (answer instanceof String) {
-            respuestaUsuario = (String) answer;
-        } else {
-            respuestaUsuario = answer.toString();
-        }
+        PreguntaTest preguntaTest = (PreguntaTest) pregunta;
+        String respuestaUsuario = answer != null ? answer.toString().trim() : "";
+        String respuestaCorrecta = preguntaTest.getRespuestaCorrecta();
         
-        boolean esCorrecta = preguntaTest.esCorrecta(respuestaUsuario);
+        boolean esCorrecta = respuestaUsuario.equals(respuestaCorrecta);
         
-        logger.info("Respuesta validada - ID: " + preguntaTest.getId() + 
-                   ", Respuesta usuario: " + respuestaUsuario + 
-                   ", Es correcta: " + esCorrecta);
+        logger.debug("Validando respuesta de pregunta 'test' - ID: {}, Respuesta usuario: {}, Respuesta correcta: {}, Es correcta: {}", 
+                   pregunta.getId(), respuestaUsuario, respuestaCorrecta, esCorrecta);
         
         return esCorrecta;
+    }
+    
+    @Override
+    public QuestionUIHandler createUIHandler() {
+        logger.debug("Creando manejador de UI para módulo MultipleChoice");
+        return new MultipleChoiceUIHandler();
+    }
+    
+    @Override
+    public boolean supportsSpecialActions() {
+        return false; // Las preguntas de opción múltiple no tienen acciones especiales
+    }
+    
+    @Override
+    public List<String> getSupportedActions() {
+        return new ArrayList<>(); // Lista vacía, no hay acciones especiales
     }
 } 
