@@ -189,6 +189,6 @@ Para soporte técnico o preguntas sobre estrategias:
 ---
 
 **Autor:** Juan José Ruiz Pérez <jjrp1@um.es>  
-**Fecha:** 2024-12-19  
+**Fecha:** 2025-06-15  
 **Versión:** 1.0.0  
 **Estado:** Documentación de Usuario 

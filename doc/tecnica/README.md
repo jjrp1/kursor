@@ -192,6 +192,6 @@ com.kursor.ui/
 
 ---
 
-**Última actualización**: 2025-06-18
+**Última actualización**: 2025-06-27
 **Estado**: En desarrollo activo
 **Próximo hito**: Implementación de interfaz de cursos (Fase 1) 

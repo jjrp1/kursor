@@ -2,7 +2,7 @@
 ## Interfaz Gráfica de Cursos para Kursor
 
 - Versión: 2.0
-- Fecha: 2025-01-27
+- Fecha: 2025-06-20
 - Autor: Juan José Ruiz Pérez <jjrp1@um.es>
 
 ---

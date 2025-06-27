@@ -23,6 +23,8 @@ Integrar persistencia con estrategias
 - fechas
 - enlaces rotos
 - documentación coherente
+- documentación javadoc coherente
+- 
 
 
 # Herramienta de administración
