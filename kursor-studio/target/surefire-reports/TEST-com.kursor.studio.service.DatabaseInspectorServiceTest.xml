@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.037" tests="7" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="24"/>
+    <property name="maven.user.extensions" value="C:\Users\jrp39r/.m2/extensions.xml"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="C:\pds\kursor\kursor-studio\target\test-classes;C:\pds\kursor\kursor-studio\target\classes;C:\Users\jrp39r\.m2\repository\com\kursor\kursor-core\1.0.0\kursor-core-1.0.0.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-controls\17.0.2\javafx-controls-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-controls\17.0.2\javafx-controls-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-graphics\17.0.2\javafx-graphics-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-graphics\17.0.2\javafx-graphics-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-base\17.0.2\javafx-base-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-base\17.0.2\javafx-base-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-fxml\17.0.2\javafx-fxml-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-fxml\17.0.2\javafx-fxml-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar;C:\Users\jrp39r\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\jrp39r\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\jrp39r\.m2\repository\org\xerial\sqlite-jdbc\3.44.1.0\sqlite-jdbc-3.44.1.0.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\4.0.2\org.eclipse.persistence.jpa-4.0.2.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.5.0\org.eclipse.persistence.asm-9.5.0.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\4.0.2\org.eclipse.persistence.core-4.0.2.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\4.0.2\org.eclipse.persistence.jpa.jpql-4.0.2.jar;C:\Users\jrp39r\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\jrp39r\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.0\jackson-core-2.16.0.jar;C:\Users\jrp39r\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.0\jackson-databind-2.16.0.jar;C:\Users\jrp39r\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.0\jackson-annotations-2.16.0.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\jrp39r\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\jrp39r\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="maven.user.toolchains" value="C:\Users\jrp39r/.m2/toolchains.xml"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Madrid"/>
+    <property name="java.vm.specification.version" value="24"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="maven.repo.central" value="https://repo.maven.apache.org/maven2"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="ES"/>
+    <property name="session.topDirectory" value="C:\pds\kursor\kursor-studio"/>
+    <property name="sun.boot.library.path" value="C:\jdk-24.0.1\bin"/>
+    <property name="sun.java.command" value="C:\Users\jrp39r\AppData\Local\Temp\surefire6236715282897148659\surefirebooter-20250627141824911_3.jar C:\Users\jrp39r\AppData\Local\Temp\surefire6236715282897148659 2025-06-27T14-18-24_772-jvmRun1 surefire-20250627141824911_1tmp surefire_0-20250627141824911_2tmp"/>
+    <property name="maven.project.settings" value="${session.rootDirectory}/.mvn/settings.xml"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\pds\kursor\kursor-studio\target\test-classes;C:\pds\kursor\kursor-studio\target\classes;C:\Users\jrp39r\.m2\repository\com\kursor\kursor-core\1.0.0\kursor-core-1.0.0.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-controls\17.0.2\javafx-controls-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-controls\17.0.2\javafx-controls-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-graphics\17.0.2\javafx-graphics-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-graphics\17.0.2\javafx-graphics-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-base\17.0.2\javafx-base-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-base\17.0.2\javafx-base-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-fxml\17.0.2\javafx-fxml-17.0.2.jar;C:\Users\jrp39r\.m2\repository\org\openjfx\javafx-fxml\17.0.2\javafx-fxml-17.0.2-win.jar;C:\Users\jrp39r\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar;C:\Users\jrp39r\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\jrp39r\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\jrp39r\.m2\repository\org\xerial\sqlite-jdbc\3.44.1.0\sqlite-jdbc-3.44.1.0.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\4.0.2\org.eclipse.persistence.jpa-4.0.2.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.5.0\org.eclipse.persistence.asm-9.5.0.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\4.0.2\org.eclipse.persistence.core-4.0.2.jar;C:\Users\jrp39r\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\4.0.2\org.eclipse.persistence.jpa.jpql-4.0.2.jar;C:\Users\jrp39r\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\jrp39r\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.0\jackson-core-2.16.0.jar;C:\Users\jrp39r\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.0\jackson-databind-2.16.0.jar;C:\Users\jrp39r\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.0\jackson-annotations-2.16.0.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\jrp39r\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\jrp39r\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\jrp39r\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\jrp39r"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="C:\jdk-24.0.1"/>
+    <property name="maven.user.conf" value="C:\Users\jrp39r/.m2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\pds\kursor\kursor-studio"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="maven.project.conf" value="${session.rootDirectory}/.mvn"/>
+    <property name="surefire.real.class.path" value="C:\Users\jrp39r\AppData\Local\Temp\surefire6236715282897148659\surefirebooter-20250627141824911_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="24.0.1+9-30"/>
+    <property name="user.name" value="jrp39r"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="maven.installation.conf" value="C:\maven/conf"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="maven.installation.toolchains" value="C:\maven/conf/toolchains.xml"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\jrp39r\.m2\repository"/>
+    <property name="maven.project.extensions" value="${session.rootDirectory}/.mvn/extensions.xml"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\jrp39r\AppData\Local\Temp\"/>
+    <property name="maven.installation.extensions" value="C:\maven/conf/extensions.xml"/>
+    <property name="java.version" value="24.0.1"/>
+    <property name="user.dir" value="C:\pds\kursor\kursor-studio"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="C:\jdk-24.0.1\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\Program Files\PowerShell\7;C:\maven\bin;C:\Program Files\bin\;C:\Program Files (x86)\GnuWin32\bin;C:\Program Files\FireDaemon OpenSSL 3\bin\;C:\Program Files (x86)\Embarcadero\Studio\22.0\bin;C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl;C:\Program Files (x86)\Embarcadero\Studio\22.0\bin64;C:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\Win64;C:\gradle\bin;C:\Users\jrp39r\OneDrive\bin\cmd;C:\Users\jrp39r\OneDrive\bin\exe;C:\Users\jrp39r\AppData\Roaming\Python\Python312\Scripts;C:\Python312\Scripts\;C:\Python312\;C:\Program Files\java\jdk-21.0.1\bin;C:\ProgramData\Oracle\Java\javapath;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\AutoFirma\AutoFirma;C:\Program Files (x86)\LibreOffice 4\program;C:\Program Files\VSCodium\bin;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files (x86)\Common Files\Pulse Secure\TNC Client Plugin\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\PuTTY\;C:\Program Files\GitHub CLI\;C:\Program Files\Oracle\VirtualBox;C:\Program Files\dotnet\;C:\Program Files (x86)\WinMerge\;C:\Program Files\PowerShell\7\;C:\Program Files\Vagrant\bin;C:\Program Files (x86)\glab;C:\Program Files\Pandoc\;C:\Program Files\Meld\;;c:\Users\jrp39r\AppData\Local\Programs\cursor\resources\app\bin;C:\Users\jrp39r\Documents\PowerShell\Modules;C:\Users\jrp39r\AppData\Local\Microsoft\WindowsApps;C:\Users\jrp39r\AppData\Local\GitHubDesktop\bin;C:\Users\jrp39r\AppData\Roaming\npm;C:\Users\jrp39r\AppData\Local\MiKTeX\miktex\bin\x64\;C:\Users\jrp39r\OneDrive - CARM\bin\pandoc;C:\Users\jrp39r\.dotnet\tools;C:\Users\jrp39r\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\jrp39r\AppData\Local\Programs\Ollama;C:\Users\jrp39r\AppData\Local\Pandoc\;C:\Users\jrp39r\AppData\Local\gitkraken\bin;C:\Users\jrp39r\AppData\Local\Programs\cursor\resources\app\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vm.version" value="24.0.1+9-30"/>
+    <property name="maven.installation.settings" value="C:\maven/conf/settings.xml"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="maven.user.settings" value="C:\Users\jrp39r/.m2/settings.xml"/>
+    <property name="java.class.version" value="68.0"/>
+  </properties>
+  <testcase name="testIntegracionCompleta" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.015"/>
+  <testcase name="testInformacionTablas" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.002"/>
+  <testcase name="testImportacionEntidadesJPA" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.002"/>
+  <testcase name="testMetricasDashboard" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.002"/>
+  <testcase name="testValidacionEntidades" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.003"/>
+  <testcase name="testPaqueteEntidades" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.002"/>
+  <testcase name="testEntidadesEspecificas" classname="com.kursor.studio.service.DatabaseInspectorServiceTest" time="0.003"/>
+</testsuite>

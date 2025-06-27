@@ -20,7 +20,7 @@ Integrar persistencia con estrategias
 
 # Revisiones globales
 - Pruebas
-- fechas
+- fechas (revisadas viernes 27 por la mañana)
 - enlaces rotos
 - documentación coherente
 - documentación javadoc coherente

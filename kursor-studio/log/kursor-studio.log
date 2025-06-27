@@ -1,0 +1,65 @@
+[2025-06-27 14:21:58.770] [INFO ] KursorStudioApplication.main:60 - ================================================
+[2025-06-27 14:21:58.772] [INFO ] KursorStudioApplication.main:61 - 🚀 Iniciando Kursor Studio v1.0.0
+[2025-06-27 14:21:58.774] [INFO ] KursorStudioApplication.main:62 - ================================================
+[2025-06-27 14:21:58.774] [INFO ] KursorStudioApplication.main:67 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-27 14:21:58.774] [INFO ] KursorStudioApplication.main:76 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-27 14:21:58.792] [INFO ] KursorStudioApplication.start:92 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-27 14:22:00.303] [INFO ] KursorStudioApplication.start:115 - ✅ Kursor Studio iniciado correctamente
+[2025-06-27 14:22:13.145] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-27 14:22:14.613] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: ✅ Validaciones
+[2025-06-27 14:22:15.820] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 📝 Logs
+[2025-06-27 14:22:16.491] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 📊 Dashboard
+[2025-06-27 14:22:18.163] [INFO ] KursorStudioApplication.lambda$createDashboardContent$0:233 - 🔄 Usuario solicitó actualización del dashboard
+[2025-06-27 14:22:18.899] [INFO ] KursorStudioApplication.lambda$createDashboardContent$0:233 - 🔄 Usuario solicitó actualización del dashboard
+[2025-06-27 14:22:19.155] [INFO ] KursorStudioApplication.lambda$createDashboardContent$0:233 - 🔄 Usuario solicitó actualización del dashboard
+[2025-06-27 14:22:19.355] [INFO ] KursorStudioApplication.lambda$createDashboardContent$0:233 - 🔄 Usuario solicitó actualización del dashboard
+[2025-06-27 14:22:19.571] [INFO ] KursorStudioApplication.lambda$createDashboardContent$0:233 - 🔄 Usuario solicitó actualización del dashboard
+[2025-06-27 14:22:20.932] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-27 14:22:22.067] [INFO ] KursorStudioApplication.lambda$createExplorerContent$0:261 - 📋 Usuario solicitó carga de tablas
+[2025-06-27 14:22:23.843] [INFO ] KursorStudioApplication.lambda$createExplorerContent$0:261 - 📋 Usuario solicitó carga de tablas
+[2025-06-27 14:22:24.067] [INFO ] KursorStudioApplication.lambda$createExplorerContent$0:261 - 📋 Usuario solicitó carga de tablas
+[2025-06-27 14:22:24.284] [INFO ] KursorStudioApplication.lambda$createExplorerContent$0:261 - 📋 Usuario solicitó carga de tablas
+[2025-06-27 14:22:24.475] [INFO ] KursorStudioApplication.lambda$createExplorerContent$0:261 - 📋 Usuario solicitó carga de tablas
+[2025-06-27 14:22:25.147] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: ✅ Validaciones
+[2025-06-27 14:22:26.347] [INFO ] KursorStudioApplication.lambda$createValidationContent$0:289 - 🔧 Usuario solicitó ejecución de validaciones
+[2025-06-27 14:22:27.323] [INFO ] KursorStudioApplication.lambda$createValidationContent$0:289 - 🔧 Usuario solicitó ejecución de validaciones
+[2025-06-27 14:22:27.507] [INFO ] KursorStudioApplication.lambda$createValidationContent$0:289 - 🔧 Usuario solicitó ejecución de validaciones
+[2025-06-27 14:22:28.180] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 📝 Logs
+[2025-06-27 14:22:29.916] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:29.916] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:30.676] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:30.676] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:30.867] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:30.868] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:31.067] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:31.067] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:31.267] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:31.267] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:31.507] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:31.508] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:33.411] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:33.412] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:33.635] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:33.636] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:33.844] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:33.844] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:34.059] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:34.059] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:34.307] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:34.308] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:36.075] [INFO ] KursorStudioApplication.lambda$createLogsContent$0:317 - 👁️ Usuario solicitó visualización de logs
+[2025-06-27 14:22:36.075] [WARN ] KursorStudioApplication.lambda$createLogsContent$0:318 - ⚠️ Funcionalidad de Log Viewer en desarrollo
+[2025-06-27 14:22:37.180] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: ✅ Validaciones
+[2025-06-27 14:22:37.700] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-27 14:22:38.212] [INFO ] KursorStudioApplication.lambda$createTabPane$0:206 - 🔄 Usuario navegó a pestaña: 📊 Dashboard
+[2025-06-27 14:22:39.243] [INFO ] KursorStudioApplication.lambda$start$0:109 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-27 14:22:39.243] [INFO ] KursorStudioApplication.shutdown:354 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-27 14:22:39.243] [INFO ] KursorStudioApplication.shutdown:358 - 💾 Recursos liberados correctamente
+[2025-06-27 14:22:39.243] [INFO ] KursorStudioApplication.shutdown:363 - ================================================
+[2025-06-27 14:22:39.244] [INFO ] KursorStudioApplication.shutdown:364 - 👋 Kursor Studio finalizado correctamente
+[2025-06-27 14:22:39.244] [INFO ] KursorStudioApplication.shutdown:365 - ================================================
+[2025-06-27 14:22:39.262] [INFO ] KursorStudioApplication.shutdown:354 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-27 14:22:39.263] [INFO ] KursorStudioApplication.shutdown:358 - 💾 Recursos liberados correctamente
+[2025-06-27 14:22:39.263] [INFO ] KursorStudioApplication.shutdown:363 - ================================================
+[2025-06-27 14:22:39.263] [INFO ] KursorStudioApplication.shutdown:364 - 👋 Kursor Studio finalizado correctamente
+[2025-06-27 14:22:39.263] [INFO ] KursorStudioApplication.shutdown:365 - ================================================
