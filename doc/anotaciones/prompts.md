@@ -18,6 +18,34 @@ Implementar las entidades JPA básicas
 Crear las estrategias Secuencial y Aleatoria como módulos
 Integrar persistencia con estrategias
 
+# Revisiones globales
+- Pruebas
+- fechas
+- enlaces rotos
+- documentación coherente
+
+
+# Herramienta de administración
+Opción 1: me gusta bastante.
+Opción 2: descartada: quiero una aplicación paralela
+Sin embargo las funcionalidades propuestas para esta opción me parecen ideales
+Opción 3: Me parece implementable como mejora en una segunda etapa, a priori, interesa algo sencillo y funcional
+Opción 4: Me parece muy buena idea.
+Opción 5: Me parece "para sacar nota" muy evolucionada. Ideal, pero para una fase mucho más avanzada.
+
+
+- Como nombre, creo que `kursor-admin` o `kursor-studio` o `kursor-dashboard` pueden ser adecuados.
+- Recordar que la aplicación, el proyecto, a día de hoy tiene orientación "monousuario", con esto quiero de decir que NO requiere gestión/administración de usuarios
+
+* Respecto a tus preguntas:
+1. desarrolladores, administradores y usuarios finales, de mayor a menor orientación, pero creo que puede (y quizás debe) ser útil a cualquier perfil de los que mencionas.
+
+2. Completamente separada
+3. lo más importante es visualizar datos, tener algo operativo y funcional, más adelante podemos evolucionar.
+4. Insisto vayamos a algo sencillo y funcional, ya habrá tiempo de evolucionar
+5. El principal caso de uso ahora mismo es consultar cómo está registrando la información la aplicación "Kursor" y validar y verificar que todo está correcto, en orden y es lo que queremos.
+
+Antes de empezar a hacer nada, sigamos pensando lo que vamos a hacer, además, hay que escribir alguna documentación sobre esto antes de empezar.
 
 # LOGGING
 tenemos que hacer que funcione adecuadamente el mecanismo de logging, debe distinguir las modalidades DEBUG (muy verboso) e INFO (registro normal, con avisos y errores). Para cada registro, debe indicar la clase, metodo y número de línea que invocó a la función de registro. Si esto es muy complicado dímelo y buscamos alternativas, pero creo que no estoy pidiendo nada del otro mundo, todo lo contrario, es lo más normal del mundo. Quizás deberíamos pensar en Log4j... no sé, empiezo a agotarme.

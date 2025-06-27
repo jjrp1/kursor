@@ -198,6 +198,12 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>com.kursor.ui.KursorApplication</mainClass>
+                    <systemProperties>
+                        <systemProperty>
+                            <key>kursor.log.level</key>
+                            <value>${kursor.log.level}</value>
+                        </systemProperty>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>

@@ -72,8 +72,11 @@ Plan detallado para implementar la interfaz gráfica de cursos con ventana modal
 ### 🧪 [Plan de Pruebas](pruebas-plan-inicial.md)
 Estrategia de pruebas, cobertura de código y casos de prueba para el proyecto.
 
-### 🔍 [Testing del Sistema de Logging](logging-testing.md)
-Documentación completa del sistema de testing para el mecanismo de logging, incluyendo pruebas unitarias, integración, cobertura JaCoCo y ubicaciones de resultados.
+### 📋 [Sistema de Logging - Documentación Completa](logging.md) ✅ **ACTUALIZADO**
+**Documentación técnica unificada** del sistema de logging con SLF4J + Logback. Incluye configuración completa, comandos prácticos, resolución de problemas (incluyendo la solución crítica de propiedades del sistema), testing y monitorización.
+
+### 🏢 [Kursor Studio](../kursor-studio/)
+**Herramienta de administración y validación** - Aplicación JavaFX independiente para inspeccionar, validar y verificar el sistema de persistencia de Kursor. Incluye Database Explorer, dashboard de validaciones y monitoreo del sistema.
 
 ## Estructura del Proyecto
 

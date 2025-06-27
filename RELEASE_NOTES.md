@@ -2,7 +2,7 @@
 
 ## 📅 Información del Release
 - **Versión**: 1.0.0
-- **Fecha**: 19 de Junio, 2025
+- **Fecha**: 15 de Mayo, 2025
 - **Tipo**: Lanzamiento Inicial (Initial Release)
 - **Compatibilidad**: Java 17+, Windows/Linux/macOS
 

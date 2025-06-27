@@ -392,8 +392,7 @@ public class CursoPreviewService {
      *         Si ocurre un error, retorna una lista vacía en lugar de lanzar una excepción
      */
     public List<Curso> cargarTodosLosCursosCompletos() {
-        System.err.println("🔄 FATAL - Iniciando carga de todos los cursos completos - Directorio: " + cursosDir);
-        logger.error("🔄 INICIO - Iniciando carga de todos los cursos completos - Directorio: " + cursosDir);
+        logger.info("🔄 Iniciando carga de todos los cursos completos - Directorio: " + cursosDir);
         
         List<Curso> cursosCompletos = new ArrayList<>();
         try {
@@ -410,45 +409,36 @@ public class CursoPreviewService {
                 return cursosCompletos;
             }
             
-            System.err.println("Encontrados " + cursoDirs.length + " elementos en el directorio de cursos");
-            logger.error("Encontrados " + cursoDirs.length + " elementos en el directorio de cursos");
+            logger.debug("Encontrados " + cursoDirs.length + " elementos en el directorio de cursos");
             
             for (File cursoDir : cursoDirs) {
-                System.err.println("Procesando elemento: " + cursoDir.getName() + " - Es directorio: " + cursoDir.isDirectory());
-                logger.error("Procesando elemento: " + cursoDir.getName() + " - Es directorio: " + cursoDir.isDirectory());
+                logger.debug("Procesando elemento: " + cursoDir.getName() + " - Es directorio: " + cursoDir.isDirectory());
                 
                 if (cursoDir.isDirectory()) {
                     String cursoId = cursoDir.getName();
-                    System.err.println("Procesando directorio de curso: " + cursoId);
-                    logger.error("Procesando directorio de curso: " + cursoId);
+                    logger.debug("Procesando directorio de curso: " + cursoId);
                     
                     try {
                         Curso cursoCompleto = cargarCursoCompleto(cursoId);
                         if (cursoCompleto != null) {
                             cursosCompletos.add(cursoCompleto);
-                            System.err.println("✅ Curso completo cargado exitosamente: " + cursoId);
-                            logger.error("✅ Curso completo cargado exitosamente: " + cursoId);
+                            logger.info("✅ Curso completo cargado exitosamente: " + cursoId);
                         } else {
-                            System.err.println("❌ No se pudo cargar el curso completo: " + cursoId);
-                            logger.error("❌ No se pudo cargar el curso completo: " + cursoId);
+                            logger.warn("❌ No se pudo cargar el curso completo: " + cursoId);
                         }
                     } catch (Exception e) {
-                        System.err.println("❌ Error al cargar curso completo " + cursoId + ": " + e.getMessage());
                         logger.error("❌ Error al cargar curso completo " + cursoId + ": " + e.getMessage(), e);
                         // Continuar con el siguiente curso en lugar de fallar completamente
                     }
                 } else {
-                    System.err.println("Ignorando archivo no-directorio: " + cursoDir.getName());
-                    logger.error("Ignorando archivo no-directorio: " + cursoDir.getName());
+                    logger.debug("Ignorando archivo no-directorio: " + cursoDir.getName());
                 }
             }
         } catch (Exception e) {
-            System.err.println("❌ Error general al cargar todos los cursos completos: " + e.getMessage());
             logger.error("❌ Error general al cargar todos los cursos completos: " + e.getMessage(), e);
         }
         
-        System.err.println("✅ FIN - Carga de todos los cursos completos finalizada - Cursos cargados: " + cursosCompletos.size());
-        logger.error("✅ FIN - Carga de todos los cursos completos finalizada - Cursos cargados: " + cursosCompletos.size());
+        logger.info("✅ FIN - Carga de todos los cursos completos finalizada - Cursos cargados: " + cursosCompletos.size());
         return cursosCompletos;
     }
 } 

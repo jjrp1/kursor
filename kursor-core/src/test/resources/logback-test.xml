@@ -2,7 +2,7 @@
 <configuration>
     
     <!-- Configuración simplificada para tests -->
-    <property name="LOG_LEVEL" value="${kursor.log.level:-DEBUG}"/>
+    <property name="LOG_LEVEL" value="${kursor.log.level:-INFO}"/>
     <property name="TEST_LOG_DIR" value="target/test-logs"/>
     
     <!-- Patrón de formato consistente con la configuración principal -->

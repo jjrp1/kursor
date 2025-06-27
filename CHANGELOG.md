@@ -5,7 +5,7 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere al [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2024-12-19
+## [2.0.0] - 2025-06-25
 
 ### 🎉 Lanzamiento Inicial
 Primera versión estable de Kursor - Plataforma de Formación Interactiva Modular.
@@ -81,7 +81,7 @@ Primera versión estable de Kursor - Plataforma de Formación Interactiva Modula
 
 ---
 
-## [1.0.0] - 2025-06-19
+## [1.0.0] - 2025-05-15
 
 ### 🎉 Lanzamiento Inicial
 Primera versión estable de Kursor - Plataforma de Formación Interactiva Modular.
@@ -139,7 +139,7 @@ Primera versión estable de Kursor - Plataforma de Formación Interactiva Modula
 
 ---
 
-## [1.0.1] - 2025-06-22
+## [1.0.1] - 2025-06-10
 
 ### 🎉 Actualización de Documentación
 Actualización completa de toda la documentación para reflejar que el proyecto está **COMPLETADO Y FUNCIONAL**.
@@ -159,7 +159,7 @@ Actualización completa de toda la documentación para reflejar que el proyecto 
 - **Estado del Arte**: Actualizado con información de compilación y ejecución exitosas
 - **Guía de Inicio Rápido**: Incluye instrucciones de compilación y verificación
 - **Configuración GitHub Pages**: Actualizada descripción y metadatos
-- **Fecha de última actualización**: Actualizada a 22 de junio de 2025
+- **Fecha de última actualización**: Actualizada a 25 de junio de 2025
 
 ### 📚 Documentación
 - **Nuevo archivo**: `doc/tecnica/documentacion-actualizada.md` con resumen completo
@@ -181,6 +181,58 @@ Actualización completa de toda la documentación para reflejar que el proyecto 
 - ✅ **Carga de módulos**: JARs en directorio `modules/` funcionando
 - ✅ **Ejecución de cursos**: Sistema completamente operativo
 - ✅ **Persistencia**: JPA con SQLite funcionando correctamente
+
+---
+
+## [1.0.2] - 2025-06-20
+
+### 🔧 Corrección Crítica del Sistema de Logging
+
+#### ✅ Problema Resuelto
+**Propiedades del sistema ignoradas**: El comando `mvn javafx:run -pl kursor-core -q "-Dkursor.log.level=INFO"` ignoraba completamente la propiedad del sistema y siempre mostraba mensajes DEBUG.
+
+#### 🛠️ Soluciones Implementadas
+
+**1. Configuración del Plugin JavaFX Maven**
+- ✅ Agregada configuración `<systemProperties>` en `kursor-core/pom.xml`
+- ✅ Permite paso correcto de propiedades `-D` del comando Maven a la aplicación
+
+**2. Simplificación de Configuración de Logback**
+- ✅ Eliminación de logger específico que causaba inconsistencias
+- ✅ Cambio del valor por defecto de `DEBUG` a `INFO`
+- ✅ Configuración UTF-8 explícita para caracteres especiales
+- ✅ Simplificación de appenders para mayor estabilidad
+
+**3. Corrección de Niveles en el Código**
+- ✅ Corregidos mensajes marcados incorrectamente como `ERROR` cuando deberían ser `INFO`
+- ✅ Específicamente en `CursoPreviewService.java` líneas de éxito
+
+#### 🧪 Verificación Completa
+- ✅ **DEBUG**: Muestra TODO (DEBUG + INFO + WARN + ERROR)
+- ✅ **INFO**: Muestra INFO + WARN + ERROR  
+- ✅ **WARN**: Muestra solo WARN + ERROR
+- ✅ **ERROR**: Muestra solo ERROR
+
+#### 📚 Documentación Nueva
+- ✅ **Consolidado**: `doc/tecnica/logging.md` - Documentación unificada de logging (incluye solución de propiedades del sistema)
+- ✅ **Actualizado**: `doc/tecnica/logging.md` con referencias a la solución
+- ✅ **Actualizado**: `doc/tecnica/README.md` con nueva documentación
+
+#### 🎯 Comandos Funcionales
+```bash
+# Todos estos comandos ahora funcionan correctamente
+mvn javafx:run -pl kursor-core -q "-Dkursor.log.level=DEBUG"
+mvn javafx:run -pl kursor-core -q "-Dkursor.log.level=INFO"  
+mvn javafx:run -pl kursor-core -q "-Dkursor.log.level=WARN"
+mvn javafx:run -pl kursor-core -q "-Dkursor.log.level=ERROR"
+```
+
+#### 🔧 Archivos Modificados
+- `kursor-core/pom.xml` - Configuración plugin JavaFX
+- `kursor-core/src/main/resources/logback.xml` - Configuración Logback
+- `kursor-core/src/test/resources/logback-test.xml` - Configuración tests
+- `kursor-core/src/main/java/com/kursor/service/CursoPreviewService.java` - Niveles corregidos
+- Documentación técnica actualizada (4 archivos)
 
 ---
 

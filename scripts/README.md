@@ -172,7 +172,7 @@ Los scripts utilizan el orden de prioridad del sistema SLF4J + Logback:
 ---
 
 **Versión:** 3.0.0  
-**Última actualización:** 2025-06-19  
+**Última actualización:** 2025-06-27  
 **Migración:** SLF4J + Logback 
 
 # Scripts de Automatización - Kursor

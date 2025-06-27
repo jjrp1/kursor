@@ -160,6 +160,9 @@
                         <a class="nav-link active" href="arquitectura.html">Arquitectura</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="persistencia.html">Persistencia</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="resultados-pruebas.html">Pruebas</a>
                     </li>
                 </ul>
@@ -744,32 +747,46 @@ bloques:
 
                 <!-- Persistencia -->
                 <section id="persistence" class="mb-5">
-                    <h2><i class="fas fa-database text-warning me-2"></i>Persistencia</h2>
+                    <h2><i class="fas fa-database text-success me-2"></i>Persistencia</h2>
+                    
+                    <div class="success-box">
+                        <h5><i class="fas fa-check-circle me-2"></i>Sistema Implementado al 85%</h5>
+                        <p>La persistencia de Kursor está prácticamente completa con JPA + SQLite, solo falta el EstrategiaStateManager.</p>
+                    </div>
                     
                     <div class="architecture-card card">
                         <div class="card-body">
                             <h5 class="card-title">💾 Estrategia de Persistencia</h5>
-                            <p>Kursor utiliza JPA/Hibernate con SQLite para proporcionar una base de datos ligera y portable.</p>
+                            <p>Sistema robusto con JPA/Hibernate + SQLite completamente implementado y probado.</p>
                             
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h6>Características:</h6>
+                                    <h6>✅ Implementado:</h6>
                                     <ul>
-                                        <li><strong>SQLite:</strong> Base de datos ligera y sin servidor</li>
-                                        <li><strong>JPA/Hibernate:</strong> ORM para mapeo objeto-relacional</li>
-                                        <li><strong>Portabilidad:</strong> Base de datos en archivo único</li>
-                                        <li><strong>Transacciones:</strong> Gestión automática de transacciones</li>
+                                        <li><strong>5 Entidades JPA:</strong> Sesion, EstadoEstrategia, RespuestaPregunta, EstadisticasUsuario, EstadoSesion</li>
+                                        <li><strong>4 Repositorios:</strong> Con operaciones CRUD completas</li>
+                                        <li><strong>Configuración automática:</strong> PersistenceConfig.java</li>
+                                        <li><strong>15 Pruebas:</strong> Suite completa de tests de integración</li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
-                                    <h6>Ventajas:</h6>
+                                    <h6>🎯 Características:</h6>
                                     <ul>
-                                        <li><strong>Simplicidad:</strong> No requiere instalación de servidor</li>
-                                        <li><strong>Portabilidad:</strong> Fácil backup y restauración</li>
-                                        <li><strong>Rendimiento:</strong> Adecuado para aplicaciones de escritorio</li>
-                                        <li><strong>Compatibilidad:</strong> Funciona en múltiples plataformas</li>
+                                        <li><strong>Gestión de sesiones:</strong> Estado completo de aprendizaje</li>
+                                        <li><strong>Estado de estrategias:</strong> Serialización JSON automática</li>
+                                        <li><strong>Historial detallado:</strong> Todas las respuestas registradas</li>
+                                        <li><strong>Estadísticas:</strong> Métricas y análisis de progreso</li>
                                     </ul>
                                 </div>
+                            </div>
+                            
+                            <div class="mt-3 text-center">
+                                <a href="persistencia.html" class="btn btn-success me-2">
+                                    <i class="fas fa-database me-2"></i>Ver Detalles Completos
+                                </a>
+                                <span class="badge bg-warning text-dark">
+                                    <i class="fas fa-clock me-1"></i>EstrategiaStateManager Pendiente
+                                </span>
                             </div>
                         </div>
                     </div>

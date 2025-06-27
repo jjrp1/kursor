@@ -2,12 +2,11 @@
 <configuration>
     
     <!-- Propiedades del sistema para configuración dinámica -->
-    <property name="LOG_LEVEL" value="${kursor.log.level:-DEBUG}"/>
+    <property name="LOG_LEVEL" value="${kursor.log.level:-INFO}"/>
     <property name="LOG_FILE" value="${kursor.log.file:-kursor.log}"/>
     <property name="LOG_DIR" value="${kursor.log.dir:-log}"/>
     
     <!-- Configuración de patrones de formato -->
-    <!-- Patrón corregido: [FECHA] [NIVEL] Clase.método:línea - mensaje -->
     <property name="CONSOLE_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %logger{0}.%method:%L - %msg%n"/>
     <property name="FILE_PATTERN" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] %logger{0}.%method:%L - %msg%n"/>
     
@@ -51,20 +50,13 @@
             <totalSizeCap>500MB</totalSizeCap>
         </rollingPolicy>
         
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
+        <!-- Solo mensajes WARN y ERROR van al archivo de errores -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
         </filter>
     </appender>
     
-    <!-- Logger para la aplicación principal -->
-    <logger name="com.kursor.ui.KursorApplication" level="${LOG_LEVEL}" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </logger>
-    
-    <!-- Configuración raíz -->
+    <!-- Configuración raíz unificada -->
     <root level="${LOG_LEVEL}">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>

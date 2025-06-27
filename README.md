@@ -323,15 +323,13 @@ kursor/
 │   │   ├── estrategias-plan-inicial.md    # Plan de estrategias
 │   │   ├── arquitectura-modular-dominio.md # Arquitectura modular
 │   │   ├── estructura-proyecto.md         # Estructura del proyecto
-│   │   ├── logging-configuracion.md       # Configuración de logging
 │   │   ├── deployment-plan.md             # Plan de despliegue
 │   │   ├── pruebas-plan-inicial.md        # Plan de pruebas
 │   │   ├── persistencia-plan-inicial.md   # Plan de persistencia
 │   │   ├── estado-proyecto.md             # Estado del proyecto
 │   │   ├── github-bitacora.md             # Bitácora de GitHub
 │   │   ├── gui-curso.md                   # GUI de cursos
-│   │   ├── logging.md                     # Sistema de logging
-│   │   ├── logging-testing.md             # Testing de logging
+│   │   ├── logging.md                     # Sistema de logging (completo)
 │   │   ├── implementacion-arquitectura-modular.md # Implementación modular
 │   │   ├── estado-del-arte.md             # Estado del arte
 │   │   ├── cambio-brutal.md               # Cambios importantes
