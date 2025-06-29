@@ -416,40 +416,24 @@ public class DatabaseExplorerController {
      * Obtiene los nombres de columnas para una entidad específica.
      */
     private String[] getColumnNamesForEntity(String entityName) {
-        try {
-            // Intentar obtener los nombres de columnas dinámicamente
-            EntityManager em = PersistenceConfig.createKursorEntityManagerSafely();
-            if (em != null) {
-                try {
-                    Metamodel metamodel = em.getMetamodel();
-                    EntityType<?> entityType = metamodel.getEntities().stream()
-                        .filter(et -> et.getName().equals(entityName))
-                        .findFirst()
-                        .orElse(null);
-                    
-                    if (entityType != null) {
-                        return entityType.getDeclaredAttributes().stream()
-                            .map(attr -> formatColumnName(attr.getName()))
-                            .toArray(String[]::new);
-                    }
-                } finally {
-                    em.close();
-                }
-            }
-        } catch (Exception e) {
-            logger.warn("No se pudieron obtener nombres de columnas dinámicamente para {}: {}", entityName, e.getMessage());
-        }
-        
-        // Fallback a nombres hardcodeados
         switch (entityName) {
             case "Sesion":
-                return new String[]{"ID", "Fecha Inicio", "Fecha Fin", "Estado", "Curso ID"};
+                return new String[]{"ID", "Curso ID", "Bloque ID", "Estrategia Tipo", "Fecha Inicio", 
+                                  "Fecha Última Revisión", "Tiempo Total", "Preguntas Respondidas", 
+                                  "Aciertos", "Tasa Aciertos", "Mejor Racha Aciertos", 
+                                  "Porcentaje Completitud", "Pregunta Actual ID", "Estado", 
+                                  "Created At", "Updated At"};
             case "EstadoEstrategia":
-                return new String[]{"ID", "Estrategia", "Estado", "Fecha Creación"};
+                return new String[]{"ID", "Sesión ID", "Tipo Estrategia", "Datos Estado", 
+                                  "Progreso", "Fecha Creación", "Fecha Última Modificación"};
             case "EstadisticasUsuario":
-                return new String[]{"ID", "Usuario ID", "Correctas", "Incorrectas", "Última Actividad"};
+                return new String[]{"ID", "Usuario ID", "Curso ID", "Tiempo Total", 
+                                  "Sesiones Completadas", "Mejor Racha Días", "Racha Actual Días", 
+                                  "Fecha Última Sesión", "Fecha Primera Sesión", 
+                                  "Created At", "Updated At"};
             case "RespuestaPregunta":
-                return new String[]{"ID", "Pregunta ID", "Respuesta", "Es Correcta", "Fecha Respuesta"};
+                return new String[]{"ID", "Sesión ID", "Pregunta ID", "Resultado", 
+                                  "Tiempo Dedicado", "Respuesta", "Created At", "Updated At"};
             default:
                 // Nombres genéricos como fallback
                 Object[] firstRow = tableData.isEmpty() ? new Object[0] : tableData.get(0);
@@ -459,21 +443,6 @@ public class DatabaseExplorerController {
                 }
                 return names;
         }
-    }
-    
-    /**
-     * Formatea el nombre de una columna para mostrarlo en la UI.
-     */
-    private String formatColumnName(String fieldName) {
-        // Convertir camelCase a palabras separadas
-        String formatted = fieldName.replaceAll("([a-z])([A-Z])", "$1 $2");
-        
-        // Capitalizar primera letra
-        if (!formatted.isEmpty()) {
-            formatted = formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
-        }
-        
-        return formatted;
     }
     
     /**

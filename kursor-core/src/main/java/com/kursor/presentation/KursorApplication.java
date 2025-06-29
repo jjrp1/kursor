@@ -1,7 +1,7 @@
-package com.kursor.ui;
+package com.kursor.presentation;
 
 import com.kursor.persistence.config.PersistenceConfig;
-import com.kursor.ui.main.MainController;
+import com.kursor.presentation.controllers.MainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.slf4j.Logger;

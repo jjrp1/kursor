@@ -1,4 +1,4 @@
-package com.kursor.ui.main;
+package com.kursor.presentation.viewmodels;
 
 import com.kursor.yaml.dto.CursoDTO;
 import javafx.beans.property.ObjectProperty;
