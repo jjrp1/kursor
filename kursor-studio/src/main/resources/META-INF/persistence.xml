@@ -63,6 +63,9 @@
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
             <property name="hibernate.jdbc.lob.non_contextual_creation" value="true"/>
             <property name="hibernate.validator.apply_to_ddl" value="false"/>
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.schema_update.unique_constraint_strategy" value="SKIP"/>
+            <property name="hibernate.connection.provider_disables_autocommit" value="true"/>
             
             <!-- Configuración de conexión para kursor -->
             <property name="hibernate.connection.pool_size" value="1"/>

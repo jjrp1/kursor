@@ -4,7 +4,7 @@
 
 **Fecha de propuesta**: 29 de junio de 2025  
 **Propuesto por**: Sistema de análisis automático  
-**Estado**: 🚀 **LISTO PARA IMPLEMENTACIÓN**  
+**Estado**: 🚀 **IMPLEMENTACIÓN EN PROGRESO**  
 
 ### 🎯 Objetivo
 Diseñar e implementar un sistema avanzado de analytics y estadísticas que aproveche la rica estructura de datos de persistencia existente en Kursor, proporcionando insights valiosos sobre el aprendizaje de los usuarios y la efectividad de las estrategias de repetición.
@@ -46,6 +46,31 @@ Diseñar e implementar un sistema avanzado de analytics y estadísticas que apro
 - ✅ `PreguntaSesionRepository` - Gestión de preguntas por sesión
 - ✅ `EstadisticasUsuarioRepository` - Estadísticas de usuario
 - ✅ `EstadoEstrategiaRepository` - Estado de estrategias
+
+## 🎨 **MOCKUP CREADO Y VALIDADO**
+
+### ✅ **Mockup Funcional Implementado**
+- **Archivo**: `doc/tecnica/mockup-estadisticas-avanzadas.html`
+- **Estado**: ✅ **FUNCIONANDO PERFECTAMENTE**
+- **Características validadas**:
+  - Filtros jerárquicos por curso, bloque y período
+  - Dashboard con métricas principales
+  - Gráficos interactivos (tendencias y bloques)
+  - Recomendaciones personalizadas
+  - Comparación de estrategias
+  - Diseño responsive y moderno
+
+### 🎯 **Filtros Implementados**
+- **Curso**: Selector de curso específico (Inglés B2, Matemáticas, Historia)
+- **Bloque**: Filtro por bloques de contenido (Vocabulario, Gramática, Pronunciación)
+- **Período**: Última sesión, esta semana, este mes
+- **Botón de actualización**: Para aplicar filtros dinámicamente
+
+### 📊 **Visualizaciones Validadas**
+- **Gráfico de tendencias**: Línea temporal con porcentaje de éxito
+- **Gráfico de bloques**: Dona con rendimiento por bloque
+- **Métricas principales**: 4 tarjetas con indicadores clave
+- **Tabla comparativa**: Efectividad de estrategias
 
 ## 🚀 **PROPUESTA DE SISTEMA AVANZADO**
 
@@ -387,6 +412,23 @@ public class AnalyticsView extends VBox {
 }
 ```
 
+## 🎨 **CUADRO DE DIÁLOGO DE ESTADÍSTICAS**
+
+### Implementación Planificada
+- **Botón "Estadísticas"** en la interfaz principal
+- **Cuadro de diálogo modal** con todas las funcionalidades del mockup
+- **Integración con JavaFX** para gráficos y visualizaciones
+- **Filtros interactivos** conectados a datos reales
+- **Actualización en tiempo real** de métricas
+
+### Componentes del Diálogo
+1. **Header**: Título y descripción
+2. **Filtros**: Curso, bloque, período
+3. **Métricas principales**: 4 tarjetas con KPIs
+4. **Gráficos**: Tendencias y rendimiento por bloque
+5. **Recomendaciones**: Lista personalizada
+6. **Comparación de estrategias**: Tabla detallada
+
 ## 📊 **DASHBOARD Y REPORTES**
 
 ### 1. Dashboard Principal
@@ -478,25 +520,37 @@ Sistema:
 
 ## 📋 **PLAN DE IMPLEMENTACIÓN**
 
-### Fase 1: Fundamentos (2-3 semanas)
+### Fase 1: Fundamentos (2-3 semanas) ✅ **COMPLETADO**
+- [x] Análisis de estructura de persistencia existente
+- [x] Diseño de arquitectura del sistema
+- [x] Creación de mockup funcional
+- [x] Validación de interfaz de usuario
+
+### Fase 2: Cuadro de Diálogo (1-2 semanas) 🚀 **EN PROGRESO**
+- [ ] Implementar `AnalyticsDialog` en JavaFX
+- [ ] Crear controlador para el diálogo
+- [ ] Integrar gráficos con datos reales
+- [ ] Conectar filtros con repositorios
+
+### Fase 3: Servicios de Analytics (2-3 semanas)
 - [ ] Implementar `AdvancedAnalyticsService`
 - [ ] Crear `MetricsCalculator` y `PatternDetector`
 - [ ] Desarrollar métricas básicas de rendimiento
 - [ ] Integrar con repositorios existentes
 
-### Fase 2: UI y Visualizaciones (2-3 semanas)
+### Fase 4: UI y Visualizaciones (2-3 semanas)
 - [ ] Crear `AnalyticsController` y `AnalyticsView`
 - [ ] Implementar dashboard básico
 - [ ] Desarrollar gráficos y visualizaciones
 - [ ] Integrar con UI existente
 
-### Fase 3: Análisis Avanzado (3-4 semanas)
+### Fase 5: Análisis Avanzado (3-4 semanas)
 - [ ] Implementar detección de patrones
 - [ ] Desarrollar sistema de recomendaciones
 - [ ] Crear análisis de dificultad
 - [ ] Implementar predicciones básicas
 
-### Fase 4: Reportes y Optimización (2-3 semanas)
+### Fase 6: Reportes y Optimización (2-3 semanas)
 - [ ] Desarrollar sistema de reportes
 - [ ] Optimizar rendimiento de consultas
 - [ ] Implementar caché de métricas
@@ -525,7 +579,9 @@ Sistema:
 ---
 
 **Propuesta generada**: 29 de junio de 2025  
-**Estado**: 🚀 **LISTO PARA IMPLEMENTACIÓN**  
+**Estado**: 🚀 **IMPLEMENTACIÓN EN PROGRESO**  
 **Prioridad**: 🔥 **ALTA** - Impacto significativo en experiencia de usuario  
 **Complejidad**: ⚡ **MEDIA** - Aprovecha infraestructura existente  
-**Tiempo estimado**: 📅 **8-10 semanas** para implementación completa 
+**Tiempo estimado**: 📅 **8-10 semanas** para implementación completa  
+**Mockup**: ✅ **VALIDADO Y FUNCIONANDO**  
+**Próximo paso**: 🎨 **Implementar cuadro de diálogo en JavaFX** 

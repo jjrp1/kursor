@@ -149,8 +149,8 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            height: 400px;
-            position: relative;
+            height: 350px;
+            overflow: hidden;
         }
 
         .chart-title {
@@ -162,7 +162,8 @@
         }
 
         .chart-container canvas {
-            max-height: 320px !important;
+            height: 280px !important;
+            width: 100% !important;
         }
 
         .recommendations {
@@ -426,18 +427,12 @@
                     }]
                 },
                 options: {
-                    responsive: true,
+                    responsive: false,
                     maintainAspectRatio: false,
-                    height: 300,
                     scales: {
                         y: {
                             beginAtZero: true,
                             max: 100
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'top'
                         }
                     }
                 }
@@ -457,14 +452,8 @@
                     }]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    height: 300,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
+                    responsive: false,
+                    maintainAspectRatio: false
                 }
             });
         });
