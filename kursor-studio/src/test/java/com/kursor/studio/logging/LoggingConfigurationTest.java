@@ -1,24 +1,25 @@
 package com.kursor.studio.logging;
 
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.junit.jupiter.api.BeforeEach;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests para verificar la configuración del sistema de logging de Kursor Studio.
+ * Pruebas unitarias para la configuración de logging.
  * 
- * <p>Estos tests aseguran que:</p>
- * <ul>
- *   <li>El sistema de logging SLF4J + Logback está correctamente configurado</li>
- *   <li>Los loggers se pueden crear sin errores</li>
- *   <li>Todos los niveles de logging funcionan correctamente</li>
- *   <li>La configuración es consistente con Kursor principal</li>
- * </ul>
+ * <p>Esta clase contiene pruebas para verificar que la configuración
+ * de logging funciona correctamente, incluyendo la creación de archivos
+ * de log y la configuración de niveles de logging.</p>
  * 
- * @author Sistema Kursor
+ * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
+ * @since 1.0.0
  */
 public class LoggingConfigurationTest {
     

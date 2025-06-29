@@ -12,7 +12,7 @@
         <class>com.kursor.persistence.entity.Sesion</class>
         <class>com.kursor.persistence.entity.EstadoEstrategia</class>
         <class>com.kursor.persistence.entity.EstadisticasUsuario</class>
-        <class>com.kursor.persistence.entity.RespuestaPregunta</class>
+        <class>com.kursor.persistence.entity.PreguntaSesion</class>
         
         <properties>
             <!-- Configuración de SQLite -->

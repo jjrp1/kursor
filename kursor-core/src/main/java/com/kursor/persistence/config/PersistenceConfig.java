@@ -26,7 +26,7 @@ public class PersistenceConfig {
     
     private static final String PERSISTENCE_UNIT_NAME = "kursorPU";
     private static final String DATABASE_PATH = "data/kursor.db";
-    
+
     private static EntityManagerFactory entityManagerFactory;
     private static boolean initialized = false;
     
@@ -211,7 +211,8 @@ public class PersistenceConfig {
         }
         return -1;
     }
-    
+
+
     /**
      * Obtiene información de la base de datos.
      * 

@@ -1,8 +1,8 @@
-# Kursor Studio - Documento de Diseño Técnico
+# Kursor Studio - Diseño y Arquitectura
 
-**Versión:** 1.0  
-**Fecha:** Enero 2025  
-**Estado:** Borrador inicial  
+**Versión:** 1.0.0  
+**Fecha:** 28 de Junio de 2025  
+**Autor:** Juan José Ruiz Pérez <jjrp1@um.es>
 
 ## 1. Visión General
 
@@ -28,7 +28,7 @@
 ┌─────────────────────────────────────────┐
 │            Kursor Studio                │
 ├─────────────────────────────────────────┤
-│  UI Layer (JavaFX)                     │
+│  UI Layer (JavaFX)                      │
 │  ├── Dashboard Principal                │
 │  ├── Database Explorer                  │
 │  ├── Data Validation                    │
@@ -54,19 +54,19 @@
 
 ### 2.2 Módulos Principales
 
-#### Módulo 1: Database Explorer (Opción 4)
+#### Módulo 1: Explorador de la Base de Datos 
 - **Vista de tablas**: Listar todas las tablas del sistema
 - **Explorador de esquemas**: Mostrar estructura de tablas y relaciones
 - **Consulta de datos**: Navegar registros con paginación
 - **Búsqueda y filtros**: Filtrar datos por criterios específicos
 
-#### Módulo 2: Data Validation Dashboard (Opción 1)
-- **Panel de estado**: Overview general del sistema
-- **Validaciones automáticas**: Checks de integridad de datos
+#### Módulo 2: Cuadro de Mandos de Validación de Datos
+- **Panel de estado**: Visión general del sistema
+- **Validaciones automáticas**: Verificación de integridad de datos
 - **Alertas y notificaciones**: Identificar problemas potenciales
 - **Métricas clave**: Estadísticas de uso y rendimiento
 
-#### Módulo 3: System Monitoring
+#### Módulo 3: Monitorización del Sistema
 - **Estado de conexión**: Verificar conectividad con base de datos
 - **Logs del sistema**: Visualizar logs de persistencia y aplicación
 - **Viewer de logs integrado**: Consultar logs de Kursor Studio en tiempo real
@@ -80,9 +80,9 @@
 
 **Flujo Principal**:
 1. Usuario abre Kursor Studio
-2. Dashboard muestra resumen de estado del sistema
+2. El "Cuadro de Mandos" muestra un resumen del estado del sistema
 3. Usuario navega a sección "Sesiones Recientes"
-4. Sistema muestra últimas sesiones de aprendizaje registradas
+4. Sistema muestra las últimas sesiones de aprendizaje registradas
 5. Usuario inspecciona detalles de una sesión específica
 6. Sistema muestra: respuestas, estrategias aplicadas, estadísticas
 7. Usuario verifica que los datos son coherentes y completos
@@ -92,7 +92,7 @@
 **Objetivo**: Explorar estructura y contenido de base de datos  
 
 **Flujo Principal**:
-1. Usuario accede a "Database Explorer"
+1. Usuario accede a "Explorador de Base de Datos"
 2. Sistema muestra lista de tablas disponibles
 3. Usuario selecciona tabla (ej: "sesion")
 4. Sistema muestra esquema de tabla y datos

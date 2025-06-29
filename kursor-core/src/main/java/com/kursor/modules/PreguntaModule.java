@@ -4,6 +4,9 @@ import java.util.Map;
 import javafx.scene.Node;
 import com.kursor.domain.Pregunta;
 import org.slf4j.LoggerFactory;
+import com.kursor.ui.PreguntaEventListener;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
@@ -22,12 +25,19 @@ import java.util.List;
  * en el archivo META-INF/services/com.kursor.modules.PreguntaModule</p>
  * 
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  * @see Pregunta
  */
 public interface PreguntaModule {
     
+    /**
+     * Obtiene el tipo de pregunta que maneja este módulo.
+     * 
+     * @return Tipo de pregunta (ej: "test", "flashcard", "completar_huecos", "truefalse")
+     */
+    String getQuestionType();
+        
     /**
      * Obtiene el nombre del módulo para mostrar en la interfaz de usuario.
      * 
@@ -41,14 +51,14 @@ public interface PreguntaModule {
      * @return Descripción detallada de la funcionalidad del módulo
      */
     String getModuleDescription();
-    
+
     /**
-     * Obtiene el tipo de pregunta que maneja este módulo.
+     * Obtiene el icono representativo del módulo.
      * 
-     * @return Tipo de pregunta (ej: "test", "flashcard", "completar_huecos", "truefalse")
+     * @return Emoji o símbolo que representa visualmente el tipo de pregunta
      */
-    String getQuestionType();
-    
+    String getIcon();
+
     /**
      * Parsea datos YAML para crear una pregunta específica del tipo que maneja este módulo.
      * 
@@ -60,17 +70,6 @@ public interface PreguntaModule {
      * @throws IllegalArgumentException si los datos YAML no son válidos para este tipo de pregunta
      */
     Pregunta parsePregunta(Map<String, Object> preguntaData);
-
-    /**
-     * Crea una pregunta específica del tipo que maneja este módulo.
-     * 
-     * @param questionId Identificador de la pregunta a crear
-     * @return Pregunta creada o null si no se puede crear
-     */
-    default Pregunta createQuestion(String questionId) {
-        LoggerFactory.getLogger(getClass()).debug("Creando pregunta con ID: " + questionId);
-        return null;
-    }
     
     /**
      * Crea la interfaz de usuario para una pregunta específica.
@@ -85,14 +84,51 @@ public interface PreguntaModule {
     Node createQuestionView(Pregunta pregunta);
     
     /**
+     * Configura la interfaz de usuario completa para una pregunta.
+     * 
+     * <p>Este método permite al módulo configurar todas las secciones de la UI:
+     * cabecera (progreso), contenido (pregunta) y pie (botones). El módulo tiene
+     * control total sobre la presentación y comportamiento de su tipo de pregunta.</p>
+     * 
+     * @param pregunta La pregunta para la cual configurar la UI
+     * @param headerContainer Contenedor para la cabecera (progreso, título)
+     * @param contentContainer Contenedor para el contenido principal (pregunta)
+     * @param footerContainer Contenedor para el pie (botones, antes del botón "Terminar")
+     * @param eventListener Listener para notificar eventos al contenedor principal
+     */
+    void configureCompleteUI(Pregunta pregunta, 
+                           VBox headerContainer, 
+                           VBox contentContainer, 
+                           VBox footerContainer,
+                           PreguntaEventListener eventListener);
+    
+    /**
      * Valida la respuesta del usuario para una pregunta específica.
      * 
+     * <p>Este método debe implementar la lógica de validación específica
+     * para el tipo de pregunta que maneja el módulo.</p>
+     * 
      * @param pregunta La pregunta a validar
-     * @param answer La respuesta del usuario (puede ser de cualquier tipo)
+     * @param respuesta La respuesta del usuario
      * @return true si la respuesta es correcta, false en caso contrario
-     * @throws IllegalArgumentException si el tipo de pregunta no es compatible con este módulo
      */
-    boolean validateAnswer(Pregunta pregunta, Object answer);
+    boolean validarRespuesta(Pregunta pregunta, Object respuesta);
+    
+    /**
+     * Muestra el resultado de la validación en la UI.
+     * 
+     * <p>Este método debe actualizar la interfaz para mostrar si la respuesta
+     * fue correcta o incorrecta, incluyendo la respuesta correcta si es necesario.</p>
+     * 
+     * @param pregunta La pregunta validada
+     * @param esCorrecta Si la respuesta fue correcta
+     * @param respuestaUsuario La respuesta que dio el usuario
+     * @param contentContainer Contenedor donde mostrar el resultado
+     */
+    void mostrarResultado(Pregunta pregunta, 
+                         boolean esCorrecta, 
+                         Object respuestaUsuario,
+                         VBox contentContainer);
     
     /**
      * Crea la interfaz de usuario para una pregunta específica en el contexto de curso.

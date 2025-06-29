@@ -10,22 +10,17 @@ package com.kursor.persistence.entity;
 public enum EstadoSesion {
     
     /**
-     * Sesión activa - el usuario está actualmente trabajando en ella.
+     * Sesión en curso - el usuario está actualmente trabajando en ella.
      */
-    ACTIVA,
+    EN_CURSO,
     
     /**
-     * Sesión pausada - el usuario ha pausado temporalmente la sesión.
+     * Sesión guardada - el usuario ha guardado la sesión para continuar más tarde.
      */
-    PAUSADA,
+    GUARDADA,
     
     /**
      * Sesión completada - el usuario ha terminado la sesión.
      */
-    COMPLETADA,
-    
-    /**
-     * Sesión cancelada - el usuario ha cancelado la sesión.
-     */
-    CANCELADA
+    COMPLETADA
 } 

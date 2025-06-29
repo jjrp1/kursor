@@ -1,0 +1,2 @@
+- ✅ El método `obtenerRespuestaUsuario` en `CursoInterfaceView` ahora está completamente implementado
+- ✅ Implementado completamente en `CursoInterfaceView` 

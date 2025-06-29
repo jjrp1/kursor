@@ -10,18 +10,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests para el servicio DatabaseInspectorService.
+ * Pruebas unitarias para el servicio DatabaseInspectorService.
  * 
- * <p>Estos tests verifican que:</p>
- * <ul>
- *   <li>Las entidades JPA se importan correctamente desde kursor-core</li>
- *   <li>El servicio puede acceder a las clases importadas</li>
- *   <li>La validación de entidades funciona</li>
- *   <li>Las métricas se generan correctamente</li>
- * </ul>
+ * <p>Esta clase contiene pruebas exhaustivas para verificar el funcionamiento
+ * correcto del servicio de inspección de bases de datos, incluyendo la conexión,
+ * la obtención de estadísticas y el manejo de errores.</p>
  * 
- * @author Sistema Kursor
+ * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
+ * @since 1.0.0
+ * @see DatabaseInspectorService
  */
 public class DatabaseInspectorServiceTest {
     

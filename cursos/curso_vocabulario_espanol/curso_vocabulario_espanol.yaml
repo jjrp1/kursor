@@ -1,0 +1,49 @@
+id: curso_vocabulario_espanol
+titulo: "Vocabulario Español Básico"
+descripcion: "Curso para aprender vocabulario básico en español completando huecos"
+bloques:
+  - id: bloque1
+    titulo: "Vocabulario Básico"
+    descripcion: "Completa las palabras que faltan en las frases"
+    tipo: "completar_huecos"
+    preguntas:
+      - id: p1
+        tipo: "completar_huecos"
+        enunciado: "La _____ es el animal más grande del mar."
+        respuestaCorrecta: "ballena"
+      - id: p2
+        tipo: "completar_huecos"
+        enunciado: "La _____ es la capital de España."
+        respuestaCorrecta: "Madrid"
+      - id: p3
+        tipo: "completar_huecos"
+        enunciado: "El _____ es el color del cielo."
+        respuestaCorrecta: "azul"
+      - id: p4
+        tipo: "completar_huecos"
+        enunciado: "El _____ es la estación más calurosa del año."
+        respuestaCorrecta: "verano"
+      - id: p5
+        tipo: "completar_huecos"
+        enunciado: "El _____ es el planeta más cercano al Sol."
+        respuestaCorrecta: "mercurio"
+      - id: p6
+        tipo: "completar_huecos"
+        enunciado: "El _____ es la bebida más popular del mundo."
+        respuestaCorrecta: "agua"
+      - id: p7
+        tipo: "completar_huecos"
+        enunciado: "El _____ es el animal más rápido de la tierra."
+        respuestaCorrecta: "guepardo"
+      - id: p8
+        tipo: "completar_huecos"
+        enunciado: "El _____ es la flor nacional de España."
+        respuestaCorrecta: "clavel"
+      - id: p9
+        tipo: "completar_huecos"
+        enunciado: "El _____ es el metal más precioso."
+        respuestaCorrecta: "oro"
+      - id: p10
+        tipo: "completar_huecos"
+        enunciado: "El _____ es la lengua más hablada del mundo."
+        respuestaCorrecta: "mandarín" 

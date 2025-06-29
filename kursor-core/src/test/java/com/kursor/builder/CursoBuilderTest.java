@@ -3,6 +3,9 @@ package com.kursor.builder;
 import com.kursor.domain.Curso;
 import com.kursor.domain.Bloque;
 import com.kursor.domain.Pregunta;
+import com.kursor.yaml.dto.CursoDTO;
+import com.kursor.yaml.dto.BloqueDTO;
+import com.kursor.yaml.dto.PreguntaDTO;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 
@@ -10,22 +13,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Pruebas unitarias para la clase CursoBuilder.
+ * Pruebas unitarias para el builder de cursos CursoBuilder.
  * 
- * <p>Esta clase de pruebas verifica el comportamiento del patrón Builder
- * para la construcción de cursos, incluyendo:</p>
- * <ul>
- *   <li>Configuración de metadatos (ID, título, descripción)</li>
- *   <li>Agregado de bloques</li>
- *   <li>Agregado de preguntas a bloques</li>
- *   <li>Construcción del curso final</li>
- *   <li>Validaciones y casos edge</li>
- *   <li>Métodos de utilidad</li>
- * </ul>
+ * <p>Esta clase contiene pruebas exhaustivas para verificar el funcionamiento
+ * correcto del builder de cursos, incluyendo la construcción de cursos,
+ * bloques y preguntas desde DTOs.</p>
  * 
- * @author Kursor Team
+ * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
  * @since 1.0.0
+ * @see CursoBuilder
+ * @see Curso
+ * @see Bloque
+ * @see Pregunta
  */
 @DisplayName("Pruebas de CursoBuilder")
 class CursoBuilderTest {

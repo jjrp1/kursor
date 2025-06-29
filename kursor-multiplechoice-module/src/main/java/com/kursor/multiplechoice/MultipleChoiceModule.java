@@ -3,115 +3,51 @@ package com.kursor.multiplechoice;
 import com.kursor.modules.PreguntaModule;
 import com.kursor.domain.Pregunta;
 import com.kursor.multiplechoice.domain.PreguntaTest;
-import com.kursor.multiplechoice.ui.MultipleChoiceUIHandler;
-import com.kursor.ui.QuestionUIHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.kursor.ui.PreguntaEventListener;
 import javafx.scene.Node;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import java.util.ArrayList;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Módulo para preguntas de opción múltiple en el sistema Kursor.
+ * Módulo para preguntas de tipo opción múltiple (test).
  * 
- * <p>Este módulo implementa la funcionalidad para manejar preguntas de tipo
- * test que presentan varias opciones de respuesta, de las cuales solo una
- * es correcta. Es uno de los tipos de pregunta más comunes en sistemas
- * educativos.</p>
- * 
- * <p>Características principales:</p>
- * <ul>
- *   <li><strong>Tipo de pregunta:</strong> "test" (opción múltiple)</li>
- *   <li><strong>Interfaz de usuario:</strong> Radio buttons para selección única</li>
- *   <li><strong>Validación:</strong> Comparación exacta de respuestas</li>
- *   <li><strong>Parsing YAML:</strong> Carga desde archivos de configuración</li>
- *   <li><strong>Flexibilidad:</strong> Soporta cualquier número de opciones</li>
- * </ul>
- * 
- * <p>Estructura YAML esperada:</p>
- * <pre>{@code
- * tipo: "test"
- * id: "pregunta1"
- * enunciado: "¿Cuál es la capital de España?"
- * opciones:
- *   - "Madrid"
- *   - "Barcelona"
- *   - "Valencia"
- *   - "Sevilla"
- * respuesta: "Madrid"
- * }</pre>
- * 
- * <p>Ejemplo de uso:</p>
- * <pre>{@code
- * MultipleChoiceModule module = new MultipleChoiceModule();
- * 
- * // Crear vista de pregunta
- * Node view = module.createQuestionView(preguntaTest);
- * 
- * // Validar respuesta
- * boolean correcta = module.validateAnswer(preguntaTest, "Madrid");
- * }</pre>
- * 
- * <p>El módulo se registra automáticamente en el sistema a través del
- * archivo META-INF/services/com.kursor.core.PreguntaModule.</p>
+ * <p>Este módulo maneja preguntas que requieren seleccionar una respuesta
+ * de entre varias opciones disponibles.</p>
  * 
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  * @see PreguntaModule
  * @see PreguntaTest
- * @see Pregunta
  */
 public class MultipleChoiceModule implements PreguntaModule {
     
-    /** Logger para registrar eventos del módulo */
+    /** Logger para registrar eventos de la clase */
     private static final Logger logger = LoggerFactory.getLogger(MultipleChoiceModule.class);
     
-    /**
-     * Obtiene el nombre descriptivo del módulo.
-     * 
-     * <p>Este nombre se utiliza para mostrar el módulo en la interfaz
-     * de usuario y para propósitos de identificación.</p>
-     * 
-     * @return El nombre del módulo
-     */
     @Override
     public String getModuleName() {
-        logger.debug("Obteniendo nombre del módulo MultipleChoice");
-        return "MultipleChoice Module";
+        return "Opción Múltiple";
     }
 
-    /**
-     * Obtiene la descripción detallada del módulo.
-     * 
-     * <p>Esta descripción explica la funcionalidad del módulo y puede
-     * ser utilizada en la interfaz de usuario para ayudar a los usuarios
-     * a entender qué tipo de preguntas maneja este módulo.</p>
-     * 
-     * @return La descripción del módulo
-     */
     @Override
     public String getModuleDescription() {
-        logger.debug("Obteniendo descripción del módulo MultipleChoice");
         return "Módulo para preguntas de opción múltiple";
     }
     
-    /**
-     * Obtiene el tipo de pregunta que maneja este módulo.
-     * 
-     * <p>Este identificador se utiliza para asociar preguntas con el
-     * módulo correcto durante el proceso de carga desde archivos YAML.</p>
-     * 
-     * @return El tipo de pregunta ("test")
-     */
+    @Override
+    public String getIcon() {
+        return "📝";
+    }
+    
     @Override
     public String getQuestionType() {
-        logger.debug("Obteniendo tipo de pregunta del módulo MultipleChoice: test");
         return "test";
     }
 
@@ -119,10 +55,9 @@ public class MultipleChoiceModule implements PreguntaModule {
      * Parsea datos YAML para crear una pregunta de opción múltiple.
      * 
      * <p>Este método interpreta los datos YAML y crea una instancia de
-     * {@link PreguntaTest} con todos sus atributos configurados correctamente.
-     * Valida que los datos contengan todos los campos necesarios.</p>
+     * {@link PreguntaTest} con todos sus atributos configurados.</p>
      * 
-     * <p>Campos requeridos en el YAML:</p>
+     * <p>Estructura YAML esperada:</p>
      * <ul>
      *   <li><strong>id:</strong> Identificador único de la pregunta</li>
      *   <li><strong>enunciado:</strong> Texto de la pregunta</li>
@@ -146,7 +81,7 @@ public class MultipleChoiceModule implements PreguntaModule {
         
         String id = (String) preguntaData.get("id");
         String enunciado = (String) preguntaData.get("enunciado");
-        String respuestaCorrecta = (String) preguntaData.get("respuestaCorrecta");
+        String respuestaCorrecta = (String) preguntaData.get("respuesta");
         
         // Validar campos obligatorios
         if (id == null || id.trim().isEmpty()) {
@@ -160,59 +95,26 @@ public class MultipleChoiceModule implements PreguntaModule {
         }
         
         if (respuestaCorrecta == null || respuestaCorrecta.trim().isEmpty()) {
-            logger.error("Error al parsear pregunta: respuesta correcta (respuestaCorrecta) no puede ser null o vacía - ID: " + id);
-            throw new IllegalArgumentException("Respuesta correcta (respuestaCorrecta) no puede ser null o vacía");
+            logger.error("Error al parsear pregunta: respuesta correcta (respuesta) no puede ser null o vacía - ID: " + id);
+            throw new IllegalArgumentException("Respuesta correcta (respuesta) no puede ser null o vacía");
         }
         
         // Obtener las opciones
-        List<String> opciones = new ArrayList<>();
-        if (preguntaData.containsKey("opciones")) {
-            List<Object> opcionesData = (List<Object>) preguntaData.get("opciones");
-            if (opcionesData != null && !opcionesData.isEmpty()) {
-                for (Object opcion : opcionesData) {
-                    if (opcion != null) {
-                        opciones.add(opcion.toString().trim());
-                    }
-                }
-            }
-        }
+        @SuppressWarnings("unchecked")
+        List<String> opciones = (List<String>) preguntaData.get("opciones");
         
         // Validar que hay opciones
-        if (opciones.isEmpty()) {
+        if (opciones == null || opciones.isEmpty()) {
             logger.error("Error al parsear pregunta: debe tener al menos una opción - ID: " + id);
             throw new IllegalArgumentException("La pregunta debe tener al menos una opción");
         }
         
-        // Validar que la respuesta correcta está entre las opciones
-        if (!opciones.contains(respuestaCorrecta.trim())) {
-            logger.error("Error al parsear pregunta: respuesta correcta no está entre las opciones - ID: " + id + 
-                        ", Respuesta: " + respuestaCorrecta + ", Opciones: " + opciones);
-            throw new IllegalArgumentException("La respuesta correcta debe estar entre las opciones disponibles");
-        }
-        
-        // Crear la pregunta de test
-        PreguntaTest pregunta = new PreguntaTest(id.trim(), enunciado.trim(), opciones, respuestaCorrecta.trim());
+        // Crear la pregunta de opción múltiple
+        PreguntaTest pregunta = new PreguntaTest(id, enunciado, opciones, respuestaCorrecta);
         
         logger.info("Pregunta de opción múltiple ('test') parseada correctamente: " + pregunta.toString());
         
         return pregunta;
-    }
-
-    /**
-     * Crea una pregunta de opción múltiple con un ID específico.
-     * 
-     * <p>En la implementación actual, este método retorna null ya que
-     * la creación de preguntas se realiza principalmente a través del
-     * método {@link #parsePregunta(Map)} con datos YAML.</p>
-     * 
-     * @param questionId Identificador de la pregunta a crear
-     * @return null (no implementado en esta versión)
-     */
-    @Override
-    public Pregunta createQuestion(String questionId) {
-        logger.debug("Creando pregunta de opción múltiple con ID: " + questionId);
-        logger.info("Método createQuestion no implementado para MultipleChoiceModule - ID: " + questionId);
-        return null; // Implementar según necesidades específicas
     }
     
     /**
@@ -246,25 +148,30 @@ public class MultipleChoiceModule implements PreguntaModule {
         }
         
         PreguntaTest preguntaTest = (PreguntaTest) pregunta;
-        VBox container = new VBox(10);
-        container.setStyle("-fx-padding: 15px; -fx-background-color: white; -fx-background-radius: 5px;");
         
-        // Enunciado de la pregunta
-        Label enunciado = new Label(preguntaTest.getEnunciado());
-        enunciado.setStyle("-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
-        enunciado.setWrapText(true);
+        VBox container = new VBox(20);
+        container.setPadding(new Insets(20));
+        container.setAlignment(Pos.CENTER);
         
-        // Opciones de respuesta
-        ToggleGroup group = new ToggleGroup();
+        // Enunciado
+        Label lblEnunciado = new Label(preguntaTest.getEnunciado());
+        lblEnunciado.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
+        lblEnunciado.setWrapText(true);
+        lblEnunciado.setMaxWidth(600);
+        
+        // Opciones
+        ToggleGroup toggleGroup = new ToggleGroup();
+        VBox opcionesContainer = new VBox(10);
+        opcionesContainer.setAlignment(Pos.CENTER_LEFT);
+        
         for (String opcion : preguntaTest.getOpciones()) {
-            RadioButton rb = new RadioButton(opcion);
-            rb.setToggleGroup(group);
-            rb.setStyle("-fx-font-size: 12px; -fx-text-fill: #34495e;");
-            rb.setWrapText(true);
-            container.getChildren().add(rb);
+            RadioButton rbOpcion = new RadioButton(opcion);
+            rbOpcion.setToggleGroup(toggleGroup);
+            rbOpcion.setStyle("-fx-font-size: 14px;");
+            opcionesContainer.getChildren().add(rbOpcion);
         }
         
-        container.getChildren().add(0, enunciado);
+        container.getChildren().addAll(lblEnunciado, opcionesContainer);
         
         logger.info("Vista de pregunta de opción múltiple creada exitosamente - ID: " + preguntaTest.getId() + 
                    ", Opciones: " + preguntaTest.getOpciones().size());
@@ -273,56 +180,214 @@ public class MultipleChoiceModule implements PreguntaModule {
     }
     
     /**
-     * Valida la respuesta del usuario para una pregunta de opción múltiple.
+     * Configura la interfaz completa para una pregunta de opción múltiple.
      * 
-     * <p>Este método compara la respuesta del usuario con la respuesta
-     * correcta almacenada en la pregunta. La comparación es exacta y
-     * case-sensitive.</p>
+     * <p>Este método configura la interfaz completa para una pregunta de opción múltiple,
+     * incluyendo la cabecera, el contenido y el pie de la interfaz.</p>
      * 
-     * <p>Validaciones realizadas:</p>
-     * <ul>
-     *   <li>Verifica que la pregunta sea del tipo correcto</li>
-     *   <li>Convierte la respuesta a String si es necesario</li>
-     *   <li>Compara con la respuesta correcta usando el método de la pregunta</li>
-     * </ul>
-     * 
-     * @param pregunta La pregunta a validar
-     * @param answer La respuesta del usuario (puede ser String u Object)
-     * @return true si la respuesta es correcta, false en caso contrario
+     * @param pregunta La pregunta para la cual configurar la interfaz
+     * @param headerContainer Contenedor de la cabecera
+     * @param contentContainer Contenedor del contenido
+     * @param footerContainer Contenedor del pie
+     * @param eventListener Listener para eventos de la pregunta
      * @throws IllegalArgumentException si el tipo de pregunta no es compatible
      */
     @Override
-    public boolean validateAnswer(Pregunta pregunta, Object answer) {
+    public void configureCompleteUI(Pregunta pregunta, 
+                                  VBox headerContainer, 
+                                  VBox contentContainer, 
+                                  VBox footerContainer,
+                                  PreguntaEventListener eventListener) {
         if (!(pregunta instanceof PreguntaTest)) {
-            logger.error("Pregunta no es del tipo PreguntaTest: {}", pregunta.getClass().getSimpleName());
+            throw new IllegalArgumentException("La pregunta debe ser de tipo PreguntaTest");
+        }
+        
+        PreguntaTest preguntaTest = (PreguntaTest) pregunta;
+        
+        // Configurar cabecera (progreso adicional)
+        configurarCabecera(headerContainer, preguntaTest);
+        
+        // Configurar contenido (pregunta)
+        configurarContenido(contentContainer, preguntaTest);
+        
+        // Configurar pie (botones)
+        configurarPie(footerContainer, preguntaTest, eventListener);
+    }
+    
+    private void configurarCabecera(VBox headerContainer, PreguntaTest pregunta) {
+        // Agregar información específica de la pregunta
+        Label lblTipoPregunta = new Label("Tipo: Opción Múltiple");
+        lblTipoPregunta.setStyle("-fx-font-size: 12px; -fx-text-fill: #6c757d; -fx-font-style: italic;");
+        
+        // Insertar después del progreso existente
+        if (headerContainer.getChildren().size() > 2) {
+            headerContainer.getChildren().add(2, lblTipoPregunta);
+        } else {
+            headerContainer.getChildren().add(lblTipoPregunta);
+        }
+    }
+    
+    private void configurarContenido(VBox contentContainer, PreguntaTest pregunta) {
+        // Limpiar contenido existente
+        contentContainer.getChildren().clear();
+        
+        VBox preguntaContainer = new VBox(20);
+        preguntaContainer.setPadding(new Insets(30));
+        preguntaContainer.setAlignment(Pos.CENTER);
+        preguntaContainer.setStyle("-fx-background-color: white; -fx-border-color: #dee2e6; -fx-border-radius: 8; -fx-border-width: 1;");
+        
+        // Enunciado
+        Label lblEnunciado = new Label(pregunta.getEnunciado());
+        lblEnunciado.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-text-alignment: center;");
+        lblEnunciado.setWrapText(true);
+        lblEnunciado.setMaxWidth(700);
+        lblEnunciado.setAlignment(Pos.CENTER);
+        
+        // Instrucciones
+        Label lblInstrucciones = new Label("Selecciona la respuesta correcta:");
+        lblInstrucciones.setStyle("-fx-font-size: 14px; -fx-text-fill: #6c757d;");
+        
+        preguntaContainer.getChildren().addAll(lblEnunciado, lblInstrucciones);
+        
+        contentContainer.getChildren().add(preguntaContainer);
+    }
+    
+    private void configurarPie(VBox footerContainer, PreguntaTest pregunta, PreguntaEventListener eventListener) {
+        // Obtener el contenedor de botones del módulo (primer hijo)
+        HBox moduleButtonsContainer = (HBox) footerContainer.getChildren().get(0);
+        moduleButtonsContainer.getChildren().clear();
+        
+        // Crear controles de la pregunta
+        ToggleGroup toggleGroup = new ToggleGroup();
+        VBox opcionesContainer = new VBox(10);
+        opcionesContainer.setAlignment(Pos.CENTER);
+        
+        // Crear radio buttons para cada opción
+        for (String opcion : pregunta.getOpciones()) {
+            RadioButton rbOpcion = new RadioButton(opcion);
+            rbOpcion.setToggleGroup(toggleGroup);
+            rbOpcion.setStyle("-fx-font-size: 14px; -fx-padding: 8 16;");
+            opcionesContainer.getChildren().add(rbOpcion);
+        }
+        
+        // Botón de verificar
+        Button btnVerificar = new Button("Verificar Respuesta");
+        btnVerificar.setStyle("-fx-background-color: #007bff; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;");
+        btnVerificar.setDisable(true); // Inicialmente deshabilitado
+        
+        // Botón de siguiente
+        Button btnSiguiente = new Button("Siguiente Pregunta");
+        btnSiguiente.setStyle("-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;");
+        btnSiguiente.setVisible(false); // Inicialmente oculto
+        
+        // Contenedor para botones
+        HBox botonesContainer = new HBox(10);
+        botonesContainer.setAlignment(Pos.CENTER);
+        botonesContainer.getChildren().addAll(btnVerificar, btnSiguiente);
+        
+        // Agregar al contenedor del módulo
+        moduleButtonsContainer.getChildren().addAll(opcionesContainer, botonesContainer);
+        
+        // Configurar eventos
+        configurarEventos(toggleGroup, btnVerificar, btnSiguiente, pregunta, eventListener, footerContainer);
+    }
+    
+    private void configurarEventos(ToggleGroup toggleGroup,
+                                 Button btnVerificar,
+                                 Button btnSiguiente,
+                                 PreguntaTest pregunta,
+                                 PreguntaEventListener eventListener,
+                                 VBox footerContainer) {
+        
+        // Habilitar botón verificar cuando se selecciona una opción
+        toggleGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            btnVerificar.setDisable(newVal == null);
+        });
+        
+        // Evento de verificar
+        btnVerificar.setOnAction(e -> {
+            RadioButton selected = (RadioButton) toggleGroup.getSelectedToggle();
+            if (selected == null) return;
+            
+            String respuestaUsuario = selected.getText();
+            boolean esCorrecta = validarRespuesta(pregunta, respuestaUsuario);
+            
+            // Mostrar resultado
+            mostrarResultado(pregunta, esCorrecta, respuestaUsuario, null);
+            
+            // Notificar al contenedor principal
+            eventListener.onRespuestaValidada(esCorrecta);
+            
+            // Cambiar estado de botones
+            btnVerificar.setVisible(false);
+            btnSiguiente.setVisible(true);
+            
+            // Deshabilitar todas las opciones
+            for (Node node : ((VBox) ((HBox) footerContainer.getChildren().get(0)).getChildren().get(0)).getChildren()) {
+                if (node instanceof RadioButton) {
+                    node.setDisable(true);
+                }
+            }
+        });
+        
+        // Evento de siguiente
+        btnSiguiente.setOnAction(e -> {
+            // El contenedor principal manejará la transición
+            // Este botón es solo para UX
+        });
+    }
+    
+    @Override
+    public boolean validarRespuesta(Pregunta pregunta, Object respuesta) {
+        if (!(pregunta instanceof PreguntaTest)) {
             return false;
         }
         
         PreguntaTest preguntaTest = (PreguntaTest) pregunta;
-        String respuestaUsuario = answer != null ? answer.toString().trim() : "";
-        String respuestaCorrecta = preguntaTest.getRespuestaCorrecta();
+        String respuestaStr = respuesta.toString();
         
-        boolean esCorrecta = respuestaUsuario.equals(respuestaCorrecta);
-        
-        logger.debug("Validando respuesta de pregunta 'test' - ID: {}, Respuesta usuario: {}, Respuesta correcta: {}, Es correcta: {}", 
-                   pregunta.getId(), respuestaUsuario, respuestaCorrecta, esCorrecta);
-        
-        return esCorrecta;
+        return preguntaTest.esCorrecta(respuestaStr);
     }
     
     @Override
-    public QuestionUIHandler createUIHandler() {
-        logger.debug("Creando manejador de UI para módulo MultipleChoice");
-        return new MultipleChoiceUIHandler();
-    }
-    
-    @Override
-    public boolean supportsSpecialActions() {
-        return false; // Las preguntas de opción múltiple no tienen acciones especiales
-    }
-    
-    @Override
-    public List<String> getSupportedActions() {
-        return new ArrayList<>(); // Lista vacía, no hay acciones especiales
+    public void mostrarResultado(Pregunta pregunta, 
+                                boolean esCorrecta, 
+                                Object respuestaUsuario,
+                                VBox contentContainer) {
+        if (!(pregunta instanceof PreguntaTest)) {
+            return;
+        }
+        
+        PreguntaTest preguntaTest = (PreguntaTest) pregunta;
+        
+        // Crear panel de resultado
+        VBox resultadoContainer = new VBox(15);
+        resultadoContainer.setPadding(new Insets(20));
+        resultadoContainer.setAlignment(Pos.CENTER);
+        resultadoContainer.setStyle("-fx-background-color: " + (esCorrecta ? "#d4edda" : "#f8d7da") + 
+                                  "; -fx-border-color: " + (esCorrecta ? "#c3e6cb" : "#f5c6cb") + 
+                                  "; -fx-border-radius: 8; -fx-border-width: 1;");
+        
+        // Icono y mensaje
+        String icono = esCorrecta ? "✅" : "❌";
+        String mensaje = esCorrecta ? "¡Correcto!" : "Incorrecto";
+        String color = esCorrecta ? "#155724" : "#721c24";
+        
+        Label lblIcono = new Label(icono);
+        lblIcono.setStyle("-fx-font-size: 48px;");
+        
+        Label lblMensaje = new Label(mensaje);
+        lblMensaje.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: " + color + ";");
+        
+        // Respuesta correcta
+        Label lblRespuestaCorrecta = new Label("Respuesta correcta: " + preguntaTest.getRespuestaCorrecta());
+        lblRespuestaCorrecta.setStyle("-fx-font-size: 16px; -fx-text-fill: " + color + ";");
+        
+        resultadoContainer.getChildren().addAll(lblIcono, lblMensaje, lblRespuestaCorrecta);
+        
+        // Si hay contenedor específico, agregar ahí, sino usar el contenido principal
+        if (contentContainer != null) {
+            contentContainer.getChildren().add(resultadoContainer);
+        }
     }
 } 

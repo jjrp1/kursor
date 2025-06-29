@@ -2,10 +2,10 @@
 title: Plan Inicial de Persistencia
 subtitle: Documentación técnica del sistema de persistencia
 description: Análisis y propuestas para la persistencia de sesiones y estrategias en Kursor
-keywords: persistencia, sesiones, estrategias, JPA, SQLite, JSON, YAML
-status: desarrollo
+keywords: persistencia, sesiones, estrategias, JPA, Hibernate, SQLite, JSON, YAML
+status: completado
 created: 2025-05-01
-modified: 2025-06-20
+modified: 2025-06-29
 author: "Juanjo Ruiz"
 ---
 
@@ -16,8 +16,8 @@ author: "Juanjo Ruiz"
 ### 1.1 Objetivo
 
 Este documento analiza los requisitos y propuestas para la persistencia de datos en Kursor, específicamente:
-- **Persistencia de Sesiones**: Estado del usuario durante el aprendizaje (JPA + SQLite)
-- **Persistencia de Estrategias**: Estado interno de las estrategias de aprendizaje (JPA + SQLite)
+- **Persistencia de Sesiones**: Estado del usuario durante el aprendizaje (JPA + Hibernate + SQLite)
+- **Persistencia de Estrategias**: Estado interno de las estrategias de aprendizaje (JPA + Hibernate + SQLite)
 - **Carga de Cursos**: Soporte para formatos JSON y YAML
 - **Gestión de Estado**: Cómo mantener y restaurar el progreso del usuario
 
@@ -30,21 +30,50 @@ El sistema de aprendizaje de Kursor requiere persistencia robusta para:
 - Soportar múltiples usuarios y cursos
 - Cargar cursos desde formatos JSON y YAML
 
-### 1.3 Modelo de Usuario
+### 1.3 Proveedor JPA Unificado
 
-#### **1.3.1 Aplicación Monousuario**
+#### **1.3.1 Decisión Técnica: Hibernate**
+- **Proveedor seleccionado**: Hibernate como proveedor JPA unificado
+- **Beneficios**: Soporte nativo para SQLite, configuración establecida, mejor rendimiento
+- **Consistencia**: Mismo proveedor en todos los módulos del proyecto
+- **Compatibilidad**: Funciona correctamente con aplicaciones de escritorio
+
+#### **1.3.2 Configuración Unificada**
+```xml
+<!-- Configuración JPA con Hibernate -->
+<persistence-unit name="kursorPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    
+    <!-- Entidades JPA -->
+    <class>com.kursor.persistence.entity.Sesion</class>
+    <class>com.kursor.persistence.entity.EstadoEstrategia</class>
+    <class>com.kursor.persistence.entity.EstadisticasUsuario</class>
+    <class>com.kursor.persistence.entity.RespuestaPregunta</class>
+    
+    <properties>
+        <!-- Hibernate + SQLite -->
+        <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+        <property name="hibernate.connection.foreign_keys" value="true"/>
+    </properties>
+</persistence-unit>
+```
+
+### 1.4 Modelo de Usuario
+
+#### **1.4.1 Aplicación Monousuario**
 - **Diseño actual**: La aplicación está diseñada para ser utilizada por un solo usuario
 - **Campo `usuarioId`**: Se mantiene en todas las entidades para futuras expansiones
 - **Valor por defecto**: Se utiliza un ID fijo (ej: "default_user") para simplificar
 - **Ventajas**: No requiere autenticación ni gestión de sesiones de usuario
 
-#### **1.3.2 Consideraciones de Diseño**
+#### **1.4.2 Consideraciones de Diseño**
 - **Extensibilidad**: La arquitectura permite futuras expansiones a multiusuario
 - **Simplicidad**: Consultas más simples sin filtros de usuario
 - **Compatibilidad**: Los datos existentes se pueden migrar fácilmente
 - **Rendimiento**: Menor complejidad en las consultas de base de datos
 
-#### **1.3.3 Implementación Técnica**
+#### **1.4.3 Implementación Técnica**
 ```java
 // Constante para el usuario por defecto
 public static final String DEFAULT_USER_ID = "default_user";

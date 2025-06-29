@@ -32,12 +32,12 @@ public class PersistenceTest {
     private static EntityManager entityManager;
     private static SesionRepository sesionRepository;
     private static EstadoEstrategiaRepository estadoEstrategiaRepository;
-    private static RespuestaPreguntaRepository respuestaPreguntaRepository;
+    private static PreguntaSesionRepository preguntaSesionRepository;
     private static EstadisticasUsuarioRepository estadisticasUsuarioRepository;
     
     private static Long sesionId;
     private static Long estadoEstrategiaId;
-    private static Long respuestaPreguntaId;
+    private static Long preguntaSesionId;
     private static Long estadisticasUsuarioId;
     
     @BeforeAll
@@ -54,7 +54,7 @@ public class PersistenceTest {
             // Crear repositorios
             sesionRepository = new SesionRepository(entityManager);
             estadoEstrategiaRepository = new EstadoEstrategiaRepository(entityManager);
-            respuestaPreguntaRepository = new RespuestaPreguntaRepository(entityManager);
+            preguntaSesionRepository = new PreguntaSesionRepository(entityManager);
             estadisticasUsuarioRepository = new EstadisticasUsuarioRepository(entityManager);
             
             logger.info("Pruebas de persistencia inicializadas correctamente");
@@ -91,22 +91,17 @@ public class PersistenceTest {
         
         try {
             // Crear sesión
-            Sesion sesion = new Sesion();
-            sesion.setUsuarioId("usuario_test");
-            sesion.setCursoId("curso_test");
-            sesion.setBloqueId("bloque_test");
-            sesion.setEstrategiaTipo("SECUENCIAL");
-            sesion.setFechaInicio(LocalDateTime.now());
-            sesion.setEstado(EstadoSesion.ACTIVA);
+            Sesion sesion = new Sesion("curso_test", "bloque_test", "SECUENCIAL");
+            sesion.setEstado(EstadoSesion.EN_CURSO);
             
             // Guardar sesión
             Sesion sesionGuardada = sesionRepository.guardar(sesion);
             
             // Verificar que se guardó correctamente
             assertNotNull(sesionGuardada.getId());
-            assertEquals("usuario_test", sesionGuardada.getUsuarioId());
             assertEquals("curso_test", sesionGuardada.getCursoId());
-            assertEquals(EstadoSesion.ACTIVA, sesionGuardada.getEstado());
+            assertEquals("bloque_test", sesionGuardada.getBloqueId());
+            assertEquals(EstadoSesion.EN_CURSO, sesionGuardada.getEstado());
             
             sesionId = sesionGuardada.getId();
             logger.info("Sesión creada exitosamente - ID: {}", sesionId);
@@ -136,7 +131,7 @@ public class PersistenceTest {
             // Verificar que se encontró
             assertTrue(sesionEncontrada.isPresent());
             assertEquals(sesionId, sesionEncontrada.get().getId());
-            assertEquals("usuario_test", sesionEncontrada.get().getUsuarioId());
+            assertEquals("curso_test", sesionEncontrada.get().getCursoId());
             
             logger.info("Sesión encontrada exitosamente - ID: {}", sesionId);
             
@@ -192,9 +187,9 @@ public class PersistenceTest {
     
     @Test
     @Order(4)
-    @DisplayName("Crear y guardar respuesta de pregunta")
-    void testCrearRespuestaPregunta() {
-        logger.info("Probando creación de respuesta de pregunta...");
+    @DisplayName("Crear y guardar pregunta de sesión")
+    void testCrearPreguntaSesion() {
+        logger.info("Probando creación de pregunta de sesión...");
         
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
@@ -203,34 +198,33 @@ public class PersistenceTest {
             // Obtener sesión
             Sesion sesion = sesionRepository.buscarPorId(sesionId).orElseThrow();
             
-            // Crear respuesta de pregunta
-            RespuestaPregunta respuestaPregunta = new RespuestaPregunta();
-            respuestaPregunta.setSesion(sesion);
-            respuestaPregunta.setPreguntaId("pregunta_1");
-            respuestaPregunta.setRespuestaCorrecta(true);
-            respuestaPregunta.setTiempoRespuesta(30);
-            respuestaPregunta.setIntentos(1);
-            respuestaPregunta.setTextoRespuesta("Respuesta correcta");
+            // Crear pregunta de sesión
+            PreguntaSesion preguntaSesion = new PreguntaSesion();
+            preguntaSesion.setSesion(sesion);
+            preguntaSesion.setPreguntaId("pregunta_1");
+            preguntaSesion.setResultado("acierto");
+            preguntaSesion.setTiempoDedicado(30);
+            preguntaSesion.setRespuesta("Respuesta correcta");
             
-            // Guardar respuesta de pregunta
-            RespuestaPregunta respuestaGuardada = respuestaPreguntaRepository.guardar(respuestaPregunta);
+            // Guardar pregunta de sesión
+            PreguntaSesion preguntaGuardada = preguntaSesionRepository.guardar(preguntaSesion);
             
             // Verificar que se guardó correctamente
-            assertNotNull(respuestaGuardada.getId());
-            assertEquals(sesionId, respuestaGuardada.getSesion().getId());
-            assertEquals("pregunta_1", respuestaGuardada.getPreguntaId());
-            assertTrue(respuestaGuardada.getRespuestaCorrecta());
-            assertEquals(30, respuestaGuardada.getTiempoRespuesta());
+            assertNotNull(preguntaGuardada.getId());
+            assertEquals(sesionId, preguntaGuardada.getSesion().getId());
+            assertEquals("pregunta_1", preguntaGuardada.getPreguntaId());
+            assertTrue(preguntaGuardada.esCorrecta());
+            assertEquals(30, preguntaGuardada.getTiempoDedicado());
             
-            respuestaPreguntaId = respuestaGuardada.getId();
-            logger.info("Respuesta de pregunta creada exitosamente - ID: {}", respuestaPreguntaId);
+            preguntaSesionId = preguntaGuardada.getId();
+            logger.info("Pregunta de sesión creada exitosamente - ID: {}", preguntaSesionId);
             
             transaction.commit();
             
         } catch (Exception e) {
             transaction.rollback();
-            logger.error("Error al crear respuesta de pregunta", e);
-            fail("Error al crear respuesta de pregunta: " + e.getMessage());
+            logger.error("Error al crear pregunta de sesión", e);
+            fail("Error al crear pregunta de sesión: " + e.getMessage());
         }
     }
     
@@ -280,30 +274,30 @@ public class PersistenceTest {
     
     @Test
     @Order(6)
-    @DisplayName("Buscar sesiones por usuario")
-    void testBuscarSesionesPorUsuario() {
-        logger.info("Probando búsqueda de sesiones por usuario...");
+    @DisplayName("Buscar todas las sesiones")
+    void testBuscarTodasLasSesiones() {
+        logger.info("Probando búsqueda de todas las sesiones...");
         
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         
         try {
-            // Buscar sesiones del usuario
-            List<Sesion> sesiones = sesionRepository.buscarSesionesUsuario("usuario_test");
+            // Buscar todas las sesiones
+            List<Sesion> sesiones = sesionRepository.buscarTodasLasSesiones();
             
             // Verificar que se encontraron
             assertFalse(sesiones.isEmpty());
             assertEquals(1, sesiones.size());
             assertEquals(sesionId, sesiones.get(0).getId());
             
-            logger.info("Sesiones del usuario encontradas exitosamente - Cantidad: {}", sesiones.size());
+            logger.info("Todas las sesiones encontradas exitosamente - Cantidad: {}", sesiones.size());
             
             transaction.commit();
             
         } catch (Exception e) {
             transaction.rollback();
-            logger.error("Error al buscar sesiones por usuario", e);
-            fail("Error al buscar sesiones por usuario: " + e.getMessage());
+            logger.error("Error al buscar todas las sesiones", e);
+            fail("Error al buscar todas las sesiones: " + e.getMessage());
         }
     }
     
@@ -338,31 +332,31 @@ public class PersistenceTest {
     
     @Test
     @Order(8)
-    @DisplayName("Buscar respuestas por sesión")
-    void testBuscarRespuestasPorSesion() {
-        logger.info("Probando búsqueda de respuestas por sesión...");
+    @DisplayName("Buscar preguntas por sesión")
+    void testBuscarPreguntasPorSesion() {
+        logger.info("Probando búsqueda de preguntas por sesión...");
         
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         
         try {
-            // Buscar respuestas de la sesión
-            List<RespuestaPregunta> respuestas = respuestaPreguntaRepository.buscarPorSesion(sesionId);
+            // Buscar preguntas de la sesión
+            List<PreguntaSesion> preguntas = preguntaSesionRepository.buscarPorSesion(sesionId);
             
             // Verificar que se encontraron
-            assertFalse(respuestas.isEmpty());
-            assertEquals(1, respuestas.size());
-            assertEquals(respuestaPreguntaId, respuestas.get(0).getId());
-            assertEquals("pregunta_1", respuestas.get(0).getPreguntaId());
+            assertFalse(preguntas.isEmpty());
+            assertEquals(1, preguntas.size());
+            assertEquals(preguntaSesionId, preguntas.get(0).getId());
+            assertEquals("pregunta_1", preguntas.get(0).getPreguntaId());
             
-            logger.info("Respuestas de la sesión encontradas exitosamente - Cantidad: {}", respuestas.size());
+            logger.info("Preguntas de la sesión encontradas exitosamente - Cantidad: {}", preguntas.size());
             
             transaction.commit();
             
         } catch (Exception e) {
             transaction.rollback();
-            logger.error("Error al buscar respuestas por sesión", e);
-            fail("Error al buscar respuestas por sesión: " + e.getMessage());
+            logger.error("Error al buscar preguntas por sesión", e);
+            fail("Error al buscar preguntas por sesión: " + e.getMessage());
         }
     }
     
@@ -431,33 +425,39 @@ public class PersistenceTest {
     
     @Test
     @Order(11)
-    @DisplayName("Actualizar intentos de respuesta")
-    void testActualizarIntentosRespuesta() {
-        logger.info("Probando actualización de intentos de respuesta...");
+    @DisplayName("Actualizar resultado de pregunta")
+    void testActualizarResultadoPregunta() {
+        logger.info("Probando actualización de resultado de pregunta...");
         
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         
         try {
-            // Actualizar intentos
-            boolean actualizado = respuestaPreguntaRepository.actualizarIntentos(respuestaPreguntaId, 2);
+            // Obtener pregunta de sesión
+            Optional<PreguntaSesion> preguntaOpt = preguntaSesionRepository.buscarPorId(preguntaSesionId);
+            assertTrue(preguntaOpt.isPresent());
             
-            // Verificar que se actualizó
-            assertTrue(actualizado);
+            PreguntaSesion pregunta = preguntaOpt.get();
+            
+            // Actualizar resultado
+            pregunta.setResultado("fallo");
+            pregunta.setRespuesta("Respuesta incorrecta");
+            
+            // Guardar cambios
+            PreguntaSesion preguntaActualizada = preguntaSesionRepository.guardar(pregunta);
             
             // Verificar el cambio
-            Optional<RespuestaPregunta> respuestaActualizada = respuestaPreguntaRepository.buscarPorId(respuestaPreguntaId);
-            assertTrue(respuestaActualizada.isPresent());
-            assertEquals(2, respuestaActualizada.get().getIntentos());
+            assertTrue(preguntaActualizada.esIncorrecta());
+            assertEquals("Respuesta incorrecta", preguntaActualizada.getRespuesta());
             
-            logger.info("Intentos de respuesta actualizados exitosamente");
+            logger.info("Resultado de pregunta actualizado exitosamente");
             
             transaction.commit();
             
         } catch (Exception e) {
             transaction.rollback();
-            logger.error("Error al actualizar intentos de respuesta", e);
-            fail("Error al actualizar intentos de respuesta: " + e.getMessage());
+            logger.error("Error al actualizar resultado de pregunta", e);
+            fail("Error al actualizar resultado de pregunta: " + e.getMessage());
         }
     }
     
@@ -511,23 +511,23 @@ public class PersistenceTest {
         
         try {
             // Contar sesiones
-            long sesionesCount = sesionRepository.contarSesionesUsuario("usuario_test");
+            long sesionesCount = sesionRepository.contarSesiones();
             assertEquals(1, sesionesCount);
             
             // Contar estados de estrategia
             long estadosCount = estadoEstrategiaRepository.contarPorUsuario("usuario_test");
             assertEquals(1, estadosCount);
             
-            // Contar respuestas
-            long respuestasCount = respuestaPreguntaRepository.contarPorUsuario("usuario_test");
-            assertEquals(1, respuestasCount);
+            // Contar preguntas de sesión
+            long preguntasCount = preguntaSesionRepository.contarPorSesion(sesionId);
+            assertEquals(1, preguntasCount);
             
             // Contar estadísticas
             long estadisticasCount = estadisticasUsuarioRepository.contarPorUsuario("usuario_test");
             assertEquals(1, estadisticasCount);
             
-            logger.info("Conteo de entidades exitoso - Sesiones: {}, Estados: {}, Respuestas: {}, Estadísticas: {}", 
-                      sesionesCount, estadosCount, respuestasCount, estadisticasCount);
+            logger.info("Conteo de entidades exitoso - Sesiones: {}, Estados: {}, Preguntas: {}, Estadísticas: {}", 
+                      sesionesCount, estadosCount, preguntasCount, estadisticasCount);
             
             transaction.commit();
             
@@ -548,8 +548,12 @@ public class PersistenceTest {
         transaction.begin();
         
         try {
-            // Calcular porcentaje de aciertos
-            double porcentaje = respuestaPreguntaRepository.calcularPorcentajeAciertos("usuario_test");
+            // Obtener preguntas de la sesión
+            List<PreguntaSesion> preguntas = preguntaSesionRepository.buscarPorSesion(sesionId);
+            
+            // Calcular porcentaje manualmente
+            long aciertos = preguntas.stream().filter(PreguntaSesion::esCorrecta).count();
+            double porcentaje = preguntas.isEmpty() ? 0.0 : (double) aciertos / preguntas.size() * 100.0;
             
             // Verificar que el porcentaje es correcto (1 respuesta correcta de 1 total = 100%)
             assertEquals(100.0, porcentaje, 0.01);
@@ -576,9 +580,9 @@ public class PersistenceTest {
         
         try {
             // Eliminar en orden inverso para respetar las relaciones
-            if (respuestaPreguntaId != null) {
-                respuestaPreguntaRepository.eliminar(respuestaPreguntaId);
-                logger.info("Respuesta de pregunta eliminada - ID: {}", respuestaPreguntaId);
+            if (preguntaSesionId != null) {
+                preguntaSesionRepository.eliminar(preguntaSesionId);
+                logger.info("Pregunta de sesión eliminada - ID: {}", preguntaSesionId);
             }
             
             if (estadoEstrategiaId != null) {

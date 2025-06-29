@@ -43,9 +43,14 @@
 
         <!-- JPA y SQLite -->
         <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>4.0.2</version>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.2.13.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-community-dialects</artifactId>
+            <version>6.2.13.Final</version>
         </dependency>
         <dependency>
             <groupId>org.xerial</groupId>
@@ -181,6 +186,23 @@
                 </executions>
             </plugin>
 
+            <!-- Plugin JAR para despliegue -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <outputDirectory>${project.basedir}/..</outputDirectory>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Title>Kursor Core</Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-Vendor>Juan José Ruiz Pérez</Implementation-Vendor>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
             <!-- Resources -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -201,7 +223,7 @@
                     <systemProperties>
                         <systemProperty>
                             <key>kursor.log.level</key>
-                            <value>${kursor.log.level}</value>
+                            <value>${kursor.log.level:INFO}</value>
                         </systemProperty>
                     </systemProperties>
                 </configuration>

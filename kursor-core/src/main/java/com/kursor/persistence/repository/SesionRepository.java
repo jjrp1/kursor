@@ -49,8 +49,8 @@ public class SesionRepository {
      * @return Sesión guardada con ID generado
      */
     public Sesion guardar(Sesion sesion) {
-        logger.debug("Guardando sesión - Usuario: {}, Curso: {}, Bloque: {}", 
-                    sesion.getUsuarioId(), sesion.getCursoId(), sesion.getBloqueId());
+        logger.debug("Guardando sesión - Curso: {}, Bloque: {}", 
+                    sesion.getCursoId(), sesion.getBloqueId());
         
         try {
             if (sesion.getId() == null) {
@@ -91,88 +91,109 @@ public class SesionRepository {
     }
     
     /**
-     * Busca la sesión activa de un usuario.
+     * Busca la sesión en curso.
      * 
-     * @param usuarioId ID del usuario
-     * @return Optional con la sesión activa si existe
+     * @return Optional con la sesión en curso si existe
      */
-    public Optional<Sesion> buscarSesionActiva(String usuarioId) {
-        logger.debug("Buscando sesión activa para usuario: {}", usuarioId);
+    public Optional<Sesion> buscarSesionEnCurso() {
+        logger.debug("Buscando sesión en curso");
         
         try {
             TypedQuery<Sesion> query = entityManager.createQuery(
-                "SELECT s FROM Sesion s WHERE s.usuarioId = :usuarioId AND s.estado = :estado",
+                "SELECT s FROM Sesion s WHERE s.estado = :estado",
                 Sesion.class
             );
-            query.setParameter("usuarioId", usuarioId);
-            query.setParameter("estado", EstadoSesion.ACTIVA);
+            query.setParameter("estado", EstadoSesion.EN_CURSO);
             
             List<Sesion> resultados = query.getResultList();
             if (!resultados.isEmpty()) {
-                logger.info("Sesión activa encontrada para usuario: {} - ID: {}", 
-                          usuarioId, resultados.get(0).getId());
+                logger.info("Sesión en curso encontrada - ID: {}", resultados.get(0).getId());
                 return Optional.of(resultados.get(0));
             } else {
-                logger.debug("No se encontró sesión activa para usuario: {}", usuarioId);
+                logger.debug("No se encontró sesión en curso");
                 return Optional.empty();
             }
         } catch (Exception e) {
-            logger.error("Error al buscar sesión activa para usuario: {}", usuarioId, e);
-            throw new RuntimeException("Error al buscar sesión activa", e);
+            logger.error("Error al buscar sesión en curso", e);
+            throw new RuntimeException("Error al buscar sesión en curso", e);
         }
     }
     
     /**
-     * Lista todas las sesiones de un usuario.
+     * Lista todas las sesiones.
      * 
-     * @param usuarioId ID del usuario
      * @return Lista de sesiones ordenadas por fecha de inicio (más reciente primero)
      */
-    public List<Sesion> buscarSesionesUsuario(String usuarioId) {
-        logger.debug("Buscando sesiones para usuario: {}", usuarioId);
+    public List<Sesion> buscarTodasLasSesiones() {
+        logger.debug("Buscando todas las sesiones");
         
         try {
             TypedQuery<Sesion> query = entityManager.createQuery(
-                "SELECT s FROM Sesion s WHERE s.usuarioId = :usuarioId ORDER BY s.fechaInicio DESC",
+                "SELECT s FROM Sesion s ORDER BY s.fechaInicio DESC",
                 Sesion.class
             );
-            query.setParameter("usuarioId", usuarioId);
             
             List<Sesion> sesiones = query.getResultList();
-            logger.info("Encontradas {} sesiones para usuario: {}", sesiones.size(), usuarioId);
+            logger.info("Encontradas {} sesiones", sesiones.size());
             return sesiones;
         } catch (Exception e) {
-            logger.error("Error al buscar sesiones para usuario: {}", usuarioId, e);
-            throw new RuntimeException("Error al buscar sesiones de usuario", e);
+            logger.error("Error al buscar todas las sesiones", e);
+            throw new RuntimeException("Error al buscar todas las sesiones", e);
         }
     }
     
     /**
-     * Lista las sesiones de un usuario por curso.
+     * Lista las sesiones por curso.
      * 
-     * @param usuarioId ID del usuario
      * @param cursoId ID del curso
      * @return Lista de sesiones del curso ordenadas por fecha
      */
-    public List<Sesion> buscarSesionesUsuarioPorCurso(String usuarioId, String cursoId) {
-        logger.debug("Buscando sesiones para usuario: {} en curso: {}", usuarioId, cursoId);
+    public List<Sesion> buscarSesionesPorCurso(String cursoId) {
+        logger.debug("Buscando sesiones para curso: {}", cursoId);
         
         try {
             TypedQuery<Sesion> query = entityManager.createQuery(
-                "SELECT s FROM Sesion s WHERE s.usuarioId = :usuarioId AND s.cursoId = :cursoId " +
+                "SELECT s FROM Sesion s WHERE s.cursoId = :cursoId " +
                 "ORDER BY s.fechaInicio DESC",
                 Sesion.class
             );
-            query.setParameter("usuarioId", usuarioId);
             query.setParameter("cursoId", cursoId);
             
             List<Sesion> sesiones = query.getResultList();
-            logger.info("Encontradas {} sesiones para usuario: {} en curso: {}", 
-                      sesiones.size(), usuarioId, cursoId);
+            logger.info("Encontradas {} sesiones para curso: {}", sesiones.size(), cursoId);
             return sesiones;
         } catch (Exception e) {
-            logger.error("Error al buscar sesiones para usuario: {} en curso: {}", usuarioId, cursoId, e);
+            logger.error("Error al buscar sesiones para curso: {}", cursoId, e);
             throw new RuntimeException("Error al buscar sesiones por curso", e);
+        }
+    }
+    
+    /**
+     * Lista las sesiones por bloque.
+     * 
+     * @param cursoId ID del curso
+     * @param bloqueId ID del bloque
+     * @return Lista de sesiones del bloque ordenadas por fecha
+     */
+    public List<Sesion> buscarSesionesPorBloque(String cursoId, String bloqueId) {
+        logger.debug("Buscando sesiones para curso: {} bloque: {}", cursoId, bloqueId);
+        
+        try {
+            TypedQuery<Sesion> query = entityManager.createQuery(
+                "SELECT s FROM Sesion s WHERE s.cursoId = :cursoId AND s.bloqueId = :bloqueId " +
+                "ORDER BY s.fechaInicio DESC",
+                Sesion.class
+            );
+            query.setParameter("cursoId", cursoId);
+            query.setParameter("bloqueId", bloqueId);
+            
+            List<Sesion> sesiones = query.getResultList();
+            logger.info("Encontradas {} sesiones para curso: {} bloque: {}", 
+                      sesiones.size(), cursoId, bloqueId);
+            return sesiones;
+        } catch (Exception e) {
+            logger.error("Error al buscar sesiones para curso: {} bloque: {}", cursoId, bloqueId, e);
+            throw new RuntimeException("Error al buscar sesiones por bloque", e);
         }
     }
     
@@ -214,12 +235,12 @@ public class SesionRepository {
             LocalDateTime fechaLimite = LocalDateTime.now().minusDays(diasInactividad);
             
             TypedQuery<Sesion> query = entityManager.createQuery(
-                "SELECT s FROM Sesion s WHERE s.fechaUltimaActividad < :fechaLimite " +
-                "AND s.estado = :estado ORDER BY s.fechaUltimaActividad ASC",
+                "SELECT s FROM Sesion s WHERE s.fechaUltimaRevision < :fechaLimite " +
+                "AND s.estado = :estado ORDER BY s.fechaUltimaRevision ASC",
                 Sesion.class
             );
             query.setParameter("fechaLimite", fechaLimite);
-            query.setParameter("estado", EstadoSesion.ACTIVA);
+            query.setParameter("estado", EstadoSesion.EN_CURSO);
             
             List<Sesion> sesiones = query.getResultList();
             logger.info("Encontradas {} sesiones inactivas por más de {} días", 
@@ -257,76 +278,66 @@ public class SesionRepository {
     }
     
     /**
-     * Elimina todas las sesiones de un usuario.
+     * Elimina todas las sesiones.
      * 
-     * @param usuarioId ID del usuario
      * @return Número de sesiones eliminadas
      */
-    public int eliminarSesionesUsuario(String usuarioId) {
-        logger.debug("Eliminando todas las sesiones del usuario: {}", usuarioId);
+    public int eliminarTodasLasSesiones() {
+        logger.debug("Eliminando todas las sesiones");
         
         try {
-            Query query = entityManager.createQuery(
-                "DELETE FROM Sesion s WHERE s.usuarioId = :usuarioId"
-            );
-            query.setParameter("usuarioId", usuarioId);
+            Query query = entityManager.createQuery("DELETE FROM Sesion s");
             
             int eliminadas = query.executeUpdate();
-            logger.info("Eliminadas {} sesiones del usuario: {}", eliminadas, usuarioId);
+            logger.info("Eliminadas {} sesiones", eliminadas);
             return eliminadas;
         } catch (Exception e) {
-            logger.error("Error al eliminar sesiones del usuario: {}", usuarioId, e);
-            throw new RuntimeException("Error al eliminar sesiones de usuario", e);
+            logger.error("Error al eliminar todas las sesiones", e);
+            throw new RuntimeException("Error al eliminar todas las sesiones", e);
         }
     }
     
     /**
-     * Cuenta el número de sesiones de un usuario.
+     * Cuenta el número total de sesiones.
      * 
-     * @param usuarioId ID del usuario
      * @return Número de sesiones
      */
-    public long contarSesionesUsuario(String usuarioId) {
-        logger.debug("Contando sesiones del usuario: {}", usuarioId);
+    public long contarSesiones() {
+        logger.debug("Contando total de sesiones");
         
         try {
             TypedQuery<Long> query = entityManager.createQuery(
-                "SELECT COUNT(s) FROM Sesion s WHERE s.usuarioId = :usuarioId",
-                Long.class
+                "SELECT COUNT(s) FROM Sesion s", Long.class
             );
-            query.setParameter("usuarioId", usuarioId);
             
-            long count = query.getSingleResult();
-            logger.debug("Usuario {} tiene {} sesiones", usuarioId, count);
-            return count;
+            long total = query.getSingleResult();
+            logger.debug("Total de sesiones: {}", total);
+            return total;
         } catch (Exception e) {
-            logger.error("Error al contar sesiones del usuario: {}", usuarioId, e);
-            throw new RuntimeException("Error al contar sesiones de usuario", e);
+            logger.error("Error al contar sesiones", e);
+            throw new RuntimeException("Error al contar sesiones", e);
         }
     }
     
     /**
-     * Cuenta el número de sesiones completadas de un usuario.
+     * Cuenta el número de sesiones completadas.
      * 
-     * @param usuarioId ID del usuario
      * @return Número de sesiones completadas
      */
-    public long contarSesionesCompletadas(String usuarioId) {
-        logger.debug("Contando sesiones completadas del usuario: {}", usuarioId);
+    public long contarSesionesCompletadas() {
+        logger.debug("Contando sesiones completadas");
         
         try {
             TypedQuery<Long> query = entityManager.createQuery(
-                "SELECT COUNT(s) FROM Sesion s WHERE s.usuarioId = :usuarioId AND s.estado = :estado",
-                Long.class
+                "SELECT COUNT(s) FROM Sesion s WHERE s.estado = :estado", Long.class
             );
-            query.setParameter("usuarioId", usuarioId);
             query.setParameter("estado", EstadoSesion.COMPLETADA);
             
-            long count = query.getSingleResult();
-            logger.debug("Usuario {} tiene {} sesiones completadas", usuarioId, count);
-            return count;
+            long total = query.getSingleResult();
+            logger.debug("Total de sesiones completadas: {}", total);
+            return total;
         } catch (Exception e) {
-            logger.error("Error al contar sesiones completadas del usuario: {}", usuarioId, e);
+            logger.error("Error al contar sesiones completadas", e);
             throw new RuntimeException("Error al contar sesiones completadas", e);
         }
     }

@@ -1,0 +1,1 @@
+CursoInterfaceView (Vista inteligente híbrida) 

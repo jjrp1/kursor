@@ -1,7 +1,6 @@
 package com.kursor.domain;
 
 import java.time.LocalDateTime;
-import com.kursor.domain.Pregunta;
 
 /**
  * Registro de una pregunta en una sesión de aprendizaje.
@@ -9,10 +8,9 @@ import com.kursor.domain.Pregunta;
 public class PreguntaSesion {
     private Pregunta pregunta;
     private String resultado; // acierto / fallo / sin contestar
+    private String respuesta;
     private int tiempoDedicado;
-    private int intentos;
-    private int pistasUsadas;
-    private LocalDateTime fechaRespuesta;
+
 
     public PreguntaSesion() {}
 
@@ -27,15 +25,10 @@ public class PreguntaSesion {
     public String getResultado() { return resultado; }
     public void setResultado(String resultado) { this.resultado = resultado; }
 
+    public String getRespuesta() { return respuesta; }
+    public void setRespuesta(String respuesta) { this.respuesta = respuesta; }
+
     public int getTiempoDedicado() { return tiempoDedicado; }
     public void setTiempoDedicado(int tiempoDedicado) { this.tiempoDedicado = tiempoDedicado; }
 
-    public int getIntentos() { return intentos; }
-    public void setIntentos(int intentos) { this.intentos = intentos; }
-
-    public int getPistasUsadas() { return pistasUsadas; }
-    public void setPistasUsadas(int pistasUsadas) { this.pistasUsadas = pistasUsadas; }
-
-    public LocalDateTime getFechaRespuesta() { return fechaRespuesta; }
-    public void setFechaRespuesta(LocalDateTime fechaRespuesta) { this.fechaRespuesta = fechaRespuesta; }
 } 

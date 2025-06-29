@@ -1,0 +1,274 @@
+/* ===== KURSOR - TEMA MODERNO Y PROFESIONAL ===== */
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.root {
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* ===== HEADER PRINCIPAL ===== */
+.header-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
+}
+
+.header-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 1, 0, 0, 1);
+}
+
+/* ===== PANELES DE CONTENIDO ===== */
+.content-panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 6, 0, 0, 2);
+    -fx-border-radius: 12px;
+    -fx-padding: 20px;
+}
+
+.panel-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 15 0;
+}
+
+/* ===== LISTA DE CURSOS ===== */
+.course-list {
+    -fx-background-color: transparent;
+    -fx-border-color: #e9ecef;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.course-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 12px 16px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+}
+
+.course-list .list-cell:hover {
+    -fx-background-color: #e3f2fd;
+    -fx-text-fill: #1976d2;
+    -fx-cursor: hand;
+}
+
+.course-list .list-cell:selected {
+    -fx-background-color: #1976d2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ===== DETALLES DEL CURSO ===== */
+.course-details {
+    -fx-background-color: transparent;
+}
+
+.course-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+.course-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6c757d;
+    -fx-wrap-text: true;
+    -fx-padding: 0 0 15 0;
+}
+
+.course-info {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6c757d;
+    -fx-padding: 5 0;
+}
+
+/* ===== BLOQUES DEL CURSO ===== */
+.block-card {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 10px;
+    -fx-border-color: #e9ecef;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 15px;
+    -fx-margin: 5px;
+}
+
+.block-card:hover {
+    -fx-background-color: #e9ecef;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 4, 0, 0, 1);
+}
+
+.block-header {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+}
+
+.block-icon {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1976d2;
+}
+
+.block-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.block-count {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6c757d;
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+.action-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: 500;
+    -fx-padding: 15px 30px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-cursor: hand;
+    -fx-min-width: 140px;
+    -fx-transition: all 0.2s ease;
+}
+
+.action-button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.action-button:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Botón Nueva Sesión */
+.btn-new-session {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+}
+
+.btn-new-session:hover {
+    -fx-background-color: #218838;
+}
+
+/* Botón Reanudar */
+.btn-resume {
+    -fx-background-color: #17a2b8;
+    -fx-text-fill: white;
+}
+
+.btn-resume:hover {
+    -fx-background-color: #138496;
+}
+
+.btn-resume:disabled {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: #adb5bd;
+    -fx-opacity: 0.6;
+}
+
+/* Botón Estadísticas */
+.btn-statistics {
+    -fx-background-color: #6f42c1;
+    -fx-text-fill: white;
+}
+
+.btn-statistics:hover {
+    -fx-background-color: #5a32a3;
+}
+
+.btn-statistics:disabled {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: #adb5bd;
+    -fx-opacity: 0.6;
+}
+
+/* Botón Terminar */
+.btn-exit {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+}
+
+.btn-exit:hover {
+    -fx-background-color: #c82333;
+}
+
+/* Botón Kursor */
+.btn-kursor {
+    -fx-background-color: #fd7e14;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.btn-kursor:hover {
+    -fx-background-color: #e8690b;
+}
+
+/* ===== SCROLL PANE ===== */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: #f8f9fa;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #adb5bd;
+    -fx-background-radius: 4px;
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+    -fx-background-color: #6c757d;
+}
+
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: #e9ecef;
+    -fx-background-radius: 4px;
+}
+
+/* ===== CONTROLES DESHABILITADOS ===== */
+.disabled-control {
+    -fx-opacity: 0.6;
+    -fx-cursor: default;
+}
+
+.disabled-control:hover {
+    -fx-opacity: 0.6;
+}
+
+/* ===== MENSAJES DE INFORMACIÓN ===== */
+.info-message {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6c757d;
+    -fx-padding: 10px;
+    -fx-background-color: #e9ecef;
+    -fx-background-radius: 6px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .content-panel {
+        -fx-padding: 15px;
+    }
+    
+    .action-button {
+        -fx-padding: 12px 24px;
+        -fx-min-width: 120px;
+    }
+} 

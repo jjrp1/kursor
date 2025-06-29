@@ -56,8 +56,4 @@ kursor-core ──→ kursor-studio
 
 ## 📞 Contacto y Feedback
 
-Este es un proyecto en desarrollo activo. Para sugerencias, comentarios o preguntas sobre el diseño, por favor revisar el documento principal de diseño técnico y proporcionar feedback específico.
-
----
-
-**Nota**: Esta documentación evoluciona junto con el desarrollo del proyecto. Los documentos pueden actualizarse según las necesidades emergentes y el feedback recibido. 
+***Autor***: *Juan José Ruiz Pérez* <jjrp1@um.es>

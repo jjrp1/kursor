@@ -15,7 +15,7 @@ import java.util.List;
  * <p>Este controlador coordina todo el flujo de ejecución de un curso:</p>
  * <ol>
  *   <li>Muestra el modal de selección de estrategia</li>
- *   <li>Inicializa el modal de curso con la estrategia seleccionada</li>
+ *   <li>Inicializa la vista de curso con la estrategia seleccionada</li>
  *   <li>Gestiona la navegación entre preguntas</li>
  *   <li>Coordina con el CursoSessionManager para persistencia</li>
  *   <li>Integra con los módulos de preguntas</li>
@@ -29,7 +29,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  * @see EstrategiaSelectionModal
- * @see CursoInterfaceModal
+ * @see CursoInterfaceView
  * @see CursoSessionManager
  * @see StrategyManager
  */
@@ -48,7 +48,7 @@ public class CursoInterfaceController {
     private EstrategiaSelectionModal estrategiaModal;
     
     /** Modal de ejecución de curso */
-    private CursoInterfaceModal cursoModal;
+    private CursoInterfaceView cursoView;
     
     /** Gestor de sesión del curso */
     private CursoSessionManager sessionManager;
@@ -78,7 +78,7 @@ public class CursoInterfaceController {
      * <ol>
      *   <li>Selección de estrategia de aprendizaje (modal informativo)</li>
      *   <li>Inicialización del gestor de sesión</li>
-     *   <li>Mostrar el modal de ejecución del curso</li>
+     *   <li>Mostrar vista de curso</li>
      * </ol>
      * 
      * @param curso Curso a ejecutar
@@ -108,8 +108,8 @@ public class CursoInterfaceController {
         // Paso 2: Inicializar gestor de sesión
         inicializarSessionManager();
         
-        // Paso 3: Mostrar modal de curso
-        return mostrarModalCurso();
+        // Paso 3: Mostrar vista de curso
+        return mostrarVistaCurso();
     }
     
     /**
@@ -137,12 +137,12 @@ public class CursoInterfaceController {
     }
     
     /**
-     * Muestra el modal de ejecución del curso.
+     * Muestra la vista de ejecución del curso.
      * 
      * @return true si se mostró correctamente, false en caso contrario
      */
-    private boolean mostrarModalCurso() {
-        logger.debug("Mostrando modal de curso");
+    private boolean mostrarVistaCurso() {
+        logger.debug("Mostrando vista de curso");
         
         try {
             // Crear la estrategia de aprendizaje
@@ -152,20 +152,20 @@ public class CursoInterfaceController {
                 return false;
             }
             
-            // Crear y mostrar el modal de curso
-            cursoModal = new CursoInterfaceModal(owner, cursoActual, estrategia);
+            // Crear y mostrar la vista de curso
+            cursoView = new CursoInterfaceView(owner, cursoActual, estrategia);
             
-            // Configurar eventos del modal
-            configurarEventosModal();
+            // Configurar eventos de la vista
+            configurarEventosVista();
             
-            // Mostrar el modal
-            cursoModal.show();
+            // Mostrar la vista
+            cursoView.show();
             
-            logger.info("Modal de curso mostrado correctamente");
+            logger.info("Vista de curso mostrada correctamente");
             return true;
             
         } catch (Exception e) {
-            logger.error("Error al mostrar modal de curso", e);
+            logger.error("Error al mostrar vista de curso", e);
             return false;
         }
     }
@@ -234,14 +234,14 @@ public class CursoInterfaceController {
     }
     
     /**
-     * Configura los eventos del modal de curso.
+     * Configura los eventos de la vista de curso.
      */
-    private void configurarEventosModal() {
+    private void configurarEventosVista() {
         // TODO: Implementar configuración de eventos
         // - Evento de verificación de respuesta
         // - Evento de navegación a siguiente pregunta
         // - Evento de finalización del curso
-        logger.debug("Configurando eventos del modal de curso");
+        logger.debug("Configurando eventos de la vista de curso");
     }
     
     /**
@@ -277,7 +277,7 @@ public class CursoInterfaceController {
      * @return true si hay un curso activo, false en caso contrario
      */
     public boolean isCursoActivo() {
-        return cursoActual != null && cursoModal != null && cursoModal.isShowing();
+        return cursoActual != null && cursoView != null && cursoView.isShowing();
     }
     
     /**
@@ -286,8 +286,8 @@ public class CursoInterfaceController {
     public void finalizarCurso() {
         logger.info("Finalizando curso actual");
         
-        if (cursoModal != null) {
-            cursoModal.close();
+        if (cursoView != null) {
+            cursoView.close();
         }
         
         // Limpiar referencias
@@ -295,7 +295,7 @@ public class CursoInterfaceController {
         estrategiaSeleccionada = null;
         sessionManager = null;
         estrategiaModal = null;
-        cursoModal = null;
+        cursoView = null;
         
         logger.info("Curso finalizado");
     }

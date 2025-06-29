@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    
+    <!-- kursor-studio.db - Base de datos local para configuración -->
+    <persistence-unit name="kursorStudioPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!-- Entidades propias de kursor-studio -->
+        <class>com.kursor.studio.model.DatabaseConfiguration</class>
+        <!-- Futuras entidades: LogEntry, Settings, etc. -->
+        
+        <properties>
+            <!-- Configuración de SQLite para kursor-studio -->
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:data/kursor-studio.db"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            
+            <!-- Hibernate para kursor-studio -->
+            <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            
+            <!-- Configuración de conexión para kursor-studio -->
+            <property name="hibernate.connection.pool_size" value="1"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
+            
+            <!-- Configuración específica para SQLite -->
+            <property name="hibernate.connection.foreign_keys" value="true"/>
+        </properties>
+    </persistence-unit>
+    
+    <!-- kursor.db - Base de datos de Kursor para explorar (configuración dinámica) -->
+    <persistence-unit name="kursorPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!-- Entidades de kursor-core para explorar -->
+        <class>com.kursor.persistence.entity.Sesion</class>
+        <class>com.kursor.persistence.entity.EstadoEstrategia</class>
+        <class>com.kursor.persistence.entity.EstadisticasUsuario</class>
+        <class>com.kursor.persistence.entity.RespuestaPregunta</class>
+        
+        <properties>
+            <!-- Configuración de SQLite para kursor -->
+            <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
+            <!-- URL dinámica - se configura desde DatabaseConfiguration -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:data/kursor.db"/>
+            <property name="javax.persistence.jdbc.user" value=""/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            
+            <!-- Hibernate para kursor -->
+            <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+            
+            <!-- Configuración de conexión para kursor -->
+            <property name="hibernate.connection.pool_size" value="1"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
+            
+            <!-- Configuración específica para SQLite -->
+            <property name="hibernate.connection.foreign_keys" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence> 

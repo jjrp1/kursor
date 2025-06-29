@@ -115,59 +115,6 @@ public class PreguntaFactory {
     }
     
     /**
-     * Crea una pregunta con un tipo e ID específicos.
-     * 
-     * <p>Este método crea una pregunta básica del tipo especificado con solo
-     * el ID proporcionado. Es útil para crear preguntas de prueba o cuando
-     * se necesita una instancia mínima.</p>
-     * 
-     * @param tipo Tipo de pregunta a crear
-     * @param id Identificador único de la pregunta
-     * @return Pregunta creada o null si no se puede crear
-     * @throws IllegalArgumentException si el tipo o ID son inválidos
-     */
-    public static Pregunta crearPregunta(String tipo, String id) {
-        logger.debug("Creando pregunta básica - Tipo: " + tipo + ", ID: " + id);
-        
-        // Validar parámetros
-        if (tipo == null || tipo.trim().isEmpty()) {
-            logger.error("Error al crear pregunta: tipo no puede ser null o vacío");
-            throw new IllegalArgumentException("Tipo de pregunta no puede ser null o vacío");
-        }
-        
-        if (id == null || id.trim().isEmpty()) {
-            logger.error("Error al crear pregunta: ID no puede ser null o vacío");
-            throw new IllegalArgumentException("ID de pregunta no puede ser null o vacío");
-        }
-        
-        // Buscar módulo correspondiente
-        PreguntaModule modulo = ModuleManager.getInstance().findModuleByQuestionType(tipo.trim());
-        if (modulo == null) {
-            logger.error("No se encontró módulo para el tipo de pregunta: " + tipo);
-            throw new IllegalArgumentException("No se encontró módulo para el tipo: " + tipo);
-        }
-        
-        logger.debug("Módulo encontrado para tipo '" + tipo + "': " + modulo.getModuleName());
-        
-        try {
-            // Delegar creación al módulo
-            Pregunta pregunta = modulo.createQuestion(id.trim());
-            
-            if (pregunta != null) {
-                logger.info("Pregunta básica creada exitosamente - Tipo: " + tipo + ", ID: " + id);
-            } else {
-                logger.warn("El módulo " + modulo.getModuleName() + " no pudo crear pregunta básica para ID: " + id);
-            }
-            
-            return pregunta;
-            
-        } catch (Exception e) {
-            logger.error("Error al crear pregunta básica de tipo '" + tipo + "' con ID '" + id + "': " + e.getMessage(), e);
-            throw new RuntimeException("Error al crear pregunta básica: " + e.getMessage(), e);
-        }
-    }
-    
-    /**
      * Verifica si existe un módulo para un tipo de pregunta específico.
      * 
      * @param tipo Tipo de pregunta a verificar

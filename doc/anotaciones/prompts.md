@@ -1,7 +1,92 @@
-crea un documento "estado-del-arte" en "doc/tecnica" y registra en el todo lo que necesites anotar para poder retomar el desarrollo del proyecto el próximo día. Recuerda que no tienes memoria entre un chat y otro, así es que registra todo lo que creas necesario para continuar otro día donde lo dejamos hoy.
+Muéstrame que lo has entendido antes de proseguir.
 
-# Revisión de código
-Revisa que todo el código fuente esté correctamente documentado siguiendo/utilizando javadoc. Verifica también que se utiliza el registro (logger) adecuadamente, introduce tantas lineas de registro como consideres oportunas o necesarias, en todos los ámbitos: debug, info, warning y error.
+
+- Revisando persistencia -> DB Expl
+- Revisando UI Curso
+- Revisando UI Main
+
+
+
+# Kursor-Studio
+
+## Visor de logs, mejoras
+
+DEBUG
+INFO
+WARN
+ERROR
+FATAL
+
+[x] Exclusivo
+
+## Explorador de Base de Datos (roadmap-db-explorer.md)
+
+1. no lo sé, lo que mejor te parezca, mientras quede claro que se trata de los bases de datos distintas
+2. Correcto
+3. No lo sé, pero diría que sí! revisa y asegurate de que existe la separación necesaria.
+
+
+A corregir:
+- Salida ordenada:
+  - El botón "Terminar" finaliza la apliación ordenadamente
+  - El evento cerrar ventana, tiene que hacer lo mismo 
+
+- Elección de estrategia:
+  - Las tarjetas de estrategia, hazlas el doble de ancho, de forma que o quepan todas en el carrusel y podamos probar que funciona
+
+
+A implementar:
+- La tabla de sesiones:
+  - Debe recuperar las sesiones de la base de datos
+  - Si la base de datos no tiene sesiones, puedes cargar datos ficticios a tu criterio
+  - Es importante recuperar los datos de la base de datos.
+
+
+
+## GUI Main
+Para la interfaz principal, quiero:
+- Una lista de cursos disponibles
+- Al seleccionar un curso, mostrar:
+  - Información detallada del curso:
+    - Título, descripción, nombre del archivo en disco/ID, total de preguntas, y, para cada bloque, también titulo y descripción del bloque y tipo de preguntas que contiene y cuantas. Además si alguno de los bloques es de tipo "flashcard", deberá indicarse cláramente con algún icono.
+  - Resumen de sesiones realizadas sobre cierto curso con opción a reanudar, o empezar una nueva
+  - Resumen de estadísticas, con opción a ampliar la información en otra ventana
+¿ Cómo lo ves ? Espero tu propuesta más creativa y atractiva visualmente, Sé creativo, no abuses de los colores
+
+## intefaz GUI Curso
+
+No te lies, en EstadoSesion has incluido "CONTESTADA", aquí no procede; me refería al estado:
+this.resultado = "sin contestar"; de PreguntaSesion; 
+
+Tengo algunas dudas:
+- No mencionas responsabilidades a CursoInterfaceController
+- No encuentro diferencia a EstadoSesion = EN_CURSO / NO_GUARDADA ... ¿la hay? me parecen lo mismo.
+- AUTOSAVE: creo que debe ser al presentar una pregunta ("sin contestar") y después ("contestada") guardando resultado.
+
+
+
+# General
+
+- revisión general del código:
+  - inserta todos los comentarios que consideres oportunos
+  - comenta, utilizando javadoc donde sea pertinente
+  - inserta líneas de logging del nivel apropiado (debug, info, warning y error) según la criticidad del código.
+
+- documento "estado-del-arte" en "doc/tecnica"
+  registra en el todo lo que necesites anotar para poder retomar el desarrollo del proyecto el próximo día. 
+  Recuerda que no tienes memoria entre un chat y otro, registra todo lo que creas necesario para continuar otro día donde lo dejamos hoy.
+
+* Revisión global del código del proyecto a nivel de documentación
+  - Revisa que todo el código fuente esté correctamente documentado siguiendo/utilizando javadoc. 
+  - Revisa la coherencia de comentarios en el código fuente con la documentación
+  - Revisa las carpetas de documentación:
+    - doc/tecnica
+    - doc/usuario
+  - Revisa las github pages
+    - docs/
+  - Revisa la coherencia y alineación de la documentación general (doc/) con las github pages (docs/)
+  - Elabora un informe (revision-general-aaaammdd.md) (siendo aaaa el año, mm el mes y dd el día), con los cambios realizados
+  
 
 # GUI - Estrategias
 
@@ -24,20 +109,32 @@ Integrar persistencia con estrategias
 - enlaces rotos
 - documentación coherente
 - documentación javadoc coherente
-- 
+- revisar fragmentos de código sin uso
 
 
-# Herramienta de administración
-Opción 1: me gusta bastante.
-Opción 2: descartada: quiero una aplicación paralela
-Sin embargo las funcionalidades propuestas para esta opción me parecen ideales
-Opción 3: Me parece implementable como mejora en una segunda etapa, a priori, interesa algo sencillo y funcional
-Opción 4: Me parece muy buena idea.
-Opción 5: Me parece "para sacar nota" muy evolucionada. Ideal, pero para una fase mucho más avanzada.
+# Sufijos
+- revisemos todo antes de empezar a escribir código o documentación. 
+- con estas respuestas revisemos todo antes de empezar a escribir código
+- Revisemos este planteamiento y sus implicaciones antes de empezar a escribir código
+- De nuevo, con estas respuestas revisemos todo antes de empezar a escribir código o documentación. 
+- Llegado el momento, quiero que empieces por documentar, pero espera mi señal.
 
 
-- Como nombre, creo que `kursor-admin` o `kursor-studio` o `kursor-dashboard` pueden ser adecuados.
-- Recordar que la aplicación, el proyecto, a día de hoy tiene orientación "monousuario", con esto quiero de decir que NO requiere gestión/administración de usuarios
+# UI Curso
+
+Tu Análisis es perfecto. Sin embargo, no estoy seguro con tu propuesta, propones que cada módulo cree su propia UI "completa", yo sostengo que la UI debe ser general con partes comunes a todas las preguntas, una cabecera con información del curso, bloque y pregunta en curso con su indicador de progreso, parte central de contenido y tamaño variable, y pie botonera, con un 
+
+botón común a todos módulos "Terminar":
+permite al usuario abandonar el curso en cualquier momento (con opción a guardar su progreso, aunque en realidad en el progreso se debe guardar constantemente con un indicador de "NO_GUARDADA" por si hay un corte de luz o la aplicación se cierra accidentalmente; en realizadad el botón terminar (o cerrar la ventana, que debe capturarse y reconducir su comportamiento al mismo que "Terminar) debe DESCARTAR la sesión y marcarla como tal "DESCARTADA"
+
+INDICAS: "los módulos solo manejan la parte central de contenido."
+NO, los módulos deben tener acceso a toda (o casi toda) la UI:
+- cabecera: según avanza el curso actualizará el progreso: barra de progreso y/o otros indicadores.
+- contenido: mostrará el enunciado y la forma de resolver la pregunta
+- pie: insertará sus propios botones (antes que el botón terminar, a la iquierda de este).
+
+
+
 
 * Respecto a tus preguntas:
 1. desarrolladores, administradores y usuarios finales, de mayor a menor orientación, pero creo que puede (y quizás debe) ser útil a cualquier perfil de los que mencionas.

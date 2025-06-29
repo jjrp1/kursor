@@ -11,21 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Pruebas unitarias para la clase ModuleManager.
+ * Pruebas unitarias para el gestor de módulos ModuleManager.
  * 
- * <p>Esta clase de pruebas verifica el comportamiento del gestor de módulos,
- * incluyendo:</p>
- * <ul>
- *   <li>Patrón Singleton</li>
- *   <li>Gestión de módulos</li>
- *   <li>Búsqueda de módulos por tipo</li>
- *   <li>Métodos de utilidad</li>
- *   <li>Manejo de casos edge</li>
- * </ul>
+ * <p>Esta clase contiene pruebas exhaustivas para verificar el funcionamiento
+ * correcto del gestor de módulos, incluyendo la carga dinámica, validación
+ * y gestión de módulos de preguntas.</p>
  * 
- * @author Kursor Team
+ * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
  * @since 1.0.0
+ * @see ModuleManager
+ * @see PreguntaModule
  */
 @DisplayName("Pruebas de ModuleManager")
 class ModuleManagerTest {
