@@ -2,7 +2,7 @@ package com.kursor.ui;
 
 import com.kursor.domain.Curso;
 import com.kursor.domain.Bloque;
-import com.kursor.util.CursoManager;
+import com.kursor.shared.util.CursoManager;
 import com.kursor.yaml.dto.CursoDTO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

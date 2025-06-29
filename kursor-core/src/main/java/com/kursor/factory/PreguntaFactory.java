@@ -4,7 +4,7 @@ import com.kursor.domain.Pregunta;
 import com.kursor.modules.PreguntaModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.kursor.util.ModuleManager;
+import com.kursor.shared.util.ModuleManager;
 
 import java.util.Map;
 

@@ -1,8 +1,9 @@
-package com.kursor.ui;
+package com.kursor.presentation.views;
 
 import com.kursor.domain.EstrategiaAprendizaje;
 import com.kursor.domain.EstadoPregunta;
 import com.kursor.yaml.dto.CursoDTO;
+import com.kursor.presentation.controllers.PreguntaEventListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -65,7 +66,7 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
     private EstadoPregunta estadoPreguntaActual = EstadoPregunta.SIN_CONTESTAR;
     
     /** Gestor de módulos */
-    private final com.kursor.util.ModuleManager moduleManager;
+    private final com.kursor.shared.util.ModuleManager moduleManager;
     
     /** Pregunta actual */
     private com.kursor.domain.Pregunta preguntaActual;
@@ -87,7 +88,7 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
         this.estrategia = estrategia;
         
         // Inicializar gestor de módulos
-        this.moduleManager = com.kursor.util.ModuleManager.getInstance();
+        this.moduleManager = com.kursor.shared.util.ModuleManager.getInstance();
         
         logger.info("Creando vista de curso para: " + curso.getTitulo() + " con estrategia: " + estrategia.getNombre());
         

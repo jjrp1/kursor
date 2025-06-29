@@ -2,7 +2,7 @@ package com.kursor.ui;
 
 import com.kursor.domain.EstrategiaAprendizaje;
 import com.kursor.strategy.EstrategiaModule;
-import com.kursor.util.StrategyManager;
+import com.kursor.shared.util.StrategyManager;
 import com.kursor.yaml.dto.CursoDTO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

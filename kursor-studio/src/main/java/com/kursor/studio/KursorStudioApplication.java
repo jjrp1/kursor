@@ -185,11 +185,42 @@ public class KursorStudioApplication extends Application {
             }
 
             // Comprobar si hay configuración de BD de Kursor (OPCIONAL)
-            if (!databaseConfigurationService.hasConfiguration() ||
-                databaseConfigurationService.getActiveConfiguration().isEmpty() ||
-                !databaseConfigurationService.getActiveConfiguration().get().isConnected()) {
+            boolean kursorConnectionSuccessful = false;
+            
+            // Primero verificar si ya hay una configuración válida y conectada
+            if (databaseConfigurationService.hasConfiguration()) {
+                Optional<com.kursor.studio.model.DatabaseConfiguration> activeConfig = 
+                    databaseConfigurationService.getActiveConfiguration();
                 
-                logger.info("ℹ️ No hay configuración válida de BD de Kursor - mostrando diálogo de configuración");
+                if (activeConfig.isPresent() && activeConfig.get().isConnected()) {
+                    // Verificar que la conexión sigue siendo válida
+                    try {
+                        boolean connectionStillValid = databaseConfigurationService.testConnection(
+                            activeConfig.get().getKursorDatabasePath()
+                        );
+                        
+                        if (connectionStillValid) {
+                            logger.info("✅ Conexión a BD de Kursor válida y activa");
+                            kursorConnectionSuccessful = true;
+                        } else {
+                            logger.warn("⚠️ Configuración existente pero conexión fallida - actualizando estado");
+                            // Actualizar el estado de la configuración
+                            activeConfig.get().markConnectionFailed();
+                            databaseConfigurationService.updateConfiguration(
+                                activeConfig.get().getId(),
+                                activeConfig.get().getKursorDatabasePath(),
+                                activeConfig.get().getDescription()
+                            );
+                        }
+                    } catch (Exception e) {
+                        logger.error("Error al verificar conexión existente: {}", e.getMessage(), e);
+                    }
+                }
+            }
+            
+            // Solo mostrar diálogo si no hay conexión exitosa
+            if (!kursorConnectionSuccessful) {
+                logger.info("ℹ️ No hay conexión válida a BD de Kursor - mostrando diálogo de configuración");
                 
                 // Mostrar diálogo de configuración
                 DatabaseConfigurationDialog dialog = new DatabaseConfigurationDialog(databaseConfigurationService);
@@ -204,6 +235,8 @@ public class KursorStudioApplication extends Application {
                 } else {
                     logger.info("✅ Configuración de BD de Kursor exitosa");
                 }
+            } else {
+                logger.info("✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional");
             }
             
             // Configurar ventana principal

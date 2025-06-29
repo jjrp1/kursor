@@ -1,4 +1,4 @@
-package com.kursor.util;
+package com.kursor.shared.util;
 
 import com.kursor.modules.PreguntaModule;
 import java.util.ArrayList;

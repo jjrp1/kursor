@@ -1,8 +1,10 @@
-package com.kursor.ui;
+package com.kursor.presentation.controllers;
 
 import com.kursor.domain.EstrategiaAprendizaje;
 import com.kursor.yaml.dto.CursoDTO;
-import com.kursor.util.StrategyManager;
+import com.kursor.shared.util.StrategyManager;
+import com.kursor.presentation.dialogs.EstrategiaSelectionModal;
+import com.kursor.presentation.views.CursoInterfaceView;
 import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -209,7 +211,7 @@ public class CursoInterfaceController {
         
         try {
             // Cargar el curso completo usando CursoManager
-            com.kursor.domain.Curso cursoCompleto = com.kursor.util.CursoManager.getInstance()
+            com.kursor.domain.Curso cursoCompleto = com.kursor.shared.util.CursoManager.getInstance()
                 .obtenerCursoCompleto(cursoActual.getId());
             
             if (cursoCompleto == null) {

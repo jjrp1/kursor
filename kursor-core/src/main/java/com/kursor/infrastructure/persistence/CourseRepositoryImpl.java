@@ -1,7 +1,7 @@
 package com.kursor.ui.infrastructure.persistence;
 
 import com.kursor.yaml.dto.CursoDTO;
-import com.kursor.util.CursoManager;
+import com.kursor.shared.util.CursoManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

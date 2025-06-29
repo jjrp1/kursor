@@ -1,4 +1,4 @@
-package com.kursor.util;
+package com.kursor.shared.util;
 
 import com.kursor.domain.Curso;
 import com.kursor.yaml.dto.CursoDTO;

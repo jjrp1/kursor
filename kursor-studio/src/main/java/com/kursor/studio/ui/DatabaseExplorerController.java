@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -325,9 +326,9 @@ public class DatabaseExplorerController {
                 throw new RuntimeException("No se pudo crear EntityManager para kursor");
             }
             
-            // Mapear nombres de entidades a consultas específicas
-            String jpql = getJPQLForEntity(tableName);
-            jakarta.persistence.Query query = em.createQuery(jpql);
+            // Usar consulta SQL nativa para evitar problemas de mapeo de entidades
+            String sql = getSQLForTable(tableName);
+            jakarta.persistence.Query query = em.createNativeQuery(sql);
             query.setMaxResults(1000); // Limitar a 1000 registros por rendimiento
             
             @SuppressWarnings("unchecked")
@@ -344,21 +345,28 @@ public class DatabaseExplorerController {
     }
     
     /**
-     * Obtiene la consulta JPQL específica para una entidad.
+     * Obtiene la consulta SQL nativa para una tabla específica.
      */
-    private String getJPQLForEntity(String entityName) {
-        switch (entityName) {
+    private String getSQLForTable(String tableName) {
+        switch (tableName) {
             case "Sesion":
-                return "SELECT s.id, s.fechaInicio, s.fechaFin, s.estado, s.cursoId FROM Sesion s";
+                return "SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, " +
+                       "tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, " +
+                       "porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at " +
+                       "FROM sesiones LIMIT 1000";
             case "EstadoEstrategia":
-                return "SELECT e.id, e.estrategia, e.estado, e.fechaCreacion FROM EstadoEstrategia e";
+                return "SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion " +
+                       "FROM estados_estrategias LIMIT 1000";
             case "EstadisticasUsuario":
-                return "SELECT eu.id, eu.usuarioId, eu.preguntasCorrectas, eu.preguntasIncorrectas, eu.fechaUltimaActividad FROM EstadisticasUsuario eu";
+                return "SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, " +
+                       "racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at " +
+                       "FROM estadisticas_usuario LIMIT 1000";
             case "RespuestaPregunta":
-                return "SELECT rp.id, rp.preguntaId, rp.respuesta, rp.esCorrecta, rp.fechaRespuesta FROM RespuestaPregunta rp";
+                return "SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at " +
+                       "FROM preguntas_sesion LIMIT 1000";
             default:
                 // Consulta genérica como fallback
-                return "SELECT e FROM " + entityName + " e";
+                return "SELECT * FROM " + tableName.toLowerCase() + " LIMIT 1000";
         }
     }
     
@@ -408,6 +416,31 @@ public class DatabaseExplorerController {
      * Obtiene los nombres de columnas para una entidad específica.
      */
     private String[] getColumnNamesForEntity(String entityName) {
+        try {
+            // Intentar obtener los nombres de columnas dinámicamente
+            EntityManager em = PersistenceConfig.createKursorEntityManagerSafely();
+            if (em != null) {
+                try {
+                    Metamodel metamodel = em.getMetamodel();
+                    EntityType<?> entityType = metamodel.getEntities().stream()
+                        .filter(et -> et.getName().equals(entityName))
+                        .findFirst()
+                        .orElse(null);
+                    
+                    if (entityType != null) {
+                        return entityType.getDeclaredAttributes().stream()
+                            .map(attr -> formatColumnName(attr.getName()))
+                            .toArray(String[]::new);
+                    }
+                } finally {
+                    em.close();
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("No se pudieron obtener nombres de columnas dinámicamente para {}: {}", entityName, e.getMessage());
+        }
+        
+        // Fallback a nombres hardcodeados
         switch (entityName) {
             case "Sesion":
                 return new String[]{"ID", "Fecha Inicio", "Fecha Fin", "Estado", "Curso ID"};
@@ -426,6 +459,21 @@ public class DatabaseExplorerController {
                 }
                 return names;
         }
+    }
+    
+    /**
+     * Formatea el nombre de una columna para mostrarlo en la UI.
+     */
+    private String formatColumnName(String fieldName) {
+        // Convertir camelCase a palabras separadas
+        String formatted = fieldName.replaceAll("([a-z])([A-Z])", "$1 $2");
+        
+        // Capitalizar primera letra
+        if (!formatted.isEmpty()) {
+            formatted = formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
+        }
+        
+        return formatted;
     }
     
     /**

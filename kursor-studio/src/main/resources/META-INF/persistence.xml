@@ -39,7 +39,7 @@
     <persistence-unit name="kursorPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
-        <!-- Entidades de kursor-core para explorar -->
+        <!-- Entidades de kursor-core para explorar SOLO -->
         <class>com.kursor.persistence.entity.Sesion</class>
         <class>com.kursor.persistence.entity.EstadoEstrategia</class>
         <class>com.kursor.persistence.entity.EstadisticasUsuario</class>
@@ -53,7 +53,7 @@
             <property name="javax.persistence.jdbc.user" value=""/>
             <property name="javax.persistence.jdbc.password" value=""/>
             
-            <!-- Hibernate para kursor -->
+            <!-- Hibernate para kursor - SIN VALIDACIÓN -->
             <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="none"/>
             <property name="hibernate.show_sql" value="false"/>

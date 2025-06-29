@@ -1,13 +1,14 @@
-package com.kursor.ui.main;
+package com.kursor.presentation.controllers;
 
 import com.kursor.persistence.config.PersistenceConfig;
-import com.kursor.util.CursoManager;
-import com.kursor.util.ModuleManager;
-import com.kursor.util.StrategyManager;
+import com.kursor.shared.util.CursoManager;
+import com.kursor.shared.util.ModuleManager;
+import com.kursor.shared.util.StrategyManager;
 import com.kursor.yaml.dto.CursoDTO;
-import com.kursor.ui.CursoInterfaceController;
-import com.kursor.ui.EstadisticasDialog;
-import com.kursor.ui.AboutDialog;
+import com.kursor.presentation.controllers.CursoInterfaceController;
+import com.kursor.presentation.dialogs.EstadisticasDialog;
+import com.kursor.presentation.dialogs.AboutDialog;
+import com.kursor.presentation.dialogs.AnalyticsDialog;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.application.Platform;
@@ -15,8 +16,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.kursor.ui.session.SessionController;
-import com.kursor.ui.session.SessionTableView;
+import com.kursor.presentation.controllers.SessionController;
+import com.kursor.presentation.views.SessionTableView;
+import com.kursor.presentation.views.MainView;
+import com.kursor.presentation.viewmodels.MainViewModel;
 
 import java.util.List;
 import java.util.Optional;
@@ -242,13 +245,14 @@ public class MainController {
             return;
         }
         
-        logger.info("Mostrando estadísticas para curso: {}", selectedCourse.getTitulo());
+        logger.info("Mostrando analytics avanzados para curso: {}", selectedCourse.getTitulo());
         
         try {
-            EstadisticasDialog.show(primaryStage);
+            AnalyticsDialog analyticsDialog = new AnalyticsDialog(primaryStage);
+            analyticsDialog.showAndWait();
         } catch (Exception e) {
-            logger.error("Error al mostrar estadísticas", e);
-            showErrorDialog("Error", "Error al mostrar estadísticas: " + e.getMessage());
+            logger.error("Error al mostrar analytics", e);
+            showErrorDialog("Error", "Error al mostrar analytics: " + e.getMessage());
         }
     }
     

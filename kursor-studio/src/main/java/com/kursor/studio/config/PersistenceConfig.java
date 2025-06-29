@@ -111,11 +111,39 @@ public class PersistenceConfig {
                 logger.debug("Conexión anterior a kursor cerrada");
             }
             
-            // Crear nueva conexión con la BD de kursor
-            Map<String, String> properties = new HashMap<>();
-            properties.put("javax.persistence.jdbc.url", "jdbc:sqlite:" + databasePath);
+            // Crear configuración programática para evitar problemas de validación
+            org.hibernate.cfg.Configuration hibernateConfig = new org.hibernate.cfg.Configuration();
             
-            kursorEMF = Persistence.createEntityManagerFactory("kursorPU", properties);
+            // Configurar dialecto y driver
+            hibernateConfig.setProperty("hibernate.dialect", "org.hibernate.community.dialect.SQLiteDialect");
+            hibernateConfig.setProperty("hibernate.connection.driver_class", "org.sqlite.JDBC");
+            hibernateConfig.setProperty("hibernate.connection.url", "jdbc:sqlite:" + databasePath);
+            hibernateConfig.setProperty("hibernate.connection.username", "");
+            hibernateConfig.setProperty("hibernate.connection.password", "");
+            
+            // Deshabilitar completamente la validación de esquema
+            hibernateConfig.setProperty("hibernate.hbm2ddl.auto", "none");
+            hibernateConfig.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
+            hibernateConfig.setProperty("hibernate.jdbc.lob.non_contextual_creation", "true");
+            hibernateConfig.setProperty("hibernate.validator.apply_to_ddl", "false");
+            hibernateConfig.setProperty("hibernate.schema_update.unique_constraint_strategy", "SKIP");
+            hibernateConfig.setProperty("hibernate.connection.provider_disables_autocommit", "true");
+            hibernateConfig.setProperty("hibernate.show_sql", "false");
+            hibernateConfig.setProperty("hibernate.format_sql", "true");
+            hibernateConfig.setProperty("hibernate.connection.pool_size", "1");
+            hibernateConfig.setProperty("hibernate.connection.autocommit", "false");
+            hibernateConfig.setProperty("hibernate.connection.foreign_keys", "true");
+            
+            // Agregar entidades de kursor-core
+            hibernateConfig.addAnnotatedClass(com.kursor.persistence.entity.Sesion.class);
+            hibernateConfig.addAnnotatedClass(com.kursor.persistence.entity.EstadoEstrategia.class);
+            hibernateConfig.addAnnotatedClass(com.kursor.persistence.entity.EstadisticasUsuario.class);
+            hibernateConfig.addAnnotatedClass(com.kursor.persistence.entity.RespuestaPregunta.class);
+            
+            // Crear SessionFactory y convertirlo a EntityManagerFactory
+            org.hibernate.SessionFactory sessionFactory = hibernateConfig.buildSessionFactory();
+            kursorEMF = sessionFactory.unwrap(jakarta.persistence.EntityManagerFactory.class);
+            
             logger.info("Base de datos de kursor inicializada correctamente: {}", databasePath);
             
         } catch (Exception e) {
