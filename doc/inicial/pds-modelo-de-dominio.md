@@ -15,6 +15,10 @@ El modelo de dominio representa los conceptos clave, relaciones y atributos nece
 
 ---
 
+## Diagrama de clases (PlantUML)
+
+![Diagrama de Clases](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jjrp1/pds-2025-final/main/doc/inicial/pds-clases.puml)
+
 ## Entidades principales
 
 ### **Curso**
@@ -59,8 +63,9 @@ El modelo de dominio representa los conceptos clave, relaciones y atributos nece
 ### **PreguntaSesion**
 - `pregunta`: Referencia a la pregunta
 - `resultado`: acierto / fallo / sin contestar
+- `respuesta`: respuesta facilitada por el usuario
 - `tiempoDedicado`: Tiempo dedicado a responder (0 si no contestada)
-- `intentos`: Número de intentos realizados
+- `intentos`: Número de intentos realizados (opcional)
 - `pistasUsadas`: Número de pistas solicitadas (opcional)
 - `fechaRespuesta`: Fecha/hora de respuesta (opcional)
 
@@ -89,12 +94,6 @@ El modelo de dominio representa los conceptos clave, relaciones y atributos nece
 - Una **Sesion** está asociada a un **Curso** y a una **EstrategiaAprendizaje**.
 - Una **Sesion** contiene una lista de **PreguntaSesion** para registrar el detalle de cada pregunta respondida.
 - Las **EstadisticasGlobales** agregan información de todas las sesiones y cursos realizados.
-
-
-
-## 4. Diagrama de clases (PlantUML)
-
-![Diagrama de Clases](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/jjrp1/pds-2025-final/main/doc/pds-clases.puml)
 
 
 
