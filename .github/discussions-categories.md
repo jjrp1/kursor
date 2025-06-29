@@ -142,4 +142,4 @@
 
 ---
 
-*Configuración actualizada: 27/01/2025* 
+*Configuración actualizada: 29/06/2025* 

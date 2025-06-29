@@ -29,6 +29,7 @@ import com.kursor.studio.service.LogViewerService.LogFileInfo;
 import com.kursor.studio.config.PersistenceConfig;
 import com.kursor.studio.service.DatabaseConfigurationService;
 import com.kursor.studio.ui.DatabaseConfigurationDialog;
+import com.kursor.studio.ui.DatabaseExplorerController;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -367,22 +368,44 @@ public class KursorStudioApplication extends Application {
     private VBox createExplorerContent() {
         logger.debug("🔍 Creando contenido del Database Explorer");
         
-        VBox content = new VBox(20);
-        content.setPadding(new Insets(20));
-        content.setAlignment(Pos.TOP_CENTER);
+        VBox content = new VBox(0);
+        content.setPadding(new Insets(0));
         
-        Label titleLabel = new Label("🔍 Explorador de Base de Datos");
-        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        
-        Label statusLabel = new Label("📋 Cargando esquema de base de datos...");
-        
-        Button loadTablesButton = new Button("📋 Cargar Tablas");
-        loadTablesButton.setOnAction(e -> {
-            logger.info("📋 Usuario solicitó carga de tablas");
-            statusLabel.setText("✅ Tablas cargadas: sesion, respuesta_pregunta, estadisticas_usuario, estado_estrategia");
-        });
-        
-        content.getChildren().addAll(titleLabel, statusLabel, loadTablesButton);
+        try {
+            // Crear el controlador del explorador
+            DatabaseExplorerController explorerController = new DatabaseExplorerController(databaseConfigurationService);
+            
+            // Obtener la interfaz del explorador
+            BorderPane explorerInterface = explorerController.createExplorerInterface();
+            
+            // Agregar la interfaz al contenido
+            content.getChildren().add(explorerInterface);
+            
+            logger.info("✅ Database Explorer inicializado correctamente");
+            
+        } catch (Exception e) {
+            logger.error("❌ Error al inicializar Database Explorer: {}", e.getMessage(), e);
+            
+            // Fallback: mostrar contenido básico en caso de error
+            VBox fallbackContent = new VBox(20);
+            fallbackContent.setPadding(new Insets(20));
+            fallbackContent.setAlignment(Pos.TOP_CENTER);
+            
+            Label titleLabel = new Label("🔍 Explorador de Base de Datos");
+            titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+            
+            Label errorLabel = new Label("Error al cargar el explorador: " + e.getMessage());
+            errorLabel.setStyle("-fx-text-fill: red;");
+            
+            Button retryButton = new Button("🔄 Reintentar");
+            retryButton.setOnAction(e2 -> {
+                content.getChildren().clear();
+                content.getChildren().add(createExplorerContent());
+            });
+            
+            fallbackContent.getChildren().addAll(titleLabel, errorLabel, retryButton);
+            content.getChildren().add(fallbackContent);
+        }
         
         return content;
     }

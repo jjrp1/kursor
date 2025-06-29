@@ -1,6 +1,6 @@
 # Script para compilar y probar la nueva interfaz de Kursor
 # Autor: Juan José Ruiz Pérez
-# Fecha: 2025-01-27
+# Fecha: 2025-06-29
 
 Write-Host "🚀 Iniciando prueba de la nueva interfaz de Kursor..." -ForegroundColor Green
 

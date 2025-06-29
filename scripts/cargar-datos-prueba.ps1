@@ -1,13 +1,13 @@
 # Script para cargar datos de prueba en la base de datos de Kursor
-# Autor: Juan José Ruiz Pérez <jjrp1@um.es>
-# Versión: 1.0.0
+# Autor: Juan Jose Ruiz Perez <jjrp1@um.es>
+# Version: 1.0.0
 
 param(
     [string]$Accion = "cargar",
     [switch]$Ayuda
 )
 
-# Función para mostrar ayuda
+# Funcion para mostrar ayuda
 function Show-Help {
     Write-Host "=== CARGADOR DE DATOS DE PRUEBA - KURSOR ===" -ForegroundColor Cyan
     Write-Host ""
@@ -16,106 +16,117 @@ function Show-Help {
     Write-Host "Comandos disponibles:" -ForegroundColor Green
     Write-Host "  cargar       - Cargar datos de prueba en la base de datos" -ForegroundColor White
     Write-Host "  limpiar      - Limpiar todos los datos de la base de datos" -ForegroundColor White
-    Write-Host "  estadisticas - Mostrar estadísticas de la base de datos" -ForegroundColor White
+    Write-Host "  estadisticas - Mostrar estadisticas de la base de datos" -ForegroundColor White
     Write-Host ""
     Write-Host "Ejemplos:" -ForegroundColor Green
     Write-Host "  .\cargar-datos-prueba.ps1 cargar" -ForegroundColor White
     Write-Host "  .\cargar-datos-prueba.ps1 limpiar" -ForegroundColor White
     Write-Host "  .\cargar-datos-prueba.ps1 estadisticas" -ForegroundColor White
     Write-Host ""
-    Write-Host "Parámetros:" -ForegroundColor Green
+    Write-Host "Parametros:" -ForegroundColor Green
     Write-Host "  -Ayuda       - Mostrar esta ayuda" -ForegroundColor White
     Write-Host ""
 }
 
-# Función para verificar que estamos en el directorio correcto
+# Funcion para verificar que estamos en el directorio correcto
 function Test-WorkingDirectory {
     if (-not (Test-Path "kursor-core")) {
-        Write-Host "? Error: Este script debe ejecutarse desde el directorio raíz del proyecto" -ForegroundColor Red
+        Write-Host "ERROR: Este script debe ejecutarse desde el directorio raiz del proyecto" -ForegroundColor Red
         Write-Host "   Directorio actual: $(Get-Location)" -ForegroundColor Yellow
         Write-Host "   Directorio esperado: ...\kursor" -ForegroundColor Yellow
         exit 1
     }
 }
 
-# Función para compilar el proyecto
+# Funcion para compilar el proyecto
 function Build-Project {
-    Write-Host "?? Compilando proyecto..." -ForegroundColor Blue
+    Write-Host "Compilando proyecto..." -ForegroundColor Blue
     
     try {
         Set-Location "kursor-core"
         mvn compile
         
         if ($LASTEXITCODE -eq 0) {
-            Write-Host "? Proyecto compilado correctamente" -ForegroundColor Green
+            Write-Host "OK: Proyecto compilado correctamente" -ForegroundColor Green
         } else {
-            Write-Host "? Error al compilar el proyecto" -ForegroundColor Red
+            Write-Host "ERROR: Error al compilar el proyecto" -ForegroundColor Red
             exit 1
         }
     }
     catch {
-        Write-Host "? Error durante la compilación: $_" -ForegroundColor Red
+        Write-Host "ERROR: Error durante la compilacion: $_" -ForegroundColor Red
         exit 1
     }
 }
 
-# Función para ejecutar el cargador de datos
+# Funcion para ejecutar el cargador de datos
 function Invoke-DataLoader {
     param([string]$Comando)
     
-    Write-Host "🚀 Ejecutando cargador de datos con comando: $Comando" -ForegroundColor Blue
+    Write-Host "Ejecutando cargador de datos con comando: $Comando" -ForegroundColor Blue
     
     try {
-        # Ejecutar la clase TestDataLoader usando el plugin exec sin comillas
-        mvn exec:java -Dexec.mainClass=com.kursor.util.TestDataLoader -Dexec.args=$Comando
+        # Ya estamos en kursor-core, ejecutar directamente
+        Write-Host "Ejecutando desde: $(Get-Location)" -ForegroundColor Gray
+        
+        # Usar Start-Process para ejecutar Maven con argumentos correctos
+        $processArgs = @(
+            "exec:java",
+            "-Dexec.mainClass=com.kursor.util.TestDataLoader",
+            "-Dexec.args=$Comando"
+        )
+        
+        Write-Host "Comando Maven: mvn $processArgs" -ForegroundColor Gray
+        
+        & mvn @processArgs
         
         if ($LASTEXITCODE -eq 0) {
-            Write-Host "✅ Comando ejecutado correctamente" -ForegroundColor Green
+            Write-Host "OK: Comando ejecutado correctamente" -ForegroundColor Green
         } else {
-            Write-Host "❌ Error al ejecutar el comando" -ForegroundColor Red
+            Write-Host "ERROR: Error al ejecutar el comando" -ForegroundColor Red
         }
     }
     catch {
-        Write-Host "❌ Error durante la ejecución: $_" -ForegroundColor Red
+        Write-Host "ERROR: Error durante la ejecucion: $_" -ForegroundColor Red
     }
 }
 
-# Función para mostrar información de la base de datos
+# Funcion para mostrar informacion de la base de datos
 function Show-DatabaseInfo {
-    Write-Host "?? Información de la base de datos:" -ForegroundColor Cyan
+    Write-Host "Informacion de la base de datos:" -ForegroundColor Cyan
     
     $dbPath = "kursor-core\data\kursor.db"
     if (Test-Path $dbPath) {
         $fileInfo = Get-Item $dbPath
-        Write-Host "   Ubicación: $dbPath" -ForegroundColor White
-        Write-Host "   Tamaño: $([math]::Round($fileInfo.Length / 1KB, 2)) KB" -ForegroundColor White
-        Write-Host "   Última modificación: $($fileInfo.LastWriteTime)" -ForegroundColor White
+        Write-Host "   Ubicacion: $dbPath" -ForegroundColor White
+        Write-Host "   Tamano: $([math]::Round($fileInfo.Length / 1KB, 2)) KB" -ForegroundColor White
+        Write-Host "   Ultima modificacion: $($fileInfo.LastWriteTime)" -ForegroundColor White
     } else {
-        Write-Host "   ??  Base de datos no encontrada en: $dbPath" -ForegroundColor Yellow
+        Write-Host "   ADVERTENCIA: Base de datos no encontrada en: $dbPath" -ForegroundColor Yellow
     }
     
     Write-Host ""
 }
 
-# Función para cargar datos
+# Funcion para cargar datos
 function Load-TestData {
-    Write-Host "?? Cargando datos de prueba..." -ForegroundColor Blue
+    Write-Host "Cargando datos de prueba..." -ForegroundColor Blue
     Invoke-DataLoader -Comando "cargar"
 }
 
-# Función para limpiar datos
+# Funcion para limpiar datos
 function Clear-AllData {
-    Write-Host "??? Limpiando todos los datos..." -ForegroundColor Yellow // 
+    Write-Host "Limpiando todos los datos..." -ForegroundColor Yellow
     Invoke-DataLoader -Comando "limpiar"
 }
 
-# Función para mostrar estadísticas
+# Funcion para mostrar estadisticas
 function Show-Statistics {
-    Write-Host "?? Mostrando estadísticas..." -ForegroundColor Blue
+    Write-Host "Mostrando estadisticas..." -ForegroundColor Blue
     Invoke-DataLoader -Comando "estadisticas"
 }
 
-# Función principal
+# Funcion principal
 function Main {
     # Mostrar ayuda si se solicita
     if ($Ayuda) {
@@ -130,13 +141,13 @@ function Main {
     # Verificar directorio de trabajo
     Test-WorkingDirectory
     
-    # Mostrar información de la base de datos
+    # Mostrar informacion de la base de datos
     Show-DatabaseInfo
     
     # Validar comando
     $comandosValidos = @("cargar", "limpiar", "estadisticas")
     if ($comandosValidos -notcontains $Accion) {
-        Write-Host "? Comando no válido: $Accion" -ForegroundColor Red
+        Write-Host "ERROR: Comando no valido: $Accion" -ForegroundColor Red
         Write-Host ""
         Show-Help
         return
@@ -145,16 +156,19 @@ function Main {
     # Compilar proyecto
     Build-Project
     
-    # Ejecutar comando específico
+    # Ejecutar comando especifico
     switch ($Accion) {
         "cargar" { Load-TestData }
         "limpiar" { Clear-AllData }
         "estadisticas" { Show-Statistics }
     }
     
+    # Volver al directorio raiz
+    Set-Location ".."
+    
     Write-Host ""
     Write-Host "=== FIN DEL PROCESO ===" -ForegroundColor Cyan
 }
 
-# Ejecutar función principal
+# Ejecutar funcion principal
 Main 

@@ -8,6 +8,7 @@ com\kursor\studio\KursorStudioApplication$1.class
 com\kursor\studio\model\TableInfo.class
 com\kursor\studio\service\DatabaseConfigurationService.class
 com\kursor\studio\service\LogViewerService.class
+com\kursor\studio\ui\DatabaseExplorerController.class
 com\kursor\studio\model\DatabaseStatistics$Builder.class
 com\kursor\studio\KursorStudioApplication.class
 com\kursor\studio\repository\DatabaseConfigurationRepository.class

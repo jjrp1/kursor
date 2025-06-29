@@ -187,7 +187,7 @@ git push origin v1.0.0
 
 ### **🌐 GitHub Pages Completas - Documentación Web Interactiva**
 
-#### **Fecha**: 27/01/2025
+#### **Fecha**: 29/06/2025
 #### **Commit**: `2e2f4aa` - "docs: Expandir sección de Modelo de Dominio con entidades completas"
 #### **Estado**: ✅ COMPLETADO
 #### **URL**: https://jjrp1.github.io/kursor
@@ -462,4 +462,4 @@ git push origin v1.0.0
 
 ---
 
-*Última actualización: 27/01/2025* 
+*Última actualización: 29/06/2025* 

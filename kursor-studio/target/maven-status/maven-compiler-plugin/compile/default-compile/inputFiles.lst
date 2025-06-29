@@ -1,12 +1,13 @@
+C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\ui\DatabaseExplorerController.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\model\TableInfo.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\config\PersistenceConfig.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\model\DatabaseConfiguration.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\service\LogViewerService.java
-C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\model\DatabaseStatistics.java
-C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\service\DatabaseStatisticsService.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\service\DatabaseConnectionService.java
-C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\ui\DatabaseConfigurationDialog.java
-C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\KursorStudioApplication.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\repository\DatabaseConfigurationRepository.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\service\DatabaseConfigurationService.java
+C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\model\DatabaseStatistics.java
+C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\service\DatabaseStatisticsService.java
+C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\ui\DatabaseConfigurationDialog.java
+C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\KursorStudioApplication.java
 C:\pds\kursor\kursor-studio\src\main\java\com\kursor\studio\service\DatabaseInspectorService.java

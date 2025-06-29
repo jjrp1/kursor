@@ -385,5 +385,5 @@ La nueva arquitectura utiliza SLF4J + Logback para logging estructurado:
 
 **Autor**: Juan José Ruiz Pérez <jjrp1@um.es>  
 **Versión**: 1.0.0  
-**Fecha**: 2025-01-27  
+**Fecha**: 2025-06-29  
 **Estado**: Implementación en Progreso 
