@@ -251,21 +251,106 @@ public class DatabaseExplorerController {
         try {
             em = PersistenceConfig.createKursorEntityManagerSafely();
             if (em == null) {
-                throw new RuntimeException("No se pudo crear EntityManager para kursor");
+                logger.warn("No se pudo crear EntityManager para kursor - usando lista por defecto");
+                return getRealTableNames();
             }
             
+            // Primero intentar obtener las tablas reales de la base de datos
+            List<String> realTables = getRealTableNames();
+            if (!realTables.isEmpty()) {
+                logger.info("Tablas reales encontradas en BD: {}", realTables);
+                return realTables;
+            }
+            
+            // Fallback al metamodelo JPA
             Metamodel metamodel = em.getMetamodel();
+            if (metamodel == null) {
+                logger.warn("Metamodel es null - usando lista por defecto");
+                return List.of("sesiones", "estados_estrategias", "estadisticas_usuario", "preguntas_sesion");
+            }
+            
             List<String> tableNames = metamodel.getEntities().stream()
                 .map(EntityType::getName)
                 .sorted()
                 .toList();
             
-            logger.info("Tablas encontradas: {}", tableNames);
+            if (tableNames.isEmpty()) {
+                logger.warn("No se encontraron entidades en el metamodelo - usando lista por defecto");
+                return List.of("sesiones", "estados_estrategias", "estadisticas_usuario", "preguntas_sesion");
+            }
+            
+            logger.info("Tablas encontradas desde JPA: {}", tableNames);
             return tableNames;
             
+        } catch (Exception e) {
+            logger.error("Error al obtener nombres de tablas desde JPA: {}", e.getMessage(), e);
+            logger.info("Usando lista de tablas por defecto");
+            return getRealTableNames();
         } finally {
             if (em != null) {
-                em.close();
+                try {
+                    em.close();
+                } catch (Exception e) {
+                    logger.warn("Error al cerrar EntityManager: {}", e.getMessage());
+                }
+            }
+        }
+    }
+    
+    /**
+     * Obtiene los nombres reales de las tablas desde la base de datos.
+     */
+    private List<String> getRealTableNames() {
+        EntityManager em = null;
+        try {
+            em = PersistenceConfig.createKursorEntityManagerSafely();
+            if (em == null) {
+                logger.warn("No se pudo crear EntityManager para obtener tablas reales");
+                return new ArrayList<>();
+            }
+            
+            // Consulta SQLite para obtener todas las tablas
+            String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name";
+            jakarta.persistence.Query query = em.createNativeQuery(sql);
+            
+            @SuppressWarnings("unchecked")
+            List<Object> results = query.getResultList();
+            
+            List<String> tableNames = results.stream()
+                .map(Object::toString)
+                .sorted()
+                .toList();
+            
+            if (tableNames.isEmpty()) {
+                logger.warn("No se encontraron tablas en la base de datos");
+            } else {
+                logger.info("Tablas reales encontradas en BD: {}", tableNames);
+                
+                // Mostrar información adicional de cada tabla
+                for (String tableName : tableNames) {
+                    try {
+                        String countSql = "SELECT COUNT(*) FROM " + tableName;
+                        jakarta.persistence.Query countQuery = em.createNativeQuery(countSql);
+                        Object count = countQuery.getSingleResult();
+                        logger.info("  - {}: {} registros", tableName, count);
+                    } catch (Exception e) {
+                        logger.warn("  - {}: Error al contar registros: {}", tableName, e.getMessage());
+                    }
+                }
+            }
+            
+            return tableNames;
+            
+        } catch (Exception e) {
+            logger.error("Error al obtener tablas reales: {}", e.getMessage(), e);
+            return new ArrayList<>();
+        } finally {
+            if (em != null) {
+                try {
+                    em.close();
+                } catch (Exception e) {
+                    logger.warn("Error al cerrar EntityManager: {}", e.getMessage());
+                }
             }
         }
     }
@@ -326,20 +411,81 @@ public class DatabaseExplorerController {
                 throw new RuntimeException("No se pudo crear EntityManager para kursor");
             }
             
-            // Usar consulta SQL nativa para evitar problemas de mapeo de entidades
+            // Verifica si la tabla existe en la base de datos
+            if (!tableExists(tableName)) {
+                throw new RuntimeException("Tabla no encontrada: " + tableName);
+            }
+            
+            // Usar consulta SQL nativa simple sin LIMIT
             String sql = getSQLForTable(tableName);
+            if (sql == null || sql.trim().isEmpty()) {
+                throw new RuntimeException("No se pudo generar consulta SQL para la tabla: " + tableName);
+            }
+            
+            // Agregar LIMIT directamente en la consulta SQL para evitar el problema de Hibernate
+            sql += " LIMIT 1000";
+            
             jakarta.persistence.Query query = em.createNativeQuery(sql);
-            query.setMaxResults(1000); // Limitar a 1000 registros por rendimiento
+            // NO usar setMaxResults para evitar el LIMIT duplicado
             
             @SuppressWarnings("unchecked")
             List<Object[]> results = query.getResultList();
             
+            if (results == null) {
+                logger.warn("Resultado de consulta es null para tabla: {}", tableName);
+                return new ArrayList<>();
+            }
+            
             logger.info("Datos obtenidos de {}: {} registros", tableName, results.size());
             return results;
             
+        } catch (Exception e) {
+            logger.error("Error al obtener datos de tabla {}: {}", tableName, e.getMessage(), e);
+            throw new RuntimeException("Error al obtener datos de tabla " + tableName + ": " + e.getMessage(), e);
         } finally {
             if (em != null) {
-                em.close();
+                try {
+                    em.close();
+                } catch (Exception e) {
+                    logger.warn("Error al cerrar EntityManager: {}", e.getMessage());
+                }
+            }
+        }
+    }
+    
+    /**
+     * Verifica si una tabla existe en la base de datos.
+     */
+    private boolean tableExists(String tableName) {
+        EntityManager em = null;
+        try {
+            em = PersistenceConfig.createKursorEntityManagerSafely();
+            if (em == null) {
+                return false;
+            }
+            
+            // Consulta SQLite para verificar si la tabla existe
+            String sql = "SELECT name FROM sqlite_master WHERE type='table' AND name=?";
+            jakarta.persistence.Query query = em.createNativeQuery(sql);
+            query.setParameter(1, tableName.toLowerCase());
+            
+            @SuppressWarnings("unchecked")
+            List<Object> results = query.getResultList();
+            
+            boolean exists = !results.isEmpty();
+            logger.debug("Tabla {} existe: {}", tableName, exists);
+            return exists;
+            
+        } catch (Exception e) {
+            logger.warn("Error al verificar existencia de tabla {}: {}", tableName, e.getMessage());
+            return false;
+        } finally {
+            if (em != null) {
+                try {
+                    em.close();
+                } catch (Exception e) {
+                    logger.warn("Error al cerrar EntityManager: {}", e.getMessage());
+                }
             }
         }
     }
@@ -348,25 +494,63 @@ public class DatabaseExplorerController {
      * Obtiene la consulta SQL nativa para una tabla específica.
      */
     private String getSQLForTable(String tableName) {
-        switch (tableName) {
-            case "Sesion":
+        if (tableName == null || tableName.trim().isEmpty()) {
+            logger.warn("Nombre de tabla es null o vacío");
+            return null;
+        }
+        
+        // Mapear nombres de entidades a nombres reales de tablas
+        String realTableName = getRealTableName(tableName);
+        
+        switch (realTableName.toLowerCase()) {
+            case "sesiones":
                 return "SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, " +
                        "tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, " +
                        "porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at " +
-                       "FROM sesiones LIMIT 1000";
-            case "EstadoEstrategia":
+                       "FROM sesiones";
+            case "estados_estrategias":
                 return "SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion " +
-                       "FROM estados_estrategias LIMIT 1000";
-            case "EstadisticasUsuario":
+                       "FROM estados_estrategias";
+            case "estadisticas_usuario":
                 return "SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, " +
                        "racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at " +
-                       "FROM estadisticas_usuario LIMIT 1000";
-            case "RespuestaPregunta":
+                       "FROM estadisticas_usuario";
+            case "preguntas_sesion":
                 return "SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at " +
-                       "FROM preguntas_sesion LIMIT 1000";
+                       "FROM preguntas_sesion";
             default:
-                // Consulta genérica como fallback
-                return "SELECT * FROM " + tableName.toLowerCase() + " LIMIT 1000";
+                // Verificar si la tabla existe antes de hacer la consulta
+                logger.warn("Tabla no reconocida: {}. Intentando consulta genérica", tableName);
+                return "SELECT * FROM " + realTableName;
+        }
+    }
+    
+    /**
+     * Mapea nombres de entidades a nombres reales de tablas.
+     */
+    private String getRealTableName(String entityName) {
+        if (entityName == null) {
+            return null;
+        }
+        
+        switch (entityName.toLowerCase()) {
+            case "sesion":
+            case "sesiones":
+                return "sesiones";
+            case "estadoestrategia":
+            case "estados_estrategias":
+                return "estados_estrategias";
+            case "estadisticasusuario":
+            case "estadisticas_usuario":
+                return "estadisticas_usuario";
+            case "respuestapregunta":
+            case "preguntasesion":
+            case "respuestas_preguntas":
+            case "preguntas_sesion":
+                return "preguntas_sesion";
+            default:
+                // Si no es un mapeo conocido, usar el nombre tal como viene
+                return entityName.toLowerCase();
         }
     }
     
@@ -374,64 +558,104 @@ public class DatabaseExplorerController {
      * Muestra los datos en la tabla.
      */
     private void displayTableData(String tableName, List<Object[]> data) {
-        // Limpiar tabla anterior
-        dataTableView.getColumns().clear();
-        tableData.clear();
-        
-        if (data.isEmpty()) {
-            dataTableView.setPlaceholder(new Label("No hay datos en la tabla " + tableName));
-            return;
-        }
-        
-        // Obtener nombres de columnas para la entidad
-        String[] columnNames = getColumnNamesForEntity(tableName);
-        
-        // Crear columnas dinámicamente basadas en los datos
-        Object[] firstRow = data.get(0);
-        if (firstRow != null) {
-            for (int i = 0; i < firstRow.length; i++) {
-                final int columnIndex = i;
-                String columnName = (i < columnNames.length) ? columnNames[i] : "Columna " + (i + 1);
-                TableColumn<Object[], Object> column = new TableColumn<>(columnName);
-                column.setCellValueFactory(param -> {
-                    Object[] row = param.getValue();
-                    if (row != null && columnIndex < row.length) {
-                        return new javafx.beans.property.SimpleObjectProperty<>(row[columnIndex]);
-                    }
-                    return new javafx.beans.property.SimpleObjectProperty<>(null);
-                });
-                dataTableView.getColumns().add(column);
+        try {
+            // Validar parámetros
+            if (tableName == null || tableName.trim().isEmpty()) {
+                logger.warn("Nombre de tabla es null o vacío");
+                clearTableData();
+                return;
             }
+            
+            if (data == null) {
+                logger.warn("Datos de tabla son null para: {}", tableName);
+                clearTableData();
+                return;
+            }
+            
+            // Limpiar tabla anterior
+            dataTableView.getColumns().clear();
+            tableData.clear();
+            
+            if (data.isEmpty()) {
+                dataTableView.setPlaceholder(new Label("No hay datos en la tabla " + tableName));
+                logger.info("Tabla {} está vacía", tableName);
+                return;
+            }
+            
+            // Obtener nombres de columnas para la entidad
+            String[] columnNames = getColumnNamesForEntity(tableName);
+            
+            // Crear columnas dinámicamente basadas en los datos
+            Object[] firstRow = data.get(0);
+            if (firstRow != null) {
+                for (int i = 0; i < firstRow.length; i++) {
+                    final int columnIndex = i;
+                    String columnName = (i < columnNames.length) ? columnNames[i] : "Columna " + (i + 1);
+                    TableColumn<Object[], Object> column = new TableColumn<>(columnName);
+                    column.setCellValueFactory(param -> {
+                        Object[] row = param.getValue();
+                        if (row != null && columnIndex < row.length) {
+                            Object value = row[columnIndex];
+                            // Formatear valores especiales
+                            if (value instanceof java.time.LocalDateTime) {
+                                return new javafx.beans.property.SimpleObjectProperty<>(
+                                    ((java.time.LocalDateTime) value).toString()
+                                );
+                            } else if (value instanceof java.time.LocalDate) {
+                                return new javafx.beans.property.SimpleObjectProperty<>(
+                                    ((java.time.LocalDate) value).toString()
+                                );
+                            } else if (value instanceof Boolean) {
+                                return new javafx.beans.property.SimpleObjectProperty<>(
+                                    ((Boolean) value) ? "Sí" : "No"
+                                );
+                            } else {
+                                return new javafx.beans.property.SimpleObjectProperty<>(value);
+                            }
+                        }
+                        return new javafx.beans.property.SimpleObjectProperty<>(null);
+                    });
+                    dataTableView.getColumns().add(column);
+                }
+            }
+            
+            // Agregar datos
+            tableData.addAll(data);
+            dataTableView.setItems(tableData);
+            
+            logger.info("Datos mostrados en tabla: {} columnas, {} filas", 
+                dataTableView.getColumns().size(), data.size());
+                
+        } catch (Exception e) {
+            logger.error("Error al mostrar datos de tabla {}: {}", tableName, e.getMessage(), e);
+            clearTableData();
+            dataTableView.setPlaceholder(new Label("Error al mostrar datos: " + e.getMessage()));
         }
-        
-        // Agregar datos
-        tableData.addAll(data);
-        dataTableView.setItems(tableData);
-        
-        logger.info("Datos mostrados en tabla: {} columnas, {} filas", 
-            dataTableView.getColumns().size(), data.size());
     }
     
     /**
      * Obtiene los nombres de columnas para una entidad específica.
      */
     private String[] getColumnNamesForEntity(String entityName) {
-        switch (entityName) {
-            case "Sesion":
+        // Mapear nombres de entidades a nombres reales de tablas
+        String realTableName = getRealTableName(entityName);
+        
+        switch (realTableName.toLowerCase()) {
+            case "sesiones":
                 return new String[]{"ID", "Curso ID", "Bloque ID", "Estrategia Tipo", "Fecha Inicio", 
                                   "Fecha Última Revisión", "Tiempo Total", "Preguntas Respondidas", 
                                   "Aciertos", "Tasa Aciertos", "Mejor Racha Aciertos", 
                                   "Porcentaje Completitud", "Pregunta Actual ID", "Estado", 
                                   "Created At", "Updated At"};
-            case "EstadoEstrategia":
+            case "estados_estrategias":
                 return new String[]{"ID", "Sesión ID", "Tipo Estrategia", "Datos Estado", 
                                   "Progreso", "Fecha Creación", "Fecha Última Modificación"};
-            case "EstadisticasUsuario":
+            case "estadisticas_usuario":
                 return new String[]{"ID", "Usuario ID", "Curso ID", "Tiempo Total", 
                                   "Sesiones Completadas", "Mejor Racha Días", "Racha Actual Días", 
                                   "Fecha Última Sesión", "Fecha Primera Sesión", 
                                   "Created At", "Updated At"};
-            case "RespuestaPregunta":
+            case "preguntas_sesion":
                 return new String[]{"ID", "Sesión ID", "Pregunta ID", "Resultado", 
                                   "Tiempo Dedicado", "Respuesta", "Created At", "Updated At"};
             default:

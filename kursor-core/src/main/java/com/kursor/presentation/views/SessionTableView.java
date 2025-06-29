@@ -1,4 +1,4 @@
-package com.kursor.ui.session;
+package com.kursor.presentation.views;
 
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
+import com.kursor.presentation.viewmodels.SessionViewModel;
 
 /**
  * Vista de tabla para mostrar el historial de sesiones de aprendizaje.

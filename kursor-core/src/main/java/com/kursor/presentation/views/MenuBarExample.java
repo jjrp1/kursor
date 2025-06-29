@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.views;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import com.kursor.presentation.KursorApplication;
 
 /**
  * Ejemplo de uso de las funcionalidades de la barra de menús en Kursor.

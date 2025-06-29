@@ -4,7 +4,7 @@ import java.util.Map;
 import javafx.scene.Node;
 import com.kursor.domain.Pregunta;
 import org.slf4j.LoggerFactory;
-import com.kursor.ui.PreguntaEventListener;
+import com.kursor.presentation.controllers.PreguntaEventListener;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 

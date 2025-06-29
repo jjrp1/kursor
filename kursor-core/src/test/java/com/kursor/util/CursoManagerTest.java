@@ -3,6 +3,7 @@ package com.kursor.util;
 import com.kursor.domain.Curso;
 import com.kursor.yaml.dto.CursoDTO;
 import com.kursor.service.CursoPreviewService;
+import com.kursor.shared.util.CursoManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

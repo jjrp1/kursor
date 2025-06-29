@@ -1,6 +1,7 @@
 package com.kursor.presentation.views;
 
 import com.kursor.yaml.dto.CursoDTO;
+import com.kursor.presentation.controllers.MainController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -46,6 +47,9 @@ public class MainView {
     private Runnable onShowStatistics;
     private Runnable onShowAbout;
     private Runnable onExitApplication;
+    
+    // Referencia al botón de reanudar para controlar su estado
+    private Button resumeSessionBtn;
     
     public MainView(MainController controller) {
         this.controller = controller;
@@ -242,7 +246,7 @@ public class MainView {
             if (onNewSession != null) onNewSession.run();
         });
         
-        Button resumeSessionBtn = new Button("▶️ Reanudar Sesión");
+        resumeSessionBtn = new Button("▶️ Reanudar Sesión");
         resumeSessionBtn.getStyleClass().add("action-button");
         resumeSessionBtn.setOnAction(e -> {
             if (onResumeSession != null) onResumeSession.run();
@@ -436,6 +440,26 @@ public class MainView {
             if (idx != -1) {
                 bottomSection.getChildren().set(idx, sessionTableView);
                 sessionsContainer = null;
+            }
+        }
+    }
+    
+    /**
+     * Habilita o deshabilita el botón de reanudar sesión.
+     * 
+     * @param enabled true para habilitar, false para deshabilitar
+     */
+    public void setResumeButtonEnabled(boolean enabled) {
+        if (resumeSessionBtn != null) {
+            resumeSessionBtn.setDisable(!enabled);
+            
+            // Cambiar el estilo visual para indicar el estado
+            if (enabled) {
+                resumeSessionBtn.setStyle("-fx-opacity: 1.0;");
+                resumeSessionBtn.setTooltip(null);
+            } else {
+                resumeSessionBtn.setStyle("-fx-opacity: 0.5;");
+                resumeSessionBtn.setTooltip(new Tooltip("No hay sesiones disponibles para reanudar"));
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.controllers;
 
 import com.kursor.domain.Pregunta;
 import org.slf4j.Logger;

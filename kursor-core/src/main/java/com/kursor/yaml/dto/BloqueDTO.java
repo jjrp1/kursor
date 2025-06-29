@@ -17,6 +17,12 @@ public class BloqueDTO {
     /** Título del bloque */
     private String titulo;
     
+    /** Identificador único del bloque */
+    private String id;
+    
+    /** Descripción del bloque */
+    private String descripcion;
+    
     /** Tipo de preguntas que contiene el bloque */
     private String tipo;
     
@@ -88,6 +94,22 @@ public class BloqueDTO {
         this.preguntas = preguntas;
         // Recalcular total automáticamente cuando se establecen las preguntas
         calcularTotalPreguntas();
+    }
+    
+    public String getId() {
+        return id;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public String getDescripcion() {
+        return descripcion;
+    }
+    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
     @Override

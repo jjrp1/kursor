@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.views;
 
 import com.kursor.domain.Curso;
 import com.kursor.domain.Bloque;

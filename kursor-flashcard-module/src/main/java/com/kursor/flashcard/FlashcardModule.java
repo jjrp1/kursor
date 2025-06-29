@@ -3,7 +3,7 @@ package com.kursor.flashcard;
 import com.kursor.modules.PreguntaModule;
 import com.kursor.domain.Pregunta;
 import com.kursor.flashcard.domain.Flashcard;
-import com.kursor.ui.PreguntaEventListener;
+import com.kursor.presentation.controllers.PreguntaEventListener;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;

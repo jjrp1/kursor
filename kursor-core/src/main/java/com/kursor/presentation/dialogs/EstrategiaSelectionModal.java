@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.dialogs;
 
 import com.kursor.domain.EstrategiaAprendizaje;
 import com.kursor.strategy.EstrategiaModule;
@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;

@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.dialogs;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

@@ -2440,3 +2440,608 @@ Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing datab
 	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
 	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
 	... 23 common frames omitted
+[2025-06-29 16:52:20.976] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 16:52:21.070] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 16:52:21.073] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 16:52:21.073] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 16:52:21.074] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 16:52:21.497] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 16:52:23.572] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 16:56:13.469] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:13.472] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadisticasUsuario: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:14.031] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:14.032] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadoEstrategia: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:14.559] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:14.560] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla RespuestaPregunta: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:14.999] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:15.000] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla Sesion: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:20.892] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:20.893] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla RespuestaPregunta: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:22.797] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:22.798] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadoEstrategia: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:26.533] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:26.533] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadisticasUsuario: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:29.698] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:29.699] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadoEstrategia: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:30.802] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:30.802] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla RespuestaPregunta: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:33.167] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:33.168] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla Sesion: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 17:00:19.559] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 17:00:19.652] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 17:00:19.656] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 17:00:19.658] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 17:00:19.658] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 17:00:20.062] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:00:22.041] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:00:26.745] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:26.746] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:26.757] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla estadisticas_usuario: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:26.760] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla estadisticas_usuario: Error al obtener datos de tabla estadisticas_usuario: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla estadisticas_usuario: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.077] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:28.078] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:28.078] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla estados_estrategias: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.079] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla estados_estrategias: Error al obtener datos de tabla estados_estrategias: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla estados_estrategias: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.698] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:28.699] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:28.700] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla preguntas_sesion: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.701] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla preguntas_sesion: Error al obtener datos de tabla preguntas_sesion: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla preguntas_sesion: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.139] [WARN ] DatabaseExplorerController.getSQLForTable:503 - Tabla no reconocida: respuestas_preguntas. Intentando consulta genérica
+[2025-06-29 17:00:29.141] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:29.141] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:29.142] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla respuestas_preguntas: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.142] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla respuestas_preguntas: Error al obtener datos de tabla respuestas_preguntas: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla respuestas_preguntas: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.565] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:29.566] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:29.566] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla sesiones: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.567] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla sesiones: Error al obtener datos de tabla sesiones: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla sesiones: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:09:49.487] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 17:09:49.610] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 17:09:49.613] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 17:09:49.615] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 17:09:49.615] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 17:09:50.134] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:09:52.955] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:21:14.306] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 17:21:14.400] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 17:21:14.402] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 17:21:14.403] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 17:21:14.404] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 17:21:14.822] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:21:16.754] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:06:06.489] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 18:06:06.611] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 18:06:06.615] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 18:06:06.615] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 18:06:06.616] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 18:06:07.104] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:06:09.235] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:27:32.162] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 18:27:32.263] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 18:27:32.266] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 18:27:32.266] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 18:27:32.267] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 18:27:32.623] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:27:34.762] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:36:57.895] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 18:36:58.045] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 18:36:58.050] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 18:36:58.051] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 18:36:58.053] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 18:36:58.615] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:37:02.027] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)

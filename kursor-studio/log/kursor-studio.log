@@ -3097,3 +3097,1254 @@ Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing datab
 [2025-06-29 13:48:29.683] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
 [2025-06-29 13:48:29.683] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
 [2025-06-29 13:48:29.683] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 16:52:20.774] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 16:52:20.777] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 16:52:20.779] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 16:52:20.780] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 16:52:20.780] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 16:52:20.783] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 16:52:20.784] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 16:52:20.976] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 16:52:20.985] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 16:52:21.057] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 16:52:21.062] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 16:52:21.070] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 16:52:21.073] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 16:52:21.073] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 16:52:21.074] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 16:52:21.497] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 16:52:21.502] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 16:52:21.503] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 16:52:21.503] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 16:52:21.504] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 16:52:21.508] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 16:52:23.322] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 16:52:23.369] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@32f1fafe] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 16:52:23.389] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 16:52:23.390] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 16:52:23.572] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 16:52:23.573] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 16:52:23.573] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 16:52:23.574] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 16:52:23.574] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 16:52:23.575] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 16:52:23.834] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 16:52:23.835] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 16:52:23.835] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 16:52:23.835] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 16:52:23.836] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 16:52:23.837] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 16:52:23.837] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 16:52:23.837] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 16:52:23.857] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 16:52:23.859] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 16:52:23.859] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 16:52:24.534] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 16:52:24.535] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 16:52:24.790] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 16:52:24.794] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 16:52:24.839] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 16:52:24.844] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 16:52:24.848] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:274 - Tablas encontradas: [EstadisticasUsuario, EstadoEstrategia, RespuestaPregunta, Sesion]
+[2025-06-29 16:52:25.926] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 16:52:25.929] [INFO ] DatabaseExplorerController.populateTableTree:305 - Árbol de tablas actualizado con 4 tablas
+[2025-06-29 16:56:12.160] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 16:56:13.423] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: EstadisticasUsuario
+[2025-06-29 16:56:13.469] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:13.472] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadisticasUsuario: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:14.028] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: EstadoEstrategia
+[2025-06-29 16:56:14.031] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:14.032] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadoEstrategia: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:14.556] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: RespuestaPregunta
+[2025-06-29 16:56:14.559] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:14.560] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla RespuestaPregunta: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:14.997] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: Sesion
+[2025-06-29 16:56:14.999] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:15.000] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla Sesion: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:20.889] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: RespuestaPregunta
+[2025-06-29 16:56:20.892] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:20.893] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla RespuestaPregunta: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:22.794] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: EstadoEstrategia
+[2025-06-29 16:56:22.797] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:22.798] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadoEstrategia: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:26.530] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: EstadisticasUsuario
+[2025-06-29 16:56:26.533] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:26.533] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadisticasUsuario: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+java.lang.RuntimeException: Error al obtener datos de tabla EstadisticasUsuario: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadisticasUsuario
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:29.696] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: EstadoEstrategia
+[2025-06-29 16:56:29.698] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:29.699] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla EstadoEstrategia: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+java.lang.RuntimeException: Error al obtener datos de tabla EstadoEstrategia: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: EstadoEstrategia
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:30.799] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: RespuestaPregunta
+[2025-06-29 16:56:30.802] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:30.802] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla RespuestaPregunta: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+java.lang.RuntimeException: Error al obtener datos de tabla RespuestaPregunta: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: RespuestaPregunta
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 16:56:33.165] [INFO ] DatabaseExplorerController.loadTableData:312 - 📊 Cargando datos de tabla: Sesion
+[2025-06-29 16:56:33.167] [ERROR] DatabaseExplorerController.getTableData:374 - Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+[2025-06-29 16:56:33.168] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:328 - Error al cargar datos de tabla Sesion: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+java.lang.RuntimeException: Error al obtener datos de tabla Sesion: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:375)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:320)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: java.lang.RuntimeException: Tabla no encontrada: Sesion
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:350)
+	... 2 common frames omitted
+[2025-06-29 17:00:12.555] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 17:00:12.556] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:00:12.557] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:00:12.558] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:00:12.564] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:00:12.566] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:00:12.567] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 17:00:12.568] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:00:12.569] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 17:00:12.569] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 17:00:12.569] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:00:12.570] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:00:12.570] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:00:12.570] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:00:12.570] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:00:12.594] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:00:12.594] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:00:12.595] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:00:12.595] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:00:12.596] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:00:12.596] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:00:12.597] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:00:12.597] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:00:19.330] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 17:00:19.335] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 17:00:19.338] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 17:00:19.338] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 17:00:19.338] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 17:00:19.342] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:00:19.343] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 17:00:19.559] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 17:00:19.567] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 17:00:19.641] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 17:00:19.645] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 17:00:19.652] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 17:00:19.656] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 17:00:19.658] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 17:00:19.658] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 17:00:20.062] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:00:20.066] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 17:00:20.067] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:00:20.068] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 17:00:20.069] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 17:00:20.074] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 17:00:21.832] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 17:00:21.880] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4de79b7d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 17:00:21.909] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 17:00:21.909] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 17:00:22.041] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:00:22.042] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 17:00:22.042] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:00:22.042] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 17:00:22.043] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 17:00:22.043] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 17:00:22.228] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 17:00:22.229] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 17:00:22.230] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 17:00:22.230] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 17:00:22.230] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 17:00:22.231] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 17:00:22.231] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 17:00:22.231] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 17:00:22.253] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 17:00:22.255] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 17:00:22.255] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 17:00:22.820] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 17:00:22.822] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 17:00:23.074] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 17:00:23.077] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 17:00:23.129] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 17:00:23.135] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 17:00:23.180] [INFO ] DatabaseExplorerController.getRealTableNames:324 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:00:23.181] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:00:24.183] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 17:00:24.185] [INFO ] DatabaseExplorerController.populateTableTree:354 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 17:00:25.751] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 17:00:26.723] [INFO ] DatabaseExplorerController.loadTableData:361 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 17:00:26.745] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:26.746] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:26.757] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla estadisticas_usuario: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:26.760] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla estadisticas_usuario: Error al obtener datos de tabla estadisticas_usuario: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla estadisticas_usuario: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, usuario_id, curso_id, tiempo_total, sesiones_completadas, mejor_racha_dias, racha_actual_dias, fecha_ultima_sesion, fecha_primera_sesion, created_at, updated_at FROM estadisticas_usuario LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.074] [INFO ] DatabaseExplorerController.loadTableData:361 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 17:00:28.077] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:28.078] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:28.078] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla estados_estrategias: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.079] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla estados_estrategias: Error al obtener datos de tabla estados_estrategias: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla estados_estrategias: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, tipo_estrategia, datos_estado, progreso, fecha_creacion, fecha_ultima_modificacion FROM estados_estrategias LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.695] [INFO ] DatabaseExplorerController.loadTableData:361 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 17:00:28.698] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:28.699] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:28.700] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla preguntas_sesion: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:28.701] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla preguntas_sesion: Error al obtener datos de tabla preguntas_sesion: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla preguntas_sesion: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, sesion_id, pregunta_id, resultado, tiempo_dedicado, respuesta, created_at, updated_at FROM preguntas_sesion LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.137] [INFO ] DatabaseExplorerController.loadTableData:361 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 17:00:29.139] [WARN ] DatabaseExplorerController.getSQLForTable:503 - Tabla no reconocida: respuestas_preguntas. Intentando consulta genérica
+[2025-06-29 17:00:29.141] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:29.141] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:29.142] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla respuestas_preguntas: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.142] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla respuestas_preguntas: Error al obtener datos de tabla respuestas_preguntas: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla respuestas_preguntas: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT * FROM respuestas_preguntas LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.562] [INFO ] DatabaseExplorerController.loadTableData:361 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 17:00:29.565] [WARN ] SqlExceptionHelper.logExceptions:145 - SQL Error: 1, SQLState: null
+[2025-06-29 17:00:29.566] [ERROR] SqlExceptionHelper.logExceptions:150 - [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+[2025-06-29 17:00:29.566] [ERROR] DatabaseExplorerController.getTableData:423 - Error al obtener datos de tabla sesiones: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:29.567] [ERROR] DatabaseExplorerController.lambda$loadTableData$0:377 - Error al cargar datos de tabla sesiones: Error al obtener datos de tabla sesiones: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+java.lang.RuntimeException: Error al obtener datos de tabla sesiones: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:424)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$loadTableData$0(DatabaseExplorerController.java:369)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.exception.GenericJDBCException: could not prepare statement [[SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)] [SELECT id, curso_id, bloque_id, estrategia_tipo, fecha_inicio, fecha_ultima_revision, tiempo_total, preguntas_respondidas, aciertos, tasa_aciertos, mejor_racha_aciertos, porcentaje_completitud, pregunta_actual_id, estado, created_at, updated_at FROM sesiones LIMIT 1000 limit ?]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:61)
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:187)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:226)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:163)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getMetaData(AbstractResultSetAccess.java:36)
+	at org.hibernate.sql.results.jdbc.internal.AbstractResultSetAccess.getColumnCount(AbstractResultSetAccess.java:52)
+	at org.hibernate.query.results.ResultSetMappingImpl.resolve(ResultSetMappingImpl.java:193)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.resolveJdbcValuesSource(JdbcSelectExecutorStandardImpl.java:477)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:267)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sql.internal.NativeSelectQueryPlanImpl.performList(NativeSelectQueryPlanImpl.java:97)
+	at org.hibernate.query.sql.internal.NativeQueryImpl.doList(NativeQueryImpl.java:626)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:367)
+	at org.hibernate.query.Query.getResultList(Query.java:119)
+	at com.kursor.studio.ui.DatabaseExplorerController.getTableData(DatabaseExplorerController.java:412)
+	... 2 common frames omitted
+Caused by: org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "limit": syntax error)
+	at org.sqlite.core.DB.newSQLException(DB.java:1179)
+	at org.sqlite.core.DB.newSQLException(DB.java:1190)
+	at org.sqlite.core.DB.throwex(DB.java:1150)
+	at org.sqlite.core.NativeDB.prepare_utf8(Native Method)
+	at org.sqlite.core.NativeDB.prepare(NativeDB.java:126)
+	at org.sqlite.core.DB.prepare(DB.java:264)
+	at org.sqlite.core.CorePreparedStatement.<init>(CorePreparedStatement.java:46)
+	at org.sqlite.jdbc3.JDBC3PreparedStatement.<init>(JDBC3PreparedStatement.java:32)
+	at org.sqlite.jdbc4.JDBC4PreparedStatement.<init>(JDBC4PreparedStatement.java:25)
+	at org.sqlite.jdbc4.JDBC4Connection.prepareStatement(JDBC4Connection.java:34)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:226)
+	at org.sqlite.jdbc3.JDBC3Connection.prepareStatement(JDBC3Connection.java:206)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	... 19 common frames omitted
+[2025-06-29 17:00:32.332] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 17:00:32.332] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:00:32.334] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:00:32.334] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:00:32.335] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:00:32.336] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:00:32.338] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 17:00:32.339] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:00:32.339] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 17:00:32.340] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 17:00:32.340] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:00:32.341] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:00:32.341] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:00:32.341] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:00:32.341] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:00:32.363] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:00:32.364] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:00:32.364] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:00:32.364] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:00:32.365] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:00:32.365] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:00:32.365] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:00:32.365] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:09:49.208] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 17:09:49.213] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 17:09:49.216] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 17:09:49.217] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 17:09:49.219] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 17:09:49.224] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:09:49.225] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 17:09:49.487] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 17:09:49.497] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 17:09:49.594] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 17:09:49.599] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 17:09:49.610] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 17:09:49.613] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 17:09:49.615] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 17:09:49.615] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 17:09:50.134] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:09:50.139] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 17:09:50.140] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:09:50.141] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 17:09:50.141] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 17:09:50.146] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 17:09:52.378] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 17:09:52.536] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4de79b7d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 17:09:52.615] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 17:09:52.616] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 17:09:52.955] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:09:52.956] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 17:09:52.958] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:09:52.959] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 17:09:52.960] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 17:09:52.961] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 17:09:53.444] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 17:09:53.448] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 17:09:53.449] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 17:09:53.450] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 17:09:53.451] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 17:09:53.452] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 17:09:53.453] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 17:09:53.454] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 17:09:53.496] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 17:09:53.501] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 17:09:53.502] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 17:09:55.087] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 17:09:55.088] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 17:09:55.471] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 17:09:55.477] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 17:09:55.573] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 17:09:55.588] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 17:09:55.686] [INFO ] DatabaseExplorerController.getRealTableNames:327 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:09:55.691] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estadisticas_usuario: 0 registros
+[2025-06-29 17:09:55.697] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estados_estrategias: 0 registros
+[2025-06-29 17:09:55.713] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - preguntas_sesion: 0 registros
+[2025-06-29 17:09:55.718] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - respuestas_preguntas: 0 registros
+[2025-06-29 17:09:55.722] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - sesiones: 0 registros
+[2025-06-29 17:09:55.727] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:09:57.393] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 17:09:57.394] [INFO ] DatabaseExplorerController.populateTableTree:371 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 17:09:59.116] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 17:10:00.038] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 17:10:00.059] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 0 registros
+[2025-06-29 17:10:00.061] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla sesiones está vacía
+[2025-06-29 17:10:03.456] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 17:10:03.460] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 0 registros
+[2025-06-29 17:10:03.461] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla respuestas_preguntas está vacía
+[2025-06-29 17:10:04.195] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 17:10:04.201] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 0 registros
+[2025-06-29 17:10:04.202] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla preguntas_sesion está vacía
+[2025-06-29 17:10:08.126] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 17:10:08.130] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 0 registros
+[2025-06-29 17:10:08.130] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estados_estrategias está vacía
+[2025-06-29 17:10:08.761] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 17:10:08.765] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estadisticas_usuario: 0 registros
+[2025-06-29 17:10:08.767] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estadisticas_usuario está vacía
+[2025-06-29 17:10:12.474] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 17:10:12.479] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 0 registros
+[2025-06-29 17:10:12.480] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estados_estrategias está vacía
+[2025-06-29 17:10:16.279] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 17:10:16.283] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 0 registros
+[2025-06-29 17:10:16.286] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla preguntas_sesion está vacía
+[2025-06-29 17:10:17.031] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 17:10:17.035] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 0 registros
+[2025-06-29 17:10:17.038] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla respuestas_preguntas está vacía
+[2025-06-29 17:10:18.565] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 17:10:18.569] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 0 registros
+[2025-06-29 17:10:18.570] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla sesiones está vacía
+[2025-06-29 17:10:19.260] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 17:10:19.264] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 0 registros
+[2025-06-29 17:10:19.265] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla respuestas_preguntas está vacía
+[2025-06-29 17:10:19.889] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 17:10:19.893] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 0 registros
+[2025-06-29 17:10:19.894] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla preguntas_sesion está vacía
+[2025-06-29 17:10:20.445] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 17:10:20.449] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 0 registros
+[2025-06-29 17:10:20.449] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estados_estrategias está vacía
+[2025-06-29 17:10:21.037] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 17:10:21.040] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estadisticas_usuario: 0 registros
+[2025-06-29 17:10:21.041] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estadisticas_usuario está vacía
+[2025-06-29 17:10:25.485] [INFO ] DatabaseExplorerController.refreshData:712 - 🔄 Refrescando datos del explorador
+[2025-06-29 17:10:25.485] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 17:10:25.490] [INFO ] DatabaseExplorerController.getRealTableNames:327 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:10:25.491] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estadisticas_usuario: 0 registros
+[2025-06-29 17:10:25.492] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estados_estrategias: 0 registros
+[2025-06-29 17:10:25.500] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - preguntas_sesion: 0 registros
+[2025-06-29 17:10:25.502] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - respuestas_preguntas: 0 registros
+[2025-06-29 17:10:25.504] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - sesiones: 0 registros
+[2025-06-29 17:10:25.504] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:10:25.514] [INFO ] DatabaseExplorerController.populateTableTree:371 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 17:10:47.681] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 17:10:47.681] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:10:47.683] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:10:47.683] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:10:47.684] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:10:47.685] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:10:47.688] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 17:10:47.688] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:10:47.689] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 17:10:47.689] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 17:10:47.689] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:10:47.689] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:10:47.689] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:10:47.689] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:10:47.689] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:10:47.712] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:10:47.712] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:10:47.713] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:10:47.714] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:10:47.714] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:10:47.715] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:10:47.715] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:10:47.715] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:21:14.092] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 17:21:14.095] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 17:21:14.097] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 17:21:14.097] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 17:21:14.098] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 17:21:14.116] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:21:14.117] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 17:21:14.306] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 17:21:14.316] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 17:21:14.387] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 17:21:14.391] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 17:21:14.400] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 17:21:14.402] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 17:21:14.403] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 17:21:14.404] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 17:21:14.822] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:21:14.828] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 17:21:14.829] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:21:14.830] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 17:21:14.830] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 17:21:14.837] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 17:21:16.538] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 17:21:16.583] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4de79b7d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 17:21:16.606] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 17:21:16.606] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 17:21:16.754] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 17:21:16.754] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 17:21:16.755] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:21:16.756] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 17:21:16.756] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 17:21:16.757] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 17:21:16.954] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 17:21:16.954] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 17:21:16.955] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 17:21:16.955] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 17:21:16.955] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 17:21:16.956] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 17:21:16.956] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 17:21:16.956] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 17:21:16.977] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 17:21:16.979] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 17:21:16.979] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 17:21:17.561] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 17:21:17.561] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 17:21:17.755] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 17:21:17.758] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 17:21:17.804] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 17:21:17.809] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 17:21:17.851] [INFO ] DatabaseExplorerController.getRealTableNames:327 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:21:17.854] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estadisticas_usuario: 0 registros
+[2025-06-29 17:21:17.855] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estados_estrategias: 0 registros
+[2025-06-29 17:21:17.858] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - preguntas_sesion: 0 registros
+[2025-06-29 17:21:17.860] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - respuestas_preguntas: 0 registros
+[2025-06-29 17:21:17.862] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - sesiones: 0 registros
+[2025-06-29 17:21:17.862] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 17:21:18.880] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 17:21:18.882] [INFO ] DatabaseExplorerController.populateTableTree:371 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 17:21:21.456] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 17:21:22.798] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 17:21:22.814] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estadisticas_usuario: 0 registros
+[2025-06-29 17:21:22.819] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estadisticas_usuario está vacía
+[2025-06-29 17:21:23.474] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 17:21:23.479] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 0 registros
+[2025-06-29 17:21:23.484] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estados_estrategias está vacía
+[2025-06-29 17:21:24.514] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 17:21:24.519] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 0 registros
+[2025-06-29 17:21:24.520] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla preguntas_sesion está vacía
+[2025-06-29 17:21:25.197] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 17:21:25.202] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 0 registros
+[2025-06-29 17:21:25.203] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla respuestas_preguntas está vacía
+[2025-06-29 17:21:25.767] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 17:21:25.773] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 0 registros
+[2025-06-29 17:21:25.774] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla sesiones está vacía
+[2025-06-29 17:21:38.978] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 17:21:38.978] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:21:38.980] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:21:38.980] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:21:38.980] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 17:21:38.981] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 17:21:38.983] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 17:21:38.984] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 17:21:38.984] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 17:21:38.985] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 17:21:38.985] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:21:38.985] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:21:38.985] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:21:38.985] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:21:38.985] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 17:21:39.007] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 17:21:39.007] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 17:21:39.008] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 17:21:39.008] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 17:21:39.009] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 17:21:39.009] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 17:21:39.010] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 17:21:39.010] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 18:06:06.232] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 18:06:06.236] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 18:06:06.239] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 18:06:06.240] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 18:06:06.240] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 18:06:06.244] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 18:06:06.245] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 18:06:06.489] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 18:06:06.501] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 18:06:06.597] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 18:06:06.602] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 18:06:06.611] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 18:06:06.615] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 18:06:06.615] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 18:06:06.616] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 18:06:07.104] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:06:07.110] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 18:06:07.111] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 18:06:07.112] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 18:06:07.113] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 18:06:07.118] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 18:06:08.925] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 18:06:08.987] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4de79b7d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 18:06:09.027] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 18:06:09.027] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 18:06:09.235] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:06:09.235] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 18:06:09.236] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 18:06:09.236] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 18:06:09.237] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 18:06:09.237] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 18:06:09.518] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 18:06:09.519] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 18:06:09.519] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 18:06:09.520] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 18:06:09.520] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 18:06:09.520] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 18:06:09.521] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 18:06:09.521] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 18:06:09.544] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 18:06:09.547] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 18:06:09.547] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 18:06:10.162] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 18:06:10.163] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 18:06:10.438] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 18:06:10.441] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 18:06:10.490] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 18:06:10.497] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 18:06:10.542] [INFO ] DatabaseExplorerController.getRealTableNames:327 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 18:06:10.543] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estadisticas_usuario: 0 registros
+[2025-06-29 18:06:10.545] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estados_estrategias: 0 registros
+[2025-06-29 18:06:10.547] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - preguntas_sesion: 0 registros
+[2025-06-29 18:06:10.548] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - respuestas_preguntas: 0 registros
+[2025-06-29 18:06:10.551] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - sesiones: 12 registros
+[2025-06-29 18:06:10.551] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 18:06:11.700] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 18:06:11.702] [INFO ] DatabaseExplorerController.populateTableTree:371 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 18:06:13.290] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 18:06:14.270] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 18:06:14.296] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 12 registros
+[2025-06-29 18:06:14.316] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 16 columnas, 12 filas
+[2025-06-29 18:06:21.947] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 18:06:21.952] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 0 registros
+[2025-06-29 18:06:21.955] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla respuestas_preguntas está vacía
+[2025-06-29 18:06:24.527] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 18:06:24.531] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 0 registros
+[2025-06-29 18:06:24.536] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla preguntas_sesion está vacía
+[2025-06-29 18:06:25.579] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 18:06:25.583] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 0 registros
+[2025-06-29 18:06:25.584] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estados_estrategias está vacía
+[2025-06-29 18:06:26.331] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 18:06:26.335] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estadisticas_usuario: 0 registros
+[2025-06-29 18:06:26.337] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estadisticas_usuario está vacía
+[2025-06-29 18:06:28.838] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 18:06:28.841] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 0 registros
+[2025-06-29 18:06:28.842] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla estados_estrategias está vacía
+[2025-06-29 18:06:29.447] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 18:06:29.451] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 0 registros
+[2025-06-29 18:06:29.451] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla preguntas_sesion está vacía
+[2025-06-29 18:06:34.367] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 18:06:34.371] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 0 registros
+[2025-06-29 18:06:34.372] [INFO ] DatabaseExplorerController.displayTableData:581 - Tabla respuestas_preguntas está vacía
+[2025-06-29 18:06:37.265] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 18:06:37.271] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 12 registros
+[2025-06-29 18:06:37.283] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 16 columnas, 12 filas
+[2025-06-29 18:07:12.627] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: ✅ Validaciones
+[2025-06-29 18:07:13.417] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 📝 Logs
+[2025-06-29 18:07:17.319] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 18:07:17.320] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 18:07:17.322] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 18:07:17.323] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 18:07:17.323] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 18:07:17.324] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 18:07:17.326] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 18:07:17.327] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 18:07:17.328] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 18:07:17.328] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 18:07:17.328] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 18:07:17.328] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 18:07:17.329] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 18:07:17.329] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 18:07:17.329] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 18:07:17.351] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 18:07:17.352] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 18:07:17.352] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 18:07:17.352] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 18:07:17.353] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 18:07:17.353] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 18:07:17.353] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 18:07:17.354] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 18:27:31.949] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 18:27:31.952] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 18:27:31.955] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 18:27:31.955] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 18:27:31.955] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 18:27:31.958] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 18:27:31.959] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 18:27:32.162] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 18:27:32.172] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 18:27:32.252] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 18:27:32.255] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 18:27:32.263] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 18:27:32.266] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 18:27:32.266] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 18:27:32.267] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 18:27:32.623] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:27:32.630] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 18:27:32.632] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 18:27:32.633] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 18:27:32.634] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 18:27:32.642] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 18:27:34.517] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 18:27:34.569] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4de79b7d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 18:27:34.597] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 18:27:34.598] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 18:27:34.762] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:27:34.763] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 18:27:34.763] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 18:27:34.764] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 18:27:34.765] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 18:27:34.765] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 18:27:34.973] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 18:27:34.973] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 18:27:34.974] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 18:27:34.974] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 18:27:34.974] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 18:27:34.974] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 18:27:34.974] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 18:27:34.974] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 18:27:34.993] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 18:27:34.995] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 18:27:34.995] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 18:27:35.638] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 18:27:35.638] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 18:27:35.930] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 18:27:35.933] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 18:27:35.995] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 18:27:36.001] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 18:27:36.052] [INFO ] DatabaseExplorerController.getRealTableNames:327 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 18:27:36.055] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estadisticas_usuario: 4 registros
+[2025-06-29 18:27:36.057] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estados_estrategias: 12 registros
+[2025-06-29 18:27:36.059] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - preguntas_sesion: 210 registros
+[2025-06-29 18:27:36.062] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - respuestas_preguntas: 0 registros
+[2025-06-29 18:27:36.064] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - sesiones: 12 registros
+[2025-06-29 18:27:36.065] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 18:27:37.714] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 18:27:37.716] [INFO ] DatabaseExplorerController.populateTableTree:371 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 18:27:40.422] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 18:27:42.006] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 18:27:42.027] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estadisticas_usuario: 4 registros
+[2025-06-29 18:27:42.049] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 11 columnas, 4 filas
+[2025-06-29 18:27:56.132] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 18:27:56.144] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 12 registros
+[2025-06-29 18:27:56.171] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 16 columnas, 12 filas
+[2025-06-29 18:28:05.523] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 18:28:05.537] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 210 registros
+[2025-06-29 18:28:05.556] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 8 columnas, 210 filas
+[2025-06-29 18:28:12.987] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 18:28:12.993] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 12 registros
+[2025-06-29 18:28:13.018] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 16 columnas, 12 filas
+[2025-06-29 18:28:16.128] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: respuestas_preguntas
+[2025-06-29 18:28:16.140] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de respuestas_preguntas: 210 registros
+[2025-06-29 18:28:16.154] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 8 columnas, 210 filas
+[2025-06-29 18:28:31.791] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: preguntas_sesion
+[2025-06-29 18:28:31.799] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de preguntas_sesion: 210 registros
+[2025-06-29 18:28:31.806] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 8 columnas, 210 filas
+[2025-06-29 18:28:33.161] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estados_estrategias
+[2025-06-29 18:28:33.166] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estados_estrategias: 12 registros
+[2025-06-29 18:28:33.177] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 7 columnas, 12 filas
+[2025-06-29 18:28:37.565] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: estadisticas_usuario
+[2025-06-29 18:28:37.569] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de estadisticas_usuario: 4 registros
+[2025-06-29 18:28:37.585] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 11 columnas, 4 filas
+[2025-06-29 18:28:51.580] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 📝 Logs
+[2025-06-29 18:28:53.391] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: ✅ Validaciones
+[2025-06-29 18:28:56.000] [INFO ] KursorStudioApplication.lambda$createValidationContent$0:465 - 🔧 Usuario solicitó ejecución de validaciones
+[2025-06-29 18:29:06.140] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 📊 Dashboard
+[2025-06-29 18:29:23.972] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 18:29:23.973] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 18:29:23.976] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 18:29:23.977] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 18:29:23.977] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 18:29:23.978] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 18:29:23.979] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 18:29:23.980] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 18:29:23.980] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 18:29:23.981] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 18:29:23.981] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 18:29:23.981] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 18:29:23.981] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 18:29:23.981] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 18:29:23.982] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 18:29:24.005] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 18:29:24.005] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 18:29:24.005] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 18:29:24.006] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 18:29:24.006] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 18:29:24.006] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 18:29:24.007] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 18:29:24.007] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 18:36:57.580] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 18:36:57.585] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 18:36:57.588] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 18:36:57.589] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 18:36:57.589] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 18:36:57.591] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 18:36:57.593] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 18:36:57.895] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 18:36:57.905] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 18:36:58.027] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 18:36:58.033] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 18:36:58.045] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 18:36:58.050] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 18:36:58.051] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 18:36:58.053] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 18:36:58.615] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:36:58.621] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 18:36:58.622] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 18:36:58.623] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 18:36:58.624] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 18:36:58.633] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 18:37:01.599] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 18:37:01.690] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4de79b7d] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 18:37:01.761] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 18:37:01.764] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 18:37:02.027] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 18:37:02.028] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 18:37:02.028] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 18:37:02.029] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 18:37:02.030] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 18:37:02.031] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 18:37:02.365] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 18:37:02.367] [INFO ] PersistenceConfig.initializeKursor:147 - Base de datos de kursor inicializada correctamente: ../kursor-core/data/kursor.db
+[2025-06-29 18:37:02.368] [INFO ] PersistenceConfig.initialize:69 - ✅ Base de datos de kursor inicializada correctamente
+[2025-06-29 18:37:02.369] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 18:37:02.370] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 18:37:02.370] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 18:37:02.371] [INFO ] KursorStudioApplication.main:138 - ✅ kursor.db: Base de datos de Kursor disponible
+[2025-06-29 18:37:02.371] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 18:37:02.403] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 18:37:02.406] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 18:37:02.407] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 18:37:03.483] [INFO ] KursorStudioApplication.start:203 - ✅ Conexión a BD de Kursor válida y activa
+[2025-06-29 18:37:03.487] [INFO ] KursorStudioApplication.start:239 - ✅ Conexión a BD de Kursor establecida - no se requiere configuración adicional
+[2025-06-29 18:37:03.802] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 18:37:03.805] [INFO ] DatabaseExplorerController.createExplorerInterface:58 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 18:37:03.882] [INFO ] DatabaseExplorerController.loadTableStructure:203 - 📋 Cargando estructura de tablas
+[2025-06-29 18:37:03.892] [INFO ] KursorStudioApplication.createExplorerContent:417 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 18:37:03.981] [INFO ] DatabaseExplorerController.getRealTableNames:327 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 18:37:03.984] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estadisticas_usuario: 8 registros
+[2025-06-29 18:37:03.995] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - estados_estrategias: 24 registros
+[2025-06-29 18:37:03.997] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - preguntas_sesion: 420 registros
+[2025-06-29 18:37:04.000] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - respuestas_preguntas: 0 registros
+[2025-06-29 18:37:04.015] [INFO ] DatabaseExplorerController.getRealTableNames:335 -   - sesiones: 24 registros
+[2025-06-29 18:37:04.016] [INFO ] DatabaseExplorerController.getTableNamesFromJPA:261 - Tablas reales encontradas en BD: [estadisticas_usuario, estados_estrategias, preguntas_sesion, respuestas_preguntas, sesiones]
+[2025-06-29 18:37:05.740] [INFO ] KursorStudioApplication.start:262 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 18:37:05.742] [INFO ] DatabaseExplorerController.populateTableTree:371 - Árbol de tablas actualizado con 5 tablas
+[2025-06-29 18:37:07.735] [INFO ] KursorStudioApplication.lambda$createTabPane$0:353 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 18:37:09.221] [INFO ] DatabaseExplorerController.loadTableData:378 - 📊 Cargando datos de tabla: sesiones
+[2025-06-29 18:37:09.245] [INFO ] DatabaseExplorerController.getTableData:439 - Datos obtenidos de sesiones: 24 registros
+[2025-06-29 18:37:09.285] [INFO ] DatabaseExplorerController.displayTableData:626 - Datos mostrados en tabla: 16 columnas, 24 filas
+[2025-06-29 18:39:38.448] [INFO ] KursorStudioApplication.lambda$start$0:256 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 18:39:38.449] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 18:39:38.453] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 18:39:38.454] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 18:39:38.454] [INFO ] PersistenceConfig.shutdown:209 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 18:39:38.455] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 18:39:38.457] [INFO ] PersistenceConfig.shutdown:214 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 18:39:38.459] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 18:39:38.460] [INFO ] PersistenceConfig.shutdown:220 - Base de datos de kursor cerrada correctamente
+[2025-06-29 18:39:38.461] [INFO ] PersistenceConfig.shutdown:223 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 18:39:38.461] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 18:39:38.462] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 18:39:38.462] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 18:39:38.463] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 18:39:38.463] [INFO ] KursorStudioApplication.shutdown:929 - ================================================
+[2025-06-29 18:39:38.492] [INFO ] KursorStudioApplication.shutdown:900 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 18:39:38.492] [INFO ] KursorStudioApplication.shutdown:910 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 18:39:38.493] [INFO ] KursorStudioApplication.shutdown:914 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 18:39:38.493] [INFO ] KursorStudioApplication.shutdown:917 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 18:39:38.493] [INFO ] KursorStudioApplication.shutdown:922 - 💾 Recursos liberados correctamente
+[2025-06-29 18:39:38.493] [INFO ] KursorStudioApplication.shutdown:927 - ================================================
+[2025-06-29 18:39:38.494] [INFO ] KursorStudioApplication.shutdown:928 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 18:39:38.494] [INFO ] KursorStudioApplication.shutdown:929 - ================================================

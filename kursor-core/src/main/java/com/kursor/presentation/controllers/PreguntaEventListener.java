@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.controllers;
 
 /**
  * Interfaz para manejar eventos de preguntas desde los módulos hacia CursoInterfaceView.

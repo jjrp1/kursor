@@ -1,4 +1,4 @@
-package com.kursor.ui.session;
+package com.kursor.presentation.viewmodels;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

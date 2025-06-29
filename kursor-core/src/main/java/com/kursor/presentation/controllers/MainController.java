@@ -1,14 +1,12 @@
 package com.kursor.presentation.controllers;
 
-import com.kursor.persistence.config.PersistenceConfig;
 import com.kursor.shared.util.CursoManager;
 import com.kursor.shared.util.ModuleManager;
 import com.kursor.shared.util.StrategyManager;
 import com.kursor.yaml.dto.CursoDTO;
-import com.kursor.presentation.controllers.CursoInterfaceController;
-import com.kursor.presentation.dialogs.EstadisticasDialog;
 import com.kursor.presentation.dialogs.AboutDialog;
 import com.kursor.presentation.dialogs.AnalyticsDialog;
+import com.kursor.presentation.viewmodels.SessionViewModel;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.application.Platform;
@@ -16,10 +14,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceDialog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.kursor.presentation.controllers.SessionController;
 import com.kursor.presentation.views.SessionTableView;
 import com.kursor.presentation.views.MainView;
 import com.kursor.presentation.viewmodels.MainViewModel;
+import com.kursor.application.services.AnalyticsService;
+import com.kursor.presentation.controllers.CursoExecutionManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -146,6 +145,40 @@ public class MainController {
         if (selectedCourse != null) {
             sessionController.loadSessions(selectedCourse);
             mainView.setSessionTableView(sessionTableView);
+            
+            // Verificar si hay sesiones disponibles y actualizar estado del botón Reanudar
+            boolean haySesiones = haySesionesDisponibles();
+            mainView.setResumeButtonEnabled(haySesiones);
+            
+            if (!haySesiones) {
+                logger.debug("No hay sesiones disponibles para curso: {}, botón Reanudar deshabilitado", selectedCourse.getTitulo());
+            } else {
+                logger.debug("Hay sesiones disponibles para curso: {}, botón Reanudar habilitado", selectedCourse.getTitulo());
+            }
+        }
+    }
+    
+    /**
+     * Verifica si hay sesiones disponibles para el curso seleccionado.
+     * 
+     * @return true si hay sesiones disponibles, false en caso contrario
+     */
+    private boolean haySesionesDisponibles() {
+        if (selectedCourse == null) {
+            return false;
+        }
+        
+        try {
+            // Obtener las sesiones del ViewModel del SessionController
+            List<SessionViewModel.SessionData> sesiones = sessionController.getViewModel().getSessions();
+            
+            // Verificar si hay sesiones reales (no el mensaje de "Sin datos registrados")
+            return sesiones.stream()
+                .anyMatch(sesion -> !sesion.getBlock().equals("(Sin datos registrados)"));
+                
+        } catch (Exception e) {
+            logger.error("Error al verificar sesiones disponibles para curso: {}", selectedCourse.getTitulo(), e);
+            return false;
         }
     }
     
@@ -158,51 +191,27 @@ public class MainController {
             return;
         }
         
-        String selectedBlock = showBlockSelectionDialog();
-        if (selectedBlock != null) {
-            startNewSession(selectedBlock);
-        }
-    }
-    
-    /**
-     * Muestra el diálogo de selección de bloque
-     */
-    private String showBlockSelectionDialog() {
-        if (selectedCourse == null || selectedCourse.getBloques() == null) {
-            return null;
-        }
-        
-        List<String> blockNames = selectedCourse.getBloques().stream()
-            .map(bloque -> bloque.getTitulo())
-            .toList();
-        
-        ChoiceDialog<String> dialog = new ChoiceDialog<>(blockNames.get(0), blockNames);
-        dialog.setTitle("Seleccionar Bloque");
-        dialog.setHeaderText("Elige el bloque para la nueva sesión:");
-        dialog.setContentText("Bloque:");
-        
-        Optional<String> result = dialog.showAndWait();
-        return result.orElse(null);
+        startNewSession();
     }
     
     /**
      * Inicia una nueva sesión
      */
-    private void startNewSession(String selectedBlock) {
-        logger.info("Iniciando nueva sesión para curso: {} - bloque: {}", 
-            selectedCourse.getTitulo(), selectedBlock);
+    private void startNewSession() {
+        logger.info("Iniciando nueva sesión para curso: {}", selectedCourse.getTitulo());
         
         try {
-            CursoInterfaceController controller = new CursoInterfaceController(primaryStage);
-            boolean success = controller.iniciarCurso(selectedCourse);
+            // Usar el nuevo CursoExecutionManager que maneja todo el flujo
+            CursoExecutionManager executionManager = new CursoExecutionManager(primaryStage, selectedCourse);
+            boolean success = executionManager.ejecutarCurso();
             
             if (success) {
                 logger.info("Sesión iniciada correctamente");
                 // Actualizar la tabla de sesiones después de completar
                 updateSessionsTable();
             } else {
-                logger.warn("No se pudo iniciar la sesión");
-                showErrorDialog("Error", "No se pudo iniciar la sesión");
+                logger.info("Usuario canceló o no se pudo iniciar la sesión");
+                // No mostrar error, es normal que el usuario cancele
             }
             
         } catch (Exception e) {
@@ -245,10 +254,13 @@ public class MainController {
             return;
         }
         
-        logger.info("Mostrando analytics avanzados para curso: {}", selectedCourse.getTitulo());
+        logger.info("Mostrando estadísticas avanzadas para curso: {}", selectedCourse.getTitulo());
         
         try {
-            AnalyticsDialog analyticsDialog = new AnalyticsDialog(primaryStage);
+            // Crear instancia del AnalyticsService y AnalyticsController
+            AnalyticsService analyticsService = new AnalyticsService();
+            AnalyticsController analyticsController = new AnalyticsController(analyticsService);
+            AnalyticsDialog analyticsDialog = new AnalyticsDialog(primaryStage, analyticsController);
             analyticsDialog.showAndWait();
         } catch (Exception e) {
             logger.error("Error al mostrar analytics", e);

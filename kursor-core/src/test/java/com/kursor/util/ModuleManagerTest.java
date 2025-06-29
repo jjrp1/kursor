@@ -1,6 +1,7 @@
 package com.kursor.util;
 
 import com.kursor.modules.PreguntaModule;
+import com.kursor.shared.util.ModuleManager;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 

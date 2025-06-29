@@ -1,10 +1,12 @@
-package com.kursor.ui.session;
+package com.kursor.presentation.controllers;
 
 import com.kursor.yaml.dto.CursoDTO;
 import com.kursor.yaml.dto.SesionDTO;
 import com.kursor.persistence.repository.SesionRepository;
 import com.kursor.persistence.entity.Sesion;
 import com.kursor.persistence.config.PersistenceConfig;
+import com.kursor.presentation.viewmodels.SessionViewModel;
+import com.kursor.presentation.views.SessionTableView;
 import javafx.stage.Stage;
 import java.util.List;
 import java.util.ArrayList;
@@ -93,8 +95,7 @@ public class SessionController {
      * Carga las sesiones para un curso específico.
      * 
      * <p>Este método intenta cargar sesiones reales desde la base de datos.
-     * Si no hay datos disponibles o hay errores, genera datos ficticios
-     * basados en la estructura del curso.</p>
+     * Si no hay datos disponibles, muestra una fila indicando que no hay datos registrados.</p>
      * 
      * @param curso El curso para el cual cargar las sesiones
      */
@@ -115,19 +116,35 @@ public class SessionController {
                     // Convertir DTOs a datos de vista
                     sessions = convertirDTOsAVista(sesionesDTO);
                 } else {
-                    logger.info("No se encontraron sesiones reales para curso: {}, usando datos ficticios", curso.getTitulo());
-                    sessions = createFictitiousData(curso);
+                    logger.info("No se encontraron sesiones reales para curso: {}, mostrando mensaje de sin datos", curso.getTitulo());
+                    sessions = crearMensajeSinDatos();
                 }
             } else {
-                logger.info("Usando datos ficticios para curso: {}", curso.getTitulo());
-                sessions = createFictitiousData(curso);
+                logger.info("Repositorio no disponible para curso: {}, mostrando mensaje de sin datos", curso.getTitulo());
+                sessions = crearMensajeSinDatos();
             }
         } catch (Exception e) {
             logger.error("Error al cargar sesiones para curso: {}", curso.getTitulo(), e);
-            sessions = createFictitiousData(curso);
+            sessions = crearMensajeSinDatos();
         }
         
         viewModel.setSessions(sessions);
+    }
+
+    /**
+     * Crea un mensaje indicando que no hay datos registrados.
+     * 
+     * @return Lista con una sola fila indicando que no hay datos
+     */
+    private List<SessionViewModel.SessionData> crearMensajeSinDatos() {
+        List<SessionViewModel.SessionData> sessions = new ArrayList<>();
+        sessions.add(new SessionViewModel.SessionData(
+            "-", 
+            "(Sin datos registrados)", 
+            "-", 
+            "-"
+        ));
+        return sessions;
     }
 
     /**
@@ -188,47 +205,20 @@ public class SessionController {
     }
 
     /**
-     * Crea datos ficticios para mostrar cuando no hay sesiones reales.
-     * 
-     * <p>Genera datos de ejemplo basados en la estructura del curso,
-     * simulando sesiones previas con estadísticas realistas.</p>
-     * 
-     * @param curso El curso para el cual generar datos ficticios
-     * @return Lista de datos de sesión ficticios
-     */
-    private List<SessionViewModel.SessionData> createFictitiousData(CursoDTO curso) {
-        List<SessionViewModel.SessionData> sessions = new ArrayList<>();
-        
-        // Crear datos ficticios basados en el curso
-        if (curso.getBloques() != null && !curso.getBloques().isEmpty()) {
-            for (int i = 0; i < Math.min(3, curso.getBloques().size()); i++) {
-                String bloqueTitulo = curso.getBloques().get(i).getTitulo();
-                int preguntasBloque = curso.getBloques().get(i).getPreguntas().size();
-                int aciertos = (int) (preguntasBloque * 0.8); // 80% de aciertos
-                int pendientes = preguntasBloque - aciertos;
-                
-                sessions.add(new SessionViewModel.SessionData(
-                    "2024-01-" + String.format("%02d", 15 - i), // Fechas ficticias
-                    bloqueTitulo,
-                    aciertos + "/" + preguntasBloque,
-                    String.valueOf(pendientes)
-                ));
-            }
-        } else {
-            // Datos genéricos si no hay bloques
-            sessions.add(new SessionViewModel.SessionData("2024-01-15", "Bloque 1", "8/10", "2"));
-            sessions.add(new SessionViewModel.SessionData("2024-01-10", "Bloque 2", "6/8", "2"));
-        }
-        
-        return sessions;
-    }
-
-    /**
      * Obtiene la vista de tabla de sesiones.
      * 
      * @return La tabla de sesiones configurada
      */
     public SessionTableView getSessionTableView() {
         return sessionTableView;
+    }
+    
+    /**
+     * Obtiene el ViewModel del controlador de sesiones.
+     * 
+     * @return SessionViewModel del controlador
+     */
+    public SessionViewModel getViewModel() {
+        return viewModel;
     }
 } 

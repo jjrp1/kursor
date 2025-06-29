@@ -1,15 +1,31 @@
 package com.kursor.presentation.controllers;
 
 import com.kursor.domain.EstrategiaAprendizaje;
-import com.kursor.yaml.dto.CursoDTO;
+import com.kursor.presentation.dialogs.StrategySelectorModal;
+import com.kursor.shared.util.CursoManager;
 import com.kursor.shared.util.StrategyManager;
-import com.kursor.presentation.dialogs.EstrategiaSelectionModal;
+import com.kursor.strategy.EstrategiaModule;
+import com.kursor.yaml.dto.CursoDTO;
 import com.kursor.presentation.views.CursoInterfaceView;
 import javafx.stage.Window;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+
+// Importar DTOs y dominio
+import com.kursor.domain.EstrategiaAprendizaje;
+import com.kursor.shared.util.StrategyManager;
+
+// Importar vistas y diálogos
+import com.kursor.presentation.views.CursoInterfaceView;
+import com.kursor.presentation.dialogs.StrategySelectorModal;
+
+// Importar persistencia
+import com.kursor.persistence.repository.SesionRepository;
+import com.kursor.persistence.repository.PreguntaSesionRepository;
+import com.kursor.persistence.repository.EstadoEstrategiaRepository;
+import com.kursor.persistence.config.PersistenceConfig;
 
 /**
  * Controlador principal para la ejecución de cursos con estrategia de aprendizaje.
@@ -30,7 +46,7 @@ import java.util.List;
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
  * @since 1.0.0
- * @see EstrategiaSelectionModal
+ * @see StrategySelectorModal
  * @see CursoInterfaceView
  * @see CursoSessionManager
  * @see StrategyManager
@@ -46,8 +62,8 @@ public class CursoInterfaceController {
     /** Gestor de estrategias */
     private final StrategyManager strategyManager;
     
-    /** Modal de selección de estrategia */
-    private EstrategiaSelectionModal estrategiaModal;
+    /** Modal de selección de estrategia (versión MVC) */
+    private StrategySelectorModal estrategiaModal;
     
     /** Modal de ejecución de curso */
     private CursoInterfaceView cursoView;
@@ -61,27 +77,74 @@ public class CursoInterfaceController {
     /** Estrategia seleccionada */
     private String estrategiaSeleccionada;
     
+    // Nuevos campos para persistencia
+    private SesionRepository sesionRepository;
+    private PreguntaSesionRepository preguntaSesionRepository;
+    private EstadoEstrategiaRepository estadoEstrategiaRepository;
+    
     /**
-     * Constructor para crear el controlador de curso.
+     * Constructor del controlador.
      * 
-     * @param owner Ventana padre para los modales
+     * @param owner Ventana padre desde la cual se lanza el curso
      */
     public CursoInterfaceController(Window owner) {
         this.owner = owner;
         this.strategyManager = StrategyManager.getInstance();
         
-        logger.info("CursoInterfaceController creado");
+        // Inicializar repositorios si la persistencia está disponible
+        inicializarRepositorios();
+        
+        logger.info("CursoInterfaceController inicializado");
     }
     
     /**
-     * Inicia la ejecución de un curso.
+     * Inicializa los repositorios de persistencia si están disponibles.
+     */
+    private void inicializarRepositorios() {
+        try {
+            if (PersistenceConfig.isInitialized()) {
+                var entityManager = PersistenceConfig.createEntityManager();
+                this.sesionRepository = new SesionRepository(entityManager);
+                this.preguntaSesionRepository = new PreguntaSesionRepository(entityManager);
+                this.estadoEstrategiaRepository = new EstadoEstrategiaRepository(entityManager);
+                logger.info("Repositorios de persistencia inicializados correctamente");
+            } else {
+                logger.warn("PersistenceConfig no está inicializado, usando modo memoria");
+            }
+        } catch (Exception e) {
+            logger.error("Error al inicializar repositorios de persistencia", e);
+        }
+    }
+    
+    /**
+     * Inicia un curso con la estrategia y bloque ya seleccionados.
      * 
-     * <p>Este método maneja el flujo completo de inicio de un curso:</p>
-     * <ol>
-     *   <li>Selección de estrategia de aprendizaje (modal informativo)</li>
-     *   <li>Inicialización del gestor de sesión</li>
-     *   <li>Mostrar vista de curso</li>
-     * </ol>
+     * @param curso Curso a ejecutar
+     * @param estrategiaSeleccionada Estrategia ya seleccionada
+     * @param bloqueSeleccionado Bloque ya seleccionado
+     * @return true si se inició correctamente, false si hubo error
+     */
+    public boolean iniciarCurso(CursoDTO curso, String estrategiaSeleccionada, com.kursor.yaml.dto.BloqueDTO bloqueSeleccionado) {
+        logger.info("Iniciando curso: {} con estrategia: {} y bloque: {}", 
+                   curso.getTitulo(), estrategiaSeleccionada, bloqueSeleccionado.getTitulo());
+        
+        if (curso == null) {
+            logger.error("No se puede iniciar un curso null");
+            return false;
+        }
+        
+        this.cursoActual = curso;
+        this.estrategiaSeleccionada = estrategiaSeleccionada;
+        
+        // Paso 1: Inicializar gestor de sesión con el bloque seleccionado
+        inicializarSessionManager(bloqueSeleccionado.getTitulo());
+        
+        // Paso 2: Mostrar vista de curso
+        return mostrarVistaCurso();
+    }
+
+    /**
+     * Inicia un curso solicitando la estrategia al usuario.
      * 
      * @param curso Curso a ejecutar
      * @return true si se inició correctamente, false si se canceló o hubo error
@@ -96,7 +159,7 @@ public class CursoInterfaceController {
         
         this.cursoActual = curso;
         
-        // Paso 1: Mostrar modal de selección de estrategia (solo informativo)
+        // Paso 1: Mostrar modal de selección de estrategia
         String estrategiaSeleccionadaPorUsuario = mostrarSeleccionEstrategia();
         if (estrategiaSeleccionadaPorUsuario == null) {
             logger.info("Usuario canceló la selección de estrategia");
@@ -120,9 +183,9 @@ public class CursoInterfaceController {
      * @return Nombre de la estrategia seleccionada, o null si se canceló
      */
     private String mostrarSeleccionEstrategia() {
-        logger.debug("Mostrando modal de selección de estrategia");
+        logger.debug("Mostrando modal de selección de estrategia (versión MVC)");
         
-        estrategiaModal = new EstrategiaSelectionModal(owner, cursoActual);
+        estrategiaModal = new StrategySelectorModal(owner, cursoActual);
         return estrategiaModal.mostrarYEsperar();
     }
     
@@ -130,12 +193,71 @@ public class CursoInterfaceController {
      * Inicializa el gestor de sesión para el curso actual.
      */
     private void inicializarSessionManager() {
-        logger.debug("Inicializando gestor de sesión para curso: " + cursoActual.getId() + " con estrategia: " + estrategiaSeleccionada);
+        // Usar el método que acepta un bloque específico
+        String bloqueId = obtenerBloqueSeleccionado();
+        inicializarSessionManager(bloqueId);
+    }
+    
+    /**
+     * Inicializa el gestor de sesión para el curso actual con un bloque específico.
+     * 
+     * @param bloqueId ID del bloque seleccionado
+     */
+    private void inicializarSessionManager(String bloqueId) {
+        logger.debug("Inicializando gestor de sesión para curso: {} con bloque: {}", 
+                    cursoActual.getId(), bloqueId);
         
-        sessionManager = new CursoSessionManager(cursoActual.getId(), estrategiaSeleccionada);
-        sessionManager.inicializar();
-        
-        logger.info("Gestor de sesión inicializado");
+        try {
+            if (isPersistenciaDisponible()) {
+                // Usar persistencia real
+                sessionManager = new CursoSessionManager(
+                    cursoActual.getId(), 
+                    bloqueId, 
+                    estrategiaSeleccionada,
+                    sesionRepository,
+                    preguntaSesionRepository,
+                    estadoEstrategiaRepository
+                );
+                logger.info("Gestor de sesión inicializado con persistencia real");
+            } else {
+                // Usar modo memoria (legacy)
+                sessionManager = new CursoSessionManager(cursoActual.getId(), estrategiaSeleccionada);
+                logger.warn("Gestor de sesión inicializado en modo memoria (sin persistencia)");
+            }
+            
+            sessionManager.inicializar();
+            logger.info("Gestor de sesión inicializado correctamente");
+            
+        } catch (Exception e) {
+            logger.error("Error al inicializar gestor de sesión", e);
+            // Fallback a modo memoria
+            sessionManager = new CursoSessionManager(cursoActual.getId(), estrategiaSeleccionada);
+            sessionManager.inicializar();
+        }
+    }
+    
+    /**
+     * Obtiene el bloque seleccionado para el curso.
+     * 
+     * @return ID del bloque seleccionado
+     */
+    private String obtenerBloqueSeleccionado() {
+        // TODO: Implementar lógica de selección de bloque
+        // Por ahora usamos el primer bloque disponible
+        if (cursoActual.getBloques() != null && !cursoActual.getBloques().isEmpty()) {
+            // Usar el título como ID temporal ya que BloqueDTO no tiene getId()
+            return cursoActual.getBloques().get(0).getTitulo();
+        }
+        return "default";
+    }
+    
+    /**
+     * Verifica si la persistencia está disponible.
+     * 
+     * @return true si la persistencia está disponible, false en caso contrario
+     */
+    private boolean isPersistenciaDisponible() {
+        return sesionRepository != null && preguntaSesionRepository != null && estadoEstrategiaRepository != null;
     }
     
     /**
@@ -150,12 +272,18 @@ public class CursoInterfaceController {
             // Crear la estrategia de aprendizaje
             EstrategiaAprendizaje estrategia = crearEstrategia();
             if (estrategia == null) {
-                logger.error("No se pudo crear la estrategia: " + estrategiaSeleccionada);
+                logger.error("No se pudo crear la estrategia: {}", estrategiaSeleccionada);
                 return false;
             }
             
-            // Crear y mostrar la vista de curso
-            cursoView = new CursoInterfaceView(owner, cursoActual, estrategia);
+            // Crear y mostrar la vista de curso con el sessionManager
+            if (sessionManager != null && sessionManager.isPersistenciaHabilitada()) {
+                logger.info("Creando vista de curso con persistencia habilitada");
+                cursoView = new CursoInterfaceView(owner, cursoActual, estrategia, sessionManager);
+            } else {
+                logger.warn("Creando vista de curso sin persistencia (modo memoria)");
+                cursoView = new CursoInterfaceView(owner, cursoActual, estrategia);
+            }
             
             // Configurar eventos de la vista
             configurarEventosVista();

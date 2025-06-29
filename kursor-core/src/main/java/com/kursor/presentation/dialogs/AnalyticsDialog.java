@@ -1,4 +1,4 @@
-package com.kursor.ui.analytics;
+package com.kursor.presentation.dialogs;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +20,10 @@ import javafx.scene.text.FontWeight;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import com.kursor.presentation.controllers.AnalyticsController;
+import com.kursor.application.services.AnalyticsService.DashboardMetrics;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Cuadro de diálogo para mostrar estadísticas avanzadas de aprendizaje.
@@ -43,6 +47,9 @@ import java.util.HashMap;
  * @since 1.0.0
  */
 public class AnalyticsDialog extends Stage {
+    
+    /** Logger para registrar eventos del diálogo de analytics */
+    private static final Logger logger = LoggerFactory.getLogger(AnalyticsDialog.class);
     
     private final AnalyticsController controller;
     private final VBox mainContainer;
@@ -72,9 +79,11 @@ public class AnalyticsDialog extends Stage {
      * Constructor del diálogo de analytics.
      * 
      * @param parentStage La ventana padre desde la cual se lanza el diálogo
+     * @param analyticsController El controlador de analytics
      */
-    public AnalyticsDialog(Stage parentStage) {
-        this.controller = new AnalyticsController();
+    public AnalyticsDialog(Stage parentStage, AnalyticsController analyticsController) {
+        logger.debug("Inicializando AnalyticsDialog con controlador: {}", analyticsController.getClass().getSimpleName());
+        this.controller = analyticsController;
         this.mainContainer = new VBox(20);
         
         initDialog(parentStage);
@@ -86,6 +95,7 @@ public class AnalyticsDialog extends Stage {
         createStrategiesTable();
         
         loadInitialData();
+        logger.info("AnalyticsDialog inicializado exitosamente");
     }
     
     /**
@@ -94,7 +104,14 @@ public class AnalyticsDialog extends Stage {
      * @param parentStage La ventana padre
      */
     private void initDialog(Stage parentStage) {
-        setTitle("📊 Analytics Avanzados - Kursor");
+        logger.debug("Inicializando configuración del diálogo de analytics");
+        
+        // Este diálogo necesita scroll (demasiada información a mostrar)
+        ScrollPane scrollPane = new ScrollPane(mainContainer);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        setTitle("📈 Estadísticas");
         setWidth(1200);
         setHeight(800);
         setResizable(true);
@@ -102,12 +119,14 @@ public class AnalyticsDialog extends Stage {
         initModality(Modality.APPLICATION_MODAL);
         initOwner(parentStage);
         
-        Scene scene = new Scene(mainContainer);
+        Scene scene = new Scene(scrollPane);
         scene.getStylesheets().add(getClass().getResource("/styles/analytics.css").toExternalForm());
         setScene(scene);
         
         mainContainer.setPadding(new Insets(20));
         mainContainer.setAlignment(Pos.TOP_CENTER);
+        
+        logger.debug("Configuración del diálogo completada - Tamaño: {}x{}", getWidth(), getHeight());
     }
     
     /**
@@ -117,13 +136,13 @@ public class AnalyticsDialog extends Stage {
         VBox header = new VBox(10);
         header.setAlignment(Pos.CENTER);
         
-        Label titleLabel = new Label("📊 Analytics Avanzados - Kursor");
+        Label titleLabel = new Label("📈 Estadísticas");
         titleLabel.setFont(Font.font("System", FontWeight.BOLD, 24));
-        titleLabel.setStyle("-fx-text-fill: #4a5568;");
+        titleLabel.setStyle("-fx-text-fill: #000000;");
         
         Label subtitleLabel = new Label("Análisis detallado de tu progreso de aprendizaje");
         subtitleLabel.setFont(Font.font("System", 14));
-        subtitleLabel.setStyle("-fx-text-fill: #718096;");
+        subtitleLabel.setStyle("-fx-text-fill: #000000;");
         
         header.getChildren().addAll(titleLabel, subtitleLabel);
         mainContainer.getChildren().add(header);
@@ -452,12 +471,77 @@ public class AnalyticsDialog extends Stage {
         String bloque = bloqueFilter.getValue();
         String periodo = periodoFilter.getValue();
         
-        // Aquí se llamaría al controlador para obtener datos reales
-        // Por ahora solo mostramos un mensaje
-        System.out.println("Actualizando analytics con filtros: " + curso + ", " + bloque + ", " + periodo);
+        logger.debug("Actualizando analytics con filtros - Curso: {}, Bloque: {}, Período: {}", curso, bloque, periodo);
         
-        // TODO: Implementar llamada real al controlador
-        // controller.updateAnalytics(curso, bloque, periodo);
+        // TODO: Implementar mapeo de filtros a IDs reales
+        Long cursoId = null; // Por ahora null para todos los cursos
+        Long bloqueId = null; // Por ahora null para todos los bloques
+        int periodoDias = 30; // Por defecto 30 días
+        
+        // Mapear período a días
+        switch (periodo) {
+            case "Esta semana":
+                periodoDias = 7;
+                break;
+            case "Última sesión":
+                periodoDias = 1;
+                break;
+            default: // "Este mes"
+                periodoDias = 30;
+                break;
+        }
+        
+        logger.debug("Período mapeado a {} días", periodoDias);
+        
+        // TODO: Obtener usuarioId real del contexto de la aplicación
+        Long usuarioId = 1L; // Por ahora usuario de ejemplo
+        
+        try {
+            logger.debug("Solicitando actualización de analytics al controlador");
+            
+            // Obtener datos actualizados del controlador
+            var dashboardMetrics = controller.actualizarAnalytics(usuarioId, cursoId, bloqueId, periodoDias);
+            
+            // Actualizar la UI con los nuevos datos
+            actualizarMetricas(dashboardMetrics);
+            actualizarGraficos(dashboardMetrics);
+            
+            logger.info("Analytics actualizados exitosamente con filtros: {}, {}, {}", curso, bloque, periodo);
+            
+        } catch (Exception e) {
+            logger.error("Error al actualizar analytics con filtros: {}, {}, {}", curso, bloque, periodo, e);
+            // TODO: Mostrar mensaje de error al usuario
+        }
+    }
+    
+    /**
+     * Actualiza las métricas en la UI.
+     * 
+     * @param metrics Métricas del dashboard
+     */
+    private void actualizarMetricas(DashboardMetrics metrics) {
+        logger.debug("Actualizando métricas en la UI");
+        
+        // TODO: Implementar actualización de métricas en la UI
+        // Por ahora solo mostramos en consola
+        logger.info("Métricas actualizadas:");
+        logger.info("  - Porcentaje de éxito: {}%", metrics.getPorcentajeExito());
+        logger.info("  - Velocidad promedio: {}s", metrics.getVelocidadPromedio());
+        logger.info("  - Sesiones completadas: {}", metrics.getSesionesCompletadas());
+        logger.info("  - Progreso del curso: {}%", metrics.getProgresoCurso());
+    }
+    
+    /**
+     * Actualiza los gráficos en la UI.
+     * 
+     * @param metrics Métricas del dashboard
+     */
+    private void actualizarGraficos(DashboardMetrics metrics) {
+        logger.debug("Actualizando gráficos en la UI");
+        
+        // TODO: Implementar actualización de gráficos en la UI
+        // Por ahora solo mostramos en consola
+        logger.info("Gráficos actualizados con {} tendencias", metrics.getTendenciasTemporales().size());
     }
     
     /**

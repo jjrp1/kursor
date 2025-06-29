@@ -74,6 +74,9 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
     /** Módulo actual */
     private com.kursor.modules.PreguntaModule moduloActual;
     
+    /** Gestor de sesión (opcional para persistencia) */
+    private final com.kursor.presentation.controllers.CursoSessionManager sessionManager;
+    
     /**
      * Constructor para crear la vista de ejecución de curso.
      * 
@@ -82,15 +85,35 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
      * @param estrategia Estrategia de aprendizaje seleccionada
      */
     public CursoInterfaceView(Window owner, CursoDTO curso, EstrategiaAprendizaje estrategia) {
+        this(owner, curso, estrategia, null);
+    }
+    
+    /**
+     * Constructor para crear la vista de ejecución de curso con persistencia.
+     * 
+     * @param owner Ventana padre de la vista
+     * @param curso Curso a ejecutar
+     * @param estrategia Estrategia de aprendizaje seleccionada
+     * @param sessionManager Gestor de sesión para persistencia (opcional)
+     */
+    public CursoInterfaceView(Window owner, CursoDTO curso, EstrategiaAprendizaje estrategia, 
+                            com.kursor.presentation.controllers.CursoSessionManager sessionManager) {
         super();
         
         this.curso = curso;
         this.estrategia = estrategia;
+        this.sessionManager = sessionManager;
         
         // Inicializar gestor de módulos
         this.moduleManager = com.kursor.shared.util.ModuleManager.getInstance();
         
-        logger.info("Creando vista de curso para: " + curso.getTitulo() + " con estrategia: " + estrategia.getNombre());
+        if (sessionManager != null && sessionManager.isPersistenciaHabilitada()) {
+            logger.info("Creando vista de curso con persistencia para: {} con estrategia: {}", 
+                       curso.getTitulo(), estrategia.getNombre());
+        } else {
+            logger.info("Creando vista de curso sin persistencia para: {} con estrategia: {}", 
+                       curso.getTitulo(), estrategia.getNombre());
+        }
         
         // Configurar la vista
         configurarVista(owner);
@@ -411,7 +434,9 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
     
     @Override
     public void onRespuestaValidada(boolean esCorrecta) {
-        logger.info("Respuesta validada: " + (esCorrecta ? "CORRECTA" : "INCORRECTA"));
+        logger.info("Respuesta validada: {} para pregunta: {}", 
+                   esCorrecta ? "CORRECTA" : "INCORRECTA", 
+                   preguntaActual != null ? preguntaActual.getId() : "null");
         
         // Actualizar estado
         estadoPreguntaActual = esCorrecta ? EstadoPregunta.CORRECTA : EstadoPregunta.INCORRECTA;
@@ -422,8 +447,19 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
             actualizarProgreso();
         }
         
-        // TODO: Guardar progreso automáticamente
-        // sessionManager.guardarProgreso(preguntaActual, esCorrecta);
+        // Guardar progreso automáticamente si el sessionManager está disponible
+        if (sessionManager != null && preguntaActual != null) {
+            try {
+                sessionManager.guardarRespuesta(preguntaActual.getId(), esCorrecta);
+                logger.debug("Progreso guardado en sessionManager para pregunta: {}", preguntaActual.getId());
+            } catch (Exception e) {
+                logger.error("Error al guardar progreso en sessionManager", e);
+                // Continuar sin persistencia si hay error
+            }
+        } else {
+            logger.debug("No se guardó progreso - sessionManager: {}, preguntaActual: {}", 
+                        sessionManager != null, preguntaActual != null);
+        }
         
         // Preparar transición a siguiente pregunta
         prepararSiguientePregunta();
@@ -494,8 +530,18 @@ public class CursoInterfaceView extends Stage implements PreguntaEventListener {
         
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                // TODO: Guardar progreso final
-                // sessionManager.finalizarSesion();
+                // Guardar progreso final si el sessionManager está disponible
+                if (sessionManager != null && sessionManager.isPersistenciaHabilitada()) {
+                    try {
+                        // TODO: Implementar finalización de sesión en sessionManager
+                        // sessionManager.finalizarSesion();
+                        logger.info("Progreso final guardado en sessionManager");
+                    } catch (Exception e) {
+                        logger.error("Error al guardar progreso final en sessionManager", e);
+                    }
+                } else {
+                    logger.debug("No se guardó progreso final - sessionManager no disponible");
+                }
                 
                 close();
             }

@@ -3,7 +3,7 @@ package com.kursor.fillblanks;
 import com.kursor.modules.PreguntaModule;
 import com.kursor.domain.Pregunta;
 import com.kursor.fillblanks.domain.PreguntaCompletarHuecos;
-import com.kursor.ui.PreguntaEventListener;
+import com.kursor.presentation.controllers.PreguntaEventListener;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;

@@ -2,7 +2,8 @@ package com.kursor.strategy;
 
 import com.kursor.domain.Pregunta;
 import com.kursor.domain.EstrategiaAprendizaje;
-import com.kursor.util.StrategyManager;
+import com.kursor.shared.util.StrategyManager;
+import com.kursor.strategy.EstrategiaModule;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

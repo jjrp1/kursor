@@ -1,4 +1,4 @@
-package com.kursor.ui;
+package com.kursor.presentation.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,6 +6,16 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
+
+// Importar entidades y repositorios de persistencia
+import com.kursor.persistence.entity.Sesion;
+import com.kursor.persistence.entity.PreguntaSesion;
+import com.kursor.persistence.entity.EstadoEstrategia;
+import com.kursor.persistence.entity.EstadoSesion;
+import com.kursor.persistence.repository.SesionRepository;
+import com.kursor.persistence.repository.PreguntaSesionRepository;
+import com.kursor.persistence.repository.EstadoEstrategiaRepository;
 
 /**
  * Gestor de sesión para el progreso del usuario en un curso.
@@ -18,15 +28,12 @@ import java.util.ArrayList;
  * <ul>
  *   <li><strong>Seguimiento de respuestas:</strong> Registra respuestas correctas e incorrectas</li>
  *   <li><strong>Estado de progreso:</strong> Mantiene la posición actual en el curso</li>
- *   <li><strong>Persistencia:</strong> Guarda y carga el progreso del usuario</li>
+ *   <li><strong>Persistencia:</strong> Guarda y carga el progreso del usuario en base de datos</li>
  *   <li><strong>Estadísticas:</strong> Proporciona información sobre el rendimiento</li>
  * </ul>
  * 
- * <p>En futuras versiones, esta clase se integrará con JPA para persistencia
- * en base de datos. Por ahora, utiliza almacenamiento en memoria.</p>
- * 
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
- * @version 1.0.0
+ * @version 2.0.0
  * @since 1.0.0
  */
 public class CursoSessionManager {
@@ -36,6 +43,9 @@ public class CursoSessionManager {
     
     /** Identificador del curso */
     private final String cursoId;
+    
+    /** Identificador del bloque */
+    private final String bloqueId;
     
     /** Estrategia de aprendizaje seleccionada */
     private String estrategiaSeleccionada;
@@ -55,44 +65,166 @@ public class CursoSessionManager {
     /** Indica si la sesión ha sido inicializada */
     private boolean inicializada;
     
+    // Nuevos campos para persistencia
+    private Sesion sesionActual;
+    private final SesionRepository sesionRepository;
+    private final PreguntaSesionRepository preguntaSesionRepository;
+    private final EstadoEstrategiaRepository estadoEstrategiaRepository;
+    
     /**
-     * Constructor para crear un gestor de sesión para un curso específico.
+     * Constructor para crear un gestor de sesión para un curso específico con persistencia.
      * 
      * @param cursoId Identificador único del curso
+     * @param bloqueId Identificador del bloque
      * @param estrategia Estrategia de aprendizaje seleccionada
+     * @param sesionRepository Repositorio de sesiones
+     * @param preguntaSesionRepository Repositorio de preguntas de sesión
+     * @param estadoEstrategiaRepository Repositorio de estados de estrategia
      */
-    public CursoSessionManager(String cursoId, String estrategia) {
+    public CursoSessionManager(String cursoId, String bloqueId, String estrategia,
+                             SesionRepository sesionRepository,
+                             PreguntaSesionRepository preguntaSesionRepository,
+                             EstadoEstrategiaRepository estadoEstrategiaRepository) {
         this.cursoId = cursoId;
+        this.bloqueId = bloqueId;
         this.estrategiaSeleccionada = estrategia;
+        this.sesionRepository = sesionRepository;
+        this.preguntaSesionRepository = preguntaSesionRepository;
+        this.estadoEstrategiaRepository = estadoEstrategiaRepository;
         this.respuestas = new HashMap<>();
         this.preguntasRespondidas = new ArrayList<>();
         this.bloqueActual = 0;
         this.preguntaActual = 0;
         this.inicializada = false;
         
-        logger.info("CursoSessionManager creado para curso: " + cursoId + " con estrategia: " + estrategia);
+        logger.info("CursoSessionManager creado para curso: {} bloque: {} con estrategia: {}", 
+                   cursoId, bloqueId, estrategia);
     }
     
     /**
      * Constructor para crear un gestor de sesión para un curso específico (sin estrategia).
      * 
      * @param cursoId Identificador único del curso
+     * @param bloqueId Identificador del bloque
+     * @param sesionRepository Repositorio de sesiones
+     * @param preguntaSesionRepository Repositorio de preguntas de sesión
+     * @param estadoEstrategiaRepository Repositorio de estados de estrategia
      */
+    public CursoSessionManager(String cursoId, String bloqueId,
+                             SesionRepository sesionRepository,
+                             PreguntaSesionRepository preguntaSesionRepository,
+                             EstadoEstrategiaRepository estadoEstrategiaRepository) {
+        this(cursoId, bloqueId, "Secuencial", sesionRepository, preguntaSesionRepository, estadoEstrategiaRepository);
+    }
+    
+    /**
+     * Constructor para crear un gestor de sesión con una sesión existente.
+     * 
+     * @param sesion Sesión existente
+     * @param sesionRepository Repositorio de sesiones
+     * @param preguntaSesionRepository Repositorio de preguntas de sesión
+     * @param estadoEstrategiaRepository Repositorio de estados de estrategia
+     */
+    public CursoSessionManager(Sesion sesion,
+                             SesionRepository sesionRepository,
+                             PreguntaSesionRepository preguntaSesionRepository,
+                             EstadoEstrategiaRepository estadoEstrategiaRepository) {
+        this.cursoId = sesion.getCursoId();
+        this.bloqueId = sesion.getBloqueId();
+        this.estrategiaSeleccionada = sesion.getEstrategiaTipo();
+        this.sesionActual = sesion;
+        this.sesionRepository = sesionRepository;
+        this.preguntaSesionRepository = preguntaSesionRepository;
+        this.estadoEstrategiaRepository = estadoEstrategiaRepository;
+        this.respuestas = new HashMap<>();
+        this.preguntasRespondidas = new ArrayList<>();
+        this.bloqueActual = 0;
+        this.preguntaActual = 0;
+        this.inicializada = false;
+        
+        logger.info("CursoSessionManager creado con sesión existente: {} para curso: {} bloque: {}", 
+                   sesion.getId(), cursoId, bloqueId);
+    }
+    
+    /**
+     * Constructor legacy para compatibilidad (solo memoria).
+     * 
+     * @param cursoId Identificador único del curso
+     * @param estrategia Estrategia de aprendizaje seleccionada
+     * @deprecated Usar constructor con repositorios para persistencia real
+     */
+    @Deprecated
+    public CursoSessionManager(String cursoId, String estrategia) {
+        this.cursoId = cursoId;
+        this.bloqueId = "default"; // Valor por defecto
+        this.estrategiaSeleccionada = estrategia;
+        this.sesionRepository = null;
+        this.preguntaSesionRepository = null;
+        this.estadoEstrategiaRepository = null;
+        this.respuestas = new HashMap<>();
+        this.preguntasRespondidas = new ArrayList<>();
+        this.bloqueActual = 0;
+        this.preguntaActual = 0;
+        this.inicializada = false;
+        
+        logger.warn("CursoSessionManager creado sin persistencia (modo legacy) para curso: {}", cursoId);
+    }
+    
+    /**
+     * Constructor legacy para compatibilidad (solo memoria).
+     * 
+     * @param cursoId Identificador único del curso
+     * @deprecated Usar constructor con repositorios para persistencia real
+     */
+    @Deprecated
     public CursoSessionManager(String cursoId) {
-        this(cursoId, "Secuencial"); // Estrategia por defecto
+        this(cursoId, "Secuencial");
     }
     
     /**
      * Inicializa la sesión cargando el progreso guardado.
      */
     public void inicializar() {
-        logger.info("Inicializando sesión para curso: " + cursoId);
+        logger.info("Inicializando sesión para curso: {} bloque: {}", cursoId, bloqueId);
         
-        // Cargar progreso guardado (implementación futura con JPA)
-        cargarProgreso();
-        
-        this.inicializada = true;
-        logger.info("Sesión inicializada - Preguntas respondidas: " + respuestas.size());
+        try {
+            if (sesionActual == null && sesionRepository != null) {
+                // Crear nueva sesión si no existe
+                crearNuevaSesion();
+            }
+            
+            // Cargar progreso guardado
+            cargarProgreso();
+            
+            this.inicializada = true;
+            logger.info("Sesión inicializada - Preguntas respondidas: {}", respuestas.size());
+            
+        } catch (Exception e) {
+            logger.error("Error al inicializar sesión", e);
+            // Continuar en modo memoria si hay error de persistencia
+            this.inicializada = true;
+        }
+    }
+    
+    /**
+     * Crea una nueva sesión en la base de datos.
+     */
+    private void crearNuevaSesion() {
+        try {
+            sesionActual = new Sesion(cursoId, bloqueId, estrategiaSeleccionada);
+            sesionActual = sesionRepository.guardar(sesionActual);
+            
+            // Crear estado de estrategia inicial
+            EstadoEstrategia estadoEstrategia = new EstadoEstrategia(sesionActual, estrategiaSeleccionada, "{}");
+            estadoEstrategiaRepository.guardar(estadoEstrategia);
+            
+            logger.info("Nueva sesión creada: {} para curso: {} bloque: {}", 
+                       sesionActual.getId(), cursoId, bloqueId);
+            
+        } catch (Exception e) {
+            logger.error("Error al crear nueva sesión", e);
+            throw new RuntimeException("Error al crear nueva sesión", e);
+        }
     }
     
     /**
@@ -102,7 +234,7 @@ public class CursoSessionManager {
      * @param esCorrecta true si la respuesta es correcta, false en caso contrario
      */
     public void guardarRespuesta(String preguntaId, boolean esCorrecta) {
-        logger.debug("Guardando respuesta - Pregunta: " + preguntaId + ", Correcta: " + esCorrecta);
+        logger.debug("Guardando respuesta - Pregunta: {} Correcta: {}", preguntaId, esCorrecta);
         
         respuestas.put(preguntaId, esCorrecta);
         
@@ -110,10 +242,75 @@ public class CursoSessionManager {
             preguntasRespondidas.add(preguntaId);
         }
         
-        // Guardar progreso (implementación futura con JPA)
-        guardarProgreso();
+        // Guardar en base de datos si está disponible
+        if (sesionActual != null && preguntaSesionRepository != null) {
+            try {
+                guardarRespuestaEnBD(preguntaId, esCorrecta);
+            } catch (Exception e) {
+                logger.error("Error al guardar respuesta en BD", e);
+                // Continuar en modo memoria si hay error
+            }
+        }
         
-        logger.info("Respuesta guardada - Total respuestas: " + respuestas.size());
+        // Actualizar estadísticas de la sesión
+        if (sesionActual != null && sesionRepository != null) {
+            try {
+                actualizarEstadisticasSesion();
+            } catch (Exception e) {
+                logger.error("Error al actualizar estadísticas de sesión", e);
+            }
+        }
+        
+        logger.info("Respuesta guardada - Total respuestas: {}", respuestas.size());
+    }
+    
+    /**
+     * Guarda una respuesta en la base de datos.
+     * 
+     * @param preguntaId Identificador de la pregunta
+     * @param esCorrecta true si la respuesta es correcta, false en caso contrario
+     */
+    private void guardarRespuestaEnBD(String preguntaId, boolean esCorrecta) {
+        // Verificar si ya existe una entrada para esta pregunta
+        Optional<PreguntaSesion> preguntaExistente = preguntaSesionRepository
+            .buscarPorSesionYPregunta(sesionActual.getId(), preguntaId);
+        
+        PreguntaSesion preguntaSesion;
+        if (preguntaExistente.isPresent()) {
+            // Actualizar respuesta existente
+            preguntaSesion = preguntaExistente.get();
+            preguntaSesion.registrarRespuesta("", esCorrecta, 0); // TODO: Agregar tiempo real
+        } else {
+            // Crear nueva entrada
+            preguntaSesion = new PreguntaSesion(sesionActual, preguntaId);
+            preguntaSesion.registrarRespuesta("", esCorrecta, 0); // TODO: Agregar tiempo real
+        }
+        
+        preguntaSesionRepository.guardar(preguntaSesion);
+        logger.debug("Respuesta guardada en BD para pregunta: {}", preguntaId);
+    }
+    
+    /**
+     * Actualiza las estadísticas de la sesión en la base de datos.
+     */
+    private void actualizarEstadisticasSesion() {
+        if (sesionActual == null) return;
+        
+        // Calcular estadísticas
+        int totalPreguntas = respuestas.size();
+        int correctas = (int) respuestas.values().stream().filter(correcta -> correcta).count();
+        double porcentaje = totalPreguntas > 0 ? (double) correctas / totalPreguntas * 100 : 0;
+        
+        // Actualizar sesión
+        sesionActual.setPreguntasRespondidas(totalPreguntas);
+        sesionActual.setAciertos(correctas);
+        sesionActual.setTasaAciertos(porcentaje);
+        sesionActual.actualizarUltimaRevision();
+        
+        // Guardar cambios
+        sesionRepository.guardar(sesionActual);
+        logger.debug("Estadísticas de sesión actualizadas - Total: {} Correctas: {} Porcentaje: {}%", 
+                    totalPreguntas, correctas, porcentaje);
     }
     
     /**
@@ -265,36 +462,104 @@ public class CursoSessionManager {
     }
     
     /**
-     * Carga el progreso guardado del usuario.
-     * 
-     * <p>En la implementación actual, este método es un placeholder.
-     * En futuras versiones, se implementará la carga desde base de datos
-     * usando JPA.</p>
+     * Carga el progreso guardado del usuario desde la base de datos.
      */
     private void cargarProgreso() {
-        logger.debug("Cargando progreso para curso: " + cursoId);
+        logger.debug("Cargando progreso para curso: {} bloque: {}", cursoId, bloqueId);
         
-        // TODO: Implementar carga desde base de datos con JPA
-        // Por ahora, no se carga ningún progreso (sesión nueva)
+        if (sesionActual == null || preguntaSesionRepository == null) {
+            logger.info("No hay sesión o repositorio disponible, cargando progreso vacío");
+            return;
+        }
         
-        logger.info("Progreso cargado (sesión nueva)");
+        try {
+            // Cargar respuestas guardadas
+            List<PreguntaSesion> preguntasSesion = preguntaSesionRepository
+                .buscarPorSesion(sesionActual.getId());
+            
+            respuestas.clear();
+            preguntasRespondidas.clear();
+            
+            for (PreguntaSesion preguntaSesion : preguntasSesion) {
+                String preguntaId = preguntaSesion.getPreguntaId();
+                boolean esCorrecta = preguntaSesion.esCorrecta();
+                
+                respuestas.put(preguntaId, esCorrecta);
+                preguntasRespondidas.add(preguntaId);
+            }
+            
+            // Cargar posición actual desde la sesión
+            if (sesionActual.getPreguntaActualId() != null) {
+                // TODO: Implementar lógica para determinar bloque y pregunta actual
+                // Por ahora usamos valores por defecto
+                bloqueActual = 0;
+                preguntaActual = preguntasRespondidas.size();
+            }
+            
+            logger.info("Progreso cargado desde BD - Respuestas: {} Posición: Bloque {} Pregunta {}", 
+                       respuestas.size(), bloqueActual, preguntaActual);
+            
+        } catch (Exception e) {
+            logger.error("Error al cargar progreso desde BD", e);
+            // Continuar con progreso vacío si hay error
+        }
     }
     
     /**
-     * Guarda el progreso actual del usuario.
-     * 
-     * <p>En la implementación actual, este método es un placeholder.
-     * En futuras versiones, se implementará el guardado en base de datos
-     * usando JPA.</p>
+     * Guarda el progreso actual del usuario en la base de datos.
      */
     private void guardarProgreso() {
-        logger.debug("Guardando progreso para curso: " + cursoId);
+        logger.debug("Guardando progreso para curso: {} bloque: {}", cursoId, bloqueId);
         
-        // TODO: Implementar guardado en base de datos con JPA
-        // Por ahora, solo se registra en el log
+        if (sesionActual == null || sesionRepository == null) {
+            logger.debug("No hay sesión o repositorio disponible, guardando solo en memoria");
+            return;
+        }
         
-        logger.info("Progreso guardado - Respuestas: " + respuestas.size() + 
-                   ", Posición: Bloque " + bloqueActual + ", Pregunta " + preguntaActual);
+        try {
+            // Actualizar estadísticas de la sesión
+            actualizarEstadisticasSesion();
+            
+            // TODO: Guardar posición actual en la sesión
+            // sesionActual.setPreguntaActualId(preguntaActualId);
+            
+            // Guardar cambios en la sesión
+            sesionRepository.guardar(sesionActual);
+            
+            logger.info("Progreso guardado en BD - Respuestas: {} Posición: Bloque {} Pregunta {}", 
+                       respuestas.size(), bloqueActual, preguntaActual);
+            
+        } catch (Exception e) {
+            logger.error("Error al guardar progreso en BD", e);
+            // Continuar en modo memoria si hay error
+        }
+    }
+    
+    /**
+     * Obtiene el identificador del bloque.
+     * 
+     * @return Identificador del bloque
+     */
+    public String getBloqueId() {
+        return bloqueId;
+    }
+    
+    /**
+     * Obtiene la sesión actual.
+     * 
+     * @return Sesión actual o null si no hay persistencia
+     */
+    public Sesion getSesionActual() {
+        return sesionActual;
+    }
+    
+    /**
+     * Verifica si la persistencia está habilitada.
+     * 
+     * @return true si la persistencia está habilitada, false en caso contrario
+     */
+    public boolean isPersistenciaHabilitada() {
+        return sesionRepository != null && preguntaSesionRepository != null && estadoEstrategiaRepository != null;
     }
     
     /**
