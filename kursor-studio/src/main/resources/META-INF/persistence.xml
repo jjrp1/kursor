@@ -55,9 +55,14 @@
             
             <!-- Hibernate para kursor -->
             <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
+            
+            <!-- Deshabilitar validación de esquema para kursor -->
+            <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+            <property name="hibernate.jdbc.lob.non_contextual_creation" value="true"/>
+            <property name="hibernate.validator.apply_to_ddl" value="false"/>
             
             <!-- Configuración de conexión para kursor -->
             <property name="hibernate.connection.pool_size" value="1"/>

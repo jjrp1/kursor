@@ -325,8 +325,8 @@ public class DatabaseExplorerController {
                 throw new RuntimeException("No se pudo crear EntityManager para kursor");
             }
             
-            // Consulta genérica para obtener datos de la tabla
-            String jpql = "SELECT e FROM " + tableName + " e";
+            // Mapear nombres de entidades a consultas específicas
+            String jpql = getJPQLForEntity(tableName);
             jakarta.persistence.Query query = em.createQuery(jpql);
             query.setMaxResults(1000); // Limitar a 1000 registros por rendimiento
             
@@ -344,6 +344,25 @@ public class DatabaseExplorerController {
     }
     
     /**
+     * Obtiene la consulta JPQL específica para una entidad.
+     */
+    private String getJPQLForEntity(String entityName) {
+        switch (entityName) {
+            case "Sesion":
+                return "SELECT s.id, s.fechaInicio, s.fechaFin, s.estado, s.cursoId FROM Sesion s";
+            case "EstadoEstrategia":
+                return "SELECT e.id, e.estrategia, e.estado, e.fechaCreacion FROM EstadoEstrategia e";
+            case "EstadisticasUsuario":
+                return "SELECT eu.id, eu.usuarioId, eu.preguntasCorrectas, eu.preguntasIncorrectas, eu.fechaUltimaActividad FROM EstadisticasUsuario eu";
+            case "RespuestaPregunta":
+                return "SELECT rp.id, rp.preguntaId, rp.respuesta, rp.esCorrecta, rp.fechaRespuesta FROM RespuestaPregunta rp";
+            default:
+                // Consulta genérica como fallback
+                return "SELECT e FROM " + entityName + " e";
+        }
+    }
+    
+    /**
      * Muestra los datos en la tabla.
      */
     private void displayTableData(String tableName, List<Object[]> data) {
@@ -356,12 +375,16 @@ public class DatabaseExplorerController {
             return;
         }
         
+        // Obtener nombres de columnas para la entidad
+        String[] columnNames = getColumnNamesForEntity(tableName);
+        
         // Crear columnas dinámicamente basadas en los datos
         Object[] firstRow = data.get(0);
         if (firstRow != null) {
             for (int i = 0; i < firstRow.length; i++) {
                 final int columnIndex = i;
-                TableColumn<Object[], Object> column = new TableColumn<>("Columna " + (i + 1));
+                String columnName = (i < columnNames.length) ? columnNames[i] : "Columna " + (i + 1);
+                TableColumn<Object[], Object> column = new TableColumn<>(columnName);
                 column.setCellValueFactory(param -> {
                     Object[] row = param.getValue();
                     if (row != null && columnIndex < row.length) {
@@ -379,6 +402,30 @@ public class DatabaseExplorerController {
         
         logger.info("Datos mostrados en tabla: {} columnas, {} filas", 
             dataTableView.getColumns().size(), data.size());
+    }
+    
+    /**
+     * Obtiene los nombres de columnas para una entidad específica.
+     */
+    private String[] getColumnNamesForEntity(String entityName) {
+        switch (entityName) {
+            case "Sesion":
+                return new String[]{"ID", "Fecha Inicio", "Fecha Fin", "Estado", "Curso ID"};
+            case "EstadoEstrategia":
+                return new String[]{"ID", "Estrategia", "Estado", "Fecha Creación"};
+            case "EstadisticasUsuario":
+                return new String[]{"ID", "Usuario ID", "Correctas", "Incorrectas", "Última Actividad"};
+            case "RespuestaPregunta":
+                return new String[]{"ID", "Pregunta ID", "Respuesta", "Es Correcta", "Fecha Respuesta"};
+            default:
+                // Nombres genéricos como fallback
+                Object[] firstRow = tableData.isEmpty() ? new Object[0] : tableData.get(0);
+                String[] names = new String[firstRow != null ? firstRow.length : 0];
+                for (int i = 0; i < names.length; i++) {
+                    names[i] = "Columna " + (i + 1);
+                }
+                return names;
+        }
     }
     
     /**

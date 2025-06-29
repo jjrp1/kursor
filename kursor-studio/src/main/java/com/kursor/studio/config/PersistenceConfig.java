@@ -65,7 +65,7 @@ public class PersistenceConfig {
             
             // Inicializar kursor (datos a explorar) - OPCIONAL
             try {
-                initializeKursor("data/kursor.db");
+                initializeKursor("../kursor-core/data/kursor.db");
                 logger.info("✅ Base de datos de kursor inicializada correctamente");
             } catch (Exception e) {
                 logger.warn("⚠️ No se pudo inicializar la base de datos de kursor: {}", e.getMessage());

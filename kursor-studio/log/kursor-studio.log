@@ -675,3 +675,1255 @@ Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-valid
 [2025-06-29 12:32:42.319] [INFO ] KursorStudioApplication.shutdown:871 - ================================================
 [2025-06-29 12:32:42.319] [INFO ] KursorStudioApplication.shutdown:872 - 👋 Kursor Studio finalizado correctamente
 [2025-06-29 12:32:42.319] [INFO ] KursorStudioApplication.shutdown:873 - ================================================
+[2025-06-29 13:01:39.914] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 13:01:39.917] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 13:01:39.920] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 13:01:39.921] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 13:01:39.921] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 13:01:39.924] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 13:01:39.925] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 13:01:40.123] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:01:40.131] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 13:01:40.221] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 13:01:40.224] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 13:01:40.231] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:01:40.235] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:01:40.236] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:01:40.237] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:01:40.688] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:01:40.691] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:01:40.692] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 13:01:40.693] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:01:40.694] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:01:40.699] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:01:42.341] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:01:42.400] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2272cbb0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:01:42.425] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 13:01:42.425] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: data/kursor.db
+[2025-06-29 13:01:42.461] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:01:42.463] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorPU]
+[2025-06-29 13:01:42.472] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:01:42.472] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:01:42.473] [WARN ] deprecation.normalizeDataAccess:951 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:01:42.476] [WARN ] deprecation.lambda$normalizeDataAccess$22:969 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:01:42.538] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:01:42.539] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:01:42.540] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor.db]
+[2025-06-29 13:01:42.541] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:01:42.542] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:01:42.543] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:01:42.904] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:01:42.906] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@a91119b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:01:42.912] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor.db]
+[2025-06-29 13:01:42.914] [ERROR] PersistenceConfig.initializeKursor:122 - Error al inicializar base de datos de kursor: data/kursor.db
+jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	at com.kursor.studio.config.PersistenceConfig.initialize(PersistenceConfig.java:68)
+	at com.kursor.studio.KursorStudioApplication.main(KursorStudioApplication.java:127)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1180)
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 12 common frames omitted
+[2025-06-29 13:01:42.918] [WARN ] PersistenceConfig.initialize:71 - ⚠️ No se pudo inicializar la base de datos de kursor: Error al inicializar base de datos de kursor: data/kursor.db
+[2025-06-29 13:01:42.919] [INFO ] PersistenceConfig.initialize:72 - ℹ️ La aplicación continuará sin acceso a la base de datos de Kursor
+[2025-06-29 13:01:42.920] [INFO ] PersistenceConfig.initialize:73 - ℹ️ Puede configurar la base de datos más tarde desde la interfaz
+[2025-06-29 13:01:42.920] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 13:01:42.921] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 13:01:42.921] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 13:01:42.922] [INFO ] KursorStudioApplication.main:140 - ℹ️ kursor.db: Base de datos de Kursor no disponible (opcional)
+[2025-06-29 13:01:42.922] [INFO ] KursorStudioApplication.main:141 - ℹ️ Puede configurar la base de datos más tarde desde la interfaz
+[2025-06-29 13:01:42.922] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 13:01:42.947] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 13:01:42.949] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 13:01:42.950] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 13:01:43.537] [INFO ] KursorStudioApplication.start:192 - ℹ️ No hay configuración válida de BD de Kursor - mostrando diálogo de configuración
+[2025-06-29 13:01:43.855] [INFO ] DatabaseConfigurationDialog.loadExistingConfiguration:253 - Configuración existente cargada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:01.127] [INFO ] DatabaseConfigurationService.saveConfiguration:54 - Guardando nueva configuración de BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:01.131] [INFO ] DatabaseConfigurationService.saveConfiguration:68 - Conexión exitosa a BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:01.176] [INFO ] DatabaseConfigurationRepository.save:33 - Nueva configuración de BD guardada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:01.195] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:01.230] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:02:01.231] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorPU]
+[2025-06-29 13:02:01.239] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:02:01.240] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:02:01.241] [WARN ] deprecation.normalizeDataAccess:951 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:02:01.242] [WARN ] deprecation.lambda$normalizeDataAccess$22:969 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:02:01.289] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:02:01.291] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:02:01.293] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:02:01.295] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:02:01.296] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:02:01.297] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:02:01.526] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:02:01.527] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@538960d0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:02:01.538] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:02:01.539] [ERROR] PersistenceConfig.initializeKursor:122 - Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.KursorStudioApplication.start(KursorStudioApplication.java:196)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:847)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:484)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:457)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:456)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 73 common frames omitted
+[2025-06-29 13:02:01.542] [ERROR] DatabaseConfigurationService.saveConfiguration:83 - Error al inicializar BD de kursor: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+java.lang.RuntimeException: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:123)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.KursorStudioApplication.start(KursorStudioApplication.java:196)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:847)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:484)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:457)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:456)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	... 70 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 73 common frames omitted
+[2025-06-29 13:02:01.573] [INFO ] DatabaseConfigurationRepository.save:36 - Configuración de BD actualizada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:01.609] [INFO ] DatabaseConfigurationDialog.saveConfiguration:219 - Configuración guardada exitosamente: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:05.530] [WARN ] KursorStudioApplication.start:202 - ⚠️ Configuración de BD de Kursor fallida - continuando sin ella
+[2025-06-29 13:02:05.556] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 13:02:05.560] [INFO ] DatabaseExplorerController.createExplorerInterface:57 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 13:02:05.636] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:05.642] [INFO ] KursorStudioApplication.createExplorerContent:384 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 13:02:06.507] [INFO ] KursorStudioApplication.start:229 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 13:02:07.879] [INFO ] KursorStudioApplication.lambda$createTabPane$0:320 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 13:02:11.052] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:02:11.053] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:12.103] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:02:12.104] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:17.632] [INFO ] DatabaseExplorerController.showConfigurationDialog:432 - ⚙️ Mostrando diálogo de configuración
+[2025-06-29 13:02:17.636] [INFO ] DatabaseConfigurationDialog.loadExistingConfiguration:253 - Configuración existente cargada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:26.218] [INFO ] DatabaseConfigurationService.saveConfiguration:54 - Guardando nueva configuración de BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:26.220] [INFO ] DatabaseConfigurationService.saveConfiguration:68 - Conexión exitosa a BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:26.223] [INFO ] DatabaseConfigurationRepository.save:33 - Nueva configuración de BD guardada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:26.228] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:26.250] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:02:26.250] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorPU]
+[2025-06-29 13:02:26.256] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:02:26.257] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:02:26.258] [WARN ] deprecation.normalizeDataAccess:951 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:02:26.259] [WARN ] deprecation.lambda$normalizeDataAccess$22:969 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:02:26.302] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:02:26.304] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:02:26.305] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:02:26.307] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:02:26.307] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:02:26.308] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:02:26.463] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:02:26.464] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@4633c0b9] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:02:26.472] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:02:26.473] [ERROR] PersistenceConfig.initializeKursor:122 - Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.ui.DatabaseExplorerController.showConfigurationDialog(DatabaseExplorerController.java:435)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$createTopPanel$1(DatabaseExplorerController.java:108)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 114 common frames omitted
+[2025-06-29 13:02:26.483] [ERROR] DatabaseConfigurationService.saveConfiguration:83 - Error al inicializar BD de kursor: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+java.lang.RuntimeException: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:123)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.ui.DatabaseExplorerController.showConfigurationDialog(DatabaseExplorerController.java:435)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$createTopPanel$1(DatabaseExplorerController.java:108)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	... 111 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 114 common frames omitted
+[2025-06-29 13:02:26.496] [INFO ] DatabaseConfigurationRepository.save:36 - Configuración de BD actualizada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:26.505] [INFO ] DatabaseConfigurationDialog.saveConfiguration:219 - Configuración guardada exitosamente: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:02:34.065] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:02:34.065] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:34.931] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:02:34.931] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:35.211] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:02:35.211] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:35.379] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:02:35.379] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:02:38.538] [INFO ] KursorStudioApplication.lambda$start$0:223 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 13:02:38.539] [INFO ] KursorStudioApplication.shutdown:867 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 13:02:38.540] [INFO ] KursorStudioApplication.shutdown:877 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 13:02:38.541] [INFO ] KursorStudioApplication.shutdown:881 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 13:02:38.541] [INFO ] PersistenceConfig.shutdown:181 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 13:02:38.541] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 13:02:38.542] [INFO ] PersistenceConfig.shutdown:186 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 13:02:38.542] [INFO ] PersistenceConfig.shutdown:195 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 13:02:38.543] [INFO ] KursorStudioApplication.shutdown:884 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 13:02:38.543] [INFO ] KursorStudioApplication.shutdown:889 - 💾 Recursos liberados correctamente
+[2025-06-29 13:02:38.543] [INFO ] KursorStudioApplication.shutdown:894 - ================================================
+[2025-06-29 13:02:38.543] [INFO ] KursorStudioApplication.shutdown:895 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 13:02:38.543] [INFO ] KursorStudioApplication.shutdown:896 - ================================================
+[2025-06-29 13:02:38.577] [INFO ] KursorStudioApplication.shutdown:867 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 13:02:38.578] [INFO ] KursorStudioApplication.shutdown:877 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 13:02:38.579] [INFO ] KursorStudioApplication.shutdown:881 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 13:02:38.579] [INFO ] KursorStudioApplication.shutdown:884 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 13:02:38.579] [INFO ] KursorStudioApplication.shutdown:889 - 💾 Recursos liberados correctamente
+[2025-06-29 13:02:38.579] [INFO ] KursorStudioApplication.shutdown:894 - ================================================
+[2025-06-29 13:02:38.580] [INFO ] KursorStudioApplication.shutdown:895 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 13:02:38.580] [INFO ] KursorStudioApplication.shutdown:896 - ================================================
+[2025-06-29 13:10:11.944] [INFO ] KursorStudioApplication.main:109 - ================================================
+[2025-06-29 13:10:11.950] [INFO ] KursorStudioApplication.main:110 - 🚀 Iniciando Kursor Studio v2.0.0
+[2025-06-29 13:10:11.954] [INFO ] KursorStudioApplication.main:111 - ================================================
+[2025-06-29 13:10:11.954] [INFO ] KursorStudioApplication.main:116 - ☕ Versión de Java detectada: 24.0.1
+[2025-06-29 13:10:11.955] [INFO ] KursorStudioApplication.main:125 - 🗃️ Inicializando configuración de persistencia...
+[2025-06-29 13:10:11.990] [INFO ] PersistenceConfig.initialize:61 - Inicializando PersistenceConfig de Kursor Studio...
+[2025-06-29 13:10:11.991] [INFO ] PersistenceConfig.initializeKursorStudio:90 - Inicializando base de datos de kursor-studio...
+[2025-06-29 13:10:12.426] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:10:12.446] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorStudioPU]
+[2025-06-29 13:10:12.611] [INFO ] Version.logVersion:44 - HHH000412: Hibernate ORM core version 6.2.13.Final
+[2025-06-29 13:10:12.622] [INFO ] Environment.<clinit>:191 - HHH000406: Using bytecode reflection optimizer
+[2025-06-29 13:10:12.642] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:10:12.650] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:10:12.651] [WARN ] deprecation.normalizeDataAccess:1030 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:10:12.653] [WARN ] deprecation.normalizeDataAccess:1037 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:10:13.659] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:10:13.670] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:10:13.671] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 13:10:13.673] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:10:13.674] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:10:13.685] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:10:19.556] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:10:19.656] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2272cbb0] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:10:19.712] [INFO ] PersistenceConfig.initializeKursorStudio:92 - Base de datos de kursor-studio inicializada correctamente
+[2025-06-29 13:10:19.713] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 13:10:19.763] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:10:19.768] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorPU]
+[2025-06-29 13:10:19.777] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:10:19.778] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:10:19.779] [WARN ] deprecation.normalizeDataAccess:951 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:10:19.784] [WARN ] deprecation.lambda$normalizeDataAccess$22:969 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:10:19.887] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:10:19.888] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:10:19.890] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 13:10:19.892] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:10:19.893] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:10:19.893] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:10:20.809] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:10:20.815] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@a91119b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:10:20.839] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:../kursor-core/data/kursor.db]
+[2025-06-29 13:10:20.843] [ERROR] PersistenceConfig.initializeKursor:122 - Error al inicializar base de datos de kursor: ../kursor-core/data/kursor.db
+jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	at com.kursor.studio.config.PersistenceConfig.initialize(PersistenceConfig.java:68)
+	at com.kursor.studio.KursorStudioApplication.main(KursorStudioApplication.java:127)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.launchApplicationWithArgs(LauncherImpl.java:465)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.launchApplication(LauncherImpl.java:364)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/sun.launcher.LauncherHelper$FXHelper.main(LauncherHelper.java:1180)
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 12 common frames omitted
+[2025-06-29 13:10:20.851] [WARN ] PersistenceConfig.initialize:71 - ⚠️ No se pudo inicializar la base de datos de kursor: Error al inicializar base de datos de kursor: ../kursor-core/data/kursor.db
+[2025-06-29 13:10:20.852] [INFO ] PersistenceConfig.initialize:72 - ℹ️ La aplicación continuará sin acceso a la base de datos de Kursor
+[2025-06-29 13:10:20.853] [INFO ] PersistenceConfig.initialize:73 - ℹ️ Puede configurar la base de datos más tarde desde la interfaz
+[2025-06-29 13:10:20.854] [INFO ] PersistenceConfig.initialize:77 - ✅ PersistenceConfig de Kursor Studio inicializado exitosamente
+[2025-06-29 13:10:20.854] [INFO ] KursorStudioApplication.main:128 - ✅ Configuración de persistencia inicializada correctamente
+[2025-06-29 13:10:20.855] [INFO ] KursorStudioApplication.main:132 - ✅ kursor-studio.db: Base de datos local disponible
+[2025-06-29 13:10:20.856] [INFO ] KursorStudioApplication.main:140 - ℹ️ kursor.db: Base de datos de Kursor no disponible (opcional)
+[2025-06-29 13:10:20.856] [INFO ] KursorStudioApplication.main:141 - ℹ️ Puede configurar la base de datos más tarde desde la interfaz
+[2025-06-29 13:10:20.857] [INFO ] KursorStudioApplication.main:151 - 🎨 Lanzando interfaz gráfica JavaFX...
+[2025-06-29 13:10:20.897] [INFO ] KursorStudioApplication.start:167 - 🏗️ Inicializando interfaz gráfica principal...
+[2025-06-29 13:10:20.901] [INFO ] LogViewerService.<init>:78 - 📝 Inicializando LogViewerService v2.0.0
+[2025-06-29 13:10:20.902] [INFO ] LogViewerService.setCurrentLogFile:212 - 📄 Archivo de log establecido: log\kursor-studio.log
+[2025-06-29 13:10:22.346] [INFO ] KursorStudioApplication.start:192 - ℹ️ No hay configuración válida de BD de Kursor - mostrando diálogo de configuración
+[2025-06-29 13:10:23.172] [INFO ] DatabaseConfigurationDialog.loadExistingConfiguration:253 - Configuración existente cargada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:32.143] [INFO ] DatabaseConfigurationService.saveConfiguration:54 - Guardando nueva configuración de BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:32.147] [INFO ] DatabaseConfigurationService.saveConfiguration:68 - Conexión exitosa a BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:32.222] [INFO ] DatabaseConfigurationRepository.save:33 - Nueva configuración de BD guardada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:32.249] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:32.291] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:10:32.292] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorPU]
+[2025-06-29 13:10:32.304] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:10:32.305] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:10:32.307] [WARN ] deprecation.normalizeDataAccess:951 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:10:32.309] [WARN ] deprecation.lambda$normalizeDataAccess$22:969 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:10:32.375] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:10:32.377] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:10:32.377] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:10:32.378] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:10:32.379] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:10:32.380] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:10:32.700] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:10:32.701] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@55643e19] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:10:32.716] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:10:32.717] [ERROR] PersistenceConfig.initializeKursor:122 - Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.KursorStudioApplication.start(KursorStudioApplication.java:196)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:847)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:484)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:457)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:456)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 73 common frames omitted
+[2025-06-29 13:10:32.720] [ERROR] DatabaseConfigurationService.saveConfiguration:83 - Error al inicializar BD de kursor: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+java.lang.RuntimeException: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:123)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.KursorStudioApplication.start(KursorStudioApplication.java:196)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:847)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:484)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:457)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:456)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	... 70 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 73 common frames omitted
+[2025-06-29 13:10:32.763] [INFO ] DatabaseConfigurationRepository.save:36 - Configuración de BD actualizada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:32.798] [INFO ] DatabaseConfigurationDialog.saveConfiguration:219 - Configuración guardada exitosamente: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:36.203] [WARN ] KursorStudioApplication.start:202 - ⚠️ Configuración de BD de Kursor fallida - continuando sin ella
+[2025-06-29 13:10:36.283] [INFO ] DatabaseInspectorService.<init>:56 - 🔍 Inicializando DatabaseInspectorService
+[2025-06-29 13:10:36.326] [INFO ] DatabaseExplorerController.createExplorerInterface:57 - 🔍 Creando interfaz del Database Explorer
+[2025-06-29 13:10:36.376] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:36.381] [INFO ] KursorStudioApplication.createExplorerContent:384 - ✅ Database Explorer inicializado correctamente
+[2025-06-29 13:10:37.477] [INFO ] KursorStudioApplication.start:229 - ✅ Kursor Studio iniciado correctamente
+[2025-06-29 13:10:39.854] [INFO ] KursorStudioApplication.lambda$createTabPane$0:320 - 🔄 Usuario navegó a pestaña: 🔍 Database Explorer
+[2025-06-29 13:10:42.384] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:42.385] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:43.177] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:43.178] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:43.392] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:43.392] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:43.575] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:43.576] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:43.761] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:43.762] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:43.980] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:43.980] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:44.155] [INFO ] DatabaseExplorerController.refreshData:424 - 🔄 Refrescando datos del explorador
+[2025-06-29 13:10:44.156] [INFO ] DatabaseExplorerController.loadTableStructure:202 - 📋 Cargando estructura de tablas
+[2025-06-29 13:10:44.710] [INFO ] DatabaseExplorerController.showConfigurationDialog:432 - ⚙️ Mostrando diálogo de configuración
+[2025-06-29 13:10:44.718] [INFO ] DatabaseConfigurationDialog.loadExistingConfiguration:253 - Configuración existente cargada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:49.934] [INFO ] DatabaseConfigurationService.saveConfiguration:54 - Guardando nueva configuración de BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:49.938] [INFO ] DatabaseConfigurationService.saveConfiguration:68 - Conexión exitosa a BD: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:49.942] [INFO ] DatabaseConfigurationRepository.save:33 - Nueva configuración de BD guardada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:49.950] [INFO ] PersistenceConfig.initializeKursor:106 - Inicializando base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:50.026] [WARN ] PersistenceXmlParser.parsePersistenceXml:260 - HHH015018: Encountered multiple persistence-unit stanzas defining same name [kursorPU]; persistence-unit names must be unique
+[2025-06-29 13:10:50.027] [INFO ] LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: kursorPU]
+[2025-06-29 13:10:50.034] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$6:693 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.user], use [jakarta.persistence.jdbc.user] instead
+[2025-06-29 13:10:50.035] [WARN ] deprecation.lambda$normalizeConnectionAccessUserAndPass$12:715 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.password], use [jakarta.persistence.jdbc.password] instead
+[2025-06-29 13:10:50.036] [WARN ] deprecation.normalizeDataAccess:951 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.url], use [jakarta.persistence.jdbc.url] instead
+[2025-06-29 13:10:50.038] [WARN ] deprecation.lambda$normalizeDataAccess$22:969 - HHH90000021: Encountered deprecated setting [javax.persistence.jdbc.driver], use [jakarta.persistence.jdbc.driver] instead
+[2025-06-29 13:10:50.502] [WARN ] pooling.configure:80 - HHH10001002: Using built-in connection pool (not intended for production use)
+[2025-06-29 13:10:50.503] [INFO ] pooling.buildCreator:135 - HHH10001005: Loaded JDBC driver class: org.sqlite.JDBC
+[2025-06-29 13:10:50.505] [INFO ] pooling.buildCreator:157 - HHH10001012: Connecting with JDBC URL [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:10:50.506] [INFO ] pooling.buildCreator:166 - HHH10001001: Connection properties: {password=****, autocommit=false, foreign_keys=true, user=}
+[2025-06-29 13:10:50.508] [INFO ] pooling.buildCreator:170 - HHH10001003: Autocommit mode: false
+[2025-06-29 13:10:50.509] [INFO ] pooling.<init>:366 - HHH10001115: Connection pool size: 1 (min=1)
+[2025-06-29 13:10:50.820] [INFO ] JtaPlatformInitiator.initiateService:55 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[2025-06-29 13:10:50.822] [INFO ] access.getIsolatedConnection:52 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@308c29c1] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[2025-06-29 13:10:50.838] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:C:\pds\kursor\kursor-core\data\kursor.db]
+[2025-06-29 13:10:50.840] [ERROR] PersistenceConfig.initializeKursor:122 - Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.ui.DatabaseExplorerController.showConfigurationDialog(DatabaseExplorerController.java:435)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$createTopPanel$1(DatabaseExplorerController.java:108)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 114 common frames omitted
+[2025-06-29 13:10:50.938] [ERROR] DatabaseConfigurationService.saveConfiguration:83 - Error al inicializar BD de kursor: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+java.lang.RuntimeException: Error al inicializar base de datos de kursor: C:\pds\kursor\kursor-core\data\kursor.db
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:123)
+	at com.kursor.studio.service.DatabaseConfigurationService.saveConfiguration(DatabaseConfigurationService.java:80)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.saveConfiguration(DatabaseConfigurationDialog.java:218)
+	at com.kursor.studio.ui.DatabaseConfigurationDialog.lambda$new$2(DatabaseConfigurationDialog.java:86)
+	at javafx.controls/javafx.scene.control.Dialog.setResultAndClose(Dialog.java:1053)
+	at javafx.controls/javafx.scene.control.DialogPane.lambda$createButton$3(DialogPane.java:792)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:211)
+	at javafx.graphics/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:515)
+	at javafx.graphics/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:647)
+	at javafx.graphics/javafx.stage.Stage.showAndWait(Stage.java:465)
+	at javafx.controls/javafx.scene.control.HeavyweightDialog.showAndWait(HeavyweightDialog.java:162)
+	at javafx.controls/javafx.scene.control.Dialog.showAndWait(Dialog.java:346)
+	at com.kursor.studio.ui.DatabaseExplorerController.showConfigurationDialog(DatabaseExplorerController.java:435)
+	at com.kursor.studio.ui.DatabaseExplorerController.lambda$createTopPanel$1(DatabaseExplorerController.java:108)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8792)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:208)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:234)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3897)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1878)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2623)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:138)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:424)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:557)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:943)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: kursorPU] Unable to build Hibernate SessionFactory
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.persistenceException(EntityManagerFactoryBuilderImpl.java:1542)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1463)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.kursor.studio.config.PersistenceConfig.initializeKursor(PersistenceConfig.java:118)
+	... 111 common frames omitted
+Caused by: org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [database_configuration]
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:134)
+	at org.hibernate.tool.schema.internal.GroupedSchemaValidatorImpl.validateTables(GroupedSchemaValidatorImpl.java:46)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.performValidation(AbstractSchemaValidator.java:97)
+	at org.hibernate.tool.schema.internal.AbstractSchemaValidator.doValidation(AbstractSchemaValidator.java:75)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:293)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:293)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:444)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1458)
+	... 114 common frames omitted
+[2025-06-29 13:10:51.021] [INFO ] DatabaseConfigurationRepository.save:36 - Configuración de BD actualizada: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:51.038] [INFO ] DatabaseConfigurationDialog.saveConfiguration:219 - Configuración guardada exitosamente: C:\pds\kursor\kursor-core\data\kursor.db
+[2025-06-29 13:10:58.713] [INFO ] KursorStudioApplication.lambda$start$0:223 - 👋 Usuario solicitó cerrar la aplicación
+[2025-06-29 13:10:58.713] [INFO ] KursorStudioApplication.shutdown:867 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 13:10:58.715] [INFO ] KursorStudioApplication.shutdown:877 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 13:10:58.716] [INFO ] KursorStudioApplication.shutdown:881 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 13:10:58.717] [INFO ] PersistenceConfig.shutdown:181 - Cerrando PersistenceConfig de Kursor Studio...
+[2025-06-29 13:10:58.718] [INFO ] pooling.stop:601 - HHH10001008: Cleaning up connection pool [jdbc:sqlite:data/kursor-studio.db]
+[2025-06-29 13:10:58.719] [INFO ] PersistenceConfig.shutdown:186 - Base de datos de kursor-studio cerrada correctamente
+[2025-06-29 13:10:58.720] [INFO ] PersistenceConfig.shutdown:195 - PersistenceConfig de Kursor Studio cerrado exitosamente
+[2025-06-29 13:10:58.720] [INFO ] KursorStudioApplication.shutdown:884 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 13:10:58.721] [INFO ] KursorStudioApplication.shutdown:889 - 💾 Recursos liberados correctamente
+[2025-06-29 13:10:58.721] [INFO ] KursorStudioApplication.shutdown:894 - ================================================
+[2025-06-29 13:10:58.721] [INFO ] KursorStudioApplication.shutdown:895 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 13:10:58.722] [INFO ] KursorStudioApplication.shutdown:896 - ================================================
+[2025-06-29 13:10:58.851] [INFO ] KursorStudioApplication.shutdown:867 - 🔄 Iniciando cierre ordenado de Kursor Studio...
+[2025-06-29 13:10:58.855] [INFO ] KursorStudioApplication.shutdown:877 - ✅ LogViewerService cerrado correctamente
+[2025-06-29 13:10:58.855] [INFO ] KursorStudioApplication.shutdown:881 - 🗃️ Cerrando configuración de persistencia...
+[2025-06-29 13:10:58.855] [INFO ] KursorStudioApplication.shutdown:884 - ✅ Configuración de persistencia cerrada correctamente
+[2025-06-29 13:10:58.856] [INFO ] KursorStudioApplication.shutdown:889 - 💾 Recursos liberados correctamente
+[2025-06-29 13:10:58.856] [INFO ] KursorStudioApplication.shutdown:894 - ================================================
+[2025-06-29 13:10:58.856] [INFO ] KursorStudioApplication.shutdown:895 - 👋 Kursor Studio finalizado correctamente
+[2025-06-29 13:10:58.856] [INFO ] KursorStudioApplication.shutdown:896 - ================================================
