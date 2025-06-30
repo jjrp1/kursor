@@ -5,6 +5,8 @@
 
 set -e
 
+echo "=== Iniciando generación de métricas de testing ===" >&2
+
 # Inicializar contadores
 total_tests=0
 passed_tests=0
@@ -16,46 +18,91 @@ execution_time=0
 
 # Función para extraer métricas de Surefire
 extract_surefire_metrics() {
-    echo "Extracting Surefire metrics..." >&2
+    echo "Extrayendo métricas de Surefire..." >&2
     
-    for report in $(find test-reports -name "TEST-*.xml" 2>/dev/null || true); do
-        if [ -f "$report" ]; then
-            tests=$(grep -o 'tests="[0-9]*"' "$report" | sed 's/tests="//g' | sed 's/"//g' || echo "0")
-            failures=$(grep -o 'failures="[0-9]*"' "$report" | sed 's/failures="//g' | sed 's/"//g' || echo "0")
-            errors=$(grep -o 'errors="[0-9]*"' "$report" | sed 's/errors="//g' | sed 's/"//g' || echo "0")
-            skips=$(grep -o 'skipped="[0-9]*"' "$report" | sed 's/skipped="//g' | sed 's/"//g' || echo "0")
-            time=$(grep -o 'time="[0-9.]*"' "$report" | sed 's/time="//g' | sed 's/"//g' || echo "0")
-            
-            total_tests=$((total_tests + tests))
-            failed_tests=$((failed_tests + failures + errors))
-            skipped_tests=$((skipped_tests + skips))
-            execution_time=$(echo "$execution_time + $time" | bc -l 2>/dev/null || echo "$execution_time")
+    # Buscar reportes de Surefire en múltiples ubicaciones
+    surefire_dirs=(
+        "test-reports"
+        "**/target/surefire-reports"
+        "**/target/site/surefire-reports"
+    )
+    
+    for dir in "${surefire_dirs[@]}"; do
+        if [ -d "$dir" ]; then
+            echo "Buscando en directorio: $dir" >&2
+            for report in $(find "$dir" -name "TEST-*.xml" 2>/dev/null || true); do
+                if [ -f "$report" ]; then
+                    echo "Procesando reporte: $report" >&2
+                    
+                    # Extraer métricas usando grep y sed
+                    tests=$(grep -o 'tests="[0-9]*"' "$report" | head -1 | sed 's/tests="//g' | sed 's/"//g' || echo "0")
+                    failures=$(grep -o 'failures="[0-9]*"' "$report" | head -1 | sed 's/failures="//g' | sed 's/"//g' || echo "0")
+                    errors=$(grep -o 'errors="[0-9]*"' "$report" | head -1 | sed 's/errors="//g' | sed 's/"//g' || echo "0")
+                    skips=$(grep -o 'skipped="[0-9]*"' "$report" | head -1 | sed 's/skipped="//g' | sed 's/"//g' || echo "0")
+                    time=$(grep -o 'time="[0-9.]*"' "$report" | head -1 | sed 's/time="//g' | sed 's/"//g' || echo "0")
+                    
+                    echo "  Tests: $tests, Failures: $failures, Errors: $errors, Skips: $skips, Time: $time" >&2
+                    
+                    total_tests=$((total_tests + tests))
+                    failed_tests=$((failed_tests + failures + errors))
+                    skipped_tests=$((skipped_tests + skips))
+                    
+                    # Sumar tiempo de ejecución (usar awk si está disponible, sino bc)
+                    if command -v awk >/dev/null 2>&1; then
+                        execution_time=$(echo "$execution_time $time" | awk '{print $1 + $2}')
+                    elif command -v bc >/dev/null 2>&1; then
+                        execution_time=$(echo "$execution_time + $time" | bc -l 2>/dev/null || echo "$execution_time")
+                    else
+                        execution_time=$(echo "$execution_time + $time" | sed 's/^0*//' | sed 's/^\./0./' || echo "$execution_time")
+                    fi
+                fi
+            done
         fi
     done
     
     passed_tests=$((total_tests - failed_tests - skipped_tests))
+    echo "Métricas Surefire - Total: $total_tests, Pasados: $passed_tests, Fallidos: $failed_tests, Omitidos: $skipped_tests" >&2
 }
 
 # Función para extraer métricas de cobertura Jacoco
 extract_jacoco_metrics() {
-    echo "Extracting Jacoco metrics..." >&2
+    echo "Extrayendo métricas de Jacoco..." >&2
     
-    for jacoco in $(find test-reports -name "jacoco.xml" 2>/dev/null || true); do
-        if [ -f "$jacoco" ]; then
-            # Extraer cobertura de líneas usando grep y sed más básico
-            covered=$(grep -o 'INSTRUCTION.*covered="[0-9]*"' "$jacoco" | head -1 | sed 's/.*covered="//g' | sed 's/".*//g' || echo "0")
-            missed=$(grep -o 'INSTRUCTION.*missed="[0-9]*"' "$jacoco" | head -1 | sed 's/.*missed="//g' | sed 's/".*//g' || echo "0")
-            
-            if [ "$covered" != "0" ] || [ "$missed" != "0" ]; then
-                total_lines=$((covered + missed))
-                if [ "$total_lines" -gt 0 ]; then
-                    coverage=$((covered * 100 / total_lines))
-                    total_coverage=$((total_coverage + coverage))
-                    modules_count=$((modules_count + 1))
+    # Buscar reportes de Jacoco en múltiples ubicaciones
+    jacoco_dirs=(
+        "test-reports"
+        "**/target/site/jacoco"
+        "**/target/jacoco"
+    )
+    
+    for dir in "${jacoco_dirs[@]}"; do
+        if [ -d "$dir" ]; then
+            echo "Buscando en directorio: $dir" >&2
+            for jacoco in $(find "$dir" -name "jacoco.xml" 2>/dev/null || true); do
+                if [ -f "$jacoco" ]; then
+                    echo "Procesando reporte Jacoco: $jacoco" >&2
+                    
+                    # Extraer cobertura de líneas usando grep y sed
+                    covered=$(grep -o 'INSTRUCTION.*covered="[0-9]*"' "$jacoco" | head -1 | sed 's/.*covered="//g' | sed 's/".*//g' || echo "0")
+                    missed=$(grep -o 'INSTRUCTION.*missed="[0-9]*"' "$jacoco" | head -1 | sed 's/.*missed="//g' | sed 's/".*//g' || echo "0")
+                    
+                    echo "  Cubiertas: $covered, Perdidas: $missed" >&2
+                    
+                    if [ "$covered" != "0" ] || [ "$missed" != "0" ]; then
+                        total_lines=$((covered + missed))
+                        if [ "$total_lines" -gt 0 ]; then
+                            coverage=$((covered * 100 / total_lines))
+                            total_coverage=$((total_coverage + coverage))
+                            modules_count=$((modules_count + 1))
+                            echo "  Cobertura calculada: $coverage%" >&2
+                        fi
+                    fi
                 fi
-            fi
+            done
         fi
     done
+    
+    echo "Métricas Jacoco - Módulos: $modules_count, Cobertura total: $total_coverage" >&2
 }
 
 # Extraer métricas
@@ -81,7 +128,16 @@ timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # Obtener información del commit
 commit_hash=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
-commit_message=$(git log -1 --pretty=%B 2>/dev/null | head -1 || echo "No commit info")
+commit_message=$(git log -1 --pretty=%B 2>/dev/null | head -1 | tr -d '"' || echo "No commit info")
+
+# Determinar estado del build
+if [ "$failed_tests" -eq 0 ] && [ "$total_tests" -gt 0 ]; then
+    build_status="success"
+else
+    build_status="failure"
+fi
+
+echo "Generando JSON final..." >&2
 
 # Generar JSON
 cat <<EOF
@@ -105,9 +161,11 @@ cat <<EOF
   },
   "modules": [
 $(
-    for jacoco in $(find test-reports -name "jacoco.xml" 2>/dev/null || true); do
+    # Buscar reportes de Jacoco para generar datos de módulos
+    for jacoco in $(find . -name "jacoco.xml" 2>/dev/null || true); do
         if [ -f "$jacoco" ]; then
-            module_path=$(dirname "$jacoco" | sed 's|test-reports/||g' | sed 's|/target/site/jacoco||g')
+            # Extraer nombre del módulo del path
+            module_path=$(dirname "$jacoco" | sed 's|^\./||g' | sed 's|/target/site/jacoco||g' | sed 's|/target/jacoco||g')
             module_name=$(basename "$module_path")
             
             covered=$(grep -o 'INSTRUCTION.*covered="[0-9]*"' "$jacoco" | head -1 | sed 's/.*covered="//g' | sed 's/".*//g' || echo "0")
@@ -129,6 +187,8 @@ $(
     done | sed '$ s/,$//'
 )
   ],
-  "status": "$([ "$failed_tests" -eq 0 ] && echo "success" || echo "failure")"
+  "status": "$build_status"
 }
-EOF 
+EOF
+
+echo "=== Generación de métricas completada ===" >&2 

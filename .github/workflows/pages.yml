@@ -68,31 +68,48 @@ jobs:
 
       - name: Integrate test reports into documentation
         run: |
-          echo "=== Integrating Test Reports ==="
+          echo "=== Integrando Reportes de Testing ==="
           
           # Crear estructura de directorios para reportes
           mkdir -p ./docs/reports/coverage
           mkdir -p ./docs/reports/tests
           mkdir -p ./docs/reports/data
           
-          # Copiar reportes de cobertura si existen
+          # Verificar si tenemos reportes de testing
           if [ -d "test-reports" ]; then
-            echo "Test reports found, integrating..."
+            echo "Reportes de testing encontrados, integrando..."
             
             # Cobertura de Jacoco
-            find test-reports -name "jacoco" -type d -exec cp -r {} ./docs/reports/coverage/ \; || echo "No Jacoco reports found"
+            find test-reports -name "jacoco" -type d -exec cp -r {} ./docs/reports/coverage/ \; || echo "No se encontraron reportes de Jacoco"
             
             # Reportes de Surefire
-            find test-reports -name "surefire-reports" -type d -exec cp -r {} ./docs/reports/tests/ \; || echo "No Surefire reports found"
+            find test-reports -name "surefire-reports" -type d -exec cp -r {} ./docs/reports/tests/ \; || echo "No se encontraron reportes de Surefire"
             
-            # Generar datos JSON para la página web
-            ./scripts/generate-test-data.sh > ./docs/reports/data/test-metrics.json || echo "Failed to generate test data"
+            # Verificar si existe el archivo de métricas JSON
+            if [ -f "test-reports/test-metrics.json" ]; then
+              echo "Copiando métricas de testing..."
+              cp test-reports/test-metrics.json ./docs/reports/data/test-metrics.json
+            else
+              echo "Generando métricas de testing desde reportes..."
+              chmod +x scripts/generate-test-data.sh
+              ./scripts/generate-test-data.sh > ./docs/reports/data/test-metrics.json || echo "Error generando métricas"
+            fi
+            
+            echo "Reportes integrados exitosamente"
           else
-            echo "No test reports available, using fallback data"
-            echo '{"coverage": 0, "tests": 0, "status": "No data"}' > ./docs/reports/data/test-metrics.json
+            echo "No hay reportes de testing disponibles, usando datos de fallback"
+            # Copiar datos de fallback
+            cp docs/reports/data/test-metrics-fallback.json ./docs/reports/data/test-metrics.json
           fi
           
-          echo "Reports integration completed"
+          # Verificar que el archivo de métricas existe
+          if [ -f "./docs/reports/data/test-metrics.json" ]; then
+            echo "Archivo de métricas creado exitosamente:"
+            cat ./docs/reports/data/test-metrics.json
+          else
+            echo "ERROR: No se pudo crear el archivo de métricas"
+            echo '{"error": "No se pudieron generar métricas", "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"}' > ./docs/reports/data/test-metrics.json
+          fi
 
       - name: Deploy to GitHub Pages
         id: deployment

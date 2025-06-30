@@ -39,6 +39,7 @@
         <junit.version>5.9.3</junit.version>
         <mockito.version>5.3.1</mockito.version>
         <snakeyaml.version>2.0</snakeyaml.version>
+        <jacoco.version>0.8.11</jacoco.version>
     </properties>
 
     <dependencyManagement>
@@ -138,6 +139,35 @@
                             <include>**/*Test.java</include>
                         </includes>
                     </configuration>
+                </plugin>
+                
+                <!-- Jacoco para cobertura de código -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report-aggregate</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>report-aggregate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 
                 <!-- Resources -->

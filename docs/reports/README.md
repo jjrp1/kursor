@@ -12,6 +12,7 @@ El sistema funciona a través de dos workflows principales:
    - Ejecuta todos los tests del proyecto
    - Genera reportes de cobertura con Jacoco
    - Genera reportes de tests con Surefire
+   - Genera archivo JSON con métricas de testing
    - Sube los reportes como artifacts
 
 2. **Pages Workflow** (`.github/workflows/pages.yml`)
@@ -22,14 +23,17 @@ El sistema funciona a través de dos workflows principales:
 
 ### **Generación de Datos**
 
-El script `scripts/generate-test-data.sh` procesa los reportes y genera:
+El sistema puede generar datos de testing de dos formas:
+
+#### **1. Datos Reales (CI/CD)**
+Los scripts `scripts/generate-test-data.sh` y `scripts/generate-test-data.ps1` procesan los reportes y generan:
 
 ```json
 {
-  "timestamp": "2025-01-15T10:30:00Z",
+  "timestamp": "2025-06-30T15:45:04Z",
   "commit": {
-    "hash": "abc123",
-    "message": "Fix testing issues"
+    "hash": "9e66a60",
+    "message": "feat: Implementar sistema automático de reportes"
   },
   "tests": {
     "total": 42,
@@ -47,6 +51,9 @@ El script `scripts/generate-test-data.sh` procesa los reportes y genera:
   "status": "success"
 }
 ```
+
+#### **2. Datos de Ejemplo (Fallback)**
+Si no hay reportes reales disponibles, se usan datos de ejemplo basados en la estructura del proyecto.
 
 ## 📁 Estructura de Directorios
 
@@ -69,68 +76,141 @@ docs/reports/
 ### **Página Web Dinámica**
 - **URL**: [resultados-pruebas.html](../resultados-pruebas.html)
 - **Funcionalidad**: Carga automática de datos reales
-- **Fallback**: Datos de ejemplo si no hay reportes
+- **Fallback**: Muestra datos de ejemplo si no hay datos reales
 
 ### **Reportes Detallados**
-- **Jacoco Coverage**: `reports/coverage/jacoco/index.html`
-- **Surefire Tests**: `reports/tests/surefire-reports/`
-- **Codecov**: [codecov.io/gh/jjrp1/kursor](https://codecov.io/gh/jjrp1/kursor)
+- **Jacoco**: Reportes de cobertura de código
+- **Surefire**: Reportes detallados de tests
+- **Codecov**: Integración con Codecov para análisis de cobertura
 
-## 🔧 Configuración Local
+## 🛠️ Configuración Local
 
-Para probar el sistema localmente:
+### **Generar Datos de Testing Localmente**
 
-```bash
-# Ejecutar tests y generar reportes
-mvn clean test jacoco:report surefire-report:report
+#### **Windows (PowerShell)**
+```powershell
+# Generar datos de testing
+.\scripts\generate-test-data.ps1
 
-# Generar datos JSON
-./scripts/generate-test-data.sh > docs/reports/data/test-metrics.json
-
-# Servir la documentación localmente
-cd docs && python -m http.server 8000
-# Visitar: http://localhost:8000/resultados-pruebas.html
+# Actualizar y subir cambios
+.\scripts\update-test-data.ps1
 ```
 
-## 📈 Métricas Monitoreadas
+#### **Linux/macOS (Bash)**
+```bash
+# Generar datos de testing
+./scripts/generate-test-data.sh
 
-### **Cobertura de Código**
-- **Objetivo**: >90% en módulos core
-- **Mínimo**: >80% en todos los módulos
-- **Herramientas**: Jacoco + Codecov
+# Ejecutar tests con cobertura
+mvn clean test jacoco:report
+```
 
-### **Tests de Calidad**
-- **Tests unitarios**: Dominio y lógica de negocio
-- **Tests de integración**: Persistencia y servicios
-- **Tests de módulos**: Plugins de preguntas y estrategias
+### **Configuración de Maven**
 
-### **Métricas de Rendimiento**
-- **Tiempo de ejecución**: <5s para todos los tests
-- **Cobertura de líneas**: >90%
-- **Cobertura de ramas**: >85%
+El plugin de Jacoco está configurado en el `pom.xml` principal:
 
-## ⚠️ Solución de Problemas
+```xml
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.11</version>
+    <executions>
+        <execution>
+            <id>prepare-agent</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+        </execution>
+        <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
 
-### **No se muestran datos reales**
-1. Verificar que el workflow de CI haya completado exitosamente
-2. Revisar que los artifacts se hayan generado correctamente
-3. Comprobar que el workflow de Pages haya ejecutado sin errores
+## 🔧 Solución de Problemas
 
-### **Enlaces a reportes rotos**
-- Los reportes se generan solo cuando el CI completa exitosamente
-- Los enlaces apuntan a paths relativos que se crean automáticamente
+### **"No se pudieron cargar los datos de testing automáticos"**
 
-### **Datos desactualizados**
-- Los datos se actualizan en cada push al branch master
-- La página web intenta cargar datos frescos en cada visita
-- El timestamp muestra la última actualización
+Este mensaje aparece cuando:
 
-## 🚀 Mejoras Futuras
+1. **No hay datos reales**: Los workflows de CI no se han ejecutado recientemente
+2. **Error en la generación**: Problemas con los scripts de generación
+3. **Archivo no encontrado**: El archivo `test-metrics.json` no existe
 
-1. **Histórico de métricas**: Guardar tendencias temporales
-2. **Alertas automáticas**: Notificaciones cuando baja la cobertura
-3. **Métricas de rendimiento**: Tiempo de ejecución por test
-4. **Reportes de seguridad**: Integración con análisis de vulnerabilidades
+#### **Soluciones:**
+
+1. **Generar datos localmente**:
+   ```powershell
+   .\scripts\generate-test-data.ps1
+   ```
+
+2. **Verificar workflows de CI**:
+   - Ir a GitHub Actions
+   - Verificar que el workflow `ci.yml` se ejecute correctamente
+   - Revisar logs de errores
+
+3. **Actualizar manualmente**:
+   ```powershell
+   .\scripts\update-test-data.ps1
+   ```
+
+### **Errores de Compilación en Tests**
+
+Si hay errores de compilación en los tests:
+
+1. **Ejecutar solo compilación**:
+   ```bash
+   mvn clean compile
+   ```
+
+2. **Revisar errores específicos**:
+   ```bash
+   mvn test -X
+   ```
+
+3. **Corregir problemas de código** antes de ejecutar tests
+
+## 📈 Métricas Incluidas
+
+### **Tests**
+- Total de tests ejecutados
+- Tests exitosos/fallidos/omitidos
+- Tasa de éxito
+- Tiempo de ejecución
+
+### **Cobertura**
+- Cobertura promedio del proyecto
+- Cobertura por módulo
+- Líneas cubiertas vs totales
+
+### **Información del Build**
+- Hash del commit
+- Mensaje del commit
+- Timestamp de generación
+- Estado del build
+
+## 🚀 Contribuir
+
+Para contribuir al sistema de reportes:
+
+1. **Ejecutar tests localmente** antes de hacer push
+2. **Verificar que los workflows de CI pasen**
+3. **Actualizar datos de testing** si es necesario
+4. **Documentar cambios** en este README
+
+## 📞 Soporte
+
+Si tienes problemas con el sistema de reportes:
+
+1. Revisar los logs de GitHub Actions
+2. Verificar la configuración de Maven
+3. Ejecutar los scripts localmente para debug
+4. Crear un issue en el repositorio con detalles del problema
 
 ---
 

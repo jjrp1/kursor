@@ -60,22 +60,22 @@ jobs:
         cache: maven
     
     - name: Run tests with coverage
-      run: mvn clean test jacoco:report jacoco:report-aggregate surefire-report:report
-    
-    - name: Generate comprehensive test reports
       run: |
-        echo "=== Generating Test Reports ==="
+        echo "=== Ejecutando tests con cobertura ==="
+        mvn clean test jacoco:report jacoco:report-aggregate
         
-        # Generar reportes HTML para cada módulo
-        mvn surefire-report:report-only site:site -DgenerateReports=false
+        echo "=== Verificando reportes generados ==="
+        find . -name "jacoco.xml" -exec echo "Jacoco report: {}" \;
+        find . -name "TEST-*.xml" -exec echo "Surefire report: {}" \;
+    
+    - name: Generate test metrics JSON
+      run: |
+        echo "=== Generando métricas de testing ==="
+        chmod +x scripts/generate-test-data.sh
+        ./scripts/generate-test-data.sh > test-metrics.json
         
-        # Recopilar estadísticas de tests
-        echo "=== Test Statistics ==="
-        find . -name "TEST-*.xml" -exec echo "Test file: {}" \;
-        
-        echo "=== Coverage Summary ==="
-        find . -name "jacoco.xml" -exec echo "Found: {}" \;
-        echo "========================"
+        echo "=== Contenido del archivo de métricas ==="
+        cat test-metrics.json
     
     - name: Upload test reports
       uses: actions/upload-artifact@v3
@@ -85,6 +85,7 @@ jobs:
           **/target/site/jacoco/
           **/target/surefire-reports/
           **/target/site/surefire-report.html
+          test-metrics.json
         retention-days: 30
     
     - name: Upload coverage to Codecov

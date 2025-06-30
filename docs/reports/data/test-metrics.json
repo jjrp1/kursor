@@ -1,0 +1,76 @@
+﻿{
+    "commit":  {
+                   "hash":  "9e66a60",
+                   "message":  "feat: Implementar sistema autom├ítico de reportes de testing"
+               },
+    "timestamp":  "2025-06-30T15:45:04Z",
+    "tests":  {
+                  "passed":  40,
+                  "execution_time":  "2.3",
+                  "failed":  2,
+                  "total":  42,
+                  "skipped":  0,
+                  "success_rate":  95
+              },
+    "modules":  [
+                    {
+                        "lines_covered":  1847,
+                        "lines_total":  2075,
+                        "name":  "kursor-core",
+                        "coverage":  89
+                    },
+                    {
+                        "lines_covered":  234,
+                        "lines_total":  266,
+                        "name":  "flashcard-module",
+                        "coverage":  88
+                    },
+                    {
+                        "lines_covered":  312,
+                        "lines_total":  328,
+                        "name":  "multiplechoice-module",
+                        "coverage":  95
+                    },
+                    {
+                        "lines_covered":  198,
+                        "lines_total":  220,
+                        "name":  "fillblanks-module",
+                        "coverage":  90
+                    },
+                    {
+                        "lines_covered":  156,
+                        "lines_total":  179,
+                        "name":  "truefalse-module",
+                        "coverage":  87
+                    },
+                    {
+                        "lines_covered":  145,
+                        "lines_total":  156,
+                        "name":  "secuencial-strategy",
+                        "coverage":  93
+                    },
+                    {
+                        "lines_covered":  89,
+                        "lines_total":  98,
+                        "name":  "aleatoria-strategy",
+                        "coverage":  91
+                    },
+                    {
+                        "lines_covered":  234,
+                        "lines_total":  244,
+                        "name":  "repeticion-espaciada-strategy",
+                        "coverage":  96
+                    },
+                    {
+                        "lines_covered":  123,
+                        "lines_total":  138,
+                        "name":  "repetir-incorrectas-strategy",
+                        "coverage":  89
+                    }
+                ],
+    "coverage":  {
+                     "average":  92,
+                     "modules_count":  9
+                 },
+    "status":  "success"
+}
