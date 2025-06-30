@@ -26,7 +26,7 @@ El sistema funciona a través de dos workflows principales:
 El sistema puede generar datos de testing de dos formas:
 
 #### **1. Datos Reales (CI/CD)**
-Los scripts `scripts/generate-test-data.sh` y `scripts/generate-test-data.ps1` procesan los reportes y generan:
+Los scripts `scripts/generate-test-data.sh` y `scripts/generate-real-test-data.ps1` procesan los reportes y generan:
 
 ```json
 {
@@ -87,18 +87,30 @@ docs/reports/
 
 ### **Generar Datos de Testing Localmente**
 
-#### **Windows (PowerShell)**
+#### **Windows (PowerShell) - Datos Reales**
 ```powershell
-# Generar datos de testing
-.\scripts\generate-test-data.ps1
+# Generar datos de testing reales (ejecuta tests con Maven)
+.\scripts\generate-real-test-data.ps1
 
-# Actualizar y subir cambios
-.\scripts\update-test-data.ps1
+# Actualizar y subir cambios con datos reales
+.\scripts\update-real-test-data.ps1
+
+# Probar la página localmente
+.\scripts\test-page-local.ps1
 ```
 
-#### **Linux/macOS (Bash)**
+#### **Windows (PowerShell) - Datos Ficticios**
+```powershell
+# Generar datos de testing ficticios (sin ejecutar tests)
+.\scripts\generate-fake-test-data.ps1
+
+# Actualizar y subir cambios con datos ficticios
+.\scripts\update-fake-test-data.ps1
+```
+
+#### **Linux/macOS (Bash) - Datos Reales**
 ```bash
-# Generar datos de testing
+# Generar datos de testing reales
 ./scripts/generate-test-data.sh
 
 # Ejecutar tests con cobertura
@@ -144,19 +156,24 @@ Este mensaje aparece cuando:
 
 #### **Soluciones:**
 
-1. **Generar datos localmente**:
+1. **Generar datos reales**:
    ```powershell
-   .\scripts\generate-test-data.ps1
+   .\scripts\generate-real-test-data.ps1
    ```
 
-2. **Verificar workflows de CI**:
+2. **Generar datos ficticios como fallback**:
+   ```powershell
+   .\scripts\generate-fake-test-data.ps1
+   ```
+
+3. **Verificar workflows de CI**:
    - Ir a GitHub Actions
    - Verificar que el workflow `ci.yml` se ejecute correctamente
    - Revisar logs de errores
 
-3. **Actualizar manualmente**:
+4. **Actualizar manualmente**:
    ```powershell
-   .\scripts\update-test-data.ps1
+   .\scripts\update-real-test-data.ps1
    ```
 
 ### **Errores de Compilación en Tests**
@@ -174,6 +191,14 @@ Si hay errores de compilación en los tests:
    ```
 
 3. **Corregir problemas de código** antes de ejecutar tests
+
+### **Maven no encontrado**
+
+Si el script de datos reales falla por Maven:
+
+1. **Instalar Maven**: Descargar desde https://maven.apache.org/download.cgi
+2. **Verificar PATH**: Asegurar que Maven esté en el PATH del sistema
+3. **Usar datos ficticios**: Como alternativa temporal
 
 ## 📈 Métricas Incluidas
 

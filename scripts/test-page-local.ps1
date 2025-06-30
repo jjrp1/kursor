@@ -7,8 +7,8 @@ Write-Host "=== Probando página de resultados de testing localmente ===" -Foreg
 $testMetricsFile = "docs/reports/data/test-metrics.json"
 if (-not (Test-Path $testMetricsFile)) {
     Write-Host "ERROR: No se encontró el archivo de métricas: $testMetricsFile" -ForegroundColor Red
-    Write-Host "Ejecutando generación de datos..." -ForegroundColor Yellow
-    & "$PSScriptRoot\generate-test-data.ps1"
+    Write-Host "Ejecutando generación de datos ficticios..." -ForegroundColor Yellow
+    & "$PSScriptRoot\generate-fake-test-data.ps1"
 }
 
 # Verificar que existe la página HTML

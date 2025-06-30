@@ -61,20 +61,30 @@ La página [https://jjrp1.github.io/kursor/resultados-pruebas.html](https://jjrp
 - Mejor manejo de errores y fallbacks
 - Verificación de archivos generados
 - Logs detallados para debugging
+- Actualización de `actions/upload-artifact` a v4
 
 ### **3. Scripts de Generación de Datos**
 
 **Archivos creados**:
-- `scripts/generate-test-data.sh` (Linux/macOS)
-- `scripts/generate-test-data.ps1` (Windows)
-- `scripts/update-test-data.ps1` (Windows - actualización automática)
+
+#### **Scripts para Datos Reales:**
+- `scripts/generate-test-data.sh` (Linux/macOS - datos reales)
+- `scripts/generate-real-test-data.ps1` (Windows - datos reales)
+- `scripts/update-real-test-data.ps1` (Windows - actualización con datos reales)
+
+#### **Scripts para Datos Ficticios:**
+- `scripts/generate-fake-test-data.ps1` (Windows - datos ficticios)
+- `scripts/update-fake-test-data.ps1` (Windows - actualización con datos ficticios)
+
+#### **Scripts de Utilidad:**
 - `scripts/test-page-local.ps1` (Windows - prueba local)
 
 **Características**:
-- Generación de datos reales desde reportes XML
-- Datos de ejemplo como fallback
-- Soporte multiplataforma (Bash/PowerShell)
-- Integración con Git para información de commits
+- **Datos reales**: Ejecutan tests con Maven y extraen métricas de reportes XML
+- **Datos ficticios**: Generan datos de ejemplo basados en la estructura del proyecto
+- **Soporte multiplataforma**: Bash para Linux/macOS, PowerShell para Windows
+- **Integración con Git**: Información de commits y timestamps
+- **Fallbacks robustos**: Si fallan los datos reales, usan datos ficticios
 
 ### **4. Datos de Testing Generados**
 
@@ -114,23 +124,33 @@ La página [https://jjrp1.github.io/kursor/resultados-pruebas.html](https://jjrp
 
 ## 🚀 Cómo Usar la Solución
 
-### **Generar Datos de Testing (Windows)**
+### **Generar Datos de Testing REALES (Windows)**
 
 ```powershell
-# Generar datos de testing
-.\scripts\generate-test-data.ps1
+# Generar datos de testing reales (ejecuta tests con Maven)
+.\scripts\generate-real-test-data.ps1
 
-# Actualizar y subir cambios al repositorio
-.\scripts\update-test-data.ps1
+# Actualizar y subir cambios con datos reales
+.\scripts\update-real-test-data.ps1
 
 # Probar la página localmente
 .\scripts\test-page-local.ps1
 ```
 
-### **Generar Datos de Testing (Linux/macOS)**
+### **Generar Datos de Testing FICTICIOS (Windows)**
+
+```powershell
+# Generar datos de testing ficticios (sin ejecutar tests)
+.\scripts\generate-fake-test-data.ps1
+
+# Actualizar y subir cambios con datos ficticios
+.\scripts\update-fake-test-data.ps1
+```
+
+### **Generar Datos de Testing REALES (Linux/macOS)**
 
 ```bash
-# Generar datos de testing
+# Generar datos de testing reales
 ./scripts/generate-test-data.sh
 
 # Ejecutar tests con cobertura
@@ -155,9 +175,10 @@ mvn clean test jacoco:report
 - ✅ Página muestra datos reales de testing
 - ✅ Configuración completa de Jacoco
 - ✅ Workflows de CI funcionando correctamente
-- ✅ Scripts de generación robustos
+- ✅ Scripts de generación robustos (reales y ficticios)
 - ✅ Datos de fallback actualizados
 - ✅ Soporte multiplataforma
+- ✅ Actualización automática en GitHub Actions
 
 ## 🔍 Verificación de la Solución
 
@@ -167,17 +188,23 @@ mvn clean compile
 # Debe compilar sin errores
 ```
 
-### **2. Verificar Generación de Datos**
+### **2. Verificar Generación de Datos Reales**
 ```powershell
-.\scripts\generate-test-data.ps1
-# Debe generar docs/reports/data/test-metrics.json
+.\scripts\generate-real-test-data.ps1
+# Debe ejecutar tests y generar docs/reports/data/test-metrics.json
 ```
 
-### **3. Verificar Página Web**
+### **3. Verificar Generación de Datos Ficticios**
+```powershell
+.\scripts\generate-fake-test-data.ps1
+# Debe generar datos de ejemplo sin ejecutar tests
+```
+
+### **4. Verificar Página Web**
 - Abrir `docs/resultados-pruebas.html` en el navegador
 - Debe mostrar métricas reales en lugar del mensaje de error
 
-### **4. Verificar Workflows de CI**
+### **5. Verificar Workflows de CI**
 - Hacer push al repositorio
 - Verificar que los workflows de GitHub Actions se ejecuten correctamente
 - Confirmar que se generen los artifacts de testing
@@ -186,7 +213,8 @@ mvn clean compile
 
 ### **Actualización Regular**
 - Los datos se actualizan automáticamente en cada push
-- Para actualización manual: ejecutar `scripts/update-test-data.ps1`
+- Para actualización manual con datos reales: `scripts/update-real-test-data.ps1`
+- Para actualización manual con datos ficticios: `scripts/update-fake-test-data.ps1`
 
 ### **Monitoreo**
 - Revisar logs de GitHub Actions regularmente
@@ -195,8 +223,9 @@ mvn clean compile
 
 ### **Troubleshooting**
 - Si hay errores: revisar logs de CI/CD
-- Si no hay datos: ejecutar scripts localmente
+- Si no hay datos reales: usar scripts de datos ficticios
 - Si hay problemas de compilación: corregir tests primero
+- Si Maven no está disponible: usar scripts de datos ficticios
 
 ## 📈 Beneficios de la Solución
 
@@ -205,6 +234,7 @@ mvn clean compile
 3. **Confiabilidad**: Sistema robusto con fallbacks
 4. **Mantenibilidad**: Scripts bien documentados y reutilizables
 5. **Multiplataforma**: Soporte para Windows, Linux y macOS
+6. **Flexibilidad**: Opción de datos reales o ficticios según necesidades
 
 ## 🎯 Próximos Pasos
 

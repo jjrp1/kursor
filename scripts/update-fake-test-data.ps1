@@ -1,7 +1,7 @@
-# Script para actualizar datos de testing y subir cambios al repositorio
-# Este script genera datos de testing y los sube a GitHub Pages
+# Script para actualizar datos de testing ficticios y subir cambios al repositorio
+# Este script genera datos de testing ficticios y los sube a GitHub Pages
 
-Write-Host "=== Actualizando datos de testing para GitHub Pages ===" -ForegroundColor Green
+Write-Host "=== Actualizando datos de testing ficticios para GitHub Pages ===" -ForegroundColor Green
 
 # Verificar si estamos en un repositorio git
 if (-not (Test-Path ".git")) {
@@ -9,12 +9,12 @@ if (-not (Test-Path ".git")) {
     exit 1
 }
 
-# Generar datos de testing
-Write-Host "Generando datos de testing..." -ForegroundColor Yellow
-& "$PSScriptRoot\generate-test-data.ps1"
+# Generar datos de testing ficticios
+Write-Host "Generando datos de testing ficticios..." -ForegroundColor Yellow
+& "$PSScriptRoot\generate-fake-test-data.ps1"
 
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "ERROR: No se pudieron generar los datos de testing" -ForegroundColor Red
+    Write-Host "ERROR: No se pudieron generar los datos de testing ficticios" -ForegroundColor Red
     exit 1
 }
 
@@ -25,7 +25,7 @@ if (-not (Test-Path $testMetricsFile)) {
     exit 1
 }
 
-Write-Host "Archivo de métricas generado exitosamente: $testMetricsFile" -ForegroundColor Green
+Write-Host "Archivo de métricas ficticias generado exitosamente: $testMetricsFile" -ForegroundColor Green
 
 # Mostrar contenido del archivo
 Write-Host "Contenido del archivo:" -ForegroundColor Cyan
@@ -42,16 +42,16 @@ if ($response -eq "s" -or $response -eq "S" -or $response -eq "y" -or $response 
     git add $testMetricsFile
     
     # Commit
-    $commitMessage = "feat: Actualizar métricas de testing automáticas - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+    $commitMessage = "feat: Actualizar métricas de testing ficticias - $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
     git commit -m $commitMessage
     
     # Push
     git push origin master
     
     Write-Host "Cambios subidos exitosamente!" -ForegroundColor Green
-    Write-Host "Los datos de testing se actualizarán en GitHub Pages en unos minutos." -ForegroundColor Cyan
+    Write-Host "Los datos de testing ficticios se actualizarán en GitHub Pages en unos minutos." -ForegroundColor Cyan
 } else {
-    Write-Host "Cambios no subidos. Los datos están disponibles localmente en: $testMetricsFile" -ForegroundColor Yellow
+    Write-Host "Cambios no subidos. Los datos ficticios están disponibles localmente en: $testMetricsFile" -ForegroundColor Yellow
 }
 
 Write-Host "=== Proceso completado ===" -ForegroundColor Green 
