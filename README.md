@@ -103,8 +103,8 @@
 
 ## 🚀 Instalación y Uso
 
-### Requisitos Previos
-- **Java 17** o superior
+### ✅ Requisitos Previos
+- **Java 17** o superior (con JavaFX incluido)
 - **Maven 3.8+**
 - **Git**
 
@@ -123,8 +123,58 @@
 
 3. **Ejecutar la aplicación**
    ```bash
-   mvn exec:java -pl kursor-core -Dexec.mainClass="com.kursor.ui.KursorApplication"
+   mvn javafx:run -pl kursor-core
    ```
+
+### Compilación y Ejecución Detallada
+
+#### 🚀 **Comando Principal de Ejecución**
+```bash
+# Desde la raíz del proyecto
+mvn javafx:run -pl kursor-core
+```
+
+#### 🔧 **Compilación Completa**
+```bash
+# Compilar todos los módulos
+mvn clean install -DskipTests
+
+# O compilar solo el core y sus dependencias
+mvn clean install -pl kursor-core -am -DskipTests
+```
+
+#### 📦 **Compilación de Módulos Específicos**
+```bash
+# Compilar módulos de preguntas
+mvn clean package -pl kursor-flashcard-module,kursor-multiplechoice-module,kursor-truefalse-module,kursor-fillblanks-module -DskipTests
+
+# Compilar estrategias de aprendizaje
+mvn clean package -pl kursor-secuencial-strategy,kursor-aleatoria-strategy,kursor-repeticion-espaciada-strategy,kursor-repetir-incorrectas-strategy -DskipTests
+```
+
+#### 🎯 **Ejecución con Diferentes Opciones**
+```bash
+# Ejecución estándar
+mvn javafx:run -pl kursor-core
+
+# Ejecución con parámetros específicos
+mvn javafx:run -pl kursor-core -Djavafx.args="--debug"
+
+# Ejecución desde JAR compilado
+java -jar kursor-core/target/kursor-core-1.0.0.jar
+```
+
+#### 🛠️ **Scripts de Desarrollo**
+```bash
+# Script de desarrollo (PowerShell)
+./scripts/dev.ps1
+
+# Script de desarrollo (Linux/Mac)
+./scripts/dev.sh
+
+# Script de producción
+./scripts/prod.sh
+```
 
 ### Versión Portable
 
@@ -442,6 +492,9 @@ mvn package
 
 # Instalar en repositorio local
 mvn install
+
+# Ejecutar la aplicación (comando principal)
+mvn javafx:run -pl kursor-core
 ```
 
 ### Crear un Nuevo Módulo
@@ -574,7 +627,10 @@ mvn clean install
 
 ### Ejecución
 ```bash
-# Ejecutar desde el directorio raíz
+# Ejecutar desde el directorio raíz (comando principal)
+mvn javafx:run -pl kursor-core
+
+# Ejecutar desde JAR compilado
 java -jar kursor-core/target/kursor-core-1.0.0.jar
 
 # O usar el script de desarrollo
@@ -704,6 +760,41 @@ Si encuentras problemas de ejecución:
    ```
 
 **🎯 El proyecto está listo para usar y todos los componentes funcionan correctamente.**
+
+### 🔧 **Solución de Problemas Comunes**
+
+#### ❌ **Error: "No se puede encontrar el módulo javafx"**
+```bash
+# Solución: Asegúrate de tener JavaFX configurado correctamente
+mvn clean install -pl kursor-core -am -DskipTests
+mvn javafx:run -pl kursor-core
+```
+
+#### ❌ **Error: "No se pueden cargar los módulos"**
+```bash
+# Solución: Recompilar y copiar módulos
+mvn clean package -pl kursor-*-module,kursor-*-strategy -DskipTests
+Copy-Item kursor-*-module/target/*.jar modules/
+Copy-Item kursor-*-strategy/target/*.jar strategies/
+```
+
+#### ❌ **Error: "Base de datos no encontrada"**
+```bash
+# Solución: La base de datos se crea automáticamente en la primera ejecución
+# Si persiste el error, elimina el archivo kursor.db y vuelve a ejecutar
+```
+
+#### ❌ **Error: "JavaFX no disponible"**
+```bash
+# Solución: Verificar que tienes Java 17+ con JavaFX
+java --version
+# Si no tienes JavaFX, usa la versión portable del proyecto
+```
+
+### 📞 **Soporte Adicional**
+- **🌐 Documentación Web**: [GitHub Pages](https://jjrp1.github.io/kursor)
+- **Issues**: [GitHub Issues](https://github.com/jjrp1/kursor/issues)
+- **Email**: jjrp1@um.es
 
 ## 📋 Pendiente
 - [ ] Interfaz gráfica de usuario
