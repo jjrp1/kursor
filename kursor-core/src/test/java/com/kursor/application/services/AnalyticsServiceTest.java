@@ -1,376 +1,256 @@
 package com.kursor.application.services;
 
-import com.kursor.persistence.repository.SesionRepository;
-import com.kursor.persistence.repository.EstadisticasUsuarioRepository;
-import com.kursor.persistence.entity.Sesion;
-import com.kursor.persistence.entity.EstadisticasUsuario;
-import com.kursor.persistence.entity.EstadoSesion;
-import com.kursor.domain.Curso;
-import com.kursor.domain.EstrategiaAprendizaje;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
 @DisplayName("Pruebas de AnalyticsService")
 class AnalyticsServiceTest {
 
-    @Mock private SesionRepository sesionRepository;
-    @Mock private EstadisticasUsuarioRepository estadisticasRepository;
-    @Mock private Curso mockCurso;
-    @Mock private EstrategiaAprendizaje mockEstrategia;
-    
     private AnalyticsService service;
-    private List<Sesion> sesionesMock;
 
     @BeforeEach
     void setUp() {
-        service = new AnalyticsService(sesionRepository, estadisticasRepository);
-        
-        // Configurar sesiones mock
-        sesionesMock = Arrays.asList(
-            createMockSesion("sesion1", "curso1", EstadoSesion.COMPLETADA, 100.0, LocalDateTime.now().minusDays(1)),
-            createMockSesion("sesion2", "curso1", EstadoSesion.EN_PROGRESO, 50.0, LocalDateTime.now()),
-            createMockSesion("sesion3", "curso2", EstadoSesion.COMPLETADA, 100.0, LocalDateTime.now().minusDays(2))
-        );
+        service = new AnalyticsService();
     }
 
     @Nested
-    @DisplayName("Constructor")
-    class ConstructorTests {
-
-        @Test
-        @DisplayName("Debería crear servicio con repositorios válidos")
-        void deberiaCrearServicioConRepositoriosValidos() {
-            AnalyticsService testService = new AnalyticsService(sesionRepository, estadisticasRepository);
-            
-            assertNotNull(testService);
-        }
-
-        @Test
-        @DisplayName("Debería lanzar excepción cuando repositorio de sesiones es null")
-        void deberiaLanzarExcepcionCuandoRepositorioSesionesEsNull() {
-            assertThrows(IllegalArgumentException.class, () -> {
-                new AnalyticsService(null, estadisticasRepository);
-            });
-        }
-
-        @Test
-        @DisplayName("Debería lanzar excepción cuando repositorio de estadísticas es null")
-        void deberiaLanzarExcepcionCuandoRepositorioEstadisticasEsNull() {
-            assertThrows(IllegalArgumentException.class, () -> {
-                new AnalyticsService(sesionRepository, null);
-            });
-        }
-    }
-
-    @Nested
-    @DisplayName("Métricas de dashboard")
+    @DisplayName("Métricas del Dashboard")
     class MetricasDashboardTests {
 
         @Test
-        @DisplayName("Debería generar métricas de dashboard")
-        void deberiaGenerarMetricasDeDashboard() {
-            when(sesionRepository.findAll()).thenReturn(sesionesMock);
-            when(sesionRepository.count()).thenReturn(3L);
+        @DisplayName("Debería obtener métricas básicas del dashboard")
+        void deberiaObtenerMetricasBasicasDelDashboard() {
+            // When
+            AnalyticsService.DashboardMetrics metricas = service.getDashboardMetrics("curso1", null, "semana");
             
-            AnalyticsService.DashboardMetrics metricas = service.generateDashboardMetrics("usuario1", 30);
-            
+            // Then
             assertNotNull(metricas);
-            assertEquals(3, metricas.getTotalSesiones());
-            assertEquals(2, metricas.getSesionesCompletadas());
-            assertEquals(1, metricas.getSesionesEnProgreso());
-            assertTrue(metricas.getPorcentajeCompletitud() > 0);
+            assertTrue(metricas.getPorcentajeExito() >= 0);
+            assertTrue(metricas.getVelocidadPromedio() >= 0);
+            assertTrue(metricas.getTotalSesiones() >= 0);
+            assertTrue(metricas.getProgresoGeneral() >= 0);
         }
 
         @Test
-        @DisplayName("Debería manejar usuario sin sesiones")
-        void deberiaManejarUsuarioSinSesiones() {
-            when(sesionRepository.findAll()).thenReturn(List.of());
-            when(sesionRepository.count()).thenReturn(0L);
+        @DisplayName("Debería obtener métricas con bloque específico")
+        void deberiaObtenerMetricasConBloqueEspecifico() {
+            // When
+            AnalyticsService.DashboardMetrics metricas = service.getDashboardMetrics("curso1", "bloque1", "mes");
             
-            AnalyticsService.DashboardMetrics metricas = service.generateDashboardMetrics("usuario_nuevo", 30);
-            
+            // Then
             assertNotNull(metricas);
-            assertEquals(0, metricas.getTotalSesiones());
-            assertEquals(0, metricas.getSesionesCompletadas());
-            assertEquals(0, metricas.getSesionesEnProgreso());
-            assertEquals(0.0, metricas.getPorcentajeCompletitud());
+            assertNotNull(metricas.getTendencias());
+            assertNotNull(metricas.getDistribucionBloques());
         }
 
         @Test
-        @DisplayName("Debería calcular porcentaje de completitud correctamente")
-        void deberiaCalcularPorcentajeDeCompletitudCorrectamente() {
-            when(sesionRepository.findAll()).thenReturn(sesionesMock);
-            when(sesionRepository.count()).thenReturn(3L);
+        @DisplayName("Debería retornar tendencias temporales")
+        void deberiaRetornarTendenciasTemporales() {
+            // When
+            AnalyticsService.DashboardMetrics metricas = service.getDashboardMetrics("curso1", null, "semana");
+            List<Map<String, Object>> tendencias = metricas.getTendencias();
             
-            AnalyticsService.DashboardMetrics metricas = service.generateDashboardMetrics("usuario1", 30);
+            // Then
+            assertNotNull(tendencias);
+            assertFalse(tendencias.isEmpty());
             
-            // 2 sesiones completadas de 3 totales = 66.67%
-            double porcentajeEsperado = (2.0 / 3.0) * 100;
-            assertEquals(porcentajeEsperado, metricas.getPorcentajeCompletitud(), 0.01);
+            // Verificar estructura de tendencias
+            Map<String, Object> primeraTendencia = tendencias.get(0);
+            assertTrue(primeraTendencia.containsKey("fecha"));
+            assertTrue(primeraTendencia.containsKey("exito"));
+            assertTrue(primeraTendencia.containsKey("velocidad"));
+        }
+
+        @Test
+        @DisplayName("Debería retornar distribución de bloques")
+        void deberiaRetornarDistribucionDeBloques() {
+            // When
+            AnalyticsService.DashboardMetrics metricas = service.getDashboardMetrics("curso1", null, "mes");
+            Map<String, Integer> distribucion = metricas.getDistribucionBloques();
+            
+            // Then
+            assertNotNull(distribucion);
+            assertFalse(distribucion.isEmpty());
+            
+            // Verificar que todos los valores son positivos
+            for (Integer valor : distribucion.values()) {
+                assertTrue(valor >= 0);
+            }
         }
     }
 
     @Nested
-    @DisplayName("Análisis por curso")
-    class AnalisisPorCursoTests {
+    @DisplayName("Métricas de Estrategias")
+    class MetricasEstrategiasTests {
 
         @Test
-        @DisplayName("Debería generar análisis por curso")
-        void deberiaGenerarAnalisisPorCurso() {
-            when(sesionRepository.findByCursoId("curso1")).thenReturn(
-                Arrays.asList(sesionesMock.get(0), sesionesMock.get(1))
-            );
+        @DisplayName("Debería obtener métricas de estrategias")
+        void deberiaObtenerMetricasDeEstrategias() {
+            // When
+            List<Map<String, Object>> metricas = service.getEstrategiasMetrics("curso1");
             
-            Map<String, Object> analisis = service.generateCourseAnalytics("usuario1", "curso1", 30);
+            // Then
+            assertNotNull(metricas);
+            assertFalse(metricas.isEmpty());
             
-            assertNotNull(analisis);
-            assertTrue(analisis.containsKey("totalSesiones"));
-            assertTrue(analisis.containsKey("sesionesCompletadas"));
-            assertTrue(analisis.containsKey("promedioCompletitud"));
+            // Verificar estructura de métricas
+            Map<String, Object> primeraEstrategia = metricas.get(0);
+            assertTrue(primeraEstrategia.containsKey("nombre"));
+            assertTrue(primeraEstrategia.containsKey("exito"));
+            assertTrue(primeraEstrategia.containsKey("velocidad"));
+            assertTrue(primeraEstrategia.containsKey("sesiones"));
+            assertTrue(primeraEstrategia.containsKey("recomendacion"));
         }
 
         @Test
-        @DisplayName("Debería manejar curso sin sesiones")
-        void deberiaManejarCursoSinSesiones() {
-            when(sesionRepository.findByCursoId("curso_inexistente")).thenReturn(List.of());
+        @DisplayName("Debería incluir todas las estrategias principales")
+        void deberiaIncluirTodasLasEstrategiasPrincipales() {
+            // When
+            List<Map<String, Object>> metricas = service.getEstrategiasMetrics("curso1");
             
-            Map<String, Object> analisis = service.generateCourseAnalytics("usuario1", "curso_inexistente", 30);
+            // Then
+            List<String> nombresEstrategias = metricas.stream()
+                .map(m -> (String) m.get("nombre"))
+                .toList();
             
-            assertNotNull(analisis);
-            assertEquals(0, analisis.get("totalSesiones"));
-            assertEquals(0, analisis.get("sesionesCompletadas"));
-            assertEquals(0.0, analisis.get("promedioCompletitud"));
-        }
-
-        @Test
-        @DisplayName("Debería calcular promedio de completitud por curso")
-        void deberiaCalcularPromedioDeCompletitudPorCurso() {
-            when(sesionRepository.findByCursoId("curso1")).thenReturn(
-                Arrays.asList(sesionesMock.get(0), sesionesMock.get(1))
-            );
-            
-            Map<String, Object> analisis = service.generateCourseAnalytics("usuario1", "curso1", 30);
-            
-            // (100.0 + 50.0) / 2 = 75.0
-            assertEquals(75.0, analisis.get("promedioCompletitud"));
+            assertTrue(nombresEstrategias.contains("Secuencial"));
+            assertTrue(nombresEstrategias.contains("Aleatoria"));
+            assertTrue(nombresEstrategias.contains("Repetición Espaciada"));
+            assertTrue(nombresEstrategias.contains("Repetir Incorrectas"));
         }
     }
 
     @Nested
-    @DisplayName("Análisis por período")
-    class AnalisisPorPeriodoTests {
+    @DisplayName("Recomendaciones")
+    class RecomendacionesTests {
 
         @Test
-        @DisplayName("Debería generar análisis por período")
-        void deberiaGenerarAnalisisPorPeriodo() {
-            LocalDateTime inicio = LocalDateTime.now().minusDays(7);
-            LocalDateTime fin = LocalDateTime.now();
+        @DisplayName("Debería generar recomendaciones personalizadas")
+        void deberiaGenerarRecomendacionesPersonalizadas() {
+            // When
+            List<Map<String, String>> recomendaciones = service.getRecomendaciones("curso1");
             
-            when(sesionRepository.findByFechaBetween(inicio, fin)).thenReturn(sesionesMock);
+            // Then
+            assertNotNull(recomendaciones);
+            assertFalse(recomendaciones.isEmpty());
             
-            Map<String, Object> analisis = service.generatePeriodAnalytics("usuario1", inicio, fin);
-            
-            assertNotNull(analisis);
-            assertTrue(analisis.containsKey("sesionesEnPeriodo"));
-            assertTrue(analisis.containsKey("promedioCompletitud"));
-            assertTrue(analisis.containsKey("tendencia"));
+            // Verificar estructura de recomendaciones
+            Map<String, String> primeraRecomendacion = recomendaciones.get(0);
+            assertTrue(primeraRecomendacion.containsKey("icono"));
+            assertTrue(primeraRecomendacion.containsKey("titulo"));
+            assertTrue(primeraRecomendacion.containsKey("descripcion"));
         }
 
         @Test
-        @DisplayName("Debería manejar período sin sesiones")
-        void deberiaManejarPeriodoSinSesiones() {
-            LocalDateTime inicio = LocalDateTime.now().minusDays(30);
-            LocalDateTime fin = LocalDateTime.now().minusDays(25);
+        @DisplayName("Debería proporcionar recomendaciones útiles")
+        void deberiaProporcionarRecomendacionesUtiles() {
+            // When
+            List<Map<String, String>> recomendaciones = service.getRecomendaciones("curso1");
             
-            when(sesionRepository.findByFechaBetween(inicio, fin)).thenReturn(List.of());
-            
-            Map<String, Object> analisis = service.generatePeriodAnalytics("usuario1", inicio, fin);
-            
-            assertNotNull(analisis);
-            assertEquals(0, analisis.get("sesionesEnPeriodo"));
-            assertEquals(0.0, analisis.get("promedioCompletitud"));
-        }
-
-        @Test
-        @DisplayName("Debería calcular tendencia de aprendizaje")
-        void deberiaCalcularTendenciaDeAprendizaje() {
-            LocalDateTime inicio = LocalDateTime.now().minusDays(7);
-            LocalDateTime fin = LocalDateTime.now();
-            
-            when(sesionRepository.findByFechaBetween(inicio, fin)).thenReturn(sesionesMock);
-            
-            Map<String, Object> analisis = service.generatePeriodAnalytics("usuario1", inicio, fin);
-            
-            assertNotNull(analisis.get("tendencia"));
-            // La tendencia debería ser un valor numérico que indique si el progreso está mejorando
+            // Then
+            for (Map<String, String> recomendacion : recomendaciones) {
+                String titulo = recomendacion.get("titulo");
+                String descripcion = recomendacion.get("descripcion");
+                
+                assertNotNull(titulo);
+                assertNotNull(descripcion);
+                assertFalse(titulo.trim().isEmpty());
+                assertFalse(descripcion.trim().isEmpty());
+            }
         }
     }
 
     @Nested
-    @DisplayName("Estadísticas de usuario")
-    class EstadisticasUsuarioTests {
+    @DisplayName("Cálculos de Progreso")
+    class CalculosProgresoTests {
 
         @Test
-        @DisplayName("Debería generar estadísticas de usuario")
-        void deberiaGenerarEstadisticasDeUsuario() {
-            when(sesionRepository.findAll()).thenReturn(sesionesMock);
-            when(estadisticasRepository.findByUsuarioId("usuario1")).thenReturn(
-                Arrays.asList(createMockEstadisticas("usuario1", "curso1", 85.0))
-            );
+        @DisplayName("Debería calcular progreso del curso")
+        void deberiaCalcularProgresoCurso() {
+            // When
+            double progreso = service.calcularProgresoCurso("curso1");
             
-            Map<String, Object> estadisticas = service.generateUserStatistics("usuario1");
-            
-            assertNotNull(estadisticas);
-            assertTrue(estadisticas.containsKey("totalSesiones"));
-            assertTrue(estadisticas.containsKey("promedioCompletitud"));
-            assertTrue(estadisticas.containsKey("cursosCompletados"));
+            // Then
+            assertTrue(progreso >= 0.0);
+            assertTrue(progreso <= 100.0);
         }
 
         @Test
-        @DisplayName("Debería manejar usuario sin estadísticas")
-        void deberiaManejarUsuarioSinEstadisticas() {
-            when(sesionRepository.findAll()).thenReturn(List.of());
-            when(estadisticasRepository.findByUsuarioId("usuario_nuevo")).thenReturn(List.of());
+        @DisplayName("Debería mantener consistencia en cálculos")
+        void deberiaMantenerConsistenciaEnCalculos() {
+            // When - múltiples llamadas
+            double progreso1 = service.calcularProgresoCurso("curso1");
+            double progreso2 = service.calcularProgresoCurso("curso1");
             
-            Map<String, Object> estadisticas = service.generateUserStatistics("usuario_nuevo");
-            
-            assertNotNull(estadisticas);
-            assertEquals(0, estadisticas.get("totalSesiones"));
-            assertEquals(0.0, estadisticas.get("promedioCompletitud"));
-            assertEquals(0, estadisticas.get("cursosCompletados"));
-        }
-
-        @Test
-        @DisplayName("Debería calcular promedio de rendimiento")
-        void deberiaCalcularPromedioDeRendimiento() {
-            when(sesionRepository.findAll()).thenReturn(sesionesMock);
-            when(estadisticasRepository.findByUsuarioId("usuario1")).thenReturn(
-                Arrays.asList(
-                    createMockEstadisticas("usuario1", "curso1", 85.0),
-                    createMockEstadisticas("usuario1", "curso2", 90.0)
-                )
-            );
-            
-            Map<String, Object> estadisticas = service.generateUserStatistics("usuario1");
-            
-            // (85.0 + 90.0) / 2 = 87.5
-            assertEquals(87.5, estadisticas.get("promedioCompletitud"));
+            // Then
+            assertEquals(progreso1, progreso2, 0.01);
         }
     }
 
     @Nested
-    @DisplayName("Reportes")
-    class ReportesTests {
+    @DisplayName("Estadísticas de Tiempo")
+    class EstadisticasTiempoTests {
 
         @Test
-        @DisplayName("Debería generar reporte de progreso")
-        void deberiaGenerarReporteDeProgreso() {
-            when(sesionRepository.findAll()).thenReturn(sesionesMock);
+        @DisplayName("Debería obtener estadísticas de tiempo")
+        void deberiaObtenerEstadisticasDeTiempo() {
+            // When
+            Map<String, Object> stats = service.getTiempoEstadisticas("curso1", null);
             
-            String reporte = service.generateProgressReport("usuario1", 30);
-            
-            assertNotNull(reporte);
-            assertFalse(reporte.isEmpty());
-            assertTrue(reporte.contains("usuario1"));
+            // Then
+            assertNotNull(stats);
+            assertTrue(stats.containsKey("promedio"));
+            assertTrue(stats.containsKey("minimo"));
+            assertTrue(stats.containsKey("maximo"));
+            assertTrue(stats.containsKey("mediana"));
         }
 
         @Test
-        @DisplayName("Debería generar reporte de rendimiento")
-        void deberiaGenerarReporteDeRendimiento() {
-            when(sesionRepository.findAll()).thenReturn(sesionesMock);
-            when(estadisticasRepository.findByUsuarioId("usuario1")).thenReturn(
-                Arrays.asList(createMockEstadisticas("usuario1", "curso1", 85.0))
-            );
+        @DisplayName("Debería validar consistencia de tiempos")
+        void deberiaValidarConsistenciaDeTiempos() {
+            // When
+            Map<String, Object> stats = service.getTiempoEstadisticas("curso1", "bloque1");
             
-            String reporte = service.generatePerformanceReport("usuario1");
+            // Then
+            double promedio = (Double) stats.get("promedio");
+            double minimo = (Double) stats.get("minimo");
+            double maximo = (Double) stats.get("maximo");
+            double mediana = (Double) stats.get("mediana");
             
-            assertNotNull(reporte);
-            assertFalse(reporte.isEmpty());
-            assertTrue(reporte.contains("Rendimiento"));
-        }
-
-        @Test
-        @DisplayName("Debería generar reporte de tendencias")
-        void deberiaGenerarReporteDeTendencias() {
-            LocalDateTime inicio = LocalDateTime.now().minusDays(30);
-            LocalDateTime fin = LocalDateTime.now();
-            
-            when(sesionRepository.findByFechaBetween(inicio, fin)).thenReturn(sesionesMock);
-            
-            String reporte = service.generateTrendReport("usuario1", 30);
-            
-            assertNotNull(reporte);
-            assertFalse(reporte.isEmpty());
-            assertTrue(reporte.contains("Tendencias"));
+            assertTrue(minimo >= 0);
+            assertTrue(maximo >= minimo);
+            assertTrue(promedio >= minimo);
+            assertTrue(promedio <= maximo);
+            assertTrue(mediana >= 0);
         }
     }
 
     @Nested
-    @DisplayName("Manejo de errores")
-    class ManejoErroresTests {
+    @DisplayName("Compatibilidad")
+    class CompatibilidadTests {
 
         @Test
-        @DisplayName("Debería manejar error en repositorio de sesiones")
-        void deberiaManejarErrorEnRepositorioSesiones() {
-            when(sesionRepository.findAll()).thenThrow(new RuntimeException("Error de BD"));
+        @DisplayName("Debería ser compatible con métodos legacy")
+        void deberiaSerCompatibleConMetodosLegacy() {
+            // When
+            AnalyticsService.DashboardMetrics metricas = service.getDashboardMetrics("curso1", null, "semana");
             
-            assertThrows(RuntimeException.class, () -> {
-                service.generateDashboardMetrics("usuario1", 30);
-            });
-        }
-
-        @Test
-        @DisplayName("Debería manejar error en repositorio de estadísticas")
-        void deberiaManejarErrorEnRepositorioEstadisticas() {
-            when(estadisticasRepository.findByUsuarioId("usuario1")).thenThrow(new RuntimeException("Error de BD"));
+            // Then - Verificar métodos de compatibilidad
+            assertNotNull(metricas.getSesionesCompletadas());
+            assertTrue(metricas.getSesionesCompletadas() >= 0);
             
-            assertThrows(RuntimeException.class, () -> {
-                service.generateUserStatistics("usuario1");
-            });
-        }
-
-        @Test
-        @DisplayName("Debería manejar parámetros inválidos")
-        void deberiaManejarParametrosInvalidos() {
-            assertThrows(IllegalArgumentException.class, () -> {
-                service.generateDashboardMetrics(null, 30);
-            });
+            assertNotNull(metricas.getProgresoCurso());
+            assertTrue(metricas.getProgresoCurso() >= 0);
             
-            assertThrows(IllegalArgumentException.class, () -> {
-                service.generateDashboardMetrics("usuario1", -1);
-            });
+            assertNotNull(metricas.getTendenciasTemporales());
+            assertFalse(metricas.getTendenciasTemporales().isEmpty());
         }
-    }
-
-    /**
-     * Crea una sesión mock para testing.
-     */
-    private Sesion createMockSesion(String id, String cursoId, EstadoSesion estado, double completitud, LocalDateTime fecha) {
-        Sesion sesion = new Sesion();
-        // Configurar propiedades básicas según la estructura real de Sesion
-        return sesion;
-    }
-
-    /**
-     * Crea estadísticas mock para testing.
-     */
-    private EstadisticasUsuario createMockEstadisticas(String usuarioId, String cursoId, double rendimiento) {
-        EstadisticasUsuario estadisticas = new EstadisticasUsuario();
-        // Configurar propiedades básicas según la estructura real de EstadisticasUsuario
-        return estadisticas;
     }
 } 

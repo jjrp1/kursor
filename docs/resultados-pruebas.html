@@ -140,6 +140,28 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 2rem 0;
         }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--secondary-color);
+        }
+        
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: var(--accent-color);
+            background-color: #f8d7da;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .last-updated {
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -175,6 +197,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="resultados-pruebas.html">Pruebas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="documentacion.html">Documentación</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -184,7 +209,11 @@
     <section class="hero-section">
         <div class="container">
             <h1 class="display-4 mb-3">📊 Resultados de Pruebas</h1>
-            <p class="lead">Métricas de calidad, cobertura de código y resultados de testing automatizado</p>
+            <p class="lead">Métricas automáticas de calidad, cobertura de código y resultados de testing</p>
+            <div class="last-updated">
+                <i class="fas fa-clock me-1"></i>
+                <span id="last-updated">Cargando datos...</span>
+            </div>
         </div>
     </section>
 
@@ -200,456 +229,198 @@
                         <a class="nav-link" href="#metricas">Métricas Principales</a>
                         <a class="nav-link" href="#cobertura">Cobertura de Código</a>
                         <a class="nav-link" href="#resultados">Resultados Detallados</a>
-                        <a class="nav-link" href="#performance">Rendimiento</a>
-                        <a class="nav-link" href="#seguridad">Seguridad</a>
-                        <a class="nav-link" href="#tendencias">Tendencias</a>
+                        <a class="nav-link" href="#enlaces">Enlaces a Reportes</a>
                     </nav>
                 </div>
             </div>
 
             <!-- Main Content -->
             <div class="col-lg-9">
-                <!-- Resumen Ejecutivo -->
-                <section id="resumen" class="mb-5">
-                    <h2><i class="fas fa-chart-line text-primary me-2"></i>Resumen Ejecutivo</h2>
-                    
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="metric-card card text-center">
-                                <div class="card-body">
-                                    <div class="metric-value metric-success">95%</div>
-                                    <h6>Cobertura Total</h6>
-                                    <p class="text-muted">Líneas de código cubiertas</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="metric-card card text-center">
-                                <div class="card-body">
-                                    <div class="metric-value metric-success">42</div>
-                                    <h6>Tests Totales</h6>
-                                    <p class="text-muted">Pruebas unitarias e integración</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="metric-card card text-center">
-                                <div class="card-body">
-                                    <div class="metric-value metric-success">100%</div>
-                                    <h6>Tests Exitosos</h6>
-                                    <p class="text-muted">Tasa de éxito</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="metric-card card text-center">
-                                <div class="card-body">
-                                    <div class="metric-value metric-info">0</div>
-                                    <h6>Vulnerabilidades</h6>
-                                    <p class="text-muted">Escaneo de seguridad</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <!-- Loading indicator -->
+                <div id="loading" class="loading">
+                    <i class="fas fa-spinner fa-spin fa-2x mb-3"></i>
+                    <p>Cargando métricas de testing...</p>
+                </div>
 
-                <!-- Métricas Principales -->
-                <section id="metricas" class="mb-5">
-                    <h2><i class="fas fa-tachometer-alt text-success me-2"></i>Métricas Principales</h2>
-                    
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-code me-2"></i>Estadísticas de Código
-                                    </h5>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <p><strong>Líneas de código:</strong> 6,247</p>
-                                            <p><strong>Clases:</strong> 28</p>
-                                            <p><strong>Métodos:</strong> 156</p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p><strong>Complejidad ciclomática:</strong> 2.3</p>
-                                            <p><strong>Deuda técnica:</strong> 0h</p>
-                                            <p><strong>Duplicaciones:</strong> 0%</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Error indicator -->
+                <div id="error" class="error d-none">
+                    <i class="fas fa-exclamation-triangle fa-2x mb-3"></i>
+                    <p>No se pudieron cargar los datos de testing automáticos. Mostrando datos de ejemplo.</p>
+                </div>
+
+                <!-- Main content (hidden by default, shown by JS) -->
+                <div id="main-content" class="d-none">
+                    <!-- Resumen Ejecutivo -->
+                    <section id="resumen" class="mb-5">
+                        <h2><i class="fas fa-chart-line text-primary me-2"></i>Resumen Ejecutivo</h2>
                         
-                        <div class="col-lg-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-vial me-2"></i>Tipos de Pruebas
-                                    </h5>
-                                    <div class="d-flex flex-wrap">
-                                        <span class="badge-test badge-unit">Unitarias: 32</span>
-                                        <span class="badge-test badge-integration">Integración: 8</span>
-                                        <span class="badge-test badge-e2e">E2E: 2</span>
-                                        <span class="badge-test badge-performance">Performance: 0</span>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="metric-card card text-center">
+                                    <div class="card-body">
+                                        <div class="metric-value" id="coverage-total">--</div>
+                                        <h6>Cobertura Total</h6>
+                                        <p class="text-muted">Líneas de código cubiertas</p>
                                     </div>
-                                    <div class="mt-3">
-                                        <p><strong>Tiempo de ejecución:</strong> 2.3s</p>
-                                        <p><strong>Memoria utilizada:</strong> 45MB</p>
-                                        <p><strong>CPU promedio:</strong> 12%</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-card card text-center">
+                                    <div class="card-body">
+                                        <div class="metric-value metric-success" id="tests-total">--</div>
+                                        <h6>Tests Totales</h6>
+                                        <p class="text-muted">Pruebas ejecutadas</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-card card text-center">
+                                    <div class="card-body">
+                                        <div class="metric-value" id="success-rate">--</div>
+                                        <h6>Tasa de Éxito</h6>
+                                        <p class="text-muted">Tests exitosos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-card card text-center">
+                                    <div class="card-body">
+                                        <div class="metric-value metric-info" id="execution-time">--</div>
+                                        <h6>Tiempo Ejecución</h6>
+                                        <p class="text-muted">Duración total</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- Cobertura de Código -->
-                <section id="cobertura" class="mb-5">
-                    <h2><i class="fas fa-shield-alt text-warning me-2"></i>Cobertura de Código</h2>
-                    
-                    <div class="chart-container">
-                        <h5 class="mb-4">Cobertura por Módulo</h5>
+                    <!-- Métricas Principales -->
+                    <section id="metricas" class="mb-5">
+                        <h2><i class="fas fa-tachometer-alt text-success me-2"></i>Métricas Principales</h2>
+                        
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="metric-card card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="fas fa-vial me-2"></i>Distribución de Tests
+                                        </h5>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p><strong>Exitosos:</strong> <span id="tests-passed">--</span></p>
+                                                <p><strong>Fallidos:</strong> <span id="tests-failed">--</span></p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p><strong>Omitidos:</strong> <span id="tests-skipped">--</span></p>
+                                                <p><strong>Módulos:</strong> <span id="modules-count">--</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6">
+                                <div class="metric-card card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="fas fa-info-circle me-2"></i>Información del Build
+                                        </h5>
+                                        <p><strong>Commit:</strong> <span id="commit-hash">--</span></p>
+                                        <p><strong>Estado:</strong> <span id="build-status">--</span></p>
+                                        <p><strong>Última actualización:</strong> <span id="build-time">--</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Cobertura de Código -->
+                    <section id="cobertura" class="mb-5">
+                        <h2><i class="fas fa-shield-alt text-warning me-2"></i>Cobertura de Código</h2>
+                        
+                        <div class="chart-container">
+                            <h5 class="mb-4">Cobertura por Módulo</h5>
+                            <div id="coverage-modules">
+                                <!-- Se llena dinámicamente con JavaScript -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Resultados Detallados -->
+                    <section id="resultados" class="mb-5">
+                        <h2><i class="fas fa-clipboard-list text-info me-2"></i>Resultados Detallados</h2>
+                        
+                        <div id="test-status" class="test-result">
+                            <!-- Se llena dinámicamente con JavaScript -->
+                        </div>
+                    </section>
+
+                    <!-- Enlaces a Reportes -->
+                    <section id="enlaces" class="mb-5">
+                        <h2><i class="fas fa-external-link-alt text-primary me-2"></i>Enlaces a Reportes</h2>
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <h6>kursor-core</h6>
-                                <div class="coverage-bar">
-                                    <div class="coverage-fill coverage-high" style="width: 92%"></div>
-                                </div>
-                                <small class="text-muted">92% - 1,847 líneas cubiertas</small>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>flashcard-module</h6>
-                                <div class="coverage-bar">
-                                    <div class="coverage-fill coverage-high" style="width: 88%"></div>
-                                </div>
-                                <small class="text-muted">88% - 234 líneas cubiertas</small>
-                            </div>
-                        </div>
-                        
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <h6>multiplechoice-module</h6>
-                                <div class="coverage-bar">
-                                    <div class="coverage-fill coverage-high" style="width: 95%"></div>
-                                </div>
-                                <small class="text-muted">95% - 312 líneas cubiertas</small>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>fillblanks-module</h6>
-                                <div class="coverage-bar">
-                                    <div class="coverage-fill coverage-high" style="width: 90%"></div>
-                                </div>
-                                <small class="text-muted">90% - 198 líneas cubiertas</small>
-                            </div>
-                        </div>
-                        
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <h6>truefalse-module</h6>
-                                <div class="coverage-bar">
-                                    <div class="coverage-fill coverage-high" style="width: 87%"></div>
-                                </div>
-                                <small class="text-muted">87% - 156 líneas cubiertas</small>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Utilidades</h6>
-                                <div class="coverage-bar">
-                                    <div class="coverage-fill coverage-medium" style="width: 75%"></div>
-                                </div>
-                                <small class="text-muted">75% - 89 líneas cubiertas</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h6>Cobertura por Tipo</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-check text-success me-2"></i>Líneas: 95%</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Ramas: 89%</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Funciones: 98%</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Clases: 100%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h6>Áreas de Mejora</h6>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>UI Components: 65%</li>
-                                        <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>Error Handling: 78%</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Domain Logic: 98%</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Persistence: 92%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Resultados Detallados -->
-                <section id="resultados" class="mb-5">
-                    <h2><i class="fas fa-list-check text-info me-2"></i>Resultados Detallados</h2>
-                    
-                    <div class="test-result test-passed">
-                        <h6><i class="fas fa-check-circle text-success me-2"></i>CursoTest - Creación de Cursos</h6>
-                        <p><strong>Estado:</strong> ✅ PASADO</p>
-                        <p><strong>Duración:</strong> 0.045s</p>
-                        <p><strong>Descripción:</strong> Verifica la creación correcta de cursos con bloques y preguntas</p>
-                    </div>
-                    
-                    <div class="test-result test-passed">
-                        <h6><i class="fas fa-check-circle text-success me-2"></i>BloqueTest - Gestión de Bloques</h6>
-                        <p><strong>Estado:</strong> ✅ PASADO</p>
-                        <p><strong>Duración:</strong> 0.032s</p>
-                        <p><strong>Descripción:</strong> Prueba la funcionalidad de agregar y gestionar bloques de preguntas</p>
-                    </div>
-                    
-                    <div class="test-result test-passed">
-                        <h6><i class="fas fa-check-circle text-success me-2"></i>PreguntaTest - Validación de Preguntas</h6>
-                        <p><strong>Estado:</strong> ✅ PASADO</p>
-                        <p><strong>Duración:</strong> 0.028s</p>
-                        <p><strong>Descripción:</strong> Verifica la validación y creación de diferentes tipos de preguntas</p>
-                    </div>
-                    
-                    <div class="test-result test-passed">
-                        <h6><i class="fas fa-check-circle text-success me-2"></i>CursoManagerTest - Gestión de Cursos</h6>
-                        <p><strong>Estado:</strong> ✅ PASADO</p>
-                        <p><strong>Duración:</strong> 0.156s</p>
-                        <p><strong>Descripción:</strong> Prueba la carga y gestión de cursos desde archivos YAML</p>
-                    </div>
-                    
-                    <div class="test-result test-passed">
-                        <h6><i class="fas fa-check-circle text-success me-2"></i>PersistenceTest - Persistencia de Datos</h6>
-                        <p><strong>Estado:</strong> ✅ PASADO</p>
-                        <p><strong>Duración:</strong> 0.234s</p>
-                        <p><strong>Descripción:</strong> Verifica la persistencia y recuperación de datos de sesiones</p>
-                    </div>
-                </section>
-
-                <!-- Rendimiento -->
-                <section id="performance" class="mb-5">
-                    <h2><i class="fas fa-rocket text-warning me-2"></i>Rendimiento</h2>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-clock me-2"></i>Tiempos de Respuesta
-                                    </h5>
-                                    <ul class="list-unstyled">
-                                        <li><strong>Inicio de aplicación:</strong> 1.2s</li>
-                                        <li><strong>Carga de curso:</strong> 0.3s</li>
-                                        <li><strong>Creación de sesión:</strong> 0.1s</li>
-                                        <li><strong>Navegación entre preguntas:</strong> 0.05s</li>
-                                        <li><strong>Guardado de progreso:</strong> 0.2s</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-memory me-2"></i>Uso de Recursos
-                                    </h5>
-                                    <ul class="list-unstyled">
-                                        <li><strong>Memoria heap:</strong> 45MB (máx)</li>
-                                        <li><strong>CPU promedio:</strong> 8%</li>
-                                        <li><strong>Disco I/O:</strong> 2.3MB/s</li>
-                                        <li><strong>Red:</strong> 0KB/s (offline)</li>
-                                        <li><strong>Threads activos:</strong> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <h5 class="mb-4">Métricas de Rendimiento por Módulo</h5>
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Módulo</th>
-                                        <th>Tiempo de Carga</th>
-                                        <th>Memoria</th>
-                                        <th>CPU</th>
-                                        <th>Estado</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>kursor-core</td>
-                                        <td>0.8s</td>
-                                        <td>25MB</td>
-                                        <td>5%</td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>flashcard-module</td>
-                                        <td>0.1s</td>
-                                        <td>3MB</td>
-                                        <td>1%</td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>multiplechoice-module</td>
-                                        <td>0.1s</td>
-                                        <td>4MB</td>
-                                        <td>1%</td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>fillblanks-module</td>
-                                        <td>0.1s</td>
-                                        <td>3MB</td>
-                                        <td>1%</td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>truefalse-module</td>
-                                        <td>0.1s</td>
-                                        <td>2MB</td>
-                                        <td>1%</td>
-                                        <td><span class="badge bg-success">Óptimo</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Seguridad -->
-                <section id="seguridad" class="mb-5">
-                    <h2><i class="fas fa-shield-alt text-danger me-2"></i>Seguridad</h2>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-search me-2"></i>Escaneo de Vulnerabilidades
-                                    </h5>
-                                    <div class="text-center">
-                                        <div class="metric-value metric-success">0</div>
-                                        <h6>Vulnerabilidades Encontradas</h6>
-                                        <p class="text-muted">OWASP Dependency Check</p>
+                                <div class="metric-card card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="fas fa-chart-bar me-2"></i>Reportes de Cobertura
+                                        </h5>
+                                        <p>Accede a los reportes detallados de cobertura de código generados por Jacoco.</p>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="reports/coverage/jacoco/index.html" class="btn btn-primary btn-sm" target="_blank">
+                                                <i class="fas fa-external-link-alt me-1"></i>Jacoco Report
+                                            </a>
+                                            <a href="https://codecov.io/gh/jjrp1/kursor" class="btn btn-info btn-sm" target="_blank">
+                                                <i class="fab fa-codecov me-1"></i>Codecov
+                                            </a>
+                                        </div>
                                     </div>
-                                    <ul class="list-unstyled mt-3">
-                                        <li><i class="fas fa-check text-success me-2"></i>Dependencias actualizadas</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Sin CVE conocidos</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Configuración segura</li>
-                                    </ul>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="fas fa-lock me-2"></i>Análisis de Código
-                                    </h5>
-                                    <div class="text-center">
-                                        <div class="metric-value metric-success">A</div>
-                                        <h6>Grado de Seguridad</h6>
-                                        <p class="text-muted">SonarQube Quality Gate</p>
+                            
+                            <div class="col-md-6">
+                                <div class="metric-card card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="fas fa-list-alt me-2"></i>Reportes de Tests
+                                        </h5>
+                                        <p>Revisa los reportes detallados de ejecución de tests generados por Surefire.</p>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="reports/tests/surefire-reports/" class="btn btn-success btn-sm" target="_blank">
+                                                <i class="fas fa-external-link-alt me-1"></i>Surefire Reports
+                                            </a>
+                                            <a href="https://github.com/jjrp1/kursor/actions" class="btn btn-secondary btn-sm" target="_blank">
+                                                <i class="fab fa-github me-1"></i>GitHub Actions
+                                            </a>
+                                        </div>
                                     </div>
-                                    <ul class="list-unstyled mt-3">
-                                        <li><i class="fas fa-check text-success me-2"></i>Sin vulnerabilidades críticas</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Sin code smells</li>
-                                        <li><i class="fas fa-check text-success me-2"></i>Buenas prácticas</li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- Tendencias -->
-                <section id="tendencias" class="mb-5">
-                    <h2><i class="fas fa-chart-area text-info me-2"></i>Tendencias</h2>
-                    
-                    <div class="chart-container">
-                        <h5 class="mb-4">Evolución de la Cobertura de Código</h5>
-                        <div class="row">
-                            <div class="col-md-3 text-center">
-                                <div class="metric-value metric-info">85%</div>
-                                <small class="text-muted">v0.1.0</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <div class="metric-value metric-info">89%</div>
-                                <small class="text-muted">v0.5.0</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <div class="metric-value metric-info">92%</div>
-                                <small class="text-muted">v0.9.0</small>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <div class="metric-value metric-success">95%</div>
-                                <small class="text-muted">v1.0.0</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h6>Próximos Objetivos</h6>
-                                    <ul>
-                                        <li>Aumentar cobertura de UI a 80%</li>
-                                        <li>Añadir pruebas de rendimiento</li>
-                                        <li>Implementar pruebas E2E</li>
-                                        <li>Mantener cobertura >90%</li>
-                                    </ul>
+                    <!-- Call to Action -->
+                    <section class="mb-5">
+                        <div class="card bg-gradient text-white" style="background: linear-gradient(135deg, var(--success-color), var(--secondary-color));">
+                            <div class="card-body text-center">
+                                <h3>🚀 ¿Quieres Contribuir a Mejorar la Calidad?</h3>
+                                <p class="lead">Ayuda a mantener y mejorar las pruebas del proyecto</p>
+                                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                    <a href="https://github.com/jjrp1/kursor" class="btn btn-light">
+                                        <i class="fab fa-github me-2"></i>Ver en GitHub
+                                    </a>
+                                    <a href="https://github.com/jjrp1/kursor/issues" class="btn btn-outline-light">
+                                        <i class="fas fa-bug me-2"></i>Reportar Issues
+                                    </a>
+                                    <a href="https://github.com/jjrp1/kursor/discussions" class="btn btn-outline-light">
+                                        <i class="fas fa-comments me-2"></i>Discusiones
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="metric-card card">
-                                <div class="card-body">
-                                    <h6>Métricas de Calidad</h6>
-                                    <ul>
-                                        <li><strong>Maintainability:</strong> A</li>
-                                        <li><strong>Reliability:</strong> A</li>
-                                        <li><strong>Security:</strong> A</li>
-                                        <li><strong>Duplications:</strong> 0%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Call to Action -->
-                <section class="mb-5">
-                    <div class="card bg-gradient text-white" style="background: linear-gradient(135deg, var(--success-color), var(--secondary-color));">
-                        <div class="card-body text-center">
-                            <h3>🚀 ¿Quieres Contribuir a Mejorar la Calidad?</h3>
-                            <p class="lead">Ayuda a mantener y mejorar las pruebas del proyecto</p>
-                            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                                <a href="https://github.com/jjrp1/kursor" class="btn btn-light">
-                                    <i class="fab fa-github me-2"></i>Ver en GitHub
-                                </a>
-                                <a href="https://github.com/jjrp1/kursor/issues" class="btn btn-outline-light">
-                                    <i class="fas fa-bug me-2"></i>Reportar Issues
-                                </a>
-                                <a href="https://github.com/jjrp1/kursor/discussions" class="btn btn-outline-light">
-                                    <i class="fas fa-comments me-2"></i>Discusiones
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
@@ -681,6 +452,153 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script>
+        // Función para cargar datos de testing automáticos
+        async function loadTestData() {
+            try {
+                // Intentar cargar datos reales primero
+                let response = await fetch('reports/data/test-metrics.json');
+                if (!response.ok) {
+                    // Si fallan los datos reales, intentar datos de fallback
+                    response = await fetch('reports/data/test-metrics-fallback.json');
+                    if (!response.ok) {
+                        throw new Error('No se pudieron cargar los datos');
+                    }
+                    console.warn('Usando datos de fallback');
+                    document.getElementById('error').classList.remove('d-none');
+                }
+                const data = await response.json();
+                displayTestData(data);
+            } catch (error) {
+                console.error('Error cargando datos de test:', error);
+                displayFallbackData();
+            }
+        }
+
+        function displayTestData(data) {
+            document.getElementById('loading').classList.add('d-none');
+            document.getElementById('main-content').classList.remove('d-none');
+
+            // Resumen ejecutivo
+            document.getElementById('coverage-total').textContent = `${data.coverage.average}%`;
+            document.getElementById('coverage-total').className = `metric-value ${getCoverageClass(data.coverage.average)}`;
+            
+            document.getElementById('tests-total').textContent = data.tests.total;
+            document.getElementById('success-rate').textContent = `${data.tests.success_rate}%`;
+            document.getElementById('success-rate').className = `metric-value ${getSuccessClass(data.tests.success_rate)}`;
+            
+            document.getElementById('execution-time').textContent = `${parseFloat(data.tests.execution_time).toFixed(1)}s`;
+
+            // Métricas principales
+            document.getElementById('tests-passed').textContent = data.tests.passed;
+            document.getElementById('tests-failed').textContent = data.tests.failed;
+            document.getElementById('tests-skipped').textContent = data.tests.skipped;
+            document.getElementById('modules-count').textContent = data.coverage.modules_count;
+
+            // Información del build
+            document.getElementById('commit-hash').textContent = data.commit.hash;
+            document.getElementById('build-status').textContent = data.status === 'success' ? '✅ Exitoso' : '❌ Fallido';
+            document.getElementById('build-time').textContent = new Date(data.timestamp).toLocaleString('es-ES');
+            document.getElementById('last-updated').textContent = `Última actualización: ${new Date(data.timestamp).toLocaleString('es-ES')}`;
+
+            // Cobertura por módulos
+            displayModuleCoverage(data.modules);
+
+            // Estado de tests
+            displayTestStatus(data);
+        }
+
+        function displayFallbackData() {
+            document.getElementById('loading').classList.add('d-none');
+            document.getElementById('error').classList.remove('d-none');
+            document.getElementById('main-content').classList.remove('d-none');
+
+            // Datos de ejemplo cuando no hay datos reales
+            document.getElementById('coverage-total').textContent = '95%';
+            document.getElementById('coverage-total').className = 'metric-value metric-success';
+            document.getElementById('tests-total').textContent = '42';
+            document.getElementById('success-rate').textContent = '100%';
+            document.getElementById('success-rate').className = 'metric-value metric-success';
+            document.getElementById('execution-time').textContent = '2.3s';
+
+            document.getElementById('tests-passed').textContent = '42';
+            document.getElementById('tests-failed').textContent = '0';
+            document.getElementById('tests-skipped').textContent = '0';
+            document.getElementById('modules-count').textContent = '9';
+
+            document.getElementById('commit-hash').textContent = 'ejemplo';
+            document.getElementById('build-status').textContent = '✅ Datos de ejemplo';
+            document.getElementById('build-time').textContent = new Date().toLocaleString('es-ES');
+            document.getElementById('last-updated').textContent = `Datos de ejemplo - ${new Date().toLocaleString('es-ES')}`;
+
+            // Datos de ejemplo para módulos
+            const exampleModules = [
+                { name: 'kursor-core', coverage: 92, lines_covered: 1847, lines_total: 2008 },
+                { name: 'flashcard-module', coverage: 88, lines_covered: 234, lines_total: 266 },
+                { name: 'multiplechoice-module', coverage: 95, lines_covered: 312, lines_total: 328 },
+                { name: 'fillblanks-module', coverage: 90, lines_covered: 198, lines_total: 220 }
+            ];
+            displayModuleCoverage(exampleModules);
+
+            const exampleData = { status: 'success', tests: { failed: 0, total: 42 } };
+            displayTestStatus(exampleData);
+        }
+
+        function displayModuleCoverage(modules) {
+            const container = document.getElementById('coverage-modules');
+            container.innerHTML = '';
+
+            modules.forEach((module, index) => {
+                if (index % 2 === 0) {
+                    container.innerHTML += '<div class="row mt-3">';
+                }
+
+                const coverageClass = getCoverageClass(module.coverage);
+                container.innerHTML += `
+                    <div class="col-md-6">
+                        <h6>${module.name}</h6>
+                        <div class="coverage-bar">
+                            <div class="coverage-fill ${coverageClass}" style="width: ${module.coverage}%"></div>
+                        </div>
+                        <small class="text-muted">${module.coverage}% - ${module.lines_covered} líneas cubiertas</small>
+                    </div>
+                `;
+
+                if (index % 2 === 1 || index === modules.length - 1) {
+                    container.innerHTML += '</div>';
+                }
+            });
+        }
+
+        function displayTestStatus(data) {
+            const container = document.getElementById('test-status');
+            
+            if (data.status === 'success' && data.tests.failed === 0) {
+                container.className = 'test-result test-passed';
+                container.innerHTML = `
+                    <h5><i class="fas fa-check-circle me-2"></i>Todos los Tests Exitosos</h5>
+                    <p>Todos los ${data.tests.total} tests se ejecutaron correctamente sin errores.</p>
+                `;
+            } else {
+                container.className = 'test-result test-failed';
+                container.innerHTML = `
+                    <h5><i class="fas fa-exclamation-circle me-2"></i>Tests con Fallos</h5>
+                    <p>${data.tests.failed} de ${data.tests.total} tests fallaron. Revisa los reportes detallados.</p>
+                `;
+            }
+        }
+
+        function getCoverageClass(coverage) {
+            if (coverage >= 80) return 'coverage-high';
+            if (coverage >= 60) return 'coverage-medium';
+            return 'coverage-low';
+        }
+
+        function getSuccessClass(rate) {
+            if (rate >= 95) return 'metric-success';
+            if (rate >= 80) return 'metric-warning';
+            return 'metric-danger';
+        }
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -716,6 +634,9 @@
                 }
             });
         });
+
+        // Cargar datos al cargar la página
+        document.addEventListener('DOMContentLoaded', loadTestData);
     </script>
 </body>
 </html> 

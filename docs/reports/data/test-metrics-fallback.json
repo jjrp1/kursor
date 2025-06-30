@@ -1,0 +1,76 @@
+{
+  "timestamp": "2025-01-01T00:00:00Z",
+  "commit": {
+    "hash": "ejemplo",
+    "message": "Datos de ejemplo para testing"
+  },
+  "tests": {
+    "total": 42,
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0,
+    "success_rate": 100,
+    "execution_time": "2.3"
+  },
+  "coverage": {
+    "average": 95,
+    "modules_count": 9
+  },
+  "modules": [
+    {
+      "name": "kursor-core",
+      "coverage": 92,
+      "lines_covered": 1847,
+      "lines_total": 2008
+    },
+    {
+      "name": "flashcard-module",
+      "coverage": 88,
+      "lines_covered": 234,
+      "lines_total": 266
+    },
+    {
+      "name": "multiplechoice-module",
+      "coverage": 95,
+      "lines_covered": 312,
+      "lines_total": 328
+    },
+    {
+      "name": "fillblanks-module",
+      "coverage": 90,
+      "lines_covered": 198,
+      "lines_total": 220
+    },
+    {
+      "name": "truefalse-module",
+      "coverage": 87,
+      "lines_covered": 156,
+      "lines_total": 179
+    },
+    {
+      "name": "secuencial-strategy",
+      "coverage": 93,
+      "lines_covered": 145,
+      "lines_total": 156
+    },
+    {
+      "name": "aleatoria-strategy",
+      "coverage": 91,
+      "lines_covered": 89,
+      "lines_total": 98
+    },
+    {
+      "name": "repeticion-espaciada-strategy",
+      "coverage": 96,
+      "lines_covered": 234,
+      "lines_total": 244
+    },
+    {
+      "name": "repetir-incorrectas-strategy",
+      "coverage": 89,
+      "lines_covered": 123,
+      "lines_total": 138
+    }
+  ],
+  "status": "success"
+} 

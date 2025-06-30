@@ -55,6 +55,45 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Download test reports
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ci.yml
+          name: test-reports
+          path: test-reports/
+        continue-on-error: true
+
+      - name: Integrate test reports into documentation
+        run: |
+          echo "=== Integrating Test Reports ==="
+          
+          # Crear estructura de directorios para reportes
+          mkdir -p ./docs/reports/coverage
+          mkdir -p ./docs/reports/tests
+          mkdir -p ./docs/reports/data
+          
+          # Copiar reportes de cobertura si existen
+          if [ -d "test-reports" ]; then
+            echo "Test reports found, integrating..."
+            
+            # Cobertura de Jacoco
+            find test-reports -name "jacoco" -type d -exec cp -r {} ./docs/reports/coverage/ \; || echo "No Jacoco reports found"
+            
+            # Reportes de Surefire
+            find test-reports -name "surefire-reports" -type d -exec cp -r {} ./docs/reports/tests/ \; || echo "No Surefire reports found"
+            
+            # Generar datos JSON para la página web
+            ./scripts/generate-test-data.sh > ./docs/reports/data/test-metrics.json || echo "Failed to generate test data"
+          else
+            echo "No test reports available, using fallback data"
+            echo '{"coverage": 0, "tests": 0, "status": "No data"}' > ./docs/reports/data/test-metrics.json
+          fi
+          
+          echo "Reports integration completed"
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4 
