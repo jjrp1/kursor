@@ -30,31 +30,15 @@ public class BloqueAdapter implements SelectableItem {
     private static final Logger logger = LoggerFactory.getLogger(BloqueAdapter.class);
     
     private final Bloque bloque;
-    private final PreguntaModule moduloPredominante;
     
     /**
      * Constructor que crea un adaptador para un bloque específico.
      * 
      * @param bloque El bloque a adaptar
-     * @param moduloPredominante El módulo de pregunta predominante en el bloque
-     */
-    public BloqueAdapter(Bloque bloque, PreguntaModule moduloPredominante) {
-        this.bloque = bloque;
-        this.moduloPredominante = moduloPredominante;
-        logger.debug("BloqueAdapter creado para bloque: {}", bloque.getTitulo());
-    }
-    
-    /**
-     * Constructor que determina automáticamente el módulo predominante.
-     * 
-     * @param bloque El bloque a adaptar
      */
     public BloqueAdapter(Bloque bloque) {
         this.bloque = bloque;
-        this.moduloPredominante = determinarModuloPredominante(bloque);
-        logger.debug("BloqueAdapter creado para bloque: {} con módulo predominante: {}", 
-                    bloque.getTitulo(), 
-                    moduloPredominante != null ? moduloPredominante.getModuleName() : "null");
+        logger.debug("BloqueAdapter creado para bloque: {}", bloque.getTitulo());
     }
     
     @Override
@@ -106,15 +90,14 @@ public class BloqueAdapter implements SelectableItem {
     
     @Override
     public String getIcon() {
-        if (moduloPredominante != null) {
-            return moduloPredominante.getIcon();
-        }
-        return "📚"; // Icono por defecto para bloques
+        PreguntaModule module = ModuleManager.getInstance().findModuleByQuestionType(bloque.getTipo());
+        return module != null ? module.getIcon() : "📚";
     }
     
     @Override
     public String getColor() {
-        return obtenerColorPorTipo(bloque.getTipo());
+        PreguntaModule module = ModuleManager.getInstance().findModuleByQuestionType(bloque.getTipo());
+        return module != null ? module.getColor() : "#6c757d";
     }
     
     /**
@@ -126,61 +109,7 @@ public class BloqueAdapter implements SelectableItem {
         return bloque;
     }
     
-    /**
-     * Determina el módulo de pregunta predominante en un bloque.
-     * 
-     * @param bloque El bloque a analizar
-     * @return El módulo predominante, o null si no hay preguntas
-     */
-    private PreguntaModule determinarModuloPredominante(Bloque bloque) {
-        if (!bloque.tienePreguntas()) {
-            return null;
-        }
-        
-        // Contar tipos de preguntas
-        Map<String, Long> conteoTipos = bloque.getPreguntas().stream()
-            .collect(Collectors.groupingBy(
-                Pregunta::getTipo, 
-                Collectors.counting()
-            ));
-        
-        // Obtener el tipo más frecuente
-        String tipoPredominante = conteoTipos.entrySet().stream()
-            .max(Map.Entry.comparingByValue())
-            .map(Map.Entry::getKey)
-            .orElse("test");
-        
-        logger.debug("Tipo predominante en bloque {}: {}", bloque.getTitulo(), tipoPredominante);
-        
-        // Obtener el módulo correspondiente
-        try {
-            return ModuleManager.getInstance().findModuleByQuestionType(tipoPredominante);
-        } catch (Exception e) {
-            logger.warn("No se pudo obtener el módulo para tipo: {}", tipoPredominante, e);
-            return null;
-        }
-    }
+
     
-    /**
-     * Obtiene el color CSS basado en el tipo de bloque.
-     * 
-     * @param tipo El tipo de bloque
-     * @return El color CSS correspondiente
-     */
-    private String obtenerColorPorTipo(String tipo) {
-        if (tipo == null || tipo.trim().isEmpty()) {
-            return "#6c757d"; // Gris por defecto
-        }
-        
-        return switch (tipo.toLowerCase().trim()) {
-            case "teoria" -> "#007bff";      // Azul
-            case "practica" -> "#28a745";    // Verde
-            case "evaluacion" -> "#dc3545";  // Rojo
-            case "repaso" -> "#ffc107";      // Amarillo
-            case "introduccion" -> "#17a2b8"; // Cian
-            case "ejercicios" -> "#fd7e14";  // Naranja
-            case "resumen" -> "#6f42c1";     // Púrpura
-            default -> "#6c757d";            // Gris
-        };
-    }
+
 } 

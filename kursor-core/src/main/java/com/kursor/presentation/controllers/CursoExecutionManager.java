@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Gestor de ejecución de cursos que coordina todo el flujo de realización.
@@ -130,16 +132,23 @@ public class CursoExecutionManager {
                 items
             );
             
-            CompletableFuture<SelectableItem> future = modal.mostrarYEsperar();
-            SelectableItem itemSeleccionado = future.get(); // Esperar resultado
+            CompletableFuture<SelectableItem> future = modal.mostrarSimple();
             
-            if (itemSeleccionado != null && itemSeleccionado instanceof BloqueAdapter) {
-                Bloque bloque = ((BloqueAdapter) itemSeleccionado).getBloque();
-                bloqueSeleccionado = convertirABloqueDTO(bloque);
-                logger.info("Bloque seleccionado: {}", bloqueSeleccionado.getTitulo());
-                return true;
-            } else {
-                logger.info("Usuario canceló la selección de bloque");
+            // Usar un enfoque no bloqueante con timeout
+            try {
+                SelectableItem itemSeleccionado = future.get(30, TimeUnit.SECONDS); // Timeout de 30 segundos
+                
+                if (itemSeleccionado != null && itemSeleccionado instanceof BloqueAdapter) {
+                    Bloque bloque = ((BloqueAdapter) itemSeleccionado).getBloque();
+                    bloqueSeleccionado = convertirABloqueDTO(bloque);
+                    logger.info("Bloque seleccionado: {}", bloqueSeleccionado.getTitulo());
+                    return true;
+                } else {
+                    logger.info("Usuario canceló la selección de bloque");
+                    return false;
+                }
+            } catch (TimeoutException e) {
+                logger.error("Timeout al esperar selección de bloque", e);
                 return false;
             }
             
@@ -173,16 +182,23 @@ public class CursoExecutionManager {
                 items
             );
             
-            CompletableFuture<SelectableItem> future = modal.mostrarYEsperar();
-            SelectableItem itemSeleccionado = future.get(); // Esperar resultado
+            CompletableFuture<SelectableItem> future = modal.mostrarSimple();
             
-            if (itemSeleccionado != null && itemSeleccionado instanceof EstrategiaAdapter) {
-                EstrategiaModule estrategia = ((EstrategiaAdapter) itemSeleccionado).getEstrategia();
-                estrategiaSeleccionada = estrategia.getNombre();
-                logger.info("Estrategia seleccionada: {}", estrategiaSeleccionada);
-                return true;
-            } else {
-                logger.info("Usuario canceló la selección de estrategia");
+            // Usar un enfoque no bloqueante con timeout
+            try {
+                SelectableItem itemSeleccionado = future.get(30, TimeUnit.SECONDS); // Timeout de 30 segundos
+                
+                if (itemSeleccionado != null && itemSeleccionado instanceof EstrategiaAdapter) {
+                    EstrategiaModule estrategia = ((EstrategiaAdapter) itemSeleccionado).getEstrategia();
+                    estrategiaSeleccionada = estrategia.getNombre();
+                    logger.info("Estrategia seleccionada: {}", estrategiaSeleccionada);
+                    return true;
+                } else {
+                    logger.info("Usuario canceló la selección de estrategia");
+                    return false;
+                }
+            } catch (TimeoutException e) {
+                logger.error("Timeout al esperar selección de estrategia", e);
                 return false;
             }
             

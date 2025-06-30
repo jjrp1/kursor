@@ -18,17 +18,49 @@ import org.slf4j.LoggerFactory;
  * Módulo para preguntas de tipo opción múltiple (test).
  * 
  * <p>Este módulo maneja preguntas que requieren seleccionar una respuesta
- * de entre varias opciones disponibles.</p>
+ * de entre varias opciones disponibles. Es uno de los tipos de pregunta
+ * más comunes en sistemas de aprendizaje.</p>
+ * 
+ * <p>Características del módulo:</p>
+ * <ul>
+ *   <li><strong>Tipo de pregunta:</strong> "test"</li>
+ *   <li><strong>Estructura:</strong> Enunciado + múltiples opciones + respuesta correcta</li>
+ *   <li><strong>Interfaz:</strong> Radio buttons para selección única</li>
+ *   <li><strong>Validación:</strong> Verifica que la respuesta seleccionada sea correcta</li>
+ *   <li><strong>Logging:</strong> Registra todo el proceso de creación y validación</li>
+ * </ul>
+ * 
+ * <p>Estructura YAML esperada:</p>
+ * <pre>{@code
+ * id: "p1"
+ * tipo: "test"
+ * enunciado: "¿Cuál es la capital de España?"
+ * opciones:
+ *   - "Madrid"
+ *   - "Barcelona"
+ *   - "Valencia"
+ *   - "Sevilla"
+ * respuesta: "Madrid"
+ * }</pre>
+ * 
+ * <p>Componentes de la interfaz:</p>
+ * <ul>
+ *   <li><strong>Enunciado:</strong> Label con el texto de la pregunta</li>
+ *   <li><strong>Opciones:</strong> Radio buttons para cada opción</li>
+ *   <li><strong>Agrupación:</strong> ToggleGroup para selección única</li>
+ *   <li><strong>Botones:</strong> Verificar y Siguiente</li>
+ * </ul>
  * 
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 2.0.0
  * @since 1.0.0
  * @see PreguntaModule
  * @see PreguntaTest
+ * @see PreguntaEventListener
  */
 public class MultipleChoiceModule implements PreguntaModule {
     
-    /** Logger para registrar eventos de la clase */
+    /** Logger para registrar eventos del módulo */
     private static final Logger logger = LoggerFactory.getLogger(MultipleChoiceModule.class);
     
     @Override
@@ -47,6 +79,11 @@ public class MultipleChoiceModule implements PreguntaModule {
     }
     
     @Override
+    public String getColor() {
+        return "#007bff"; // Azul para opción múltiple
+    }
+    
+    @Override
     public String getQuestionType() {
         return "test";
     }
@@ -55,7 +92,26 @@ public class MultipleChoiceModule implements PreguntaModule {
      * Parsea datos YAML para crear una pregunta de opción múltiple.
      * 
      * <p>Este método interpreta los datos YAML y crea una instancia de
-     * {@link PreguntaTest} con todos sus atributos configurados.</p>
+     * {@link PreguntaTest} con todos sus atributos configurados. Realiza
+     * validaciones exhaustivas de los datos de entrada.</p>
+     * 
+     * <p>Proceso de parsing:</p>
+     * <ol>
+     *   <li>Validar que los datos YAML no sean null</li>
+     *   <li>Extraer y validar campos obligatorios (id, enunciado, respuesta)</li>
+     *   <li>Extraer y validar lista de opciones</li>
+     *   <li>Crear instancia de PreguntaTest</li>
+     *   <li>Registrar resultado en el log</li>
+     * </ol>
+     * 
+     * <p>Validaciones realizadas:</p>
+     * <ul>
+     *   <li>Datos YAML no null</li>
+     *   <li>ID presente y no vacío</li>
+     *   <li>Enunciado presente y no vacío</li>
+     *   <li>Respuesta correcta presente y no vacía</li>
+     *   <li>Lista de opciones no null y no vacía</li>
+     * </ul>
      * 
      * <p>Estructura YAML esperada:</p>
      * <ul>
@@ -66,53 +122,79 @@ public class MultipleChoiceModule implements PreguntaModule {
      * </ul>
      * 
      * @param preguntaData Mapa con los datos YAML de la pregunta
-     * @return PreguntaTest creada a partir de los datos YAML
+     * @return PreguntaTest creada a partir de los datos YAML, nunca null
      * @throws IllegalArgumentException si los datos YAML no son válidos
+     * 
+     * @see PreguntaTest
      */
     @Override
     public Pregunta parsePregunta(Map<String, Object> preguntaData) {
-        logger.debug("Parseando pregunta de opción múltiple desde YAML - Datos: " + preguntaData);
+        logger.debug("🚀 Iniciando parsing de pregunta de opción múltiple");
+        logger.debug("📋 Datos YAML recibidos: {}", preguntaData);
         
         // Validar datos requeridos
         if (preguntaData == null) {
-            logger.error("Error al parsear pregunta: datos YAML no pueden ser null");
+            logger.error("❌ Error al parsear pregunta: datos YAML no pueden ser null");
             throw new IllegalArgumentException("Datos YAML no pueden ser null");
         }
         
+        logger.debug("✅ Datos YAML validados correctamente");
+        
+        // Extraer campos obligatorios
         String id = (String) preguntaData.get("id");
         String enunciado = (String) preguntaData.get("enunciado");
         String respuestaCorrecta = (String) preguntaData.get("respuesta");
         
+        logger.debug("🔍 Campos extraídos:");
+        logger.debug("   - ID: '{}'", id);
+        logger.debug("   - Enunciado: '{}'", enunciado);
+        logger.debug("   - Respuesta correcta: '{}'", respuestaCorrecta);
+        
         // Validar campos obligatorios
         if (id == null || id.trim().isEmpty()) {
-            logger.error("Error al parsear pregunta: ID no puede ser null o vacío");
+            logger.error("❌ Error al parsear pregunta: ID no puede ser null o vacío");
             throw new IllegalArgumentException("ID de pregunta no puede ser null o vacío");
         }
         
         if (enunciado == null || enunciado.trim().isEmpty()) {
-            logger.error("Error al parsear pregunta: enunciado no puede ser null o vacío - ID: " + id);
+            logger.error("❌ Error al parsear pregunta: enunciado no puede ser null o vacío - ID: {}", id);
             throw new IllegalArgumentException("Enunciado de pregunta no puede ser null o vacío");
         }
         
         if (respuestaCorrecta == null || respuestaCorrecta.trim().isEmpty()) {
-            logger.error("Error al parsear pregunta: respuesta correcta (respuesta) no puede ser null o vacía - ID: " + id);
+            logger.error("❌ Error al parsear pregunta: respuesta correcta (respuesta) no puede ser null o vacía - ID: {}", id);
             throw new IllegalArgumentException("Respuesta correcta (respuesta) no puede ser null o vacía");
         }
+        
+        logger.debug("✅ Campos obligatorios validados correctamente");
         
         // Obtener las opciones
         @SuppressWarnings("unchecked")
         List<String> opciones = (List<String>) preguntaData.get("opciones");
         
+        logger.debug("🔍 Opciones extraídas: {}", opciones);
+        
         // Validar que hay opciones
         if (opciones == null || opciones.isEmpty()) {
-            logger.error("Error al parsear pregunta: debe tener al menos una opción - ID: " + id);
+            logger.error("❌ Error al parsear pregunta: debe tener al menos una opción - ID: {}", id);
             throw new IllegalArgumentException("La pregunta debe tener al menos una opción");
         }
         
+        logger.debug("✅ Opciones validadas correctamente - Cantidad: {}", opciones.size());
+        
         // Crear la pregunta de opción múltiple
+        logger.debug("🔄 Creando instancia de PreguntaTest");
         PreguntaTest pregunta = new PreguntaTest(id, enunciado, opciones, respuestaCorrecta);
         
-        logger.info("Pregunta de opción múltiple ('test') parseada correctamente: " + pregunta.toString());
+        logger.debug("✅ PreguntaTest creada exitosamente");
+        logger.debug("📊 Información de la pregunta creada:");
+        logger.debug("   - ID: {}", pregunta.getId());
+        logger.debug("   - Tipo: {}", pregunta.getTipo());
+        logger.debug("   - Enunciado: {}", pregunta.getEnunciado());
+        logger.debug("   - Opciones: {}", pregunta.getOpciones().size());
+        logger.debug("   - Respuesta correcta: {}", pregunta.getRespuestaCorrecta());
+        
+        logger.info("🎉 Pregunta de opción múltiple ('test') parseada correctamente: {}", pregunta.toString());
         
         return pregunta;
     }
@@ -131,50 +213,79 @@ public class MultipleChoiceModule implements PreguntaModule {
      *   <li><strong>Agrupación:</strong> ToggleGroup para selección única</li>
      * </ul>
      * 
+     * <p>Estilos aplicados:</p>
+     * <ul>
+     *   <li><strong>Enunciado:</strong> Fuente 16px, negrita, color #2c3e50</li>
+     *   <li><strong>Opciones:</strong> Fuente 14px, alineación izquierda</li>
+     *   <li><strong>Contenedor:</strong> Espaciado 20px, centrado</li>
+     * </ul>
+     * 
      * @param pregunta La pregunta para la cual crear la vista
      * @return Nodo JavaFX que representa la interfaz de la pregunta
      * @throws IllegalArgumentException si el tipo de pregunta no es compatible
+     * 
+     * @see PreguntaTest
+     * @see javafx.scene.control.RadioButton
+     * @see javafx.scene.control.ToggleGroup
      */
     @Override
     public Node createQuestionView(Pregunta pregunta) {
-        logger.debug("Creando vista de pregunta de opción múltiple - ID: " + 
-                    (pregunta != null ? pregunta.getId() : "null"));
+        logger.debug("🚀 Iniciando creación de vista para pregunta de opción múltiple");
+        logger.debug("📋 Pregunta recibida: {}", pregunta != null ? pregunta.getId() : "null");
         
         if (!(pregunta instanceof PreguntaTest)) {
             String errorMsg = "Tipo de pregunta incorrecto para MultipleChoiceModule. Se esperaba PreguntaTest, se recibió: " + 
                             (pregunta != null ? pregunta.getClass().getSimpleName() : "null");
-            logger.error(errorMsg);
+            logger.error("❌ {}", errorMsg);
             throw new IllegalArgumentException(errorMsg);
         }
         
         PreguntaTest preguntaTest = (PreguntaTest) pregunta;
+        logger.debug("✅ Tipo de pregunta validado correctamente");
+        logger.debug("📊 Información de la pregunta:");
+        logger.debug("   - ID: {}", preguntaTest.getId());
+        logger.debug("   - Enunciado: {}", preguntaTest.getEnunciado());
+        logger.debug("   - Opciones: {}", preguntaTest.getOpciones().size());
         
+        // Crear contenedor principal
+        logger.debug("🔄 Creando contenedor principal (VBox)");
         VBox container = new VBox(20);
         container.setPadding(new Insets(20));
         container.setAlignment(Pos.CENTER);
         
-        // Enunciado
+        // Crear enunciado
+        logger.debug("🔄 Creando label de enunciado");
         Label lblEnunciado = new Label(preguntaTest.getEnunciado());
         lblEnunciado.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;");
         lblEnunciado.setWrapText(true);
         lblEnunciado.setMaxWidth(600);
         
-        // Opciones
+        logger.debug("✅ Enunciado configurado correctamente");
+        
+        // Crear opciones
+        logger.debug("🔄 Creando opciones de respuesta");
         ToggleGroup toggleGroup = new ToggleGroup();
         VBox opcionesContainer = new VBox(10);
         opcionesContainer.setAlignment(Pos.CENTER_LEFT);
         
-        for (String opcion : preguntaTest.getOpciones()) {
+        for (int i = 0; i < preguntaTest.getOpciones().size(); i++) {
+            String opcion = preguntaTest.getOpciones().get(i);
             RadioButton rbOpcion = new RadioButton(opcion);
             rbOpcion.setToggleGroup(toggleGroup);
             rbOpcion.setStyle("-fx-font-size: 14px;");
             opcionesContainer.getChildren().add(rbOpcion);
+            
+            logger.debug("   - Opción {}: '{}'", i + 1, opcion);
         }
         
+        logger.debug("✅ Opciones creadas correctamente - Cantidad: {}", preguntaTest.getOpciones().size());
+        
+        // Ensamblar interfaz
+        logger.debug("🔄 Ensamblando componentes de la interfaz");
         container.getChildren().addAll(lblEnunciado, opcionesContainer);
         
-        logger.info("Vista de pregunta de opción múltiple creada exitosamente - ID: " + preguntaTest.getId() + 
-                   ", Opciones: " + preguntaTest.getOpciones().size());
+        logger.info("🎉 Vista de pregunta de opción múltiple creada exitosamente - ID: {}, Opciones: {}", 
+                   preguntaTest.getId(), preguntaTest.getOpciones().size());
         
         return container;
     }

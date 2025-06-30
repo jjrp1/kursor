@@ -44,6 +44,11 @@ public class FillBlanksModule implements PreguntaModule {
     public String getIcon() {
         return "🔤";
     }
+    
+    @Override
+    public String getColor() {
+        return "#fd7e14"; // Naranja para completar huecos
+    }
 
     @Override
     public String getQuestionType() {
@@ -52,12 +57,44 @@ public class FillBlanksModule implements PreguntaModule {
 
     @Override
     public Pregunta parsePregunta(Map<String, Object> preguntaData) {
+        logger.debug("[FillBlanksModule] parsePregunta iniciado. Datos recibidos: {}", preguntaData);
+        
+        // Validar datos requeridos
+        if (preguntaData == null) {
+            logger.error("[FillBlanksModule] Error al parsear pregunta: datos YAML no pueden ser null");
+            throw new IllegalArgumentException("Datos YAML no pueden ser null");
+        }
+        
+        // Extraer campos obligatorios
         String id = (String) preguntaData.get("id");
         String enunciado = (String) preguntaData.get("enunciado");
-        String respuestaCorrecta = (String) preguntaData.get("respuesta");
+        String respuestaCorrecta = (String) preguntaData.get("respuestaCorrecta");
+        
+        logger.debug("[FillBlanksModule] Campos extraídos:");
+        logger.debug("   - ID: '{}'", id);
+        logger.debug("   - Enunciado: '{}'", enunciado);
+        logger.debug("   - Respuesta correcta: '{}'", respuestaCorrecta);
+        
+        // Validar campos obligatorios
+        if (id == null || id.trim().isEmpty()) {
+            logger.error("[FillBlanksModule] Error al parsear pregunta: ID no puede ser null o vacío");
+            throw new IllegalArgumentException("ID de pregunta no puede ser null o vacío");
+        }
+        
+        if (enunciado == null || enunciado.trim().isEmpty()) {
+            logger.error("[FillBlanksModule] Error al parsear pregunta: enunciado no puede ser null o vacío - ID: {}", id);
+            throw new IllegalArgumentException("Enunciado de pregunta no puede ser null o vacío");
+        }
+        
+        if (respuestaCorrecta == null || respuestaCorrecta.trim().isEmpty()) {
+            logger.error("[FillBlanksModule] Error al parsear pregunta: respuesta correcta no puede ser null o vacía - ID: {}", id);
+            throw new IllegalArgumentException("Respuesta correcta no puede ser null o vacía");
+        }
         
         // Crear la pregunta de completar huecos
+        logger.debug("[FillBlanksModule] Creando instancia de PreguntaCompletarHuecos");
         PreguntaCompletarHuecos pregunta = new PreguntaCompletarHuecos(id, enunciado, respuestaCorrecta);
+        logger.info("[FillBlanksModule] Pregunta completar huecos creada exitosamente - ID: {}", id);
         return pregunta;
     }
 

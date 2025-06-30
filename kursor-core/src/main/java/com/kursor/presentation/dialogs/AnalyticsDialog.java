@@ -271,7 +271,7 @@ public class AnalyticsDialog extends Stage {
         tendenciasContainer.getChildren().add(tendenciasChart);
         
         // Gráfico de bloques
-        VBox bloquesContainer = createChartContainer("🎯 Rendimiento por Bloque");
+        VBox bloquesContainer = createChartContainer("🧩 Rendimiento por Bloque");
         bloquesChart = createBloquesChart();
         bloquesContainer.getChildren().add(bloquesChart);
         

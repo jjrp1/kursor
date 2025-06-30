@@ -27,6 +27,17 @@ public class KursorApplication extends Application {
             String javaVersion = System.getProperty("java.version");
             logger.info("☕ Versión de Java detectada: {}", javaVersion);
             
+            // Verificar parámetro de nivel de log
+            String logLevel = System.getProperty("kursor.log.level", "NO DEFINIDO");
+            logger.info("🔧 Parámetro kursor.log.level interpretado: {}", logLevel);
+            
+            // Mostrar todas las propiedades relacionadas con logging
+            logger.info("🔍 Propiedades del sistema relacionadas con logging:");
+            logger.info("   - kursor.log.level: {}", System.getProperty("kursor.log.level", "NO DEFINIDO"));
+            logger.info("   - kursor.studio.log.level: {}", System.getProperty("kursor.studio.log.level", "NO DEFINIDO"));
+            logger.info("   - logback.configurationFile: {}", System.getProperty("logback.configurationFile", "NO DEFINIDO"));
+            logger.info("   - logback.debug: {}", System.getProperty("logback.debug", "NO DEFINIDO"));
+            
             // Verificar configuración de logging
             logger.debug("🔧 Configuración de logging:");
             logger.debug("   - Log Level: {}", System.getProperty("kursor.studio.log.level", "INFO"));

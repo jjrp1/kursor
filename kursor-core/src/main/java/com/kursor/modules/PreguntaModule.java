@@ -60,6 +60,13 @@ public interface PreguntaModule {
     String getIcon();
 
     /**
+     * Obtiene el color temático del módulo.
+     * 
+     * @return Color CSS que representa visualmente el tipo de pregunta
+     */
+    String getColor();
+
+    /**
      * Parsea datos YAML para crear una pregunta específica del tipo que maneja este módulo.
      * 
      * <p>Este método debe interpretar los datos YAML y crear una instancia de la clase

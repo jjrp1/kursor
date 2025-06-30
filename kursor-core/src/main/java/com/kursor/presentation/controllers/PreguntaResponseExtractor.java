@@ -1,6 +1,8 @@
 package com.kursor.presentation.controllers;
 
 import com.kursor.domain.Pregunta;
+import com.kursor.modules.PreguntaModule;
+import com.kursor.shared.util.ModuleManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javafx.scene.Node;
@@ -55,22 +57,45 @@ public class PreguntaResponseExtractor {
         }
         
         try {
-            switch (pregunta.getTipo()) {
-                case "test":
-                    return extraerRespuestaOpcionMultiple(vistaPregunta);
-                case "truefalse":
-                    return extraerRespuestaTrueFalse(vistaPregunta);
-                case "completar_huecos":
-                    return extraerRespuestaCompletarHuecos(vistaPregunta);
-                case "flashcard":
-                    return extraerRespuestaFlashcard();
-                default:
-                    logger.warn("Tipo de pregunta no soportado: " + pregunta.getTipo());
-                    return null;
+            // Buscar el módulo correspondiente al tipo de pregunta
+            PreguntaModule module = ModuleManager.getInstance().findModuleByQuestionType(pregunta.getTipo());
+            if (module == null) {
+                logger.warn("No se encontró módulo para el tipo de pregunta: " + pregunta.getTipo());
+                return null;
             }
+            
+            // Usar el método específico del módulo para extraer la respuesta
+            return extraerRespuestaPorModulo(vistaPregunta, pregunta, module);
+            
         } catch (Exception e) {
             logger.error("Error al extraer respuesta: " + e.getMessage(), e);
             return null;
+        }
+    }
+    
+    /**
+     * Extrae la respuesta usando la lógica específica del módulo.
+     * 
+     * @param vistaPregunta Vista de la pregunta
+     * @param pregunta La pregunta
+     * @param module El módulo que maneja este tipo de pregunta
+     * @return La respuesta extraída o null si no se puede extraer
+     */
+    private static Object extraerRespuestaPorModulo(Node vistaPregunta, Pregunta pregunta, PreguntaModule module) {
+        String questionType = module.getQuestionType();
+        
+        switch (questionType) {
+            case "test":
+                return extraerRespuestaOpcionMultiple(vistaPregunta);
+            case "truefalse":
+                return extraerRespuestaTrueFalse(vistaPregunta);
+            case "completar_huecos":
+                return extraerRespuestaCompletarHuecos(vistaPregunta);
+            case "flashcard":
+                return extraerRespuestaFlashcard();
+            default:
+                logger.warn("Tipo de pregunta no soportado en extraerRespuestaPorModulo: " + questionType);
+                return null;
         }
     }
     

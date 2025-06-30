@@ -1,7 +1,9 @@
 package com.kursor.presentation.controllers;
 
 import com.kursor.domain.EstrategiaAprendizaje;
-import com.kursor.presentation.dialogs.StrategySelectorModal;
+import com.kursor.presentation.dialogs.CardSelectorModal;
+import com.kursor.presentation.dialogs.EstrategiaAdapter;
+import com.kursor.presentation.dialogs.SelectableItem;
 import com.kursor.shared.util.CursoManager;
 import com.kursor.shared.util.StrategyManager;
 import com.kursor.strategy.EstrategiaModule;
@@ -12,6 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 // Importar DTOs y dominio
 import com.kursor.domain.EstrategiaAprendizaje;
@@ -19,7 +24,9 @@ import com.kursor.shared.util.StrategyManager;
 
 // Importar vistas y diálogos
 import com.kursor.presentation.views.CursoInterfaceView;
-import com.kursor.presentation.dialogs.StrategySelectorModal;
+import com.kursor.presentation.dialogs.CardSelectorModal;
+import com.kursor.presentation.dialogs.EstrategiaAdapter;
+import com.kursor.presentation.dialogs.SelectableItem;
 
 // Importar persistencia
 import com.kursor.persistence.repository.SesionRepository;
@@ -32,7 +39,7 @@ import com.kursor.persistence.config.PersistenceConfig;
  * 
  * <p>Este controlador coordina todo el flujo de ejecución de un curso:</p>
  * <ol>
- *   <li>Muestra el modal de selección de estrategia</li>
+ *   <li>Muestra el modal de selección de estrategia usando CardSelectorModal</li>
  *   <li>Inicializa la vista de curso con la estrategia seleccionada</li>
  *   <li>Gestiona la navegación entre preguntas</li>
  *   <li>Coordina con el CursoSessionManager para persistencia</li>
@@ -46,7 +53,7 @@ import com.kursor.persistence.config.PersistenceConfig;
  * @author Juan José Ruiz Pérez <jjrp1@um.es>
  * @version 1.0.0
  * @since 1.0.0
- * @see StrategySelectorModal
+ * @see CardSelectorModal
  * @see CursoInterfaceView
  * @see CursoSessionManager
  * @see StrategyManager
@@ -62,8 +69,8 @@ public class CursoInterfaceController {
     /** Gestor de estrategias */
     private final StrategyManager strategyManager;
     
-    /** Modal de selección de estrategia (versión MVC) */
-    private StrategySelectorModal estrategiaModal;
+    /** Modal de selección de estrategia (versión CardSelector) */
+    private CardSelectorModal estrategiaModal;
     
     /** Modal de ejecución de curso */
     private CursoInterfaceView cursoView;
@@ -178,15 +185,51 @@ public class CursoInterfaceController {
     }
     
     /**
-     * Muestra el modal de selección de estrategia y espera la selección del usuario.
+     * Muestra el modal de selección de estrategia usando CardSelectorModal y espera la selección del usuario.
      * 
      * @return Nombre de la estrategia seleccionada, o null si se canceló
      */
     private String mostrarSeleccionEstrategia() {
-        logger.debug("Mostrando modal de selección de estrategia (versión MVC)");
+        logger.debug("Mostrando modal de selección de estrategia usando CardSelectorModal");
         
-        estrategiaModal = new StrategySelectorModal(owner, cursoActual);
-        return estrategiaModal.mostrarYEsperar();
+        try {
+            // Obtener estrategias disponibles
+            List<EstrategiaModule> estrategias = strategyManager.getStrategies();
+            
+            // Convertir a SelectableItem usando EstrategiaAdapter
+            List<com.kursor.presentation.dialogs.SelectableItem> items = estrategias.stream()
+                .map(EstrategiaAdapter::new)
+                .collect(Collectors.toList());
+            
+            // Crear el modal usando CardSelectorModal
+            estrategiaModal = new CardSelectorModal(
+                "🎯 Seleccionar Estrategia de Aprendizaje",
+                "Elige la estrategia que mejor se adapte a tu estilo de aprendizaje para el curso: " + cursoActual.getTitulo(),
+                items
+            );
+            
+            // Mostrar el modal y esperar la selección con timeout
+            var future = estrategiaModal.mostrarSimple();
+            
+            try {
+                var resultado = future.get(30, TimeUnit.SECONDS); // Timeout de 30 segundos
+                
+                if (resultado != null) {
+                    logger.info("Estrategia seleccionada: {}", resultado.getTitle());
+                    return resultado.getTitle();
+                } else {
+                    logger.info("Usuario canceló la selección de estrategia");
+                    return null;
+                }
+            } catch (TimeoutException e) {
+                logger.error("Timeout al esperar selección de estrategia", e);
+                return null;
+            }
+            
+        } catch (Exception e) {
+            logger.error("Error al mostrar modal de selección de estrategia", e);
+            return null;
+        }
     }
     
     /**
