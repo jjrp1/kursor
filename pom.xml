@@ -32,7 +32,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson.version>2.15.2</jackson.version>
+        <jackson.version>2.19.2</jackson.version>
         <sqlite.version>3.42.0.0</sqlite.version>
         <logback.version>1.4.11</logback.version>
         <slf4j.version>2.0.7</slf4j.version>
